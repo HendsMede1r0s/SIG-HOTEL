@@ -68,7 +68,9 @@ void tela_sobre(void){
     printf("----------------------------------------------------------");
     printf("\n");
     printf("         SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS         ");
-    printf("Projeto proposto pelo professor de Sistemas de Informação \n da UFRN-CERES, @flgorgonio, com o intuido fazer um sistema de \n gestão designado a hotéis ou pousadas");
+    printf("Projeto proposto pelo professor de Sistemas de Informação ");
+    printf(" da UFRN-CERES, @flgorgonio, com o intuido fazer um sistema de");
+    printf("gestão designado a hotéis ou pousadas");
     printf("----------------------------------------------------------");
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
