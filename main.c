@@ -9,12 +9,11 @@ void tela_equipe(void);
 
 
 int main(void){
-    
+    setlocale(LC_ALL, "Portuguese");
     return(0);
 }
 
 void tela_sobre(void){
-    setlocale(LC_ALL, "Portuguese");
     system("clear||cls");
     printf("\n");
     printf("----------------------------------------------------------");
