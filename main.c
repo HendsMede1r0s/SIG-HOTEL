@@ -9,11 +9,12 @@ void tela_equipe(void);
 
 
 int main(void){
-    setlocale(LC_ALL, "Portuguese");
-    return(0);
+    
 }
 
 void tela_sobre(void){
+    setLocale(LC_ALL,"Portuguese");
+    char op;
     system("clear||cls");
     printf("\n");
     printf("----------------------------------------------------------");
@@ -25,11 +26,10 @@ void tela_sobre(void){
     printf("--   PROJETO SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS   --");
     printf("--                                                      --");
     printf("----------------------------------------------------------");
-    printf("\n");
+    print("\n");
     printf("         SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS         ");
     printf("Projeto proposto pelo professor de Sistemas de Informação da UFRN-CERES, @flgorgonio, com o intuido fazer um sistema de gestão designado a hotéis ou pousadas");
     printf("----------------------------------------------------------");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
-
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR");
 }
