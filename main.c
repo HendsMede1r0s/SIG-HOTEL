@@ -159,6 +159,7 @@ void tela_equipe(void){
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
+<<<<<<< HEAD
 }
 
 
@@ -171,3 +172,6 @@ void tela_equipe(void){
 int main(void){
     setlocale(LC_ALL,"Portuguese");
 }
+=======
+}
+>>>>>>> main
