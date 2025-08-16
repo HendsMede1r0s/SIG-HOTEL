@@ -31,10 +31,6 @@ void tela_sobre(void);
 //////////////////////////////////////
 
 
-int main(void){
-    setlocale(LC_ALL,"Portuguese");
-}
-
 
 void tela_inicial(void){
     printf("___________________________________");
@@ -110,4 +106,15 @@ void tela_equipe(void){
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
     getchat();
+}
+
+
+
+//////////////////////////////////////////////////
+///////////// Função Principal ///////////////////
+/////////////////////////////////////////////////
+
+
+int main(void){
+    setlocale(LC_ALL,"Portuguese");
 }
