@@ -57,21 +57,20 @@ void tela_equipe(void){
 void tela_sobre(void){
     system("clear||cls");
     printf("\n");
-    printf("----------------------------------------------------------");
-    printf("--                                                      --");
-    printf("--      UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE     --");
-    printf("--          CENTRO DE ENSINO SUPERIOR DO SERIDO         --");
-    printf("--        DEPATARMENTO DE COMPUTAÇÃO E TECNOLOGIA       --");
-    printf("--           DISCIPLINA DCT1106 - PROGRAMAÇÃO           --");
-    printf("--   PROJETO SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS   --");
-    printf("--                                                      --");
-    printf("----------------------------------------------------------");
+    printf(" ____________________________________________________________________");
+    printf("|                                                                    |");
+    printf("|             UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE            |");
+    printf("|                 CENTRO DE ENSINO SUPERIOR DO SERIDO                |");
+    printf("|               DEPATARMENTO DE COMPUTAÇÃO E TECNOLOGIA              |");
+    printf("|                  DISCIPLINA DCT1106 - PROGRAMAÇÃO                  |");
+    printf("|          PROJETO SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS          |");
+    printf("|--------------------------------------------------------------------|");
     printf("\n");
-    printf("          SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS          ");
-    printf("  Projeto proposto pelo professor de Sistemas de Informação  ");
-    printf("da UFRN-CERES, @flgorgonio, com o intuido fazer um sistema de");
-    printf("           gestão designado a hotéis ou pousadas             ");
-    printf("----------------------------------------------------------");
+    printf("|           - SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS -             |");
+    printf("|     Projeto proposto pelo professor de Sistemas de Informação      |");
+    printf("|   da UFRN-CERES, @flgorgonio, com o intuido fazer um sistema de    |");
+    printf("|              gestão designado a hotéis ou pousadas                 |");
+    printf("|____________________________________________________________________|");
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
 }
