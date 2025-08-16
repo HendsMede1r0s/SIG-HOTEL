@@ -1,20 +1,60 @@
+//////////////////////////////////////
+/////////// Bibliotecas //////////////
+//////////////////////////////////////
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
 
 
+
+//////////////////////////////////////
+////////////// Funções ///////////////
+//////////////////////////////////////
+
+
 void tela_inicial(void);
-void tela_sobre(void);
 void tela_equipe(void);
+void tela_sobre(void);
+
+
+//////////////////////////////////////
+///////////// Módulos ////////////////
+//////////////////////////////////////
 
 
 int main(void){
-    
+    setlocale(LC_ALL,"Portuguese");
 }
 
+
+void tela_inicial(void){
+    printf("___________________________________");
+    printf("|                                  |");
+    printf("|          Menu Principal          |");
+    printf("|__________________________________|");
+    printf("|                                  |");
+    printf("|        1 - Clientes              |");
+    printf("|        2 - Funcionários          |");
+    printf("|        3 - Quartos               |");
+    printf("|        4 - Serviços              |");
+    printf("|        5 - Restaurante           |");
+    printf("|        6 - Áreas de Lazer        |");
+    printf("|        7 - Garagem               |");
+    printf("|        0 - Sair                  |");
+    printf("|__________________________________|");
+
+
+}
+
+
+void tela_equipe(void){
+
+}
+
+
 void tela_sobre(void){
-    setLocale(LC_ALL,"Portuguese");
-    char op;
     system("clear||cls");
     printf("\n");
     printf("----------------------------------------------------------");
@@ -32,5 +72,4 @@ void tela_sobre(void){
     printf("----------------------------------------------------------");
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
-
 }
