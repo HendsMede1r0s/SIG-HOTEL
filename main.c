@@ -158,7 +158,7 @@ void tela_equipe(void){
     printf("|_____________________________________________________________________|");
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
-    getchat();
+    getchar();
 }
 
 
