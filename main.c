@@ -49,11 +49,6 @@ void tela_inicial(void){
 }
 
 
-void tela_equipe(void){
-
-}
-
-
 void tela_sobre(void){
     system("clear||cls");
     printf("\n");
@@ -73,4 +68,34 @@ void tela_sobre(void){
     printf("|____________________________________________________________________|");
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
+}
+
+void tela_equipe(void){
+    system("clear|cls");
+    printf("\n");
+    printf(" _____________________________________________________________________");
+    printf("|                                                                     |");
+    printf("|             UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE             |");
+    printf("|                 CENTRO DE ENSINO SUPERIO DO SERIDÓ                  |");
+    printf("|               DEPARTAMENTO DE COMPUTAÇÃO E TECNOLOGIA               |");
+    printf("|                  DISCIPLINA DCT1106 - PROGRAMAÇÃO                   |");
+    printf("|          PROJETO SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS           |");
+    printf("|---------------------------------------------------------------------|");
+    printf("\n");
+    printf("|           - SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS -              |");
+    printf("|                                                                     |");
+    printf("|                      PROJETO DESENVOLVIDO POR:                      |");
+    printf("|                                                                     |");
+    printf("|        NOME:   Henderson Emanuel                                    |");
+    printf("|        EMAIL:  hendersonbernardo2018@gmail.com                      |");
+    printf("|        GITHUB: https://github.com/HendsMede1r0s                     |");
+    printf("|                                                                     |");
+    printf("|        NOME:   Leonardo Relva                                       |");
+    printf("|        EMAIL:  leonardo.relva.111@ufrn.edu.br                       |");
+    printf("|        GITHUB: https://github.com/leonardorelva-ufrn                |");
+    printf("|_____________________________________________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchat();
 }
