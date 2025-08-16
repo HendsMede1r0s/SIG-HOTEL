@@ -52,9 +52,20 @@ void tela_inicial(void){
 }
 
 
-void tela_equipe(void){
-
+void tela_clientes(void){
+    system("clear||cls");
+    printf("\n");
+    printf("___________________________________");
+    printf("|                                  |");
+    printf("|          Menu Principal          |");
+    printf("|__________________________________|");
+    printf("|                                  |");
+    printf("|        1 - Cadastar              |");
+    printf("|        2 - Editar informações    |");
+    printf("|        3 - Ver clientes          |");
+    printf("|__________________________________|");
 }
+
 
 
 void tela_sobre(void){
