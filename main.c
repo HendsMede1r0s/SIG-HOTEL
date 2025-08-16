@@ -15,6 +15,13 @@
 
 
 void tela_inicial(void);
+void tela_clientes(void);
+void tela_funcionarios(void);
+void tela_quartos(void);
+void tela_servicos(void);
+void tela_restaurante(void);
+void tela_lazer(void);
+void tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
 
