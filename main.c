@@ -15,6 +15,13 @@
 
 
 void tela_inicial(void);
+void tela_clientes(void);
+void tela_funcionarios(void);
+void tela_quartos(void);
+void tela_servicos(void);
+void tela_restaurante(void);
+void tela_lazer(void);
+void tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
 
@@ -23,10 +30,6 @@ void tela_sobre(void);
 ///////////// Módulos ////////////////
 //////////////////////////////////////
 
-
-int main(void){
-    setlocale(LC_ALL,"Portuguese");
-}
 
 
 void tela_inicial(void){
@@ -47,6 +50,64 @@ void tela_inicial(void){
 
 
 }
+
+
+void tela_clientes(void){
+    system("clear||cls");
+    printf("\n");
+    printf("___________________________________");
+    printf("|                                  |");
+    printf("|            Clientes              |");
+    printf("|__________________________________|");
+    printf("|                                  |");
+    printf("|        1 - Cadastar              |");
+    printf("|        2 - Editar informações    |");
+    printf("|        3 - Ver clientes          |");
+    printf("|__________________________________|");
+}
+
+void tela_funcionarios(void){
+    system("clear||cls");
+    printf("\n");
+    printf("___________________________________");
+    printf("|                                  |");
+    printf("|          Funcionários            |");
+    printf("|__________________________________|");
+    printf("|                                  |");
+    printf("|        1 - Cadastar              |");
+    printf("|        2 - Editar informações    |");
+    printf("|        3 - Ver Funcionário       |");
+    printf("|__________________________________|");
+}
+
+void tela_quartos(void){
+    system("clear||cls");
+    printf("\n");
+    printf("___________________________________");
+    printf("|                                  |");
+    printf("|             Quartos              |");
+    printf("|__________________________________|");
+    printf("|                                  |");
+    printf("|        1 - Adicionar Quarto      |");
+    printf("|    2 - Ver quartos disponiveis   |");
+    printf("|__________________________________|");
+}
+
+void tela_servicos(void){
+    system("clear||cls");
+    printf("\n");
+    printf("___________________________________");
+    printf("|                                  |");
+    printf("|            Serviços              |");
+    printf("|__________________________________|");
+    printf("|                                  |");
+    printf("|        1 - Serviços de quarto    |");
+    printf("|        2 - Limpeza               |");
+    printf("|__________________________________|");
+}
+
+
+
 
 
 void tela_sobre(void){
@@ -98,4 +159,15 @@ void tela_equipe(void){
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
+}
+
+
+
+//////////////////////////////////////////////////
+///////////// Função Principal ///////////////////
+/////////////////////////////////////////////////
+
+
+int main(void){
+    setlocale(LC_ALL,"Portuguese");
 }
