@@ -47,8 +47,9 @@ void tela_inicial(void){
     printf("|        7 - Garagem               |");
     printf("|        0 - Sair                  |");
     printf("|__________________________________|");
-
-
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();  
 }
 
 
@@ -64,6 +65,9 @@ void tela_clientes(void){
     printf("|        2 - Editar informações    |");
     printf("|        3 - Ver clientes          |");
     printf("|__________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
 }
 
 void tela_funcionarios(void){
@@ -78,6 +82,9 @@ void tela_funcionarios(void){
     printf("|        2 - Editar informações    |");
     printf("|        3 - Ver Funcionário       |");
     printf("|__________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
 }
 
 void tela_quartos(void){
@@ -91,6 +98,9 @@ void tela_quartos(void){
     printf("|        1 - Adicionar Quarto      |");
     printf("|    2 - Ver quartos disponiveis   |");
     printf("|__________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
 }
 
 void tela_servicos(void){
@@ -104,9 +114,62 @@ void tela_servicos(void){
     printf("|        1 - Serviços de quarto    |");
     printf("|        2 - Limpeza               |");
     printf("|__________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
+}
+
+void tela_restaurante(void){
+    system("clear|cls");
+    printf("\n");
+    printf(" ___________________________________");
+    printf("|                                   |");
+    printf("|            Restaurante            |");
+    printf("|___________________________________|");
+    printf("|                                   |");
+    printf("|                                   |");
+    printf("|___________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
 }
 
 
+void tela_lazer(void){
+    system("clear|cls");
+    printf("\n");
+    printf(" ___________________________________");
+    printf("|                                   |");
+    printf("|           Área de Lazer           |");
+    printf("|___________________________________|");
+    printf("|                                   |");
+    printf("|        1 - Piscina                |");
+    printf("|        2 - Espaço Kids            |");
+    printf("|        3 - Sala de Jogos          |");
+    printf("|        0 - Sair                   |");
+    printf("|___________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
+}
+
+void tela_garagem(void){
+    system("clear|cls");
+    printf("\n");
+    printf(" ___________________________________");
+    printf("|                                   |");
+    printf("|              Garagem              |");
+    printf("|___________________________________|");
+    printf("|                                   |");
+    printf("|        1 - Vagas                  |");
+    printf("|        2 - Pegar Vaga             |");
+    printf("|        3 - Tirar Vaga             |");
+    printf("|        0 - Sair                   |");
+    printf("|___________________________________|");
+    printf("\n");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
+}
 
 
 
