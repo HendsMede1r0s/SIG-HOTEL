@@ -33,7 +33,7 @@ void tela_sobre(void);
 
 
 void tela_inicial(void){
-    printf("___________________________________");
+    printf(" __________________________________");
     printf("|                                  |");
     printf("|          Menu Principal          |");
     printf("|__________________________________|");
@@ -45,6 +45,8 @@ void tela_inicial(void){
     printf("|        5 - Restaurante           |");
     printf("|        6 - Áreas de Lazer        |");
     printf("|        7 - Garagem               |");
+    printf("|        8 - Equipe                |");
+    printf("|        9 - Sobre                 |");
     printf("|        0 - Sair                  |");
     printf("|__________________________________|");
     printf("\n");
@@ -233,4 +235,31 @@ void tela_equipe(void){
 
 int main(void){
     setlocale(LC_ALL,"Portuguese");
+
+    tela_inicial();
+    int num; 
+    printf("Digite o número da opção desejada: ");
+    scanf("%d", &num);
+    if (num == 1)
+        tela_clientes();
+    else if (num == 2)
+        tela_funcionarios();
+    else if (num == 3)
+        tela_quartos();
+    else if (num == 4)
+        tela_servicos();
+    else if (num == 5)
+        tela_restaurante();
+    else if (num == 6)
+        tela_lazer();
+    else if (num == 7)
+        tela_garagem(); 
+    else if (num == 8)
+        tela_equipe();
+    else if (num == 9)
+        tela_sobre();
+    else if (num == 0) {
+        printf("Saindo do programa...\n");
+        exit(0);
+    }
 }
