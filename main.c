@@ -106,7 +106,17 @@ void tela_servicos(void){
     printf("|__________________________________|");
 }
 
-
+void tela_restaurante(void){
+    system("clear|cls");
+    printf("\n");
+    printf(" ___________________________________");
+    printf("|                                   |");
+    printf("|            Restaurante            |");
+    printf("|___________________________________|");
+    printf("|                                   |");
+    printf("|                                   |");
+    printf("|___________________________________|");
+}
 
 
 
