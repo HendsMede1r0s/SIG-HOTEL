@@ -262,4 +262,5 @@ int main(void){
         printf("Saindo do programa...\n");
         exit(0);
     }
+    return(0);
 }
