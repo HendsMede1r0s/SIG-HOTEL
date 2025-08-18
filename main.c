@@ -66,7 +66,7 @@ void tela_clientes(void){
     printf("|        1 - Cadastar              |\n");
     printf("|        2 - Editar informacoes    |\n");
     printf("|        3 - Ver clientes          |\n");
-    printf("|        4 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
@@ -84,7 +84,7 @@ void tela_funcionarios(void){
     printf("|        1 - Cadastar              |\n");
     printf("|        2 - Editar informacoes    |\n");
     printf("|        3 - Ver Funcionario       |\n");
-    printf("|        4 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
@@ -101,7 +101,7 @@ void tela_quartos(void){
     printf("|                                  |\n");
     printf("|        1 - Adicionar Quarto      |\n");
     printf("|    2 - Ver quartos disponiveis   |\n");
-    printf("|        3 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
@@ -118,7 +118,7 @@ void tela_servicos(void){
     printf("|                                  |\n");
     printf("|        1 - Serviços de quarto    |\n");
     printf("|        2 - Limpeza               |\n");
-    printf("|        3 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
@@ -128,84 +128,83 @@ void tela_servicos(void){
 void tela_restaurante(void){
     system("clear|cls");
     printf("\n");
-    printf(" _______________________________________________________________________");
-    printf("|                                                                       |");
-    printf("|                               CARDÁPIO                                |");
-    printf("|_______________________________________________________________________|");
-    printf("|                                                                       |");
-    printf("|                             CAFÉ DA MANHA                             |");
-    printf("|                                                                       |");
-    printf("|        1 - Pães variados (francês, integral, de forma)                |");
-    printf("|        2 - Frios (presunto, peito de peru, queijo prato, muçarela)    |");
-    printf("|        3 - Frutas frescas (mamão, melancia, banana, abacaxi)          |");
-    printf("|        4 - Ovos mexidos / cozidos                                     |");
-    printf("|        5 - Bolos (fubá, chocolate, cenoura)                           |");
-    printf("|        6 - Tapioca feita na hora                                      |");
-    printf("|        7 - Café, leite, achocolatado, chá                             |");
-    printf("|        8 - Sucos naturais (laranja, melancia, abacaxi com hortelã)    |");
-    printf("|_______________________________________________________________________|");
-    printf("|                                                                       |");
-    printf("|                            ALMOÇO / JANTAR                            |");
-    printf("|                                                                       |");
-    printf("|        Pratos principais:                                             |");
-    printf("|                                                                       |");
-    printf("|        1 - Filé de frango grelhado com ervas                          |");
-    printf("|        2 - Bife acebolado / Filé mignon ao molho madeira              |");
-    printf("|        3 - Peixe grelhado / ao molho de camarão                       |");
-    printf("|        4 - Strogonoff de frango ou carne                              |");
-    printf("|        5 - Lasanha à bolonhesa ou vegetariana                         |");
-    printf("|        6 - Moqueca baiana (frutos do mar ou peixe)                    |");
-    printf("|        7 - Escondidinho de carne seca                                 |");
-    printf("|                                                                       |");
-    printf("|        Acompanhamentos:                                               |");
-    printf("|                                                                       |");
-    printf("|        1 - Arroz branco / integral / à grega                          |");
-    printf("|        2 - Feijão carioca / preto                                     |");
-    printf("|        3 - Farofa caseira                                             |");
-    printf("|        4 - Purê de batata / mandioca                                  |");
-    printf("|        5 - Legumes salteados                                          |");
-    printf("|        6 - Saladas variadas (folhas, tomate, cenoura e beterraba)     |");
-    printf("|_______________________________________________________________________|");
-    printf("|                                                                       |");
-    printf("|                              SOBREMESAS                               |");
-    printf("|                                                                       |");
-    printf("|                                                                       |");
-    printf("|        1 - Pudim de leite condensado                                  |");
-    printf("|        2 - Mousse de maracujá / chocolate                             |");
-    printf("|        3 - Doce de leite / goiabada com queijo                        |");
-    printf("|        4 - Frutas da estação                                          |");
-    printf("|        5 - Sorvete (2 ou 3 sabores)                                   |");
-    printf("|_______________________________________________________________________|");
-    printf("|                                                                       |");
-    printf("|                               LANCHES                                 |");
-    printf("|                                                                       |");
-    printf("|        1 - Sanduíche natural (frango, atum, vegetariano)              |");
-    printf("|        2 - Hambúrguer artesanal                                       |");
-    printf("|        3 - Pão de queijo                                              |");
-    printf("|        4 - Salgadinhos assados (empada, quiche)                       |");
-    printf("|        5 - Batata frita                                               |");
-    printf("|        6 - Tapioca recheada                                           |");
-    printf("|_______________________________________________________________________|");
-    printf("|                                                                       |");
-    printf("|                               BEBIDAS                                 |");
-    printf("|                                                                       |");
-    printf("|        Não alcoólicas:                                                |");
-    printf("|                                                                       |");
-    printf("|        1 - Água mineral (com e sem gás)                               |");
-    printf("|        2 - Refrigerantes (Coca-Cola, Guaraná, etc.)                   |");
-    printf("|        3 - Sucos naturais e de polpa                                  |");
-    printf("|        4 - Água de coco                                               |");
-    printf("|        5 - Chá gelado / quente                                        |");
-    printf("|        6 - Café expresso / coado                                      |");
-    printf("|                                                                       |");
-    printf("|        Alcoólicas:                                                    |");
-    printf("|                                                                       |");
-    printf("|        1 - Cervejas nacionais e artesanais                            |");
-    printf("|        2 - Vinhos (tinto, branco, rosé)                               |");
-    printf("|        3 - Caipirinha / Caipiroska                                    |");
-    printf("|        4 - Drinks clássicos (Mojito, Gin tônica, Aperol Spritz)       |");
-    printf("|        5 - Licor / Whisky / Rum (opcional)                            |");
-    printf("|_______________________________________________________________________|");
+    printf(" _______________________________________________________________________\n");
+    printf("|                                                                       |\n");
+    printf("|                               CARDÁPIO                                |\n");
+    printf("|_______________________________________________________________________|\n");
+    printf("|                                                                       |\n");
+    printf("|                             CAFÉ DA MANHA                             |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Pães variados (francês, integral, de forma)                |\n");
+    printf("|        2 - Frios (presunto, peito de peru, queijo prato, muçarela)    |\n");
+    printf("|        3 - Frutas frescas (mamão, melancia, banana, abacaxi)          |\n");
+    printf("|        4 - Ovos mexidos / cozidos                                     |\n");
+    printf("|        5 - Bolos (fubá, chocolate, cenoura)                           |\n");
+    printf("|        6 - Tapioca feita na hora                                      |\n");
+    printf("|        7 - Café, leite, achocolatado, chá                             |\n");
+    printf("|        8 - Sucos naturais (laranja, melancia, abacaxi com hortelã)    |\n");
+    printf("|_______________________________________________________________________|\n");
+    printf("|                                                                       |\n");
+    printf("|                            ALMOÇO / JANTAR                            |\n");
+    printf("|                                                                       |\n");
+    printf("|        Pratos principais:                                             |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Filé de frango grelhado com ervas                          |\n");
+    printf("|        2 - Bife acebolado / Filé mignon ao molho madeira              |\n");
+    printf("|        3 - Peixe grelhado / ao molho de camarão                       |\n");
+    printf("|        4 - Strogonoff de frango ou carne                              |\n");
+    printf("|        5 - Lasanha à bolonhesa ou vegetariana                         |\n");
+    printf("|        6 - Moqueca baiana (frutos do mar ou peixe)                    |\n");
+    printf("|        7 - Escondidinho de carne seca                                 |\n");
+    printf("|                                                                       |\n");
+    printf("|        Acompanhamentos:                                               |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Arroz branco / integral / à grega                          |\n");
+    printf("|        2 - Feijão carioca / preto                                     |\n");
+    printf("|        3 - Farofa caseira                                             |\n");
+    printf("|        4 - Purê de batata / mandioca                                  |\n");
+    printf("|        6 - Saladas variadas (folhas, tomate, cenoura e beterraba)     |\n");
+    printf("|_______________________________________________________________________|\n");
+    printf("|                                                                       |\n");
+    printf("|                              SOBREMESAS                               |\n");
+    printf("|                                                                       |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Pudim de leite condensado                                  |\n");
+    printf("|        2 - Mousse de maracujá / chocolate                             |\n");
+    printf("|        3 - Doce de leite / goiabada com queijo                        |\n");
+    printf("|        4 - Frutas da estação                                          |\n");
+    printf("|        5 - Sorvete (2 ou 3 sabores)                                   |\n");
+    printf("|_______________________________________________________________________|\n");
+    printf("|                                                                       |\n");
+    printf("|                               LANCHES                                 |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Sanduíche natural (frango, atum, vegetariano)              |\n");
+    printf("|        2 - Hambúrguer artesanal                                       |\n");
+    printf("|        3 - Pão de queijo                                              |\n");
+    printf("|        4 - Salgadinhos assados (empada, quiche)                       |\n");
+    printf("|        5 - Batata frita                                               |\n");
+    printf("|        6 - Tapioca recheada                                           |\n");
+    printf("|_______________________________________________________________________|\n");
+    printf("|                                                                       |\n");
+    printf("|                               BEBIDAS                                 |\n");
+    printf("|                                                                       |\n");
+    printf("|        Não alcoólicas:                                                |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Água mineral (com e sem gás)                               |\n");
+    printf("|        2 - Refrigerantes (Coca-Cola, Guaraná, etc.)                   |\n");
+    printf("|        3 - Sucos naturais e de polpa                                  |\n");
+    printf("|        4 - Água de coco                                               |\n");
+    printf("|        5 - Chá gelado / quente                                        |\n");
+    printf("|        6 - Café expresso / coado                                      |\n");
+    printf("|                                                                       |\n");
+    printf("|        Alcoólicas:                                                    |\n");
+    printf("|                                                                       |\n");
+    printf("|        1 - Cervejas nacionais e artesanais                            |\n");
+    printf("|        2 - Vinhos (tinto, branco, rosé)                               |\n");
+    printf("|        3 - Caipirinha / Caipiroska                                    |\n");
+    printf("|        4 - Drinks clássicos (Mojito, Gin tônica, Aperol Spritz)       |\n");
+    printf("|        5 - Licor / Whisky / Rum (opcional)                            |\n");
+    printf("|_______________________________________________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
@@ -223,7 +222,7 @@ void tela_lazer(void){
     printf("|        1 - Piscina                |\n");
     printf("|        2 - Espaço Kids            |\n");
     printf("|        3 - Sala de Jogos          |\n");
-    printf("|        0 - Voltar                   |\n");
+    printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
@@ -312,30 +311,71 @@ int main(void){
     setlocale(LC_ALL,"Portuguese");
 
     tela_inicial();
-    int num; 
+    int num;
     printf("Digite o número da opção desejada: ");
     scanf("%d", &num);
-    if (num == 1)
-        tela_clientes();
-    else if (num == 2)
-        tela_funcionarios();
-    else if (num == 3)
-        tela_quartos();
-    else if (num == 4)
-        tela_servicos();
-    else if (num == 5)
-        tela_restaurante();
-    else if (num == 6)
-        tela_lazer();
-    else if (num == 7)
-        tela_garagem(); 
-    else if (num == 8)
-        tela_equipe();
-    else if (num == 9)
-        tela_sobre();
-    else if (num == 0) {
-        printf("Saindo do programa...\n");
-        exit(0);
+    while (num !=0){ 
+        if (num == 1){
+            int i;
+            tela_clientes();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &i);
+            while (i != 0){
+                if (i == 1)
+                    printf("Cadastrar cliente...\n");
+                else if (i == 2)
+                    printf("Editar informações do cliente...\n");
+                else if (i == 3)
+                    printf("Ver clientes...\n");
+                else if (i > 3){
+                    printf("Opção inválida! Tente novamente.\n");
+                }
+            
+            } 
+
+        }
+        else if (num == 2){
+            tela_funcionarios();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 3){
+            tela_quartos();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 4){
+            tela_servicos();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 5){
+            tela_restaurante();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 6){
+            tela_lazer();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 7){
+            tela_garagem();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 8){
+            tela_equipe();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
+        else if (num == 9){
+            tela_sobre();
+            printf("Digite o número da opção desejada: ");
+            scanf("%d", &num);
+        }
     }
-    return(0);
+    return 0;
 }
+    
+
