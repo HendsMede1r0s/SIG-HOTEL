@@ -312,11 +312,11 @@ int main(void){
 
     tela_inicial();
     int num;
+    int i;
     printf("Digite o número da opção desejada: ");
     scanf("%d", &num);
     while (num !=0){ 
         if (num == 1){
-            int i;
             tela_clientes();
             printf("Digite o número da opção desejada: ");
             scanf("%d", &i);
@@ -327,10 +327,8 @@ int main(void){
                     printf("Editar informações do cliente...\n");
                 else if (i == 3)
                     printf("Ver clientes...\n");
-                else if (i > 3){
+                else if (i > 3)
                     printf("Opção inválida! Tente novamente.\n");
-                }
-            
             } 
 
         }
