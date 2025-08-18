@@ -33,24 +33,24 @@ void tela_sobre(void);
 
 
 void tela_inicial(void){
-    printf(" __________________________________");
-    printf("|                                  |");
-    printf("|          Menu Principal          |");
-    printf("|__________________________________|");
-    printf("|                                  |");
-    printf("|        1 - Clientes              |");
-    printf("|        2 - Funcionários          |");
-    printf("|        3 - Quartos               |");
-    printf("|        4 - Serviços              |");
-    printf("|        5 - Restaurante           |");
-    printf("|        6 - Áreas de Lazer        |");
-    printf("|        7 - Garagem               |");
-    printf("|        8 - Equipe                |");
-    printf("|        9 - Sobre                 |");
-    printf("|        0 - Sair                  |");
-    printf("|__________________________________|");
+    printf(" __________________________________\n");
+    printf("|                                  |\n");
+    printf("|          Menu Principal          |\n");
+    printf("|__________________________________|\n");
+    printf("|                                  |\n");
+    printf("|        1 - Clientes              |\n");
+    printf("|        2 - Funcionarios          |\n");
+    printf("|        3 - Quartos               |\n");
+    printf("|        4 - Servicos              |\n");
+    printf("|        5 - Restaurante           |\n");
+    printf("|        6 - Areas de Lazer        |\n");
+    printf("|        7 - Garagem               |\n");
+    printf("|        8 - Equipe                |\n");
+    printf("|        9 - Sobre                 |\n");
+    printf("|        0 - Sair                  |\n");
+    printf("|__________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf(" PRESSIONE ENTER PARA CONTINUAR...");
     getchar();  
 }
 
@@ -58,66 +58,70 @@ void tela_inicial(void){
 void tela_clientes(void){
     system("clear||cls");
     printf("\n");
-    printf("___________________________________");
-    printf("|                                  |");
-    printf("|            Clientes              |");
-    printf("|__________________________________|");
-    printf("|                                  |");
-    printf("|        1 - Cadastar              |");
-    printf("|        2 - Editar informações    |");
-    printf("|        3 - Ver clientes          |");
-    printf("|__________________________________|");
+    printf("___________________________________\n");
+    printf("|                                  |\n");
+    printf("|            Clientes              |\n");
+    printf("|__________________________________|\n");
+    printf("|                                  |\n");
+    printf("|        1 - Cadastar              |\n");
+    printf("|        2 - Editar informacoes    |\n");
+    printf("|        3 - Ver clientes          |\n");
+    printf("|        4 - Voltar                |\n");
+    printf("|__________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
 void tela_funcionarios(void){
     system("clear||cls");
     printf("\n");
-    printf("___________________________________");
-    printf("|                                  |");
-    printf("|          Funcionários            |");
-    printf("|__________________________________|");
-    printf("|                                  |");
-    printf("|        1 - Cadastar              |");
-    printf("|        2 - Editar informações    |");
-    printf("|        3 - Ver Funcionário       |");
-    printf("|__________________________________|");
+    printf("___________________________________\n");
+    printf("|                                  |\n");
+    printf("|          Funcionarios            |\n");
+    printf("|__________________________________|\n");
+    printf("|                                  |\n");
+    printf("|        1 - Cadastar              |\n");
+    printf("|        2 - Editar informacoes    |\n");
+    printf("|        3 - Ver Funcionario       |\n");
+    printf("|        4 - Voltar                |\n");
+    printf("|__________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
 void tela_quartos(void){
     system("clear||cls");
     printf("\n");
-    printf("___________________________________");
-    printf("|                                  |");
-    printf("|             Quartos              |");
-    printf("|__________________________________|");
-    printf("|                                  |");
-    printf("|        1 - Adicionar Quarto      |");
-    printf("|    2 - Ver quartos disponiveis   |");
-    printf("|__________________________________|");
+    printf("___________________________________\n");
+    printf("|                                  |\n");
+    printf("|             Quartos              |\n");
+    printf("|__________________________________|\n");
+    printf("|                                  |\n");
+    printf("|        1 - Adicionar Quarto      |\n");
+    printf("|    2 - Ver quartos disponiveis   |\n");
+    printf("|        3 - Voltar                |\n");
+    printf("|__________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
 void tela_servicos(void){
     system("clear||cls");
     printf("\n");
-    printf("___________________________________");
-    printf("|                                  |");
-    printf("|            Serviços              |");
-    printf("|__________________________________|");
-    printf("|                                  |");
-    printf("|        1 - Serviços de quarto    |");
-    printf("|        2 - Limpeza               |");
-    printf("|__________________________________|");
+    printf("___________________________________\n");
+    printf("|                                  |\n");
+    printf("|            Serviços              |\n");
+    printf("|__________________________________|\n");
+    printf("|                                  |\n");
+    printf("|        1 - Serviços de quarto    |\n");
+    printf("|        2 - Limpeza               |\n");
+    printf("|        3 - Voltar                |\n");
+    printf("|__________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
@@ -203,7 +207,7 @@ void tela_restaurante(void){
     printf("|        5 - Licor / Whisky / Rum (opcional)                            |");
     printf("|_______________________________________________________________________|");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
@@ -211,36 +215,36 @@ void tela_restaurante(void){
 void tela_lazer(void){
     system("clear|cls");
     printf("\n");
-    printf(" ___________________________________");
-    printf("|                                   |");
-    printf("|           Área de Lazer           |");
-    printf("|___________________________________|");
-    printf("|                                   |");
-    printf("|        1 - Piscina                |");
-    printf("|        2 - Espaço Kids            |");
-    printf("|        3 - Sala de Jogos          |");
-    printf("|        0 - Sair                   |");
-    printf("|___________________________________|");
+    printf(" ___________________________________\n");
+    printf("|                                   |\n");
+    printf("|           Area de Lazer           |\n");
+    printf("|___________________________________|\n");
+    printf("|                                   |\n");
+    printf("|        1 - Piscina                |\n");
+    printf("|        2 - Espaço Kids            |\n");
+    printf("|        3 - Sala de Jogos          |\n");
+    printf("|        0 - Voltar                   |\n");
+    printf("|___________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
 void tela_garagem(void){
     system("clear|cls");
     printf("\n");
-    printf(" ___________________________________");
-    printf("|                                   |");
-    printf("|              Garagem              |");
-    printf("|___________________________________|");
-    printf("|                                   |");
-    printf("|        1 - Vagas                  |");
-    printf("|        2 - Pegar Vaga             |");
-    printf("|        3 - Tirar Vaga             |");
-    printf("|        0 - Sair                   |");
-    printf("|___________________________________|");
+    printf(" ___________________________________\n");
+    printf("|                                   |\n");
+    printf("|              Garagem              |\n");
+    printf("|___________________________________|\n");
+    printf("|                                   |\n");
+    printf("|        1 - Vagas                  |\n");
+    printf("|        2 - Pegar Vaga             |\n");
+    printf("|        3 - Tirar Vaga             |\n");
+    printf("|        0 - Voltar                 |\n");
+    printf("|___________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
@@ -264,7 +268,7 @@ void tela_sobre(void){
     printf("|              gestão designado a hotéis ou pousadas                 |");
     printf("|____________________________________________________________________|");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
@@ -293,7 +297,7 @@ void tela_equipe(void){
     printf("|        GITHUB: https://github.com/leonardorelva-ufrn                |");
     printf("|_____________________________________________________________________|");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
