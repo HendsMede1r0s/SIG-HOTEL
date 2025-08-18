@@ -224,7 +224,7 @@ void tela_lazer(void){
     printf("|        1 - Piscina                |\n");
     printf("|        2 - Espaço Kids            |\n");
     printf("|        3 - Sala de Jogos          |\n");
-    printf("|        0 - Voltar                   |\n");
+    printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
