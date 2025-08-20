@@ -341,7 +341,7 @@ int main (void){
                 tela_clientes();
             }
             else{
-                break;
+                tela_inicial();
             }
         case '2':
             tela_funcionarios();
