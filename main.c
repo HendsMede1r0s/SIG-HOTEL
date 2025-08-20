@@ -74,6 +74,7 @@ void tela_clientes(void){
     printf("Digite uma opçao: ");
     scanf("%d", %op_cliente);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
 }
 
 void tela_funcionarios(void){
