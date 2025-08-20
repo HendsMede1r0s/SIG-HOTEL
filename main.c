@@ -72,7 +72,7 @@ void tela_clientes(void){
     printf("|__________________________________|\n");
     printf("\n");
     printf("Digite uma opçao: ");
-    scanf("%d", %op_cliente);
+    scanf("%d", &op_cliente);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
