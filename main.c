@@ -68,7 +68,7 @@ void tela_clientes(void){
     printf("|        1 - Cadastar              |\n");
     printf("|        2 - Editar informacoes    |\n");
     printf("|        3 - Ver clientes          |\n");
-    printf("|        4 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("Digite uma opçao: ");
