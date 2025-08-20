@@ -342,6 +342,7 @@ int main (void){
             }
             else{
                 tela_inicial();
+                break;
             }
         case '2':
             tela_funcionarios();
