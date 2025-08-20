@@ -58,6 +58,7 @@ void tela_inicial(void){
 
 void tela_clientes(void){
     system("clear||cls");
+    int op_cliente;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -70,8 +71,9 @@ void tela_clientes(void){
     printf("|        4 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
+    printf("Digite uma opçao: ");
+    scanf("%d", %op_cliente)
     printf("PRESSIONE ENTER PARA CONTINUAR...");
-    getchar();
 }
 
 void tela_funcionarios(void){
@@ -335,7 +337,12 @@ int main (void){
     switch (opcao) {
         case '1':
             tela_clientes();
-            break;
+            if(op_cliente != 0){
+                tela_clientes();
+            }
+            else{
+                break;
+            }
         case '2':
             tela_funcionarios();
             break;
