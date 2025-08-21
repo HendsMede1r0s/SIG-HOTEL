@@ -56,7 +56,7 @@ void tela_inicial(void){
 }
 
 
-void tela_clientes(void){
+void tela_clientes(){
     system("clear||cls");
     int op_cliente;
     printf("\n");
@@ -74,7 +74,7 @@ void tela_clientes(void){
     printf("Digite uma opçao: ");
     scanf("%d", &op_cliente);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
-    getchar();
+    return(op_cliente);
 }
 
 void tela_funcionarios(void){
