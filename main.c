@@ -340,6 +340,7 @@ int main (void){
             while(op_cliente != 0){
                 tela_clientes();
             }
+            break;
         case '2':
             tela_funcionarios();
             break;
