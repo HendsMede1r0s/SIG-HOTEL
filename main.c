@@ -337,13 +337,8 @@ int main (void){
     opcao = getchar();
     switch (opcao) {
         case '1':
-            tela_clientes();
-            if(op_cliente != 0){
+            while(op_cliente != 0){
                 tela_clientes();
-            }
-            else{
-                tela_inicial();
-                break;
             }
         case '2':
             tela_funcionarios();
