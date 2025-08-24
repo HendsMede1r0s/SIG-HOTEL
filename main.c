@@ -34,6 +34,7 @@ void tela_final(void);
 int main(void){
     int opcao = 1;
     int opcao_clientes = 4;
+    int op_restaurante = 6;
     while(opcao != 0){
         opcao = tela_inicial();
         if (opcao == 1){
@@ -48,6 +49,48 @@ int main(void){
                     printf("Ver clientes cadastrados");
                 
             }
+        }
+        else if(opcao == 2){
+
+        }
+        else if(opcao == 3){
+            
+        }
+        else if(opcao == 4){
+            
+        }
+        else if(opcao == 5){
+            tela_restaurante();
+            while(op_restaurante != 0){
+                op_restaurante = tela_restaurante();
+                if(op_restaurante == 1){
+                    printf("Café da manha");
+                }
+                else if(op_restaurante == 2){
+                    printf("Almoço");
+                }
+                else if(op_restaurante == 3){
+                    printf("Jantar");
+                }
+                else if(op_restaurante == 4){
+                    printf("Sobremesas");
+                }
+                else if(op_restaurante == 5){
+                    printf("Bebidas");
+                }
+            }
+        }
+        else if(opcao == 6){
+            
+        }
+        else if(opcao == 7){
+            
+        }
+        else if(opcao == 8){
+            
+        }
+        else if(opcao == 9){
+            
         }
     }
     return 0;
