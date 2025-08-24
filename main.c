@@ -14,8 +14,8 @@
 //////////////////////////////////////
 
 
-void tela_inicial(void);
-void tela_clientes(void);
+int tela_inicial(void);
+int tela_clientes(void);
 void tela_funcionarios(void);
 void tela_quartos(void);
 void tela_servicos(void);
@@ -27,13 +27,40 @@ void tela_sobre(void);
 void tela_final(void);
 
 
+//////////////////////////////////////////////////
+///////////// Função Principal ///////////////////
+/////////////////////////////////////////////////
+
+int main(void){
+    int opcao = 1;
+    int opcao_clientes = 4;
+    while(opcao != 0){
+        opcao = tela_inicial();
+        if (opcao == 1){
+            tela_clientes();
+            while(opcao_clientes != 0){
+                opcao_clientes = tela_clientes();
+                if (opcao_clientes == 1)
+                    printf("Cadastro de clientes");
+                else if (opcao_clientes == 2)
+                    printf("Editar informações de clientes");
+                else if (opcao_clientes == 3)
+                    printf("Ver clientes cadastrados");
+                
+            }
+        }
+    }
+    return 0;
+}
+
 //////////////////////////////////////
 ///////////// Módulos ////////////////
 //////////////////////////////////////
 
 
 
-void tela_inicial(void){
+int tela_inicial(void){
+    int opcao;
     printf(" __________________________________\n");
     printf("|                                  |\n");
     printf("|          Menu Principal          |\n");
@@ -51,13 +78,15 @@ void tela_inicial(void){
     printf("|        0 - Sair                  |\n");
     printf("|__________________________________|\n");
     printf("\n");
-    printf(" PRESSIONE ENTER PARA CONTINUAR...");
+    printf("Digite sua opcao: ");
+    scanf("%d",&opcao);
+    return opcao;
     getchar();  
 }
 
 
-void tela_clientes(void){
-    system("clear||cls");
+int tela_clientes(void){
+    int opcao_clientes;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -67,10 +96,12 @@ void tela_clientes(void){
     printf("|        1 - Cadastar              |\n");
     printf("|        2 - Editar informacoes    |\n");
     printf("|        3 - Ver clientes          |\n");
-    printf("|        4 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
+    printf("Digite sua opcao: ");
+    scanf("%d",&opcao_clientes);
+    return opcao_clientes;
     getchar();
 }
 
@@ -317,56 +348,4 @@ void tela_final(void){
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR");
     getchar();
-}
-
-
-
-//////////////////////////////////////////////////
-///////////// Função Principal ///////////////////
-/////////////////////////////////////////////////
-
-
-int main (void){
-    setlocale(LC_ALL, "Portuguese");
-    char opcao;
-    tela_inicial();
-    printf("que Opção deseja acessar? ");
-    opcao = getchar();
-    switch (opcao) {
-        case '1':
-            tela_clientes();
-            break;
-        case '2':
-            tela_funcionarios();
-            break;
-        case '3':
-            tela_quartos();
-            break;
-        case '4':
-            tela_servicos();
-            break;  
-        case '5':
-            tela_restaurante();
-            break;
-        case '6':
-            tela_lazer();
-            break;
-        case '7':
-            tela_garagem();
-            break;
-        case '8':
-            tela_equipe();
-            break;
-        case '9':
-            tela_sobre();
-            break;
-        case '0':
-            tela_final();
-            exit(0);
-            break;
-        default:
-            printf("Opção inválida! Tente novamente.\n");
-            break;
-    }
-    return 0;
 }
