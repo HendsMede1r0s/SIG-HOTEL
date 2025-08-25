@@ -32,8 +32,8 @@ void tela_final(void);
 /////////////////////////////////////////////////
 
 int main(void){
-    int opcao = 1;
-    int opcao_clientes = 4;
+    int opcao;
+    int opcao_clientes;
     int op_restaurante = 6;
     int op_lazer = 4;
     int op_garagem = 4;
@@ -43,22 +43,31 @@ int main(void){
             tela_clientes();
             while(opcao_clientes != 0){
                 opcao_clientes = tela_clientes();
-                if (opcao_clientes == 1)
+                if (opcao_clientes == 1){
                     printf("Cadastro de clientes");
-                else if (opcao_clientes == 2)
+                    getchar();
+                }
+                else if (opcao_clientes == 2){
                     printf("Editar informações de clientes");
-                else if (opcao_clientes == 3)
+                    getchar();
+                }
+                else if (opcao_clientes == 3){
                     printf("Ver clientes cadastrados");
+                    getchar();
+                }
                 
             }
         }
         else if(opcao == 2){
+            tela_funcionarios();
 
         }
         else if(opcao == 3){
+            tela_quartos();
             
         }
         else if(opcao == 4){
+            tela_servicos();
             
         }
         else if(opcao == 5){
@@ -113,9 +122,11 @@ int main(void){
             }
         }
         else if(opcao == 8){
+            tela_equipe();
             
         }
         else if(opcao == 9){
+            tela_sobre();
             
         }
     }
@@ -169,9 +180,10 @@ int tela_clientes(){
     printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
+    printf("PRESSIONE ENTER PARA CONTINUAR...\n");
     printf("Digite uma opçao: ");
     scanf("%d", &op_cliente);
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
     return(op_cliente);
 }
 
@@ -191,6 +203,7 @@ void tela_funcionarios(void){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
+    getchar();
 }
 
 void tela_quartos(void){
@@ -208,6 +221,7 @@ void tela_quartos(void){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
+    getchar();
 }
 
 void tela_servicos(void){
@@ -224,6 +238,7 @@ void tela_servicos(void){
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
+    getchar();
     getchar();
 }
 
@@ -315,6 +330,7 @@ void tela_sobre(void){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
+    getchar();
 }
 
 void tela_equipe(void){
@@ -344,6 +360,7 @@ void tela_equipe(void){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
+    getchar();
 }
 
 
@@ -360,5 +377,6 @@ void tela_final(void){
     printf("|__________________________________________________________________________________|\n");
     printf("\n");
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR");
+    getchar();
     getchar();
 }
