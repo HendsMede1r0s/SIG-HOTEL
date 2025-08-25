@@ -202,8 +202,8 @@ void tela_servicos(void){
 }
 
 int tela_restaurante(void){
-    int op_restaurante;
     system("clear|cls");
+    int op_restaurante;
     printf("\n");
     printf(" _______________________________________________________________________\n");
     printf("|                                                                       |\n");
