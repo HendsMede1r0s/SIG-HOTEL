@@ -210,8 +210,8 @@ int tela_restaurante(void){
     printf("|                              RESTAURANTE                              |\n");
     printf("|_______________________________________________________________________|\n");
     printf("|                                                                       |\n");
-    printf("|           1 - Café da manha                                           |\n");
-    printf("|           2 - Almoço                                                  |\n");
+    printf("|           1 - Cafe da manha                                           |\n");
+    printf("|           2 - Almoco                                                  |\n");
     printf("|           3 - Jantar                                                  |\n");
     printf("|           4 - Sobremesas                                              |\n");
     printf("|           5 - Bebidas                                                 |\n");
