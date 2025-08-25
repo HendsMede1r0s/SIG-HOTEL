@@ -128,14 +128,9 @@ int tela_inicial(void){
 }
 
 
-<<<<<<< HEAD
 void tela_clientes(){
     system("clear||cls");
     int op_cliente;
-=======
-int tela_clientes(void){
-    int opcao_clientes;
->>>>>>> a82c6c9d2474f7cc215dcdb17156a1509a304017
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -148,17 +143,10 @@ int tela_clientes(void){
     printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
-<<<<<<< HEAD
     printf("Digite uma opçao: ");
     scanf("%d", &op_cliente);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_cliente);
-=======
-    printf("Digite sua opcao: ");
-    scanf("%d",&opcao_clientes);
-    return opcao_clientes;
-    getchar();
->>>>>>> a82c6c9d2474f7cc215dcdb17156a1509a304017
 }
 
 void tela_funcionarios(void){
