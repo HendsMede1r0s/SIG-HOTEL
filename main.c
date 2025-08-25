@@ -35,6 +35,7 @@ int main(void){
     int opcao = 1;
     int opcao_clientes = 4;
     int op_restaurante = 6;
+    int op_lazer = 4;
     while(opcao != 0){
         opcao = tela_inicial();
         if (opcao == 1){
@@ -82,6 +83,18 @@ int main(void){
         }
         else if(opcao == 6){
             tela_lazer();
+            while(op_lazer != 0){
+                op_lazer = tela_lazer();
+                if(op_lazer == 1){
+                    printf("Piscina");
+                }
+                else if(op_lazer == 2){
+                    printf("Espaco Kids");
+                }
+                else if(op_lazer == 3){
+                    printf("Sala de Jogos");
+                }
+            }
         }
         else if(opcao == 7){
             
@@ -235,7 +248,7 @@ int tela_lazer(void){
     printf("|___________________________________|\n");
     printf("|                                   |\n");
     printf("|        1 - Piscina                |\n");
-    printf("|        2 - Espaço Kids            |\n");
+    printf("|        2 - Espaco Kids            |\n");
     printf("|        3 - Sala de Jogos          |\n");
     printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
