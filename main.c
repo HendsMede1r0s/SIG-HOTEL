@@ -222,7 +222,6 @@ int tela_restaurante(void){
     scanf("%d",&op_restaurante);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_restaurante);
-    getchar();
 }
 
 
