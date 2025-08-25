@@ -36,6 +36,7 @@ int main(void){
     int opcao_clientes = 4;
     int op_restaurante = 6;
     int op_lazer = 4;
+    int op_garagem = 4;
     while(opcao != 0){
         opcao = tela_inicial();
         if (opcao == 1){
@@ -97,7 +98,19 @@ int main(void){
             }
         }
         else if(opcao == 7){
-            
+            tela_garagem();
+            while(op_garagem != 0){
+                op_garagem = tela_garagem();
+                if(op_garagem == 1){
+                    printf("Vagas");
+                }
+                else if(op_garagem == 2){
+                    printf("Pegar Vaga");
+                }
+                else if(op_garagem == 3){
+                    printf("Tirar Vaga");
+                }
+            }
         }
         else if(opcao == 8){
             
