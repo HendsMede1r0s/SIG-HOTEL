@@ -20,7 +20,7 @@ void tela_funcionarios(void);
 void tela_quartos(void);
 void tela_servicos(void);
 int tela_restaurante(void);
-void tela_lazer(void);
+int tela_lazer(void);
 void tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
@@ -81,7 +81,7 @@ int main(void){
             }
         }
         else if(opcao == 6){
-            
+            tela_lazer();
         }
         else if(opcao == 7){
             
@@ -225,8 +225,9 @@ int tela_restaurante(void){
 }
 
 
-void tela_lazer(void){
+int tela_lazer(void){
     system("clear|cls");
+    int op_lazer;
     printf("\n");
     printf(" ___________________________________\n");
     printf("|                                   |\n");
@@ -239,8 +240,10 @@ void tela_lazer(void){
     printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
     printf("\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &op_lazer);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
-    getchar();
+    return(op_lazer);
 }
 
 void tela_garagem(void){
