@@ -128,7 +128,7 @@ int tela_inicial(void){
 }
 
 
-void tela_clientes(){
+int tela_clientes(){
     system("clear||cls");
     int op_cliente;
     printf("\n");
