@@ -21,7 +21,7 @@ void tela_quartos(void);
 void tela_servicos(void);
 int tela_restaurante(void);
 int tela_lazer(void);
-void tela_garagem(void);
+int tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
 void tela_final(void);
@@ -259,8 +259,9 @@ int tela_lazer(void){
     return(op_lazer);
 }
 
-void tela_garagem(void){
+int tela_garagem(void){
     system("clear|cls");
+    int op_garagem;
     printf("\n");
     printf(" ___________________________________\n");
     printf("|                                   |\n");
@@ -273,8 +274,10 @@ void tela_garagem(void){
     printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
     printf("\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &op_garagem);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
-    getchar();
+    return(op_garagem);
 }
 
 
