@@ -14,12 +14,12 @@
 //////////////////////////////////////
 
 
-void tela_inicial(void);
-void tela_clientes(void);
+int tela_inicial(void);
+int tela_clientes(void);
 void tela_funcionarios(void);
 void tela_quartos(void);
 void tela_servicos(void);
-void tela_restaurante(void);
+int tela_restaurante(void);
 void tela_lazer(void);
 void tela_garagem(void);
 void tela_equipe(void);
@@ -27,13 +27,83 @@ void tela_sobre(void);
 void tela_final(void);
 
 
+//////////////////////////////////////////////////
+///////////// Função Principal ///////////////////
+/////////////////////////////////////////////////
+
+int main(void){
+    int opcao = 1;
+    int opcao_clientes = 4;
+    int op_restaurante = 6;
+    while(opcao != 0){
+        opcao = tela_inicial();
+        if (opcao == 1){
+            tela_clientes();
+            while(opcao_clientes != 0){
+                opcao_clientes = tela_clientes();
+                if (opcao_clientes == 1)
+                    printf("Cadastro de clientes");
+                else if (opcao_clientes == 2)
+                    printf("Editar informações de clientes");
+                else if (opcao_clientes == 3)
+                    printf("Ver clientes cadastrados");
+                
+            }
+        }
+        else if(opcao == 2){
+
+        }
+        else if(opcao == 3){
+            
+        }
+        else if(opcao == 4){
+            
+        }
+        else if(opcao == 5){
+            tela_restaurante();
+            while(op_restaurante != 0){
+                op_restaurante = tela_restaurante();
+                if(op_restaurante == 1){
+                    printf("Café da manha");
+                }
+                else if(op_restaurante == 2){
+                    printf("Almoço");
+                }
+                else if(op_restaurante == 3){
+                    printf("Jantar");
+                }
+                else if(op_restaurante == 4){
+                    printf("Sobremesas");
+                }
+                else if(op_restaurante == 5){
+                    printf("Bebidas");
+                }
+            }
+        }
+        else if(opcao == 6){
+            
+        }
+        else if(opcao == 7){
+            
+        }
+        else if(opcao == 8){
+            
+        }
+        else if(opcao == 9){
+            
+        }
+    }
+    return 0;
+}
+
 //////////////////////////////////////
 ///////////// Módulos ////////////////
 //////////////////////////////////////
 
 
 
-void tela_inicial(void){
+int tela_inicial(void){
+    int opcao;
     printf(" __________________________________\n");
     printf("|                                  |\n");
     printf("|          Menu Principal          |\n");
@@ -51,14 +121,21 @@ void tela_inicial(void){
     printf("|        0 - Sair                  |\n");
     printf("|__________________________________|\n");
     printf("\n");
-    printf(" PRESSIONE ENTER PARA CONTINUAR...");
+    printf("Digite sua opcao: ");
+    scanf("%d",&opcao);
+    return opcao;
     getchar();  
 }
 
 
+<<<<<<< HEAD
 void tela_clientes(){
     system("clear||cls");
     int op_cliente;
+=======
+int tela_clientes(void){
+    int opcao_clientes;
+>>>>>>> a82c6c9d2474f7cc215dcdb17156a1509a304017
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -71,10 +148,17 @@ void tela_clientes(){
     printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
+<<<<<<< HEAD
     printf("Digite uma opçao: ");
     scanf("%d", &op_cliente);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_cliente);
+=======
+    printf("Digite sua opcao: ");
+    scanf("%d",&opcao_clientes);
+    return opcao_clientes;
+    getchar();
+>>>>>>> a82c6c9d2474f7cc215dcdb17156a1509a304017
 }
 
 void tela_funcionarios(void){
@@ -129,89 +213,27 @@ void tela_servicos(void){
     getchar();
 }
 
-void tela_restaurante(void){
+int tela_restaurante(void){
+    int op_restaurante;
     system("clear|cls");
     printf("\n");
     printf(" _______________________________________________________________________\n");
     printf("|                                                                       |\n");
-    printf("|                               CARDÁPIO                                |\n");
+    printf("|                              RESTAURANTE                              |\n");
     printf("|_______________________________________________________________________|\n");
     printf("|                                                                       |\n");
-    printf("|                             CAFÉ DA MANHA                             |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Pães variados (francês, integral, de forma)                |\n");
-    printf("|        2 - Frios (presunto, peito de peru, queijo prato, muçarela)    |\n");
-    printf("|        3 - Frutas frescas (mamão, melancia, banana, abacaxi)          |\n");
-    printf("|        4 - Ovos mexidos / cozidos                                     |\n");
-    printf("|        5 - Bolos (fubá, chocolate, cenoura)                           |\n");
-    printf("|        6 - Tapioca feita na hora                                      |\n");
-    printf("|        7 - Café, leite, achocolatado, chá                             |\n");
-    printf("|        8 - Sucos naturais (laranja, melancia, abacaxi com hortelã)    |\n");
-    printf("|_______________________________________________________________________|\n");
-    printf("|                                                                       |\n");
-    printf("|                            ALMOÇO / JANTAR                            |\n");
-    printf("|                                                                       |\n");
-    printf("|        Pratos principais:                                             |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Filé de frango grelhado com ervas                          |\n");
-    printf("|        2 - Bife acebolado / Filé mignon ao molho madeira              |\n");
-    printf("|        3 - Peixe grelhado / ao molho de camarão                       |\n");
-    printf("|        4 - Strogonoff de frango ou carne                              |\n");
-    printf("|        5 - Lasanha à bolonhesa ou vegetariana                         |\n");
-    printf("|        6 - Moqueca baiana (frutos do mar ou peixe)                    |\n");
-    printf("|        7 - Escondidinho de carne seca                                 |\n");
-    printf("|                                                                       |\n");
-    printf("|        Acompanhamentos:                                               |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Arroz branco / integral / à grega                          |\n");
-    printf("|        2 - Feijão carioca / preto                                     |\n");
-    printf("|        3 - Farofa caseira                                             |\n");
-    printf("|        4 - Purê de batata / mandioca                                  |\n");
-    printf("|        5 - Legumes salteados                                          |\n");
-    printf("|        6 - Saladas variadas (folhas, tomate, cenoura e beterraba)     |\n");
-    printf("|_______________________________________________________________________|\n");
-    printf("|                                                                       |\n");
-    printf("|                              SOBREMESAS                               |\n");
-    printf("|                                                                       |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Pudim de leite condensado                                  |\n");
-    printf("|        2 - Mousse de maracujá / chocolate                             |\n");
-    printf("|        3 - Doce de leite / goiabada com queijo                        |\n");
-    printf("|        4 - Frutas da estação                                          |\n");
-    printf("|        5 - Sorvete (2 ou 3 sabores)                                   |\n");
-    printf("|_______________________________________________________________________|\n");
-    printf("|                                                                       |\n");
-    printf("|                               LANCHES                                 |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Sanduíche natural (frango, atum, vegetariano)              |\n");
-    printf("|        2 - Hambúrguer artesanal                                       |\n");
-    printf("|        3 - Pão de queijo                                              |\n");
-    printf("|        4 - Salgadinhos assados (empada, quiche)                       |\n");
-    printf("|        5 - Batata frita                                               |\n");
-    printf("|        6 - Tapioca recheada                                           |\n");
-    printf("|_______________________________________________________________________|\n");
-    printf("|                                                                       |\n");
-    printf("|                               BEBIDAS                                 |\n");
-    printf("|                                                                       |\n");
-    printf("|        Não alcoólicas:                                                |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Água mineral (com e sem gás)                               |\n");
-    printf("|        2 - Refrigerantes (Coca-Cola, Guaraná, etc.)                   |\n");
-    printf("|        3 - Sucos naturais e de polpa                                  |\n");
-    printf("|        4 - Água de coco                                               |\n");
-    printf("|        5 - Chá gelado / quente                                        |\n");
-    printf("|        6 - Café expresso / coado                                      |\n");
-    printf("|                                                                       |\n");
-    printf("|        Alcoólicas:                                                    |\n");
-    printf("|                                                                       |\n");
-    printf("|        1 - Cervejas nacionais e artesanais                            |\n");
-    printf("|        2 - Vinhos (tinto, branco, rosé)                               |\n");
-    printf("|        3 - Caipirinha / Caipiroska                                    |\n");
-    printf("|        4 - Drinks clássicos (Mojito, Gin tônica, Aperol Spritz)       |\n");
-    printf("|        5 - Licor / Whisky / Rum (opcional)                            |\n");
+    printf("|           1 - Café da manha                                           |\n");
+    printf("|           2 - Almoço                                                  |\n");
+    printf("|           3 - Jantar                                                  |\n");
+    printf("|           4 - Sobremesas                                              |\n");
+    printf("|           5 - Bebidas                                                 |\n");
+    printf("|           0 - Sair                                                    |\n");
     printf("|_______________________________________________________________________|\n");
     printf("\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d",&op_restaurante);
     printf("PRESSIONE ENTER PARA CONTINUAR...");
+    return(op_restaurante);
     getchar();
 }
 
@@ -321,6 +343,7 @@ void tela_final(void){
     printf("\t\t PRESSIONE ENTER PARA CONTINUAR");
     getchar();
 }
+<<<<<<< HEAD
 
 
 
@@ -375,3 +398,5 @@ int main (void){
     }
     return 0;
 }
+=======
+>>>>>>> a82c6c9d2474f7cc215dcdb17156a1509a304017
