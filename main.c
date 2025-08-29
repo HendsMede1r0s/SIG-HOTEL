@@ -236,7 +236,7 @@ void tela_servicos(void){
 }
 
 int tela_restaurante(void){
-    system("clear|cls");
+    system("clear||cls");
     int op_restaurante;
     printf("\n");
     printf(" _______________________________________________________________________\n");
@@ -261,7 +261,7 @@ int tela_restaurante(void){
 
 
 int tela_lazer(void){
-    system("clear|cls");
+    system("clear||cls");
     int op_lazer;
     printf("\n");
     printf(" ___________________________________\n");
@@ -283,7 +283,7 @@ int tela_lazer(void){
 }
 
 int tela_garagem(void){
-    system("clear|cls");
+    system("clear||cls");
     int op_garagem;
     printf("\n");
     printf(" ___________________________________\n");
@@ -329,7 +329,7 @@ void tela_sobre(void){
 }
 
 void tela_equipe(void){
-    system("clear|cls");
+    system("clear||cls");
     printf("\n");
     printf(" _____________________________________________________________________\n");
     printf("|                                                                     |\n");
@@ -359,7 +359,7 @@ void tela_equipe(void){
 
 
 void tela_final(void){
-    system("clear|cls");
+    system("clear||cls");
     printf("\n");
     printf(" __________________________________________________________________________________\n");
     printf("|                                                                                  |\n");
