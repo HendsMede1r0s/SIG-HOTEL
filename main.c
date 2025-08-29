@@ -137,6 +137,7 @@ int main(void){
 
 int tela_inicial(void){
     int opcao;
+    printf("\n");
     printf(" __________________________________\n");
     printf("|                                  |\n");
     printf("|          Menu Principal          |\n");
@@ -369,6 +370,6 @@ void tela_final(void){
     printf("|                              Tenha um ótimo dia!                                 |\n");
     printf("|__________________________________________________________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR");
+    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...\n");
     getchar();
 }
