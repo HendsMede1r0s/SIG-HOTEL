@@ -32,7 +32,7 @@ void tela_final(void);
 /////////////////////////////////////////////////
 
 int main(void){
-    int opcao = 1;
+    int opcao = 10;
     int opcao_clientes = 4;
     int op_restaurante = 6;
     int op_lazer = 4;
@@ -62,7 +62,6 @@ int main(void){
             
         }
         else if(opcao == 5){
-            tela_restaurante();
             while(op_restaurante != 0){
                 op_restaurante = tela_restaurante();
                 if(op_restaurante == 1){
@@ -80,10 +79,12 @@ int main(void){
                 else if(op_restaurante == 5){
                     printf("Bebidas");
                 }
+                else if(op_restaurante == 0){
+                    opcao = 10;
+                }
             }
         }
         else if(opcao == 6){
-            tela_lazer();
             while(op_lazer != 0){
                 op_lazer = tela_lazer();
                 if(op_lazer == 1){
@@ -95,10 +96,12 @@ int main(void){
                 else if(op_lazer == 3){
                     printf("Sala de Jogos");
                 }
+                else if(op_lazer == 0){
+                    opcao = 10;
+                }
             }
         }
         else if(opcao == 7){
-            tela_garagem();
             while(op_garagem != 0){
                 op_garagem = tela_garagem();
                 if(op_garagem == 1){
@@ -110,6 +113,9 @@ int main(void){
                 else if(op_garagem == 3){
                     printf("Tirar Vaga");
                 }
+                else if(op_garagem == 0){
+                    opcao = 10;
+                }
             }
         }
         else if(opcao == 8){
@@ -119,6 +125,7 @@ int main(void){
             
         }
     }
+    tela_final();
     return 0;
 }
 
@@ -246,6 +253,7 @@ int tela_restaurante(void){
     printf("\n");
     printf("Escolha uma opcao: ");
     scanf("%d",&op_restaurante);
+    getchar();
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_restaurante);
 }
@@ -268,6 +276,7 @@ int tela_lazer(void){
     printf("\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &op_lazer);
+    getchar();
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_lazer);
 }
@@ -289,6 +298,7 @@ int tela_garagem(void){
     printf("\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &op_garagem);
+    getchar();
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_garagem);
 }
