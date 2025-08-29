@@ -136,6 +136,7 @@ int main(void){
 
 
 int tela_inicial(void){
+    system("clear||cls");
     int opcao;
     printf("\n");
     printf(" __________________________________\n");
