@@ -119,10 +119,10 @@ int main(void){
             }
         }
         else if(opcao == 8){
-            
+            opcao = tela_equipe();
         }
         else if(opcao == 9){
-            
+            tela_sobre();
         }
     }
     tela_final();
@@ -324,6 +324,7 @@ void tela_sobre(void){
     printf("|              gestão designado a hotéis ou pousadas                 |\n");
     printf("|____________________________________________________________________|\n");
     printf("\n");
+    opcao = 10;
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
