@@ -324,7 +324,6 @@ void tela_sobre(void){
     printf("|              gestão designado a hotéis ou pousadas                 |\n");
     printf("|____________________________________________________________________|\n");
     printf("\n");
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
@@ -353,7 +352,6 @@ void tela_equipe(void){
     printf("|        GITHUB: https://github.com/leonardorelva-ufrn                |\n");
     printf("|_____________________________________________________________________|\n");
     printf("\n");
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
     getchar();
 }
 
