@@ -368,6 +368,5 @@ void tela_final(void){
     printf("|                              Tenha um ótimo dia!                                 |\n");
     printf("|__________________________________________________________________________________|\n");
     printf("\n");
-    printf("\t\t PRESSIONE ENTER PARA CONTINUAR...\n");
     getchar();
 }
