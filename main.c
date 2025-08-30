@@ -16,7 +16,7 @@
 
 int tela_inicial(void);
 int tela_clientes(void);
-void tela_funcionarios(void);
+int tela_funcionarios();
 void tela_quartos(void);
 void tela_servicos(void);
 int tela_restaurante(void);
@@ -33,7 +33,8 @@ void tela_final(void);
 
 int main(void){
     int opcao = 10;
-    int opcao_clientes = 4;
+    int op_clientes = 4;
+    int op_funcionarios = 4;
     int op_restaurante = 6;
     int op_lazer = 4;
     int op_garagem = 4;
@@ -41,17 +42,17 @@ int main(void){
         opcao = tela_inicial();
         if (opcao == 1){
             tela_clientes();
-            while(opcao_clientes != 0){
-                opcao_clientes = tela_clientes();
-                if (opcao_clientes == 1){
+            while(op_clientes != 0){
+                op_clientes = tela_clientes();
+                if (op_clientes == 1){
                     printf("Cadastro de clientes");
                     getchar();
                 }
-                else if (opcao_clientes == 2){
+                else if (op_clientes == 2){
                     printf("Editar informações de clientes");
                     getchar();
                 }
-                else if (opcao_clientes == 3){
+                else if (op_clientes == 3){
                     printf("Ver clientes cadastrados");
                     getchar();
                 }
@@ -60,6 +61,22 @@ int main(void){
         }
         else if(opcao == 2){
             tela_funcionarios();
+            while (op_funcionarios != 0){
+                op_funcionarios = tela_funcionarios();
+                if (op_funcionarios == 1){
+                    printf("cadastrar funcionário");
+                    getchar();
+                }
+                else if (op_funcionarios == 2 ){
+                    printf("editar informações");
+                    getchar();
+                }
+                else if (op_funcionarios == 3){
+                    printf("Ver funcionarios");
+                    getchar();
+                }
+
+            }
 
         }
         else if(opcao == 3){
@@ -194,8 +211,9 @@ int tela_clientes(){
     return(op_cliente);
 }
 
-void tela_funcionarios(void){
+int tela_funcionarios(){
     system("clear||cls");
+    int op_funcionarios;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -205,12 +223,14 @@ void tela_funcionarios(void){
     printf("|        1 - Cadastar              |\n");
     printf("|        2 - Editar informacoes    |\n");
     printf("|        3 - Ver Funcionario       |\n");
-    printf("|        4 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
+    printf("Digite uma opção: ");
+    scanf("%d", &op_funcionarios);
     getchar();
-    getchar();
+    return op_funcionarios;
 }
 
 void tela_quartos(void){
