@@ -17,8 +17,8 @@
 int tela_inicial(void);
 int tela_clientes(void);
 int tela_funcionarios();
-void tela_quartos(void);
-void tela_servicos(void);
+int tela_quartos(void);
+int tela_servicos(void);
 int tela_restaurante(void);
 int tela_lazer(void);
 int tela_garagem(void);
@@ -35,6 +35,8 @@ int main(void){
     int opcao = 10;
     int op_clientes = 4;
     int op_funcionarios = 4;
+    int op_quartos = 5;
+    int op_servicos = 6;
     int op_restaurante = 6;
     int op_lazer = 4;
     int op_garagem = 4;
@@ -81,10 +83,31 @@ int main(void){
         }
         else if(opcao == 3){
             tela_quartos();
-            
+            while (op_quartos != 0){
+                op_quartos = tela_quartos();
+                if (op_quartos == 1){
+                    printf("Adionar Quarto");
+                    getchar();
+                }
+                else if (op_quartos == 2){
+                    printf("Ver quartos");
+                    getchar();
+                }
+            }
         }
         else if(opcao == 4){
             tela_servicos();
+            while (op_servicos != 0){
+                op_servicos = tela_servicos();
+                if (op_servicos == 1){
+                    printf("Serviço de quarto");
+                    getchar();
+                }
+                else if (op_servicos == 2){
+                    printf("Limpeza");
+                    getchar();
+                }
+            }
             
         }
         else if(opcao == 5){
@@ -233,8 +256,9 @@ int tela_funcionarios(){
     return op_funcionarios;
 }
 
-void tela_quartos(void){
+int tela_quartos(){
     system("clear||cls");
+    int op_quartos;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -243,16 +267,19 @@ void tela_quartos(void){
     printf("|                                  |\n");
     printf("|        1 - Adicionar Quarto      |\n");
     printf("|    2 - Ver quartos disponiveis   |\n");
-    printf("|        3 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
+    printf("Digite uma opção; ");
+    scanf("%d", &op_quartos);
     getchar();
-    getchar();
+    return op_quartos;
 }
 
-void tela_servicos(void){
+int tela_servicos(void){
     system("clear||cls");
+    int op_servicos;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -261,12 +288,14 @@ void tela_servicos(void){
     printf("|                                  |\n");
     printf("|        1 - Serviços de quarto    |\n");
     printf("|        2 - Limpeza               |\n");
-    printf("|        3 - Voltar                |\n");
+    printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
+    printf("Digite uma opção: ");
+    scanf("%d", &op_servicos);
     getchar();
-    getchar();
+    return op_servicos;
 }
 
 int tela_restaurante(void){
