@@ -111,22 +111,28 @@ int main(void){
             
         }
         else if(opcao == 5){
+            tela_restaurante();
             while(op_restaurante != 0){
                 op_restaurante = tela_restaurante();
                 if(op_restaurante == 1){
                     printf("Café da manha");
+                    getchar();
                 }
                 else if(op_restaurante == 2){
                     printf("Almoço");
+                    getchar();
                 }
                 else if(op_restaurante == 3){
                     printf("Jantar");
+                    getchar();
                 }
                 else if(op_restaurante == 4){
                     printf("Sobremesas");
+                    getchar();
                 }
                 else if(op_restaurante == 5){
                     printf("Bebidas");
+                    getchar();
                 }
                 else if(op_restaurante == 0){
                     opcao = 10;
@@ -134,16 +140,20 @@ int main(void){
             }
         }
         else if(opcao == 6){
+            tela_lazer();
             while(op_lazer != 0){
                 op_lazer = tela_lazer();
                 if(op_lazer == 1){
                     printf("Piscina");
+                    getchar();
                 }
                 else if(op_lazer == 2){
                     printf("Espaco Kids");
+                    getchar();
                 }
                 else if(op_lazer == 3){
                     printf("Sala de Jogos");
+                    getchar();
                 }
                 else if(op_lazer == 0){
                     opcao = 10;
@@ -151,16 +161,20 @@ int main(void){
             }
         }
         else if(opcao == 7){
+            tela_garagem();
             while(op_garagem != 0){
                 op_garagem = tela_garagem();
                 if(op_garagem == 1){
                     printf("Vagas");
+                    getchar();
                 }
                 else if(op_garagem == 2){
                     printf("Pegar Vaga");
+                    getchar();
                 }
                 else if(op_garagem == 3){
                     printf("Tirar Vaga");
+                    getchar();
                 }
                 else if(op_garagem == 0){
                     opcao = 10;
@@ -315,10 +329,10 @@ int tela_restaurante(void){
     printf("|           0 - Sair                                                    |\n");
     printf("|_______________________________________________________________________|\n");
     printf("\n");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Escolha uma opcao: ");
     scanf("%d",&op_restaurante);
     getchar();
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_restaurante);
 }
 
@@ -338,10 +352,10 @@ int tela_lazer(void){
     printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
     printf("\n");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Escolha uma opcao: ");
     scanf("%d", &op_lazer);
     getchar();
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_lazer);
 }
 
@@ -360,10 +374,10 @@ int tela_garagem(void){
     printf("|        0 - Voltar                 |\n");
     printf("|___________________________________|\n");
     printf("\n");
+    printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Escolha uma opcao: ");
     scanf("%d", &op_garagem);
     getchar();
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
     return(op_garagem);
 }
 
