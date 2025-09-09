@@ -402,7 +402,6 @@ void tela_sobre(void){
     printf("|____________________________________________________________________|\n");
     printf("\n");
     getchar();
-    getchar();
 }
 
 void tela_equipe(void){
@@ -431,7 +430,6 @@ void tela_equipe(void){
     printf("|_____________________________________________________________________|\n");
     printf("\n");
     getchar();
-    getchar();
 }
 
 
@@ -447,6 +445,5 @@ void tela_final(void){
     printf("|                              Tenha um ótimo dia!                                 |\n");
     printf("|__________________________________________________________________________________|\n");
     printf("\n");
-    getchar();
     getchar();
 }
