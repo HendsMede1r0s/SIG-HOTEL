@@ -280,6 +280,7 @@ void tela_equipe(void){
     printf("|        GITHUB: https://github.com/leonardorelva-ufrn                |\n");
     printf("|_____________________________________________________________________|\n");
     printf("\n");
+    printf("");
     getchar();
 }
 
