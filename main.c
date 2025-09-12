@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include "restaurente.h"
+#include "lazer.h"
 
 
 
