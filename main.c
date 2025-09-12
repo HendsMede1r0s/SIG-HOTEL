@@ -170,7 +170,6 @@ int main(void){
         }
         else if(opcao == 7){
             op_garagem = 4;
-            tela_garagem();
             while(op_garagem != 0){
                 op_garagem = tela_garagem();
                 if(op_garagem == 1){
