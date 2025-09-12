@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "servicos.h"
 
 int tela_servicos(void){

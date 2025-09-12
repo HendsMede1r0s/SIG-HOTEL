@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "garagem.h"
 
 int tela_garagem(void){

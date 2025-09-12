@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "restaurante.h"
 
 int tela_restaurante(void){

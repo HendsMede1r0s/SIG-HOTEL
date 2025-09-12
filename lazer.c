@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "lazer.h"
 
 int tela_lazer(void){
