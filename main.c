@@ -338,7 +338,7 @@ int tela_servicos(void){
 }*/
 
 
-int tela_lazer(void){
+/*int tela_lazer(void){
     system("clear||cls");
     int op_lazer;
     printf("\n");
@@ -358,7 +358,7 @@ int tela_lazer(void){
     scanf("%d", &op_lazer);
     getchar();
     return(op_lazer);
-}
+}*/
 
 int tela_garagem(void){
     system("clear||cls");
