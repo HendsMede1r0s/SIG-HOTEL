@@ -1,1 +1,1 @@
-int tela_funcionarios()
+int tela_funcionarios();
