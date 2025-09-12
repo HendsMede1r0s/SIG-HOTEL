@@ -119,7 +119,7 @@ int main(void){
             
         }
         else if(opcao == 5){
-            tela_restaurante();
+            op_restaurante = 6;
             while(op_restaurante != 0){
                 op_restaurante = tela_restaurante();
                 if(op_restaurante == 1){
@@ -148,7 +148,7 @@ int main(void){
             }
         }
         else if(opcao == 6){
-            tela_lazer();
+            op_lazer = 4;
             while(op_lazer != 0){
                 op_lazer = tela_lazer();
                 if(op_lazer == 1){
