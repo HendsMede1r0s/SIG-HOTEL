@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include "restaurente.h"
 
 
 
@@ -312,7 +313,7 @@ int tela_servicos(void){
     return op_servicos;
 }
 
-int tela_restaurante(void){
+/*int tela_restaurante(void){
     system("clear||cls");
     int op_restaurante;
     printf("\n");
@@ -334,7 +335,7 @@ int tela_restaurante(void){
     scanf("%d",&op_restaurante);
     getchar();
     return(op_restaurante);
-}
+}*/
 
 
 int tela_lazer(void){
