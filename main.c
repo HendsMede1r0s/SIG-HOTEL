@@ -6,8 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "restaurente.h"
+#include "restaurante.h"
 #include "lazer.h"
+#include "garagem.h"
 
 
 
@@ -361,7 +362,7 @@ int tela_servicos(void){
     return(op_lazer);
 }*/
 
-int tela_garagem(void){
+/*int tela_garagem(void){
     system("clear||cls");
     int op_garagem;
     printf("\n");
@@ -381,7 +382,7 @@ int tela_garagem(void){
     scanf("%d", &op_garagem);
     getchar();
     return(op_garagem);
-}
+}*/
 
 
 
