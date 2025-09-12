@@ -191,9 +191,13 @@ int main(void){
         }
         else if(opcao == 8){
             tela_equipe();
+            printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
         }
         else if(opcao == 9){
             tela_sobre();
+            printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
         }
     }
     tela_final();
@@ -245,7 +249,7 @@ void tela_sobre(void){
     printf("|                  DISCIPLINA DCT1106 - PROGRAMAÇÃO                  |\n");
     printf("|          PROJETO SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS          |\n");
     printf("|--------------------------------------------------------------------|\n");
-    printf("\n");
+    printf("|                                                                    |\n");
     printf("|           - SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS -             |\n");
     printf("|     Projeto proposto pelo professor de Sistemas de Informação      |\n");
     printf("|   da UFRN-CERES, @flgorgonio, com o intuido fazer um sistema de    |\n");
@@ -266,7 +270,7 @@ void tela_equipe(void){
     printf("|                  DISCIPLINA DCT1106 - PROGRAMAÇÃO                   |\n");
     printf("|          PROJETO SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS           |\n");
     printf("|---------------------------------------------------------------------|\n");
-    printf("\n");
+    printf("|                                                                     |\n");
     printf("|           - SISTEMA DE GESTÃO PARA HOTÉIS E POUSADAS -              |\n");
     printf("|                                                                     |\n");
     printf("|                      PROJETO DESENVOLVIDO POR:                      |\n");
@@ -280,7 +284,6 @@ void tela_equipe(void){
     printf("|        GITHUB: https://github.com/leonardorelva-ufrn                |\n");
     printf("|_____________________________________________________________________|\n");
     printf("\n");
-    printf("");
     getchar();
 }
 
