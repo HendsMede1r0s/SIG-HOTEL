@@ -9,6 +9,7 @@
 #include "restaurante.h"
 #include "lazer.h"
 #include "garagem.h"
+#include "servicos.h"
 
 
 
@@ -294,7 +295,7 @@ int tela_quartos(){
     return op_quartos;
 }
 
-int tela_servicos(void){
+/*int tela_servicos(void){
     system("clear||cls");
     int op_servicos;
     printf("\n");
@@ -313,8 +314,7 @@ int tela_servicos(void){
     scanf("%d", &op_servicos);
     getchar();
     return op_servicos;
-}
-
+}*/
 
 
 void tela_sobre(void){
