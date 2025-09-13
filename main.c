@@ -51,7 +51,7 @@ int main(void){
     while(opcao != 0){
         opcao = tela_inicial();
         if (opcao == 1){
-            tela_clientes();
+            op_clientes = 4;
             while(op_clientes != 0){
                 op_clientes = tela_clientes();
                 if (op_clientes == 1){
@@ -70,7 +70,7 @@ int main(void){
             }
         }
         else if(opcao == 2){
-            tela_funcionarios();
+            op_funcionarios = 4;
             while (op_funcionarios != 0){
                 op_funcionarios = tela_funcionarios();
                 if (op_funcionarios == 1){
@@ -90,7 +90,7 @@ int main(void){
 
         }
         else if(opcao == 3){
-            tela_quartos();
+            op_quartos = 5;
             while (op_quartos != 0){
                 op_quartos = tela_quartos();
                 if (op_quartos == 1){
@@ -104,7 +104,7 @@ int main(void){
             }
         }
         else if(opcao == 4){
-            tela_servicos();
+            op_servicos = 6;
             while (op_servicos != 0){
                 op_servicos = tela_servicos();
                 if (op_servicos == 1){

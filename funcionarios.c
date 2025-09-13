@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "funcionarios.h"
 
 int tela_funcionarios(){
@@ -16,7 +17,7 @@ int tela_funcionarios(){
     printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
+    printf("PRESSIONE ENTER PARA CONTINUAR...\n");
     printf("Digite uma opção: ");
     scanf("%d", &op_funcionarios);
     getchar();

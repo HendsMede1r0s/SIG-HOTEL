@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "servicos.h"
 
 int tela_servicos(void){

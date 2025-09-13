@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "quartos.h"
 
 int tela_quartos(){

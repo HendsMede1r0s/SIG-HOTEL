@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "garagem.h"
 
 int tela_garagem(void){
