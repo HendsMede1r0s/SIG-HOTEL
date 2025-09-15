@@ -12,7 +12,7 @@ int tela_servicos(void){
     printf("|                                  |\n");
     printf("|        1 - Serviços de quarto    |\n");
     printf("|        2 - Limpeza               |\n");
-    printf("|        3 - Area de Lazer         |")
+    printf("|        3 - Area de Lazer         |\n");
     printf("|        0 - Voltar                |\n");
     printf("|__________________________________|\n");
     printf("\n");

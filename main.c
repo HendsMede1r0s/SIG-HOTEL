@@ -26,8 +26,8 @@ int tela_clientes(void);
 int tela_funcionarios();
 int tela_quartos(void);
 int tela_servicos(void);
-void tela_restaurante(void);
-void tela_garagem(void);
+int tela_restaurante();
+void tela_garagem();
 void tela_equipe(void);
 void tela_sobre(void);
 void tela_final(void);
@@ -113,9 +113,9 @@ int main(void){
                     printf("Limpeza");
                     getchar();
                 }
-                else  if(op_servicos == 3){
+                else if(op_servicos == 3){
                     printf("Area de Lazer");
-                    getchar()
+                    getchar();
                 }
             }
             

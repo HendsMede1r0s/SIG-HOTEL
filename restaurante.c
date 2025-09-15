@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "restaurante.h"
 
-void tela_restaurante(void){
+int tela_restaurante(void){
     system("clear||cls");
     printf("\n");
     printf(" _______________________________________________________________________\n");
@@ -16,4 +16,5 @@ void tela_restaurante(void){
     printf("|_______________________________________________________________________|\n");
     printf("\n");
     getchar();
+    return 0;
 }
