@@ -11,7 +11,6 @@
 #include "quartos.h"
 #include "servicos.h"
 #include "restaurante.h"
-#include "lazer.h"
 #include "garagem.h"
 
 
@@ -115,6 +114,10 @@ int main(void){
                     printf("Limpeza");
                     getchar();
                 }
+                else  if(op_servicos == 3){
+                    printf("Area de Lazer");
+                    getchar()
+                }
             }
             
         }
@@ -148,27 +151,6 @@ int main(void){
             }
         }
         else if(opcao == 6){
-            op_lazer = 4;
-            while(op_lazer != 0){
-                op_lazer = tela_lazer();
-                if(op_lazer == 1){
-                    printf("Piscina");
-                    getchar();
-                }
-                else if(op_lazer == 2){
-                    printf("Espaco Kids");
-                    getchar();
-                }
-                else if(op_lazer == 3){
-                    printf("Sala de Jogos");
-                    getchar();
-                }
-                else if(op_lazer == 0){
-                    opcao = 10;
-                }
-            }
-        }
-        else if(opcao == 7){
             op_garagem = 4;
             while(op_garagem != 0){
                 op_garagem = tela_garagem();
@@ -189,12 +171,12 @@ int main(void){
                 }
             }
         }
-        else if(opcao == 8){
+        else if(opcao == 7){
             tela_equipe();
             printf("PRESSIONE ENTER PARA SAIR...");
             getchar();
         }
-        else if(opcao == 9){
+        else if(opcao == 8){
             tela_sobre();
             printf("PRESSIONE ENTER PARA SAIR...");
             getchar();
@@ -224,10 +206,9 @@ int tela_inicial(void){
     printf("|        3 - Quartos               |\n");
     printf("|        4 - Servicos              |\n");
     printf("|        5 - Restaurante           |\n");
-    printf("|        6 - Areas de Lazer        |\n");
-    printf("|        7 - Garagem               |\n");
-    printf("|        8 - Equipe                |\n");
-    printf("|        9 - Sobre                 |\n");
+    printf("|        6 - Garagem               |\n");
+    printf("|        7 - Equipe                |\n");
+    printf("|        8 - Sobre                 |\n");
     printf("|        0 - Sair                  |\n");
     printf("|__________________________________|\n");
     printf("\n");
