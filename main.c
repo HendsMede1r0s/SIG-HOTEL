@@ -26,9 +26,8 @@ int tela_clientes(void);
 int tela_funcionarios();
 int tela_quartos(void);
 int tela_servicos(void);
-int tela_restaurante(void);
-int tela_lazer(void);
-int tela_garagem(void);
+void tela_restaurante(void);
+void tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
 void tela_final(void);
@@ -151,25 +150,9 @@ int main(void){
             }
         }
         else if(opcao == 6){
-            op_garagem = 4;
-            while(op_garagem != 0){
-                op_garagem = tela_garagem();
-                if(op_garagem == 1){
-                    printf("Vagas");
-                    getchar();
-                }
-                else if(op_garagem == 2){
-                    printf("Pegar Vaga");
-                    getchar();
-                }
-                else if(op_garagem == 3){
-                    printf("Tirar Vaga");
-                    getchar();
-                }
-                else if(op_garagem == 0){
-                    opcao = 10;
-                }
-            }
+            tela_garagem();
+            printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
         }
         else if(opcao == 7){
             tela_equipe();
