@@ -121,33 +121,9 @@ int main(void){
             
         }
         else if(opcao == 5){
-            op_restaurante = 6;
-            while(op_restaurante != 0){
-                op_restaurante = tela_restaurante();
-                if(op_restaurante == 1){
-                    printf("Café da manha");
-                    getchar();
-                }
-                else if(op_restaurante == 2){
-                    printf("Almoço");
-                    getchar();
-                }
-                else if(op_restaurante == 3){
-                    printf("Jantar");
-                    getchar();
-                }
-                else if(op_restaurante == 4){
-                    printf("Sobremesas");
-                    getchar();
-                }
-                else if(op_restaurante == 5){
-                    printf("Bebidas");
-                    getchar();
-                }
-                else if(op_restaurante == 0){
-                    opcao = 10;
-                }
-            }
+            tela_restaurante();
+            printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
         }
         else if(opcao == 6){
             tela_garagem();

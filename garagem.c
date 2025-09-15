@@ -3,7 +3,6 @@
 
 void tela_garagem(void){
     system("clear||cls");
-    int op_garagem;
     printf("\n");
     printf(" _____________________________________\n");
     printf("|                                     |\n");
@@ -11,7 +10,7 @@ void tela_garagem(void){
     printf("|_____________________________________|\n");
     printf("|                                     |\n");
     printf("|                                     |\n");
-    printf("|        EM DESENCOLVIMENTO...        |\n");
+    printf("|        EM DESENVOLVIMENTO...        |\n");
     printf("|                                     |\n");
     printf("|                                     |\n");
     printf("|_____________________________________|\n");
