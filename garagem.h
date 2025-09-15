@@ -1,1 +1,1 @@
-int tela_garagem();
+void tela_garagem();

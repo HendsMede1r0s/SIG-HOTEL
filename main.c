@@ -11,7 +11,6 @@
 #include "quartos.h"
 #include "servicos.h"
 #include "restaurante.h"
-#include "lazer.h"
 #include "garagem.h"
 
 
@@ -27,9 +26,8 @@ int tela_clientes(void);
 int tela_funcionarios();
 int tela_quartos(void);
 int tela_servicos(void);
-int tela_restaurante(void);
-int tela_lazer(void);
-int tela_garagem(void);
+int tela_restaurante();
+void tela_garagem();
 void tela_equipe(void);
 void tela_sobre(void);
 void tela_final(void);
@@ -115,86 +113,29 @@ int main(void){
                     printf("Limpeza");
                     getchar();
                 }
+                else if(op_servicos == 3){
+                    printf("Area de Lazer");
+                    getchar();
+                }
             }
             
         }
         else if(opcao == 5){
-            op_restaurante = 6;
-            while(op_restaurante != 0){
-                op_restaurante = tela_restaurante();
-                if(op_restaurante == 1){
-                    printf("Café da manha");
-                    getchar();
-                }
-                else if(op_restaurante == 2){
-                    printf("Almoço");
-                    getchar();
-                }
-                else if(op_restaurante == 3){
-                    printf("Jantar");
-                    getchar();
-                }
-                else if(op_restaurante == 4){
-                    printf("Sobremesas");
-                    getchar();
-                }
-                else if(op_restaurante == 5){
-                    printf("Bebidas");
-                    getchar();
-                }
-                else if(op_restaurante == 0){
-                    opcao = 10;
-                }
-            }
+            tela_restaurante();
+            printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
         }
         else if(opcao == 6){
-            op_lazer = 4;
-            while(op_lazer != 0){
-                op_lazer = tela_lazer();
-                if(op_lazer == 1){
-                    printf("Piscina");
-                    getchar();
-                }
-                else if(op_lazer == 2){
-                    printf("Espaco Kids");
-                    getchar();
-                }
-                else if(op_lazer == 3){
-                    printf("Sala de Jogos");
-                    getchar();
-                }
-                else if(op_lazer == 0){
-                    opcao = 10;
-                }
-            }
+            tela_garagem();
+            printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
         }
         else if(opcao == 7){
-            op_garagem = 4;
-            while(op_garagem != 0){
-                op_garagem = tela_garagem();
-                if(op_garagem == 1){
-                    printf("Vagas");
-                    getchar();
-                }
-                else if(op_garagem == 2){
-                    printf("Pegar Vaga");
-                    getchar();
-                }
-                else if(op_garagem == 3){
-                    printf("Tirar Vaga");
-                    getchar();
-                }
-                else if(op_garagem == 0){
-                    opcao = 10;
-                }
-            }
-        }
-        else if(opcao == 8){
             tela_equipe();
             printf("PRESSIONE ENTER PARA SAIR...");
             getchar();
         }
-        else if(opcao == 9){
+        else if(opcao == 8){
             tela_sobre();
             printf("PRESSIONE ENTER PARA SAIR...");
             getchar();
@@ -224,10 +165,9 @@ int tela_inicial(void){
     printf("|        3 - Quartos               |\n");
     printf("|        4 - Servicos              |\n");
     printf("|        5 - Restaurante           |\n");
-    printf("|        6 - Areas de Lazer        |\n");
-    printf("|        7 - Garagem               |\n");
-    printf("|        8 - Equipe                |\n");
-    printf("|        9 - Sobre                 |\n");
+    printf("|        6 - Garagem               |\n");
+    printf("|        7 - Equipe                |\n");
+    printf("|        8 - Sobre                 |\n");
     printf("|        0 - Sair                  |\n");
     printf("|__________________________________|\n");
     printf("\n");
