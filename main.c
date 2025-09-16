@@ -31,8 +31,8 @@ int tela_clientes(void);
 int tela_funcionarios();
 int tela_quartos(void);
 int tela_servicos(void);
-int tela_restaurante();
-void tela_garagem();
+int tela_restaurante(void);
+void tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
 void tela_final(void);
@@ -48,9 +48,6 @@ int main(void){
     int op_funcionarios = 4;
     int op_quartos = 5;
     int op_servicos = 6;
-    int op_restaurante = 6;
-    int op_lazer = 4;
-    int op_garagem = 4;
     while(opcao != 0){
         opcao = tela_inicial();
         if (opcao == 1){
