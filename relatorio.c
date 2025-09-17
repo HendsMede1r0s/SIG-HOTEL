@@ -14,7 +14,7 @@ int relatorio(){
     printf("|      2 - Relatorio de funcionarios         |\n");
     printf("|      3 - Relatorio de quatos               |\n");
     printf("|      4 - Relatorio de financeiro           |\n");
-    printf("|____________________________________________|\n")
+    printf("|____________________________________________|\n");
     printf("\n");
     getchar();
 }

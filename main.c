@@ -145,7 +145,7 @@ int main(void){
         }
         else if(opcao == 9){
             tela_relatorio();
-            printf("PRESSIONE ENTER PARA SAIR...")
+            printf("PRESSIONE ENTER PARA SAIR...");
             getchar();
         }
     }
