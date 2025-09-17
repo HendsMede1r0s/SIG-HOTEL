@@ -37,6 +37,7 @@ void tela_garagem(void);
 void tela_equipe(void);
 void tela_sobre(void);
 void tela_final(void);
+void tela_relatorio(void);
 
 
 //////////////////////////////////////////////////

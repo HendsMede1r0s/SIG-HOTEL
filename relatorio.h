@@ -1,1 +1,1 @@
-int tela_relatorio();
+void tela_relatorio();
