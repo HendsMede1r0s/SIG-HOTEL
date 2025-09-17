@@ -24,12 +24,14 @@ O SIG-HOTEL foi projetado com foco na usabilidade,eficiencia e seguranca, trazen
 ```bash
 git clone https://github.com/HendsMede1r0s/SIG-HOTEL.git
 
+cd SIG-HOTEL
+```
 2. Compile o codigo:
 ```bash
 gcc -c -Wall *.h
 gcc -c -Wall *.c
 gcc -o main *.o
-
+```
 3. Execute o programa:
 ```bash
 ./main
