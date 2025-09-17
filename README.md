@@ -21,15 +21,15 @@ O SIG-HOTEL foi projetado com foco na usabilidade,eficiencia e seguranca, trazen
 ## COMO EXECUTAR
 
 1. Primeiro clone o repositorio:
-'''bash
+```bash
 git clone https://github.com/HendsMede1r0s/SIG-HOTEL.git
 
 2. Compile o codigo:
-'''bash
+```bash
 gcc -c -Wall *.h
 gcc -c -Wall *.c
 gcc -o main *.o
 
 3. Execute o programa:
-'''bash
+```bash
 ./main
