@@ -22,3 +22,20 @@ int tela_quartos(){
     getchar();
     return op_quartos;
 }
+
+
+int area_quartos(){
+    int op_quartos = 5;
+    while (op_quartos != 0){
+        op_quartos = tela_quartos();
+        if (op_quartos == 1){
+            printf("Adionar Quarto");
+            getchar();
+        }
+        else if (op_quartos == 2){
+            printf("Ver quartos");
+            getchar();
+        }
+    }
+    return 0;
+}

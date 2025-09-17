@@ -23,3 +23,24 @@ int tela_funcionarios(){
     getchar();
     return op_funcionarios;
 }
+
+
+int area_funcionarios(){
+    int op_funcionarios = 4;
+    while (op_funcionarios != 0){
+        op_funcionarios = tela_funcionarios();
+        if (op_funcionarios == 1){
+            printf("cadastrar funcionário");
+            getchar();
+        }
+        else if (op_funcionarios == 2 ){
+            printf("editar informações");
+            getchar();
+        }
+        else if (op_funcionarios == 3){
+            printf("Ver funcionarios");
+            getchar();
+        }
+    }
+    return 0;
+}

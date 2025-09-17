@@ -23,3 +23,28 @@ int tela_clientes(){
     getchar();
     return(op_cliente);
 }
+
+
+int area_clientes(){
+    int op_clientes = 4;
+    while(op_clientes != 0){
+        op_clientes = tela_clientes();
+        if (op_clientes == 1){
+            printf("Cadastro de clientes");
+            getchar();
+        }
+        else if (op_clientes == 2){
+            printf("Editar informações de clientes");
+            getchar();
+        }
+        else if (op_clientes == 3){
+            printf("Ver clientes cadastrados");
+            getchar();
+        }
+        
+    }
+    return 0;
+}
+                
+            
+    

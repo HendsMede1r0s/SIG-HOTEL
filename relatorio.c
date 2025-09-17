@@ -12,8 +12,7 @@ void tela_relatorio(void){
     printf("|                                            |\n");
     printf("|      1 - Relatorio de hospedes             |\n");
     printf("|      2 - Relatorio de funcionarios         |\n");
-    printf("|      3 - Relatorio de quatos               |\n");
-    printf("|      4 - Relatorio de financeiro           |\n");
+    printf("|      3 - Relatorio de quartos               |\n");
     printf("|____________________________________________|\n");
     printf("\n");
     getchar();

@@ -23,3 +23,24 @@ int tela_servicos(void){
     getchar();
     return op_servicos;
 }
+
+
+int area_servicos(){
+    int op_servicos = 6;
+    while (op_servicos != 0){
+        op_servicos = tela_servicos();
+        if (op_servicos == 1){
+            printf("Serviço de quarto");
+            getchar();
+        }
+        else if (op_servicos == 2){
+            printf("Limpeza");
+            getchar();
+        }
+        else if(op_servicos == 3){
+            printf("Area de Lazer");
+            getchar();
+        }
+    }
+    return 0;
+}

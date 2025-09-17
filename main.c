@@ -18,111 +18,25 @@
 #include "final.h"
 #include "relatorio.h"
 
-
-
-
-
 //////////////////////////////////////
-////////////// Funções ///////////////
+/////////// Main /////////////////////
 //////////////////////////////////////
-
-
-int tela_inicial(void);
-int tela_clientes(void);
-int tela_funcionarios();
-int tela_quartos(void);
-int tela_servicos(void);
-int tela_restaurante(void);
-void tela_garagem(void);
-void tela_equipe(void);
-void tela_sobre(void);
-void tela_final(void);
-void tela_relatorio(void);
-
-
-//////////////////////////////////////////////////
-///////////// Função Principal ///////////////////
-/////////////////////////////////////////////////
 
 int main(void){
     int opcao = 10;
-    int op_clientes = 4;
-    int op_funcionarios = 4;
-    int op_quartos = 5;
-    int op_servicos = 6;
     while(opcao != 0){
         opcao = tela_inicial();
         if (opcao == 1){
-            op_clientes = 4;
-            while(op_clientes != 0){
-                op_clientes = tela_clientes();
-                if (op_clientes == 1){
-                    printf("Cadastro de clientes");
-                    getchar();
-                }
-                else if (op_clientes == 2){
-                    printf("Editar informações de clientes");
-                    getchar();
-                }
-                else if (op_clientes == 3){
-                    printf("Ver clientes cadastrados");
-                    getchar();
-                }
-                
-            }
+            area_clientes();
         }
         else if(opcao == 2){
-            op_funcionarios = 4;
-            while (op_funcionarios != 0){
-                op_funcionarios = tela_funcionarios();
-                if (op_funcionarios == 1){
-                    printf("cadastrar funcionário");
-                    getchar();
-                }
-                else if (op_funcionarios == 2 ){
-                    printf("editar informações");
-                    getchar();
-                }
-                else if (op_funcionarios == 3){
-                    printf("Ver funcionarios");
-                    getchar();
-                }
-
-            }
-
+            area_funcionarios();
         }
         else if(opcao == 3){
-            op_quartos = 5;
-            while (op_quartos != 0){
-                op_quartos = tela_quartos();
-                if (op_quartos == 1){
-                    printf("Adionar Quarto");
-                    getchar();
-                }
-                else if (op_quartos == 2){
-                    printf("Ver quartos");
-                    getchar();
-                }
-            }
+            area_quartos();
         }
         else if(opcao == 4){
-            op_servicos = 6;
-            while (op_servicos != 0){
-                op_servicos = tela_servicos();
-                if (op_servicos == 1){
-                    printf("Serviço de quarto");
-                    getchar();
-                }
-                else if (op_servicos == 2){
-                    printf("Limpeza");
-                    getchar();
-                }
-                else if(op_servicos == 3){
-                    printf("Area de Lazer");
-                    getchar();
-                }
-            }
-            
+            area_servicos();
         }
         else if(opcao == 5){
             tela_restaurante();
