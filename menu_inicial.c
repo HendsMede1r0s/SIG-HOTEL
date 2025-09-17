@@ -19,6 +19,7 @@ int tela_inicial(void){
     printf("|        6 - Garagem               |\n");
     printf("|        7 - Equipe                |\n");
     printf("|        8 - Sobre                 |\n");
+    printf("|        9 - Relatorios            |\n");
     printf("|        0 - Sair                  |\n");
     printf("|__________________________________|\n");
     printf("\n");

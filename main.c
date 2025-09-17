@@ -16,6 +16,7 @@
 #include "sobre.h"
 #include "equipe.h"
 #include "final.h"
+#include "relatorio.h"
 
 
 
@@ -140,6 +141,11 @@ int main(void){
         else if(opcao == 8){
             tela_sobre();
             printf("PRESSIONE ENTER PARA SAIR...");
+            getchar();
+        }
+        else if(opcao == 9){
+            tela_relatorio();
+            printf("PRESSIONE ENTER PARA SAIR...")
             getchar();
         }
     }
