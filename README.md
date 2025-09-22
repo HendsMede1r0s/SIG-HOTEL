@@ -25,7 +25,7 @@ GITHUB:https://github.com/HendsMede1r0s\
 
 NOME: Leonardo Relva\
 EMAIL: leonardo.relva.111@ufrn.edu.br\
-GITHUB:https://github.com/leonardorelva-ufrn 
+GITHUB: https://github.com/leonardorelva-ufrn 
 
 ## COMO EXECUTAR
 
