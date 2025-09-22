@@ -18,6 +18,15 @@ O sistema oferece algumas funcionalidades essenciais:
 O SIG-HOTEL foi projetado com foco na usabilidade,eficiencia e seguranca, trazendo uma experiencia simples e eficaz tanto para os administradores quanto para os usuarios finais. O modelo do sistema permite facil manutencaom escalabilidade e personalizacao conforme as necessidades especificas de cada estabelecimento.
 
 
+## DESENVOLVEDORES
+NOME: Henderson Emanuel\
+EMAIL: hendersonbernardo2018@gmail.com\
+GITHUB:https://github.com/HendsMede1r0s\
+
+NOME: Leonardo Relva\
+EMAIL: leonardo.relva.111@ufrn.edu.br\
+GITHUB:https://github.com/leonardorelva-ufrn 
+
 ## COMO EXECUTAR
 
 1. Primeiro clone o repositorio:
