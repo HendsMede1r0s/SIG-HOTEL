@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "clientes.h": "c",
-        "stdlib.h": "c",
-        "stdio.h": "c",
-        "equipe.h": "c"
-    }
-}
