@@ -4,7 +4,7 @@
 
 int tela_inicial(void){
     system("clear||cls");
-    int opcao;
+    int op;
     printf("\n");
     printf(" __________________________________\n");
     printf("|                                  |\n");
@@ -15,8 +15,8 @@ int tela_inicial(void){
     printf("|        2 - Funcionarios          |\n");
     printf("|        3 - Quartos               |\n");
     printf("|        4 - Servicos              |\n");
-    printf("|        5 - Restaurante           |\n");
-    printf("|        6 - Garagem               |\n");
+    printf("|        5 - Restaurante           |\n"); //remover
+    printf("|        6 - Garagem               |\n"); //remover
     printf("|        7 - Equipe                |\n");
     printf("|        8 - Sobre                 |\n");
     printf("|        9 - Relatorios            |\n");
@@ -24,7 +24,7 @@ int tela_inicial(void){
     printf("|__________________________________|\n");
     printf("\n");
     printf("Digite sua opcao: ");
-    scanf("%d",&opcao);
-    return opcao;
+    scanf("%d",&op);
+    return op;
     getchar();  
 }

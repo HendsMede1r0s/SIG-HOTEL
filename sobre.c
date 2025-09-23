@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "sobre.h"
 
-
 void tela_sobre(void){
     system("clear||cls");
     printf("\n");

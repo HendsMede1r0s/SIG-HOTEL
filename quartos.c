@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include "quartos.h"
 
+void modulo_quartos(void){
+
+    char op;
+
+    do {
+        op = tela_quartos();
+        switch (op) {
+            case '1':
+                getchar();
+                break;
+        }
+    } while (op != '0'); 
+}
+
 int tela_quartos(){
     system("clear||cls");
-    int op_quartos;
+    int op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -18,24 +32,7 @@ int tela_quartos(){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Digite uma opção; ");
-    scanf("%d", &op_quartos);
+    scanf("%d", &op);
     getchar();
-    return op_quartos;
-}
-
-
-int area_quartos(){
-    int op_quartos = 5;
-    while (op_quartos != 0){
-        op_quartos = tela_quartos();
-        if (op_quartos == 1){
-            printf("Adionar Quarto");
-            getchar();
-        }
-        else if (op_quartos == 2){
-            printf("Ver quartos");
-            getchar();
-        }
-    }
-    return 0;
+    return op;
 }

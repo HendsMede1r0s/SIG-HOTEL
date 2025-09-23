@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include "servicos.h"
 
+void modulo_servicos(void){
+
+    char op;
+
+    do {
+        op = tela_servicos();
+        switch (op) {
+            case '1':
+                getchar();
+                break;
+        }
+    } while (op != '0'); 
+}
+
 int tela_servicos(void){
     system("clear||cls");
-    int op_servicos;
+    int op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -19,28 +33,7 @@ int tela_servicos(void){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Digite uma opção: ");
-    scanf("%d", &op_servicos);
+    scanf("%d", &op);
     getchar();
-    return op_servicos;
-}
-
-
-int area_servicos(){
-    int op_servicos = 6;
-    while (op_servicos != 0){
-        op_servicos = tela_servicos();
-        if (op_servicos == 1){
-            printf("Serviço de quarto");
-            getchar();
-        }
-        else if (op_servicos == 2){
-            printf("Limpeza");
-            getchar();
-        }
-        else if(op_servicos == 3){
-            printf("Area de Lazer");
-            getchar();
-        }
-    }
-    return 0;
+    return op;
 }

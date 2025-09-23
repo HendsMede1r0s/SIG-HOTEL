@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include "funcionarios.h"
 
+void modulo_funcionarios(void){
+
+    char op;
+
+    do {
+        op = tela_funcionarios();
+        switch (op) {
+            case '1':
+                getchar();
+                break;
+        }
+    } while (op != '0'); 
+}
+
 int tela_funcionarios(){
     system("clear||cls");
-    int op_funcionarios;
+    int op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -19,28 +33,7 @@ int tela_funcionarios(){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...\n");
     printf("Digite uma opção: ");
-    scanf("%d", &op_funcionarios);
+    scanf("%d", &op);
     getchar();
-    return op_funcionarios;
-}
-
-
-int area_funcionarios(){
-    int op_funcionarios = 4;
-    while (op_funcionarios != 0){
-        op_funcionarios = tela_funcionarios();
-        if (op_funcionarios == 1){
-            printf("cadastrar funcionário");
-            getchar();
-        }
-        else if (op_funcionarios == 2 ){
-            printf("editar informações");
-            getchar();
-        }
-        else if (op_funcionarios == 3){
-            printf("Ver funcionarios");
-            getchar();
-        }
-    }
-    return 0;
+    return op;
 }

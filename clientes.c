@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include "clientes.h"
 
+void modulo_clientes(void){
+
+    char op;
+
+    do {
+        op = tela_clientes();
+        switch (op) {
+            case '1':
+                getchar();
+                break;
+        }
+    } while (op != '0'); 
+}
+
 int tela_clientes(){
     system("clear||cls");
-    int op_cliente;
+    int op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -19,31 +33,10 @@ int tela_clientes(){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...\n");
     printf("Digite uma opçao: ");
-    scanf("%d", &op_cliente);
+    scanf("%d", &op);
     getchar();
-    return(op_cliente);
-}
-
-
-int area_clientes(){
-    int op_clientes = 4;
-    while(op_clientes != 0){
-        op_clientes = tela_clientes();
-        if (op_clientes == 1){
-            printf("Cadastro de clientes");
-            getchar();
-        }
-        else if (op_clientes == 2){
-            printf("Editar informações de clientes");
-            getchar();
-        }
-        else if (op_clientes == 3){
-            printf("Ver clientes cadastrados");
-            getchar();
-        }
-        
-    }
-    return 0;
+    printf("\n");
+    return(op);
 }
                 
             

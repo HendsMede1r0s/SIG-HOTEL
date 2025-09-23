@@ -23,47 +23,50 @@
 //////////////////////////////////////
 
 int main(void){
-    int opcao = 10;
-    while(opcao != 0){
-        opcao = tela_inicial();
-        if (opcao == 1){
-            area_clientes();
+
+    char op;
+    do {
+        op = tela_inicial();
+        switch (op) {
+            case '0':
+                modulo_final();
+            case '1':
+                modulo_clientes();
+                break;
+            case '2':
+                modulo_funcionarios();
+            case '3':
+                modulo_quartos();
+                break;
+            case '4':
+                modulo_servicos();
+                break;
+            case '5':
+                tela_equipe();
+                break;
+            case '6':
+                tela_sobre();
+                break;
+            case '7':
+                modulo_relatorios();
+                break;
+            default:
+                tela_op_invalida();
+                break;
         }
-        else if(opcao == 2){
-            area_funcionarios();
-        }
-        else if(opcao == 3){
-            area_quartos();
-        }
-        else if(opcao == 4){
-            area_servicos();
-        }
-        else if(opcao == 5){
-            tela_restaurante();
-            printf("PRESSIONE ENTER PARA SAIR...");
-            getchar();
-        }
-        else if(opcao == 6){
-            tela_garagem();
-            printf("PRESSIONE ENTER PARA SAIR...");
-            getchar();
-        }
-        else if(opcao == 7){
-            tela_equipe();
-            printf("PRESSIONE ENTER PARA SAIR...");
-            getchar();
-        }
-        else if(opcao == 8){
-            tela_sobre();
-            printf("PRESSIONE ENTER PARA SAIR...");
-            getchar();
-        }
-        else if(opcao == 9){
-            tela_relatorio();
-            printf("PRESSIONE ENTER PARA SAIR...");
-            getchar();
-        }
-    }
-    tela_final();
-    return 0;
+    } while (op != '0');
+
+return 0;
+}
+
+void tela_op_invalida(void){
+    system("clear||cls");
+    printf("\n");
+    printf(" __________________________________________________________________________________\n");
+    printf("|                                                                                  |\n");
+    printf("|                                 *OPCAO INVALIDA*                                 |\n");
+    printf("|__________________________________________________________________________________|\n");
+    printf("\n");
+    getchar();
+    printf("\n");
 }
