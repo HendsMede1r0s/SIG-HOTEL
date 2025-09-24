@@ -16,9 +16,9 @@ void modulo_funcionarios(void){
     } while (op != '0'); 
 }
 
-int tela_funcionarios(){
+char tela_funcionarios(void){
     system("clear||cls");
-    int op;
+    char op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -33,7 +33,7 @@ int tela_funcionarios(){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...\n");
     printf("Digite uma opção: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     return op;
 }

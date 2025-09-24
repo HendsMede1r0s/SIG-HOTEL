@@ -1,1 +1,1 @@
-int tela_inicial();
+char tela_inicial(void);

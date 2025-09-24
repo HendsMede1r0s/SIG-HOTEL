@@ -1,1 +1,1 @@
-void tela_sobre();
+void tela_sobre(void);

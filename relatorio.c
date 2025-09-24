@@ -16,9 +16,9 @@ void modulo_relatorios(void){
     } while (op != '0'); 
 }
 
-void tela_relatorio(void){
+char tela_relatorios(void){
     system("clear||cls");
-    int op;
+    char op;
     printf("\n");
     printf(" ____________________________________________\n");
     printf("|                                            |\n");
@@ -30,7 +30,7 @@ void tela_relatorio(void){
     printf("|      3 - Relatorio de quartos               |\n");
     printf("|____________________________________________|\n");
     printf("\n");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     printf("\n");
     return op;

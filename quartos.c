@@ -16,9 +16,9 @@ void modulo_quartos(void){
     } while (op != '0'); 
 }
 
-int tela_quartos(){
+char tela_quartos(void){
     system("clear||cls");
-    int op;
+    char op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -32,7 +32,7 @@ int tela_quartos(){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Digite uma opção; ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     return op;
 }

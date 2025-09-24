@@ -11,12 +11,16 @@
 #include "funcionarios.h"
 #include "quartos.h"
 #include "servicos.h"
-#include "restaurante.h"
-#include "garagem.h"
 #include "sobre.h"
 #include "equipe.h"
 #include "final.h"
 #include "relatorio.h"
+
+//////////////////////////////////////
+////////Assinatura das FUnções////////
+//////////////////////////////////////
+
+void tela_op_invalida(void);
 
 //////////////////////////////////////
 /////////// Main /////////////////////
@@ -29,12 +33,14 @@ int main(void){
         op = tela_inicial();
         switch (op) {
             case '0':
-                modulo_final();
+                tela_final();
+                break;
             case '1':
                 modulo_clientes();
                 break;
             case '2':
                 modulo_funcionarios();
+                break;
             case '3':
                 modulo_quartos();
                 break;

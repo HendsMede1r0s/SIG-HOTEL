@@ -16,9 +16,9 @@ void modulo_clientes(void){
     } while (op != '0'); 
 }
 
-int tela_clientes(){
+char tela_clientes(void){
     system("clear||cls");
-    int op;
+    char op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -33,7 +33,7 @@ int tela_clientes(){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...\n");
     printf("Digite uma opçao: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     printf("\n");
     return(op);

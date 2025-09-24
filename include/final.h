@@ -1,1 +1,1 @@
-void tela_final();
+void tela_final(void);

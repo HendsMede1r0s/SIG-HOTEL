@@ -16,9 +16,9 @@ void modulo_servicos(void){
     } while (op != '0'); 
 }
 
-int tela_servicos(void){
+char tela_servicos(void){
     system("clear||cls");
-    int op;
+    char op;
     printf("\n");
     printf("___________________________________\n");
     printf("|                                  |\n");
@@ -33,7 +33,7 @@ int tela_servicos(void){
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Digite uma opção: ");
-    scanf("%d", &op);
+    scanf("%c", &op);
     getchar();
     return op;
 }
