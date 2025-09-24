@@ -38,6 +38,95 @@ char tela_clientes(void){
     printf("\n");
     return(op);
 }
-                
-            
+
+void cad_clientes(void){
+    system("clear||cls");
+
+    char cpf [18];
+    char nome [55];
+    char cell [18];
+    char n_quarto [7];
+
+    printf("\n");
+    printf("|============================================================|\n");
+    printf("|                                                            |\n");
+    printf("|                   {Clientes -> Cadastrar}                  |\n");
+    printf("|                                                            |\n");
+    printf("|============================================================|\n");
+    printf("\n");
+    printf("Digite o CPF do cliente:");
+    scanf("%s", cpf);
+    getchar();
+    printf("\n");
+    printf("Digite o nome do cliente:");
+    scanf("%s", nome);
+    getchar();
+    printf("\n");
+    printf("Digite o telefone do cliente:");
+    scanf("%s", cell);
+    getchar();
+    print("\n");
+    printf("Digite o numero do quarto do cliente:");
+    scanf("%s", n_quarto);
+    getchar();
+    printf("\n");
+
+    system("clear||cls");
+    printf("\n");
+    printf("|============================================================|\n");
+    printf("|                                                            |\n");
+    printf("|              {Cliente cadastrado com sucesso!}             |\n");
+    printf("|                                                            |\n");
+    printf("|============================================================|\n");
+    printf("\n");
+    getchar();
+    printf("\n");
+}
+
+
+void edit_clientes(void){
+    system("clear||cls");
+
+    char cpf [18];
+    char nome [55];
+    char cell [18];
+    char n_quarto [7];
+
+    printf("\n");
+    printf("|============================================================|\n");
+    printf("|                                                            |\n");
+    printf("|                    {Clientes -> Editar}                    |\n");
+    printf("|                                                            |\n");
+    printf("|============================================================|\n");
+    printf("\n");
+    printf("Digite as novas informaçoes do cliente.");
+    printf("\n");
+    printf("Digite o CPF do cliente:");
+    scanf("%s", cpf);
+    getchar();
+    printf("\n");
+    printf("Digite o nome do cliente:");
+    scanf("%s", nome);
+    getchar();
+    printf("\n");
+    printf("Digite o telefone do cliente:");
+    scanf("%s", cell);
+    getchar();
+    print("\n");
+    printf("Digite o numero do quarto do cliente:");
+    scanf("%s", n_quarto);
+    getchar();
+    printf("\n");
+
+    system("clear||cls");
+    printf("\n");
+    printf("|============================================================|\n");
+    printf("|                                                            |\n");
+    printf("|              {Cliente editado com sucesso!}                |\n");
+    printf("|                                                            |\n");
+    printf("|============================================================|\n");
+    printf("\n");
+    getchar();
+    printf("\n");
+}
     
