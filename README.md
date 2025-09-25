@@ -27,6 +27,10 @@ NOME: Leonardo Relva\
 EMAIL: leonardo.relva.111@ufrn.edu.br\
 GITHUB: https://github.com/leonardorelva-ufrn 
 
+NOME: Eriky Rayan\
+EMAIL: eriky.medeiros.706@ufrn.edu.br\
+GITHUB: https://github.com/Eriky-Rayan\
+
 ## COMO EXECUTAR
 
 1. Primeiro clone o repositorio:
