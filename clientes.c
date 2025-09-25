@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "clientes.h"
+#include "utilidades.h"
 
 //////////////////////////////
 //funcoes do modulo clientes//
@@ -49,9 +50,6 @@ char tela_clientes(void){
     printf("│                                                            │\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("PRESSIONE ENTER PARA CONTINUAR...\n");
-    getchar();
-    printf("\n");
     printf("Digite uma opçao: ");
     scanf("%c", &op);
     getchar();
@@ -87,7 +85,7 @@ void cad_clientes(void){
     printf("Digite o telefone do cliente:");
     scanf("%s", cell);
     getchar();
-    print("\n");
+    printf("\n");
     printf("Digite o numero do quarto do cliente:");
     scanf("%s", n_quarto);
     getchar();
@@ -103,6 +101,7 @@ void cad_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("{Digite ENTER para continuar}");
     getchar();
     printf("\n");
 }
@@ -138,7 +137,7 @@ void edit_clientes(void){
     printf("Digite o telefone do cliente:");
     scanf("%s", cell);
     getchar();
-    print("\n");
+    printf("\n");
     printf("Digite o numero do quarto do cliente:");
     scanf("%s", n_quarto);
     getchar();
@@ -154,6 +153,7 @@ void edit_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("{Digite ENTER para continuar}");
     getchar();
     printf("\n");
 }
@@ -213,6 +213,7 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("{Digite ENTER para continuar}");
     getchar();
     printf("\n"); 
 }
