@@ -70,7 +70,7 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Digite o cpf do funcionario:");
+    printf("Digite o CPF do funcionario:");
     scanf("%c", &cpf);
     getchar();
     printf("\n");
@@ -95,4 +95,48 @@ void cad_funcionarios(void){
     printf("{Digite ENTER para continuar}");
     getchar();
     printf("\n")
+}
+
+
+void edit_funcionarios(void){
+    limpa_tela();
+
+    char cpf[18];
+    char nome[55];
+    char cell[18];
+
+    printf("\n");
+    printf("┌──────────────────────────────────────────────────────────┐\n");
+    printf("|##########################################################|\n");
+    printf("|#                                                        #|\n");
+    printf("|#                {Funcionarios -> Editar}                #|\n");
+    printf("|#                                                        #|\n");
+    printf("|##########################################################|\n");
+    printf("\n");
+    printf("Digite as novas informacoes do cliente!");
+    printf("\n");
+    printf("Digite o CPF do funcionario:");
+    scanf("%c", &cpf);
+    getchar();
+    printf("\n");
+    printf("Digite o nome do funcionario:");
+    scanf("%c", &nome);
+    getchar();
+    printf("\n");
+    printf("Digite o telefone do funcionario:");
+    scanf("%c", &cell);
+    getchar();
+    printf("\n");
+
+    limpa_tela();
+    printf("┌────────────────────────────────────────────────────────┐\n");
+    printf("|########################################################|\n");
+    printf("|#                                                      #|\n");
+    printf("|#                  {cliente editado!}                  #|\n");
+    printf("|#                                                      #|\n");
+    printf("|########################################################|\n");
+    printf("\n");
+    printf("{Digite ENTER para continuar}");
+    getchar();
+    printf("\n");
 }
