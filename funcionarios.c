@@ -13,7 +13,7 @@ void modulo_funcionarios(void){
                 cad_funcionarios();
                 break;
             case '2':
-                getchar();
+                edit_funcionarios();
                 break;
             case '2':
                 getchar();
