@@ -10,6 +10,18 @@ void modulo_funcionarios(void){
         op = tela_funcionarios();
         switch (op) {
             case '1':
+                cad_funcionarios();
+                break;
+            case '2':
+                getchar();
+                break;
+            case '2':
+                getchar();
+                break;
+            case '3':
+                getchar();
+                break;
+            case '4':
                 getchar();
                 break;
         }
