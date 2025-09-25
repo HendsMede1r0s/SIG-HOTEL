@@ -48,3 +48,23 @@ gcc -o main *.o
 3. Execute o programa:
 ```bash
 ./main
+
+```
+## Como usar o make caso possua:
+para executar:
+```
+make
+
+```
+para limpar os arquivos caso use no Linux:
+```
+make clean
+
+```
+para executar o programa:
+```
+make run
+
+```
+
+
