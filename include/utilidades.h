@@ -1,0 +1,1 @@
+void limpa_tela(void);

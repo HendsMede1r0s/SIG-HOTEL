@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "clientes.h"
 
+//////////////////////////////
+//funcoes do modulo clientes//
+//////////////////////////////
+
 void modulo_clientes(void){
 
     char op;
@@ -10,28 +14,44 @@ void modulo_clientes(void){
         op = tela_clientes();
         switch (op) {
             case '1':
-                getchar();
+                cad_clientes();
+                break;
+            case '2':
+                edit_clientes();
+                break;
+            case '3':
+                exib_clientes();
+                break;
+            case '4':
+                exclu_clientes();
                 break;
         }
     } while (op != '0'); 
 }
 
 char tela_clientes(void){
-    system("clear||cls");
+    limpa_tela();
+
     char op;
+
     printf("\n");
-    printf("___________________________________\n");
-    printf("|                                  |\n");
-    printf("|            Clientes              |\n");
-    printf("|__________________________________|\n");
-    printf("|                                  |\n");
-    printf("|        1 - Cadastar              |\n");
-    printf("|        2 - Editar informacoes    |\n");
-    printf("|        3 - Ver clientes          |\n");
-    printf("|        0 - Voltar                |\n");
-    printf("|__________________________________|\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│                                                            │\n");
+    printf("│                          -Clientes-                        │\n");
+    printf("│                                                            │\n");
+    printf("│────────────────────────────────────────────────────────────│\n");
+    printf("│                                                            │\n");
+    printf("│        [1] -> Cadastar                                     │\n");
+    printf("│        [2] -> Editar informacoes                           │\n");
+    printf("│        [3] -> Exibir clientes                              │\n");
+    printf("│        [4] -> Excluir clientes                             │\n");   
+    printf("│        [0] -> Voltar                                       │\n");
+    printf("│                                                            │\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("PRESSIONE ENTER PARA CONTINUAR...\n");
+    getchar();
+    printf("\n");
     printf("Digite uma opçao: ");
     scanf("%c", &op);
     getchar();
@@ -40,7 +60,7 @@ char tela_clientes(void){
 }
 
 void cad_clientes(void){
-    system("clear||cls");
+    limpa_tela();
 
     char cpf [18];
     char nome [55];
@@ -48,11 +68,13 @@ void cad_clientes(void){
     char n_quarto [7];
 
     printf("\n");
-    printf("|============================================================|\n");
-    printf("|                                                            |\n");
-    printf("|                   {Clientes -> Cadastrar}                  |\n");
-    printf("|                                                            |\n");
-    printf("|============================================================|\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                  {Clientes -> Cadastrar}                 #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o CPF do cliente:");
     scanf("%s", cpf);
@@ -71,13 +93,15 @@ void cad_clientes(void){
     getchar();
     printf("\n");
 
-    system("clear||cls");
+    limpa_tela();
     printf("\n");
-    printf("|============================================================|\n");
-    printf("|                                                            |\n");
-    printf("|              {Cliente cadastrado com sucesso!}             |\n");
-    printf("|                                                            |\n");
-    printf("|============================================================|\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#            {Clientes cadastrado com sucesso!}            #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     getchar();
     printf("\n");
@@ -85,7 +109,7 @@ void cad_clientes(void){
 
 
 void edit_clientes(void){
-    system("clear||cls");
+    limpa_tela();
 
     char cpf [18];
     char nome [55];
@@ -93,11 +117,13 @@ void edit_clientes(void){
     char n_quarto [7];
 
     printf("\n");
-    printf("|============================================================|\n");
-    printf("|                                                            |\n");
-    printf("|                    {Clientes -> Editar}                    |\n");
-    printf("|                                                            |\n");
-    printf("|============================================================|\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Clientes -> Editar}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite as novas informaçoes do cliente.");
     printf("\n");
@@ -118,15 +144,75 @@ void edit_clientes(void){
     getchar();
     printf("\n");
 
-    system("clear||cls");
+    limpa_tela();
     printf("\n");
-    printf("|============================================================|\n");
-    printf("|                                                            |\n");
-    printf("|              {Cliente editado com sucesso!}                |\n");
-    printf("|                                                            |\n");
-    printf("|============================================================|\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                    {Cliente editado!}                    #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     getchar();
     printf("\n");
 }
     
+void exib_clientes(void){
+    limpa_tela();
+
+    char cpf [18];
+    char nome [55];
+    char cell [18];
+    char n_quarto [7];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Clientes -> Exibir}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o CPF do cliente a ser exibido:");
+    scanf("%s", cpf);
+    getchar();
+    printf("\n");
+}
+
+void exclu_clientes(void){
+    limpa_tela();
+
+    char cpf [18];
+    char nome [55];
+    char cell [18];
+    char n_quarto [7];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Clientes -> Excluir}                  #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o CPF do cliente que deseja excluir:");
+    scanf("%s", cpf);
+    getchar();
+    printf("\n");
+
+    limpa_tela();
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                    {Cliente excluido!}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    getchar();
+    printf("\n"); 
+}
