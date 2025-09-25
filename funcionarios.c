@@ -40,3 +40,47 @@ char tela_funcionarios(void){
     printf("\n");
     return op;
 }
+
+
+void cad_funcionarios(void){
+    limpa_tela();
+
+    char cpf[18];
+    char nome[55];
+    char cell[18];
+
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#              {Funcionarios -> Cadastrar}              #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o cpf do funcionario:");
+    scanf("%c", &cpf);
+    getchar();
+    printf("\n");
+    printf("Digite o nome do funcionario:");
+    scanf("%c", &nome);
+    getchar();
+    printf("\n");
+    printf("Digite o  telefone do funcionario:");
+    scanf("%c", &cell);
+    getchar();
+    printf("\n");
+
+    limpa_tela();
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#         {funcionario cadastrado com sucesso!}         #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("{Digite ENTER para continuar}");
+    getchar();
+    printf("\n")
+}
