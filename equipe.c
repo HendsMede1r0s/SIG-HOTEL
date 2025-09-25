@@ -6,7 +6,7 @@
 void tela_equipe(void){
     system("clear||cls");
     printf("\n");
-    printf(" _____________________________________________________________________\n");
+    printf("┌─────────────────────────────────────────────────────────────────────┐\n");
     printf("|                                                                     |\n");
     printf("|             UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE             |\n");
     printf("|                 CENTRO DE ENSINO SUPERIO DO SERIDÓ                  |\n");
@@ -26,8 +26,12 @@ void tela_equipe(void){
     printf("|        NOME:   Leonardo Relva                                       |\n");
     printf("|        EMAIL:  leonardo.relva.111@ufrn.edu.br                       |\n");
     printf("|        GITHUB: https://github.com/leonardorelva-ufrn                |\n");
-    printf("|_____________________________________________________________________|\n");
+    printf("|                                                                     |\n");
+    printf("|        NOME:   Eriky Rayan                                          |\n");
+    printf("|        EMAIL:  eriky.medeiros.706@ufrn.edu.br                       |\n");
+    printf("|        GITHUB: https://github.com/Eriky-Rayan                       |\n");
+    printf("|                                                                     |\n");
+    printf("└─────────────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     getchar();
 }
-
