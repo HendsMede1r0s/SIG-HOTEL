@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "equipe.h"
+#include "utilidades.h"
 
 
 void tela_equipe(void){
+    limpa_tela();
     system("clear||cls");
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────────────────┐\n");
