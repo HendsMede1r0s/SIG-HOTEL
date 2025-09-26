@@ -15,14 +15,11 @@ void modulo_funcionarios(void){
             case '2':
                 edit_funcionarios();
                 break;
-            case '2':
-                getchar();
-                break;
             case '3':
-                getchar();
+                exib_funcionarios();
                 break;
             case '4':
-                getchar();
+                exclu_funcionarios();
                 break;
         }
     } while (op != '0'); 
@@ -112,6 +109,7 @@ void edit_funcionarios(void){
     printf("|#                {Funcionarios -> Editar}                #|\n");
     printf("|#                                                        #|\n");
     printf("|##########################################################|\n");
+    printf("└──────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite as novas informacoes do cliente!");
     printf("\n");
@@ -135,8 +133,68 @@ void edit_funcionarios(void){
     printf("|#                {Funcionario editado!}                #|\n");
     printf("|#                                                      #|\n");
     printf("|########################################################|\n");
+    printf("└────────────────────────────────────────────────────────┘\n");
+
     printf("\n");
     printf("{Digite ENTER para continuar}");
+    getchar();
+    printf("\n");
+}
+
+void exib_funcionarios(void){
+    limpa_tela();
+
+    char cpf[18];
+    char nome[55];
+    char cell[18];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────┐\n");
+    printf("|########################################################|\n");
+    printf("|#                                                      #|\n");
+    printf("|#               {Funcionarios -> Exibir}               #|\n");
+    printf("|#                                                      #|\n");
+    printf("|########################################################|\n");
+    printf("└────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o cpf do funcionario:");
+    scanf("%c",&cpf);
+    getchar();
+    printf("\n");
+}
+
+void exclu_funcionarios(void){
+    limpa_tela();
+
+    char cpf[18];
+    char nome[55];
+    char cell[18];
+
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#               {Funcionarios -> Excluir}               #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o cpf do funcionario:");
+    scanf("%c", &cpf);
+    getchar();
+    printf("\n");
+
+    limpa_tela();
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#                {Funcionario excluido!}                #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite ENTER para continuar");
     getchar();
     printf("\n");
 }
