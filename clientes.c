@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "clientes.h"
 #include "utilidades.h"
-
-//////////////////////////////
-//funcoes do modulo clientes//
-//////////////////////////////
 
 void modulo_clientes(void){
 
@@ -60,6 +57,7 @@ char tela_clientes(void){
 void cad_clientes(void){
     limpa_tela();
 
+    FILE *arq_clientes;
     char cpf [18];
     char nome [55];
     char cell [18];
@@ -91,6 +89,16 @@ void cad_clientes(void){
     getchar();
     printf("\n");
 
+    arq_clientes = fopen("clientes.csv", "at");
+    if (arq_clientes == NULL) {
+        printf("\t Erro ao abrir o arquivo de clientes.\n");
+        printf("\t {Digite ENTER para continuar}\n");
+        getchar();
+        return;
+    }
+    fprintf(arq_clientes, "%s;%s;%s;%s;\n", cpf, nome, cell, n_quarto);
+    fclose(arq_clientes);
+
     limpa_tela();
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -101,7 +109,12 @@ void cad_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("\nCPF: %s", cpf);
+    printf("\nNOME: %s", nome);
+    printf("\nTELEFONE: %s", cell);
+    printf("\nID DO QUARTO: %s", n_quarto);
+    printf("\n");
+    printf("\t {Digite ENTER para continuar}\n");
     getchar();
     printf("\n");
 }
@@ -161,6 +174,8 @@ void edit_clientes(void){
 void exib_clientes(void){
     limpa_tela();
 
+    FILE *arq_clientes;
+    char cpf_lido [18];
     char cpf [18];
     char nome [55];
     char cell [18];
@@ -176,18 +191,49 @@ void exib_clientes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o CPF do cliente a ser exibido:");
-    scanf("%s", cpf);
+    scanf("%s", cpf_lido);
     getchar();
     printf("\n");
+
+    arq_clientes = fopen("clientes.csv", "rt");
+    if (arq_clientes == NULL) {
+        printf("\t Erro ao abrir o arquivo de clientes.\n");
+        printf("\t {Digite ENTER para continuar}\n");
+        getchar();
+        return;
+    }
+    while(!feof(arq_clientes)) {
+        fscanf(arq_clientes, "%[^;]", cpf);
+        fgetc(arq_clientes);
+        fscanf(arq_clientes, "%[^;]", nome);
+        fgetc(arq_clientes);
+        fscanf(arq_clientes, "%[^;]", cell);
+        fgetc(arq_clientes);
+        fscanf(arq_clientes, "%[^;]", n_quarto);
+        fgetc(arq_clientes);
+        if (strcmp(cpf, cpf_lido) == 0) {
+            printf("*CLIENTE ENCONTRADO*");
+            printf("\n");
+            printf("\nCPF: %s\n", cpf);
+            printf("\nNOME: %s\n", nome);
+            printf("\nTELEFONE: %s\n", cell);
+            printf("\nID DO QUARTO: %s\n", n_quarto);
+            printf("\n");
+            printf("\t {Digite ENTER para continuar}\n");
+            getchar();
+            fclose(arq_clientes);
+            return;
+        }
+    }
 }
 
 void exclu_clientes(void){
     limpa_tela();
 
     char cpf [18];
-    char nome [55];
-    char cell [18];
-    char n_quarto [7];
+    //char nome [55];
+    //char cell [18];
+    //char n_quarto [7];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");

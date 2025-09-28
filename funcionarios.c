@@ -71,15 +71,15 @@ void cad_funcionarios(void){
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o CPF do funcionario:");
-    scanf("%c", &cpf);
+    scanf("%s", cpf);
     getchar();
     printf("\n");
     printf("Digite o nome do funcionario:");
-    scanf("%c", &nome);
+    scanf("%s", nome);
     getchar();
     printf("\n");
     printf("Digite o  telefone do funcionario:");
-    scanf("%c", &cell);
+    scanf("%s", cell);
     getchar();
     printf("\n");
 
@@ -117,15 +117,15 @@ void edit_funcionarios(void){
     printf("Digite as novas informacoes do cliente!");
     printf("\n");
     printf("Digite o CPF do funcionario:");
-    scanf("%c", &cpf);
+    scanf("%s", cpf);
     getchar();
     printf("\n");
     printf("Digite o nome do funcionario:");
-    scanf("%c", &nome);
+    scanf("%s", nome);
     getchar();
     printf("\n");
     printf("Digite o telefone do funcionario:");
-    scanf("%c", &cell);
+    scanf("%s", cell);
     getchar();
     printf("\n");
 
@@ -148,8 +148,8 @@ void exib_funcionarios(void){
     limpa_tela();
 
     char cpf[18];
-    char nome[55];
-    char cell[18];
+    //char nome[55];
+    //char cell[18];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────┐\n");
@@ -161,7 +161,7 @@ void exib_funcionarios(void){
     printf("└────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o cpf do funcionario:");
-    scanf("%c",&cpf);
+    scanf("%s", cpf);
     getchar();
     printf("\n");
 }
@@ -170,8 +170,8 @@ void exclu_funcionarios(void){
     limpa_tela();
 
     char cpf[18];
-    char nome[55];
-    char cell[18];
+    //char nome[55];
+    //char cell[18];
 
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -183,7 +183,7 @@ void exclu_funcionarios(void){
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o cpf do funcionario:");
-    scanf("%c", &cpf);
+    scanf("%s", cpf);
     getchar();
     printf("\n");
 
