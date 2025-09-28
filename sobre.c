@@ -5,7 +5,6 @@
 
 void tela_sobre(void){
     limpa_tela();
-    system("clear||cls");
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────────────┐\n");
     printf("|                                                                    |\n");

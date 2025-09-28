@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funcionarios.h"
+#include "utilidades.h"
 
 void modulo_funcionarios(void){
 
@@ -26,8 +27,10 @@ void modulo_funcionarios(void){
 }
 
 char tela_funcionarios(void){
-    system("clear||cls");
+    limpa_tela();
+
     char op;
+    
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("|                                                            |\n");
@@ -91,7 +94,7 @@ void cad_funcionarios(void){
     printf("\n");
     printf("{Digite ENTER para continuar}");
     getchar();
-    printf("\n")
+    printf("\n");
 }
 
 
