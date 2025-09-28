@@ -98,7 +98,7 @@ void check_in(void){
     printf("\n");
     printf("{Digite ENTER para continuar}");
     getchar();
-    print("\n");
+    printf("\n");
 }
 
 void exib_quartos(void){
@@ -134,7 +134,7 @@ void check_out(void){
     printf("Digite o id do quarto do hospede:");
     scanf("%s", n_quarto);
     getchar();
-    print("\n");
+    printf("\n");
 
     limpa_tela();
     printf("\n");
@@ -148,7 +148,7 @@ void check_out(void){
     printf("\n");
     printf("{Digite ENTER para continuar}");
     getchar();
-    print("\n");
+    printf("\n");
 }
 
 void pesq_quartos(void){
@@ -214,5 +214,5 @@ void edit_quartos(void){
     printf("\n");
     printf("{Digite ENTER para continuar}");
     getchar();
-    print("\n");
+    printf("\n");
 }
