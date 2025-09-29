@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "funcionarios.h"
 #include "utilidades.h"
 
@@ -92,7 +93,7 @@ void cad_funcionarios(void){
         getchar();
         return;
     }
-    fprintf(arq_funcionarios, "%s,%s,%s\n", cpf, nome, cell);
+    fprintf(arq_funcionarios, "%s;%s;%s\n", cpf, nome, cell);
     fclose(arq_funcionarios);
 
     limpa_tela();
@@ -167,8 +168,8 @@ void exib_funcionarios(void){
 
     char cpf[18];
     char cpf_lido[18];
-    //char nome[55];
-    //char cell[18];
+    char nome[55];
+    char cell[18];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────┐\n");
@@ -184,7 +185,7 @@ void exib_funcionarios(void){
     getchar();
     printf("\n");
 
-    arq_funcionarios = fopen("./data/funcionarios.csv", "at");
+    arq_funcionarios = fopen("./data/funcionarios.csv", "rt");
     if(arq_funcionarios == NULL){
         printf("\t Erro ao abrir o arquivo de funcionarios. \n");
         printf("\t Digite ENTER para continuar\n");
@@ -198,7 +199,7 @@ void exib_funcionarios(void){
         fgetc(arq_funcionarios);
         fscanf(arq_funcionarios, "%[^;]", cell);
         fgetc(arq_funcionarios);
-        if(strcmp(cpf, cpf_lido)== 0){
+        if(strcmp(cpf, cpf_lido) == 0) {
             printf("*FUNCIONARIO ENCONTRADO*");
             printf("\n");
             printf("\n CPF: %s\n", cpf);
