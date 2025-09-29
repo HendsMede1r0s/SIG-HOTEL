@@ -6,15 +6,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "menu_inicial.h"
-#include "clientes.h"
-#include "funcionarios.h"
-#include "quartos.h"
-#include "servicos.h"
-#include "sobre.h"
-#include "equipe.h"
-#include "final.h"
-#include "relatorio.h"
+#include <string.h>
+#include "./include/menu_inicial.h"
+#include "./include/clientes.h"
+#include "./include/funcionarios.h"
+#include "./include/quartos.h"
+#include "./include/servicos.h"
+#include "./include/sobre.h"
+#include "./include/equipe.h"
+#include "./include/final.h"
+#include "./include/relatorio.h"
 
 //////////////////////////////////////
 ////////Assinatura das FUnções////////
