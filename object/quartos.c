@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "quartos.h"
 #include "utilidades.h"
 
@@ -60,6 +61,7 @@ char tela_quartos(void){
 void check_in(void){
     limpa_tela();
 
+    FILE *arq_quartos;
     char n_quarto [7];
     char cpf [18];
     char status [10];
@@ -85,6 +87,16 @@ void check_in(void){
     scanf("%s", status);
     getchar();
     printf("\n");
+
+    arq_quartos = fopen("./data/quartos.csv", "at");
+    if (arq_quartos == NULL) {
+        printf("\t Erro ao abrir o arquivo de clientes.\n");
+        printf("\t {Digite ENTER para continuar}\n");
+        getchar();
+        return;
+    }
+    fprintf(arq_quartos, "%s;%s;%s;\n", n_quarto, cpf, status);
+    fclose(arq_quartos);
 
     limpa_tela();
     printf("\n");
@@ -154,7 +166,11 @@ void check_out(void){
 void pesq_quartos(void){
     limpa_tela();
 
+    FILE *arq_quartos;
     char n_quarto [7];
+    char n_quarto_lido [7];
+    char cpf [18];
+    char status [10];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -166,9 +182,37 @@ void pesq_quartos(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o id do quarto que quer procurar:");
-    scanf("%s", n_quarto);
+    scanf("%s", n_quarto_lido);
     getchar();
     printf("\n");
+
+    arq_quartos = fopen("./data/quartos.csv", "rt");
+    if (arq_quartos == NULL) {
+        printf("\t Erro ao abrir o arquivo de clientes.\n");
+        printf("\t {Digite ENTER para continuar}\n");
+        getchar();
+        return;
+    }
+    while(!feof(arq_quartos)) {
+        fscanf(arq_quartos, "%[^;]", n_quarto);
+        fgetc(arq_quartos);
+        fscanf(arq_quartos, "%[^;]", cpf);
+        fgetc(arq_quartos);
+        fscanf(arq_quartos, "%[^;]", status);
+        fgetc(arq_quartos);
+        if (strcmp(n_quarto, n_quarto_lido) == 0) {
+            printf("*CLIENTE ENCONTRADO*");
+            printf("\n");
+            printf("\nID DO QUARTO: %s\n", n_quarto);
+            printf("\nCPF: %s\n", cpf);
+            printf("\nSTATUS: %s\n", status);
+            printf("\n");
+            printf("\t {Digite ENTER para continuar}\n");
+            getchar();
+            fclose(arq_quartos);
+            return;
+        }
+    }
 }
 
 void edit_quartos(void){
