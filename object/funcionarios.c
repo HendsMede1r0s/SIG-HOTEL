@@ -89,8 +89,8 @@ void cad_funcionarios(void){
     if(arq_funcionarios == NULL){
         printf("\t Erro ao tentar abrir o arquivo de funcionarios.\n");
         printf("\t {Digite ENTER para continuar}\n");
-        getchar();;
-        return
+        getchar();
+        return;
     }
     fprintf(arq_funcionarios, "%s,%s,%s\n", cpf, nome, cell);
     fclose(arq_funcionarios);
@@ -163,7 +163,10 @@ void edit_funcionarios(void){
 void exib_funcionarios(void){
     limpa_tela();
 
+    FILE *arq_funcionarios;
+
     char cpf[18];
+    char cpf_lido[18];
     //char nome[55];
     //char cell[18];
 
@@ -177,9 +180,37 @@ void exib_funcionarios(void){
     printf("└────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite o cpf do funcionario:");
-    scanf("%s", cpf);
+    scanf("%s", cpf_lido);
     getchar();
     printf("\n");
+
+    arq_funcionarios = fopen("./data/funcionarios.csv", "at");
+    if(arq_funcionarios == NULL){
+        printf("\t Erro ao abrir o arquivo de funcionarios. \n");
+        printf("\t Digite ENTER para continuar\n");
+        getchar();
+        return
+    }
+    while(!feof(arq_funcionarios)){
+        fscanf(arq_funcionarios, "%[^;]", cpf);
+        fgetc(arq_funcionarios);
+        fscanf(arq_funcionarios, "%[^;]", nome);
+        fgetc(arq_funcionarios);
+        fscanf(arq_funcionarios, "%[^;]", cell);
+        fgetc(arq_funcionarios);
+        if(strcmp(cpf, cpf_lido)== 0){
+            printf("*FUNCIONARIO ENCONTRADO*");
+            printf("\n");
+            printf("\n CPF: %s\n", cpf);
+            printf("\n NOME: %s\n", nome);
+            printf("\n TELEFONE: %s". cell);
+            printf("\n");
+            printf("\t {Digite ENTER para continuar}\n");
+            getchar();
+            fclose(arq_funcionarios);
+            return;
+        }
+    }
 }
 
 void exclu_funcionarios(void){
