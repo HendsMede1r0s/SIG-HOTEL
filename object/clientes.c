@@ -89,7 +89,7 @@ void cad_clientes(void){
     getchar();
     printf("\n");
 
-    arq_clientes = fopen("clientes.csv", "at");
+    arq_clientes = fopen("./data/clientes.csv", "at");
     if (arq_clientes == NULL) {
         printf("\t Erro ao abrir o arquivo de clientes.\n");
         printf("\t {Digite ENTER para continuar}\n");
@@ -195,7 +195,7 @@ void exib_clientes(void){
     getchar();
     printf("\n");
 
-    arq_clientes = fopen("clientes.csv", "rt");
+    arq_clientes = fopen("./data/clientes.csv", "rt");
     if (arq_clientes == NULL) {
         printf("\t Erro ao abrir o arquivo de clientes.\n");
         printf("\t {Digite ENTER para continuar}\n");
