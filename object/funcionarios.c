@@ -189,7 +189,7 @@ void exib_funcionarios(void){
         printf("\t Erro ao abrir o arquivo de funcionarios. \n");
         printf("\t Digite ENTER para continuar\n");
         getchar();
-        return
+        return;
     }
     while(!feof(arq_funcionarios)){
         fscanf(arq_funcionarios, "%[^;]", cpf);
@@ -203,7 +203,7 @@ void exib_funcionarios(void){
             printf("\n");
             printf("\n CPF: %s\n", cpf);
             printf("\n NOME: %s\n", nome);
-            printf("\n TELEFONE: %s". cell);
+            printf("\n TELEFONE: %s", cell);
             printf("\n");
             printf("\t {Digite ENTER para continuar}\n");
             getchar();
