@@ -57,6 +57,8 @@ char tela_funcionarios(void){
 void cad_funcionarios(void){
     limpa_tela();
 
+    FILE *arq_funcionarios;
+
     char cpf[18];
     char nome[55];
     char cell[18];
@@ -83,6 +85,16 @@ void cad_funcionarios(void){
     getchar();
     printf("\n");
 
+    arq_funcionarios = fopen("./data/funcionarios.csv", "at");
+    if(arq_funcionarios == NULL){
+        printf("\t Erro ao tentar abrir o arquivo de funcionarios.\n");
+        printf("\t {Digite ENTER para continuar}\n");
+        getchar();;
+        return
+    }
+    fprintf(arq_funcionarios, "%s,%s,%s\n", cpf, nome, cell);
+    fclose(arq_funcionarios);
+
     limpa_tela();
     printf("┌─────────────────────────────────────────────────────────┐\n");
     printf("|#########################################################|\n");
@@ -92,7 +104,11 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("\nCPF: %s", cpf);
+    printf("\nNOME: %s", nome);
+    printf("\nTELEFONE: %s", cell);
+    printf("\n");
+    printf("\t {Digite ENTER para continuar}\n");
     getchar();
     printf("\n");
 }
