@@ -6,7 +6,6 @@
 
 void tela_equipe(void){
     limpa_tela();
-    system("clear||cls");
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────────────────┐\n");
     printf("|                                                                     |\n");
@@ -35,5 +34,6 @@ void tela_equipe(void){
     printf("|                                                                     |\n");
     printf("└─────────────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
 }

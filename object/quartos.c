@@ -91,7 +91,7 @@ void check_in(void){
     arq_quartos = fopen("./data/quartos.csv", "at");
     if (arq_quartos == NULL) {
         printf("\t Erro ao abrir o arquivo de clientes.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
     }
@@ -108,7 +108,7 @@ void check_in(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n");
 }
@@ -158,7 +158,7 @@ void check_out(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n");
 }
@@ -189,7 +189,7 @@ void pesq_quartos(void){
     arq_quartos = fopen("./data/quartos.csv", "rt");
     if (arq_quartos == NULL) {
         printf("\t Erro ao abrir o arquivo de clientes.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
     }
@@ -207,7 +207,7 @@ void pesq_quartos(void){
             printf("\nCPF: %s\n", cpf);
             printf("\nSTATUS: %s\n", status);
             printf("\n");
-            printf("\t {Digite ENTER para continuar}\n");
+            printf("\t {Pressione ENTER para continuar...}\n");
             getchar();
             fclose(arq_quartos);
             return;
@@ -256,7 +256,7 @@ void edit_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n");
 }

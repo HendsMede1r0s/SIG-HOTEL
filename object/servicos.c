@@ -31,6 +31,7 @@ char tela_servicos(void){
     limpa_tela();
 
     char op;
+
     printf("\n");
     printf("┌──────────────────────────────────────────────────────┐\n");
     printf("|                                                      |\n");
@@ -76,7 +77,7 @@ void cad_servico(void){
     arq_servicos = fopen("./data/servicos.csv", "at");
     if(arq_servicos == NULL){
         printf("\t Erro ao abrir o arquivo serviços\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
     }
@@ -95,7 +96,7 @@ void cad_servico(void){
     printf("\n");
     printf("\nServiço Cadastrado: %s", servi);
     printf("\n");
-    printf("\t {Digite ENTER para continuar}\n");
+    printf("\t {Pressione ENTER para continuar...}\n");
     getchar();
     printf("\n");
 

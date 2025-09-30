@@ -15,5 +15,6 @@ void tela_final(void){
     printf("|                              Tenha um ótimo dia!                                 |\n");
     printf("|__________________________________________________________________________________|\n");
     printf("\n");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
 }

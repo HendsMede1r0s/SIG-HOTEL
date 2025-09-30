@@ -22,5 +22,6 @@ void tela_sobre(void){
     printf("|                                                                    |\n");
     printf("└────────────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
 }
