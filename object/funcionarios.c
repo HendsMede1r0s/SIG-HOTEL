@@ -204,7 +204,7 @@ void exib_funcionarios(void){
             printf("\n");
             printf("\n CPF: %s\n", cpf);
             printf("\n NOME: %s\n", nome);
-            printf("\n TELEFONE: %s", cell);
+            printf("\n TELEFONE: %s\n", cell);
             printf("\n");
             printf("\t {Pressione ENTER para continuar...}\n");
             getchar();

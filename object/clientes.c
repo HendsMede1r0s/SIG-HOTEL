@@ -96,7 +96,7 @@ void cad_clientes(void){
         getchar();
         return;
     }
-    fprintf(arq_clientes, "%s;%s;%s;%s;\n", cpf, nome, cell, n_quarto);
+    fprintf(arq_clientes, "%s;%s;%s;%s\n", cpf, nome, cell, n_quarto);
     fclose(arq_clientes);
 
     limpa_tela();
