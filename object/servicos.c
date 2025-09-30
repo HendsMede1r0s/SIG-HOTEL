@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "servicos.h"
 
 void modulo_servicos(void){
@@ -20,20 +21,26 @@ char tela_servicos(void){
     system("clear||cls");
     char op;
     printf("\n");
-    printf("___________________________________\n");
-    printf("|                                  |\n");
-    printf("|            Serviços              |\n");
-    printf("|__________________________________|\n");
-    printf("|                                  |\n");
-    printf("|        1 - Serviços de quarto    |\n");
-    printf("|        2 - Limpeza               |\n");
-    printf("|        3 - Area de Lazer         |\n");
-    printf("|        0 - Voltar                |\n");
-    printf("|__________________________________|\n");
+    printf("┌──────────────────────────────────────────────────────┐\n");
+    printf("|                                                      |\n");
+    printf("|                      -Serviços-                      |\n");
+    printf("|                                                      |\n");
+    printf("|──────────────────────────────────────────────────────|\n");
+    printf("|                                                      |\n");
+    printf("|       [1] -> Cadastrar Servico                       |\n");
+    printf("|       [2] -> Editar Servico                          |\n");
+    printf("|       [3] -> Listar Servicos                         |\n");
+    printf("|       [4] -> Atribuir Servico ao funcionario         |\n");
+    printf("|       [0] -> Voltar                                  |\n");
+    printf("└──────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("PRESSIONE ENTER PARA CONTINUAR...");
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
     return op;
+}
+
+
+void cad_servico(void){
+
 }
