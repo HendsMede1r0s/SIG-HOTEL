@@ -7,3 +7,14 @@ void limpa_tela(void){
     system("clear||cls");
     
 }
+
+void input(char *variavel, int tamanho, char *mensagem) {
+    
+    int len;
+    printf("%s", mensagem);
+    fgets(variavel, tamanho, stdin);
+    len = strlen(variavel);
+    if (len > 0 && variavel[len-1] == '\n') {
+        variavel[len-1] = '\0';
+    }
+}
