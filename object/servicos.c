@@ -105,17 +105,73 @@ void cad_servico(void){
 
 void edit_servicos(void){
     limpa_tela();
-    return;
+
+    char servi[55];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################|\n");
+    printf("|#                                                          #|\n");
+    printf("|#               {Serviço -> Editar Serviços}               #|\n");
+    printf("|#                                                          #|\n");
+    printf("|############################################################|\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o serviço:");
+    scanf("%s", servi);
+    getchar();
+    printf("\n");
+
+    // Colocar a parte de editar
+
+    limpa_tela();
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################|\n");
+    printf("|#                                                          #|\n");
+    printf("|#                    {Serviço Editado!}                    #|\n");
+    printf("|#                                                          #|\n");
+    printf("|############################################################|\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("{Digite ENTER para continuar}");
+    getchar();
+    printf("\n");
 }
 
 
 void list_servicos(void){
     limpa_tela();
+
+    FILE *arq_servicos;
+
+    char servi[55];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################|\n");
+    printf("|#                                                          #|\n");
+    printf("|#               {Serviço -> Listar Serviços}               #|\n");
+    printf("|#                                                          #|\n");
+    printf("|############################################################|\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    
+    arq_servicos = fopen("./data/servicos.csv", "rt");
+    if(arq_servicos == NULL){
+        printf("\t Erro ao abrir o arquivo serviços.\n");
+        printf("\t {Digite ENTER para continuar}\n");
+        return;
+    }
+    while(!feof(arq_servicos)){
+        fscanf(arq_servicos, "%[^;]", servi);
+        fgetc(arq_servicos);
+    }
+    fclose(arq_servicos);
     return;
 }
 
 
 void atri_servico(void){
     limpa_tela();
-    return;
 }
