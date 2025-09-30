@@ -92,7 +92,7 @@ void cad_clientes(void){
     arq_clientes = fopen("./data/clientes.csv", "at");
     if (arq_clientes == NULL) {
         printf("\t Erro ao abrir o arquivo de clientes.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
     }
@@ -114,7 +114,7 @@ void cad_clientes(void){
     printf("\nTELEFONE: %s", cell);
     printf("\nID DO QUARTO: %s", n_quarto);
     printf("\n");
-    printf("\t {Digite ENTER para continuar}\n");
+    printf("\t {Pressione ENTER para continuar...}\n");
     getchar();
     printf("\n");
 }
@@ -166,7 +166,7 @@ void edit_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n");
 }
@@ -190,41 +190,38 @@ void exib_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Digite o CPF do cliente a ser exibido:");
-    scanf("%s", cpf_lido);
-    getchar();
+    input(cpf_lido, 18, "Digite o CPF a ser pesquisado: ");
     printf("\n");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     if (arq_clientes == NULL) {
-        printf("\t Erro ao abrir o arquivo de clientes.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        printf("Erro na criacao do arquivo\n!");
         getchar();
         return;
     }
-    while(!feof(arq_clientes)) {
+    while (!feof(arq_clientes)){
         fscanf(arq_clientes, "%[^;]", cpf);
         fgetc(arq_clientes);
         fscanf(arq_clientes, "%[^;]", nome);
         fgetc(arq_clientes);
         fscanf(arq_clientes, "%[^;]", cell);
         fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^;]", n_quarto);
+        fscanf(arq_clientes, "%[^\n]", n_quarto);
         fgetc(arq_clientes);
-        if (strcmp(cpf, cpf_lido) == 0) {
-            printf("*CLIENTE ENCONTRADO*");
-            printf("\n");
-            printf("\nCPF: %s\n", cpf);
-            printf("\nNOME: %s\n", nome);
-            printf("\nTELEFONE: %s\n", cell);
-            printf("\nID DO QUARTO: %s\n", n_quarto);
-            printf("\n");
-            printf("\t {Digite ENTER para continuar}\n");
+
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
+            printf("\n*CLIENTE ENCONTRADO*\n");
+            printf("CPF: %s\n", cpf);
+            printf("NOME: %s\n", nome);
+            printf("TELEFONE: %s\n", cell);
+            printf("ID DO QUARTO: %s\n", n_quarto);
+            printf("{Pressione ENTER para continuar...}");
             getchar();
             fclose(arq_clientes);
             return;
         }
-    }
+     }
 }
 
 void exclu_clientes(void){
@@ -259,7 +256,7 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n"); 
 }

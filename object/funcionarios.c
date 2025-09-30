@@ -89,7 +89,7 @@ void cad_funcionarios(void){
     arq_funcionarios = fopen("./data/funcionarios.csv", "at");
     if(arq_funcionarios == NULL){
         printf("\t Erro ao tentar abrir o arquivo de funcionarios.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
     }
@@ -109,7 +109,7 @@ void cad_funcionarios(void){
     printf("\nNOME: %s", nome);
     printf("\nTELEFONE: %s", cell);
     printf("\n");
-    printf("\t {Digite ENTER para continuar}\n");
+    printf("\t {Pressione ENTER para continuar...}\n");
     getchar();
     printf("\n");
 }
@@ -156,7 +156,7 @@ void edit_funcionarios(void){
     printf("└────────────────────────────────────────────────────────┘\n");
 
     printf("\n");
-    printf("{Digite ENTER para continuar}");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n");
 }
@@ -188,7 +188,7 @@ void exib_funcionarios(void){
     arq_funcionarios = fopen("./data/funcionarios.csv", "rt");
     if(arq_funcionarios == NULL){
         printf("\t Erro ao abrir o arquivo de funcionarios. \n");
-        printf("\t Digite ENTER para continuar\n");
+        printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
     }
@@ -197,7 +197,7 @@ void exib_funcionarios(void){
         fgetc(arq_funcionarios);
         fscanf(arq_funcionarios, "%[^;]", nome);
         fgetc(arq_funcionarios);
-        fscanf(arq_funcionarios, "%[^;]", cell);
+        fscanf(arq_funcionarios, "%[^\n]", cell);
         fgetc(arq_funcionarios);
         if(strcmp(cpf, cpf_lido) == 0) {
             printf("*FUNCIONARIO ENCONTRADO*");
@@ -206,7 +206,7 @@ void exib_funcionarios(void){
             printf("\n NOME: %s\n", nome);
             printf("\n TELEFONE: %s", cell);
             printf("\n");
-            printf("\t {Digite ENTER para continuar}\n");
+            printf("\t {Pressione ENTER para continuar...}\n");
             getchar();
             fclose(arq_funcionarios);
             return;
@@ -245,7 +245,7 @@ void exclu_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Digite ENTER para continuar");
+    printf("{Pressione ENTER para continuar...}");
     getchar();
     printf("\n");
 }
