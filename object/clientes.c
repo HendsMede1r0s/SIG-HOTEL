@@ -91,7 +91,7 @@ void cad_clientes(void){
 
     arq_clientes = fopen("./data/clientes.csv", "at");
     if (arq_clientes == NULL) {
-        printf("\t Erro ao abrir o arquivo de clientes.\n");
+        printf("\t Erro ao abrir o arquivo de clientes!\n");
         printf("\t {Pressione ENTER para continuar...}\n");
         getchar();
         return;
@@ -195,7 +195,8 @@ void exib_clientes(void){
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     if (arq_clientes == NULL) {
-        printf("Erro na criacao do arquivo\n!");
+        printf("Erro ao abrir o arquivo!\n");
+        printf("{Pressione ENTER para continuar...}");
         getchar();
         return;
     }
@@ -227,10 +228,13 @@ void exib_clientes(void){
 void exclu_clientes(void){
     limpa_tela();
 
+    FILE *arq_clientes;
+    FILE *arq_clientes_temp;
     char cpf [18];
-    //char nome [55];
-    //char cell [18];
-    //char n_quarto [7];
+    char cpf_lido [18];
+    char nome [55];
+    char cell [18];
+    char n_quarto [7];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -241,10 +245,28 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Digite o CPF do cliente que deseja excluir:");
-    scanf("%s", cpf);
-    getchar();
+    input(cpf_lido, 18, "Digite o CPF do clientes a ser excluido: ");
     printf("\n");
+
+    arq_clientes = fopen("./data/clientes.csv", "rt");
+    arq_clientes_temp = fopen("./data/clientes_temp.csv", "wt");
+    if (arq_clientes == NULL || arq_clientes_temp == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        printf("{Pressione ENTER para continuar...}");
+        getchar();
+        return;
+    }
+
+    while(fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cpf, nome, cell, n_quarto) == 4) {
+        if(strcmp(cpf, cpf_lido) != 0) {
+            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cpf, nome, cell, n_quarto);
+        }
+    }
+    
+    fclose(arq_clientes);
+    fclose(arq_clientes_temp);
+    remove("./data/clientes.csv");
+    rename("./data/clientes_temp.csv", "./data/clientes.csv");
 
     limpa_tela();
     printf("\n");
@@ -256,7 +278,8 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("Clientes com CPF %s foi excluido com sucesso!\n", cpf_lido);
     printf("{Pressione ENTER para continuar...}");
     getchar();
-    printf("\n"); 
+    printf("\n");
 }
