@@ -4,6 +4,8 @@
 #include "clientes.h"
 #include "utilidades.h"
 
+typedef struct clientes Clientes;
+
 void modulo_clientes(void){
 
     char op;
@@ -58,10 +60,7 @@ void cad_clientes(void){
     limpa_tela();
 
     FILE *arq_clientes;
-    char cpf [18];
-    char nome [55];
-    char cell [18];
-    char n_quarto [7];
+    Clientes cli;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -72,10 +71,10 @@ void cad_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf, 18, "Digite o CPF do cliente:");
-    input(nome, 55, "Digite o nome do cliente:");
-    input(cell, 18, "Digite o telefone do cliente:");
-    input(n_quarto, 7, "Digite o numero do quarto do cliente:");
+    input(cli.cpf, 18, "Digite o CPF do cliente:");
+    input(cli.nome, 55, "Digite o nome do cliente:");
+    input(cli.cell, 18, "Digite o telefone do cliente:");
+    input(cli.n_quarto, 7, "Digite o numero do quarto do cliente:");
 
     arq_clientes = fopen("./data/clientes.csv", "at");
     if (arq_clientes == NULL) {
@@ -83,7 +82,7 @@ void cad_clientes(void){
         enter();
         return;
     }
-    fprintf(arq_clientes, "%s;%s;%s;%s\n", cpf, nome, cell, n_quarto);
+    fprintf(arq_clientes, "%s;%s;%s;%s\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto);
     fclose(arq_clientes);
 
     limpa_tela();
@@ -96,10 +95,10 @@ void cad_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("\nCPF: %s", cpf);
-    printf("\nNOME: %s", nome);
-    printf("\nTELEFONE: %s", cell);
-    printf("\nID DO QUARTO: %s", n_quarto);
+    printf("\nCPF: %s", cli.cpf);
+    printf("\nNOME: %s", cli.nome);
+    printf("\nTELEFONE: %s", cli.cell);
+    printf("\nID DO QUARTO: %s", cli.n_quarto);
     enter();
 }
 
@@ -109,11 +108,7 @@ void edit_clientes(void){
 
     FILE *arq_clientes;
     FILE *arq_clientes_temp;
-    char cpf [18];
-    char cpf_lido [18];
-    char nome [55];
-    char cell [18];
-    char n_quarto [7];
+    Clientes cli;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -124,7 +119,7 @@ void edit_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF do cliente que deseja editar: ");
+    input(cli.cpf_lido, 18, "Digite o CPF do cliente que deseja editar: ");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     arq_clientes_temp = fopen("./data/clientes_temp.csv", "wt");
@@ -134,16 +129,16 @@ void edit_clientes(void){
         return;
     }
 
-    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;]%[^\n]\n", cpf, nome, cell, n_quarto) == 4) {
-        if(strcmp(cpf, cpf_lido) != 0) {
-            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cpf, nome, cell, n_quarto);
+    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;]%[^\n]\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto) == 4) {
+        if(strcmp(cli.cpf, cli.cpf_lido) != 0) {
+            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto);
         }
         else {
-            printf("*Digite as novas informaçoes do cliente com CPF %s*\n", cpf_lido);
-            input(nome, 55, "Digite o nome do cliente: ");
-            input(cell, 18, "Digite o novo numero de telefone do cliente: ");
-            input(n_quarto, 7, "Digite o id do quarto do cliente: ");
-            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cpf_lido, nome, cell, n_quarto);
+            printf("*Digite as novas informaçoes do cliente com CPF %s*\n", cli.cpf_lido);
+            input(cli.nome, 55, "Digite o nome do cliente: ");
+            input(cli.cell, 18, "Digite o novo numero de telefone do cliente: ");
+            input(cli.n_quarto, 7, "Digite o id do quarto do cliente: ");
+            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cli.cpf_lido, cli.nome, cli.cell, cli.n_quarto);
         }
         
     }
@@ -164,11 +159,11 @@ void edit_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Cliente com CPF %s editado com sucesso!\n", cpf_lido);
-    printf("CPF: %s\n", cpf_lido);
-    printf("NOME: %s\n", nome);
-    printf("TELEFONE: %s\n", cell);
-    printf("ID DO QUARTO: %s\n", n_quarto);
+    printf("Cliente com CPF %s editado com sucesso!\n", cli.cpf_lido);
+    printf("CPF: %s\n", cli.cpf_lido);
+    printf("NOME: %s\n", cli.nome);
+    printf("TELEFONE: %s\n", cli.cell);
+    printf("ID DO QUARTO: %s\n", cli.n_quarto);
     enter();
 }
     
@@ -176,11 +171,7 @@ void exib_clientes(void){
     limpa_tela();
 
     FILE *arq_clientes;
-    char cpf_lido [18];
-    char cpf [18];
-    char nome [55];
-    char cell [18];
-    char n_quarto [7];
+    Clientes cli;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -191,7 +182,7 @@ void exib_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF a ser pesquisado: ");
+    input(cli.cpf_lido, 18, "Digite o CPF a ser pesquisado: ");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     if (arq_clientes == NULL) {
@@ -199,22 +190,13 @@ void exib_clientes(void){
         enter();
         return;
     }
-    while (!feof(arq_clientes)) {
-        fscanf(arq_clientes, "%[^;]", cpf);
-        fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^;]", nome);
-        fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^;]", cell);
-        fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^\n]", n_quarto);
-        fgetc(arq_clientes);
-
-        if (strcmp(cpf, cpf_lido) == 0) {
+    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto) == 4) {
+        if (strcmp(cli.cpf, cli.cpf_lido) == 0) {
             printf("\n*CLIENTE ENCONTRADO*\n");
-            printf("CPF: %s\n", cpf);
-            printf("NOME: %s\n", nome);
-            printf("TELEFONE: %s\n", cell);
-            printf("ID DO QUARTO: %s\n", n_quarto);
+            printf("CPF: %s\n", cli.cpf);
+            printf("NOME: %s\n", cli.nome);
+            printf("TELEFONE: %s\n", cli.cell);
+            printf("ID DO QUARTO: %s\n", cli.n_quarto);
             enter();
             fclose(arq_clientes);
             return;
@@ -227,11 +209,7 @@ void exclu_clientes(void){
 
     FILE *arq_clientes;
     FILE *arq_clientes_temp;
-    char cpf [18];
-    char cpf_lido [18];
-    char nome [55];
-    char cell [18];
-    char n_quarto [7];
+    Clientes cli;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -242,7 +220,7 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF do clientes a ser excluido: ");
+    input(cli.cpf_lido, 18, "Digite o CPF do clientes a ser excluido: ");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     arq_clientes_temp = fopen("./data/clientes_temp.csv", "wt");
@@ -252,9 +230,9 @@ void exclu_clientes(void){
         return;
     }
 
-    while(fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cpf, nome, cell, n_quarto) == 4) {
-        if(strcmp(cpf, cpf_lido) != 0) {
-            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cpf, nome, cell, n_quarto);
+    while(fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto) == 4) {
+        if(strcmp(cli.cpf, cli.cpf_lido) != 0) {
+            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto);
         }
     }
     
@@ -273,6 +251,6 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Clientes com CPF %s foi excluido com sucesso!\n", cpf_lido);
+    printf("Clientes com CPF %s foi excluido com sucesso!\n", cli.cpf_lido);
     enter();
 }
