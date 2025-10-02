@@ -72,28 +72,15 @@ void cad_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Digite o CPF do cliente:");
-    scanf("%s", cpf);
-    getchar();
-    printf("\n");
-    printf("Digite o nome do cliente:");
-    scanf("%s", nome);
-    getchar();
-    printf("\n");
-    printf("Digite o telefone do cliente:");
-    scanf("%s", cell);
-    getchar();
-    printf("\n");
-    printf("Digite o numero do quarto do cliente:");
-    scanf("%s", n_quarto);
-    getchar();
-    printf("\n");
+    input(cpf, 18, "Digite o CPF do cliente:");
+    input(nome, 55, "Digite o nome do cliente:");
+    input(cell, 18, "Digite o telefone do cliente:");
+    input(n_quarto, 7, "Digite o numero do quarto do cliente:");
 
     arq_clientes = fopen("./data/clientes.csv", "at");
     if (arq_clientes == NULL) {
         printf("\t Erro ao abrir o arquivo de clientes!\n");
-        printf("\t {Pressione ENTER para continuar...}\n");
-        getchar();
+        enter();
         return;
     }
     fprintf(arq_clientes, "%s;%s;%s;%s\n", cpf, nome, cell, n_quarto);
@@ -113,10 +100,7 @@ void cad_clientes(void){
     printf("\nNOME: %s", nome);
     printf("\nTELEFONE: %s", cell);
     printf("\nID DO QUARTO: %s", n_quarto);
-    printf("\n");
-    printf("\t {Pressione ENTER para continuar...}\n");
-    getchar();
-    printf("\n");
+    enter();
 }
 
 
@@ -141,14 +125,12 @@ void edit_clientes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF do cliente que deseja editar: ");
-    printf("\n");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     arq_clientes_temp = fopen("./data/clientes_temp.csv", "wt");
     if (arq_clientes == NULL || arq_clientes_temp == NULL) {
         printf("Erro ao abrir o arquivo!\n");
-        printf("{Pressione ENTER para continuar...}");
-        getchar();
+        enter();
         return;
     }
 
@@ -159,11 +141,8 @@ void edit_clientes(void){
         else {
             printf("*Digite as novas informaçoes do cliente com CPF %s*\n", cpf_lido);
             input(nome, 55, "Digite o nome do cliente: ");
-            printf("\n");
             input(cell, 18, "Digite o novo numero de telefone do cliente: ");
-            printf("\n");
             input(n_quarto, 7, "Digite o id do quarto do cliente: ");
-            printf("\n");
             fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cpf_lido, nome, cell, n_quarto);
         }
         
@@ -190,9 +169,7 @@ void edit_clientes(void){
     printf("NOME: %s\n", nome);
     printf("TELEFONE: %s\n", cell);
     printf("ID DO QUARTO: %s\n", n_quarto);
-    printf("{Pressione ENTER para continuar...}");
-    getchar();
-    printf("\n");
+    enter();
 }
     
 void exib_clientes(void){
@@ -215,13 +192,11 @@ void exib_clientes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF a ser pesquisado: ");
-    printf("\n");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     if (arq_clientes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
-        printf("{Pressione ENTER para continuar...}");
-        getchar();
+        enter();
         return;
     }
     while (!feof(arq_clientes)) {
@@ -240,8 +215,7 @@ void exib_clientes(void){
             printf("NOME: %s\n", nome);
             printf("TELEFONE: %s\n", cell);
             printf("ID DO QUARTO: %s\n", n_quarto);
-            printf("{Pressione ENTER para continuar...}");
-            getchar();
+            enter();
             fclose(arq_clientes);
             return;
         }
@@ -269,14 +243,12 @@ void exclu_clientes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF do clientes a ser excluido: ");
-    printf("\n");
 
     arq_clientes = fopen("./data/clientes.csv", "rt");
     arq_clientes_temp = fopen("./data/clientes_temp.csv", "wt");
     if (arq_clientes == NULL || arq_clientes_temp == NULL) {
         printf("Erro ao abrir o arquivo!\n");
-        printf("{Pressione ENTER para continuar...}");
-        getchar();
+        enter();
         return;
     }
 
@@ -302,7 +274,5 @@ void exclu_clientes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Clientes com CPF %s foi excluido com sucesso!\n", cpf_lido);
-    printf("{Pressione ENTER para continuar...}");
-    getchar();
-    printf("\n");
+    enter();
 }
