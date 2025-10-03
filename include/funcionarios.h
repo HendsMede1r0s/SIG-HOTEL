@@ -12,3 +12,5 @@ struct funcionarios{
     char nome[55]
     char cell[18];
 };
+
+typedef struct funcionarios Funcionarios;
