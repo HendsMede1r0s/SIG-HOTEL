@@ -129,7 +129,7 @@ void edit_clientes(void){
         return;
     }
 
-    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;]%[^\n]\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto) == 4) {
+    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto) == 4) {
         if(strcmp(cli.cpf, cli.cpf_lido) != 0) {
             fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto);
         }
