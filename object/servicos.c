@@ -166,6 +166,7 @@ void list_servicos(void){
     while(!feof(arq_servicos)){
         fscanf(arq_servicos, "%[^;]", servi);
         fgetc(arq_servicos);
+        
     }
     fclose(arq_servicos);
     return;
