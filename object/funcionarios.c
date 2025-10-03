@@ -199,9 +199,9 @@ void exib_funcionarios(void){
 void exclu_funcionarios(void){
     limpa_tela();
 
-    char cpf[18];
-    //char nome[55];
-    //char cell[18];
+    FILE *arq_funcionarios;
+    FILE *arq_funcionarios_temp;
+    Funcionarios fun;
 
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -212,10 +212,26 @@ void exclu_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Digite o cpf do funcionario:");
-    scanf("%s", cpf);
-    getchar();
-    printf("\n");
+    input(fun.cpf_lido, 18, "Digite o CPF do funcionario a ser excluido:");
+
+    arq_funcionarios = fopen("./data/funcionarios.csv", "rt");
+    arq_funcionarios_temp = fopen("./data/funcionarios_temp.csv", "wt");
+    if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
+        printf("Erro ao abrir o arquivo!");
+        enter();
+        return;
+    }
+
+    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[\n]\n", fun.cpf, fun.nome, fun.cell) == 3){
+        if(strcmp(fun.cpf, fun.cpf_lido) != 0){
+            fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun.cpf, fun.nome, fun.cell);
+        }
+    }
+
+    fclose(arq_funcionarios);
+    fclose(arq_funcionarios_temp);
+    remove("./data/funcionarios.csv");
+    rename("./data/funcionarios_temp.csv", "./data/funcionarios.csv");
 
     limpa_tela();
     printf("\n");
@@ -227,7 +243,6 @@ void exclu_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("{Pressione ENTER para continuar...}");
-    getchar();
-    printf("\n");
+    printf("Funcionario com CPF %s foi excluido com sucesso! %s\n", fun.cpf_lido);
+    enter();
 }
