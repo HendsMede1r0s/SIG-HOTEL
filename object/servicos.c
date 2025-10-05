@@ -240,10 +240,6 @@ void exclu_servicos(void){
 void atri_servico(void){
     limpa_tela();
 
-    FILE *arq_servicos;
-    FILE *arq_servicos_temp;
-    Servicos servi
-
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────────┐\n");
     printf("|#############################################################|\n");
