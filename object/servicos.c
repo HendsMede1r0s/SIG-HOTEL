@@ -4,6 +4,8 @@
 #include "servicos.h"
 #include "utilidades.h"
 
+typedef struct servicos Servicos;
+
 void modulo_servicos(void){
 
     char op;
@@ -58,7 +60,7 @@ void cad_servico(void){
     limpa_tela();
 
     FILE *arq_servicos;
-    char servi[55];
+    Servicos servi;
 
     printf("\n");
     printf("┌───────────────────────────────────────────────────────┐\n");
