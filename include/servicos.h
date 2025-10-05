@@ -10,6 +10,6 @@ struct servicos{
     char servi[55];
     char servi_lido[55];
 
-}
+};
 
 typedef struct servicos Servicos;
