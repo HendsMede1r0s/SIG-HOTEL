@@ -32,6 +32,9 @@ void modulo_quartos(void){
             case '5':
                 edit_quartos();
                 break;
+            case '6':
+                cad_quartos();
+                break;
             default:
                 tela_op_invalida();
                 break;
@@ -41,29 +44,25 @@ void modulo_quartos(void){
 
 char tela_quartos(void){
     limpa_tela();
-
     char op;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                                    |\n");
     printf("|                              -Quartos-                             |\n");
-    printf("|                                                                    |\n");
-    printf("|────────────────────────────────────────────────────────────────────|\n");
-    printf("|                                                                    |\n");
-    printf("|        [1] -> Check-in                                             |\n");
-    printf("|        [2] -> Quartos disponiveis                                  |\n");
-    printf("|        [3] -> Check-out                                            |\n");
-    printf("|        [4] -> Exibir quarto                                        |\n");
-    printf("|        [5] -> Editar quarto                                        |\n");
-    printf("|        [0] -> Voltar                                               |\n");
-    printf("|                                                                    |\n");
+    printf("├────────────────────────────────────────────────────────────────────┤\n");
+    printf("| [1] -> Check-in                                                    |\n");
+    printf("| [2] -> Quartos disponíveis                                         |\n");
+    printf("| [3] -> Check-out                                                   |\n");
+    printf("| [4] -> Exibir quartos                                              |\n");
+    printf("| [5] -> Editar quartos                                              |\n");
+    printf("| [6] -> Cadastrar quartos                                           |\n");
+    printf("| [0] -> Voltar                                                      |\n");
     printf("└────────────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+
     printf("Digite uma opção: ");
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
-    printf("\n");
+
     return op;
 }
 
@@ -106,16 +105,16 @@ void check_in(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Hospede com CPF %s alocado no quarto com id %s.", quar.cpf, quar.n_quarto);
+    printf("Hospede com CPF %s alocado no quarto com id %s\n.", quar.cpf, quar.n_quarto);
+    printf("Numero de pessoas hospedadas: %s", quar.quan_pessoas);
     enter();
 }
 
 void list_quartos(void){
     limpa_tela();
 
-    //FILE *arq_quartos;
-    //FILE *arq_quar_disponiveis;
-    //Quartos quar;
+    FILE *arq_quartos;
+    Quartos quar;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -126,12 +125,37 @@ void list_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    
+    arq_quartos = fopen("./data/quartos.csv", "rt");
+
+    if (arq_quartos == NULL) {
+        printf("Erro ao abrir o arquivo de quartos.\n");
+        enter();
+        return;
+    }
+
+    quar.encontrou = 0;
+
+    while (fscanf(arq_quartos, "%[^;];%[^;];%[^;];%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status) == 4) {
+        if (quar.status == 'U') {
+            printf("Quarto %s disponível.\n", quar.n_quarto);
+            quar.encontrou = 1;
+        }
+    }
+
+    if (quar.encontrou != 1) {
+        printf("Nenhum quarto disponível no momento.\n");
+    }
+
+    fclose(arq_quartos);
+    enter();
 }
 
 void check_out(void){
     limpa_tela();
 
-    //FILE *arq_quartos;
+    FILE *arq_quartos;
+    FILE *arq_quartos_temp;
     Quartos quar;
 
     printf("\n");
@@ -143,7 +167,37 @@ void check_out(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(quar.n_quarto_lido, 7, "Digite o id do quarto do hospede: ");
+    input(quar.n_quarto_lido, 7, "Digite o ID do quarto para check-out: ");
+
+    arq_quartos = fopen("./data/quartos.csv", "rt");
+    arq_quartos_temp = fopen("./data/quartos_temp.csv", "wt");
+    if (arq_quartos == NULL || arq_quartos_temp == NULL) {
+        printf("Erro ao abrir o arquivo de quartos.\n");
+        enter();
+        return;
+    }
+
+        while (fscanf(arq_quartos, "%[^;];%[^;];%[^;];%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status) == 4) {
+        if (strcmp(quar.n_quarto, quar.n_quarto_lido) == 0) {
+            quar.status = 'V';
+            strcpy(quar.cpf, "-----");
+            strcpy(quar.quan_pessoas, "0");
+            quar.encontrou = 1;
+        }
+        fprintf(arq_quartos_temp, "%s;%s;%s;%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, quar.status);
+    }
+
+    fclose(arq_quartos);
+    fclose(arq_quartos_temp);
+    remove("./data/quartos.csv");
+    rename("./data/quartos_temp.csv", "./data/quartos.csv");
+
+    limpa_tela();
+    if (quar.encontrou)
+        printf("Check-out do quarto %s realizado com sucesso!\n", quar.n_quarto_lido);
+    else
+        printf("Quarto %s não encontrado.\n", quar.n_quarto_lido);
+    enter();
 
     limpa_tela();
     printf("\n");
@@ -167,7 +221,7 @@ void exib_quartos(void){
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                {Quartos -> Exibir quarto}                #│\n");
+    printf("│#                {Quartos -> Exibir quartos}               #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
@@ -209,7 +263,7 @@ void edit_quartos(void){
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                {Quartos -> Editar quarto}                #│\n");
+    printf("│#                {Quartos -> Editar quartos}               #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
@@ -266,4 +320,33 @@ void edit_quartos(void){
     printf("\nQUANTIDADE DE HOSPEDES: %s\n", quar.quan_pessoas);
     printf("\nSTATUS: %c\n", quar.status);
     enter();
+}
+
+void cad_quartos(void){
+    limpa_tela();
+
+    FILE *arq_quartos;
+    Quartos quar;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#              {Quartos -> Cadastrar quartos}              #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    input(quar.andar, 5, "Digite o andar dos quartos: ");
+
+    arq_quartos = fopen("./data/quartos.csv", "at");
+    if (arq_quartos == NULL) {
+        printf("Erro ao abrir o arquivo de quartos.\n");
+        enter();
+        return;
+    }
+//fazer um por um
+// + facil
+    
+    
 }

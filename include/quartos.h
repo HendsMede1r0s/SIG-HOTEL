@@ -5,6 +5,7 @@ void list_quartos(void);
 void check_out(void);
 void exib_quartos(void);
 void edit_quartos(void);
+void cad_quartos(void);
 
 struct quartos
 {
@@ -12,8 +13,11 @@ struct quartos
     char n_quarto_lido [7];
     char cpf [18];
     char quan_pessoas [5];
+    char quartos_totais [8];
+    char andar [5];
     char status;
     char op_quartos;
+    int encontrou;
 };
 
 typedef struct quartos Quartos;
