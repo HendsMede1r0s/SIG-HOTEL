@@ -243,6 +243,6 @@ void exclu_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Funcionario com CPF %s foi excluido com sucesso! %s\n", fun.cpf_lido);
+    printf("Funcionario com CPF %s foi excluido com sucesso!\n", fun.cpf_lido);
     enter();
 }
