@@ -44,7 +44,7 @@ char tela_servicos(void){
     printf("|       [1] -> Cadastrar Serviços                      |\n");
     printf("|       [2] -> Editar Serviços                         |\n");
     printf("|       [3] -> Listar Serviços                         |\n");
-    printf("|       [4] -> Atribuir Servico ao funcionario         |\n");
+    printf("|       [4] -> Atribuir Serviço ao funcionario         |\n");
     printf("|       [0] -> Voltar                                  |\n");
     printf("└──────────────────────────────────────────────────────┘\n");
     printf("\n");
@@ -239,4 +239,19 @@ void exclu_servicos(void){
 
 void atri_servico(void){
     limpa_tela();
+
+    FILE *arq_servicos;
+    FILE *arq_servicos_temp;
+    Servicos servi
+
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────────┐\n");
+    printf("|#############################################################|\n");
+    printf("|#                                                           #|\n");
+    printf("|#       {Serviços -> Atribuir serviço ao funcionario}       #|\n");
+    printf("|#                                                           #|\n");
+    printf("|#############################################################|\n");
+    printf("└─────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    enter();
 }
