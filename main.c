@@ -65,15 +65,3 @@ int main(void){
 
 return 0;
 }
-
-void tela_op_invalida(void){
-    system("clear||cls");
-    printf("\n");
-    printf(" __________________________________________________________________________________\n");
-    printf("|                                                                                  |\n");
-    printf("|                                 *OPCAO INVALIDA*                                 |\n");
-    printf("|__________________________________________________________________________________|\n");
-    printf("\n");
-    getchar();
-    printf("\n");
-}

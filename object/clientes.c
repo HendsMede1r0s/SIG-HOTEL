@@ -3,6 +3,7 @@
 #include <string.h>
 #include "clientes.h"
 #include "utilidades.h"
+#include "tela_voltar_menu.h"
 
 typedef struct clientes Clientes;
 
@@ -13,6 +14,9 @@ void modulo_clientes(void){
     do {
         op = tela_clientes();
         switch (op) {
+            case '0':
+                tela_voltar();
+                break;
             case '1':
                 cad_clientes();
                 break;
@@ -24,6 +28,9 @@ void modulo_clientes(void){
                 break;
             case '4':
                 exclu_clientes();
+                break;
+            default:
+                tela_op_invalida();
                 break;
         }
     } while (op != '0'); 
