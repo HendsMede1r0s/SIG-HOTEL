@@ -90,7 +90,7 @@ void cad_clientes(void){
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#            {Clientes cadastrado com sucesso!}            #│\n");
+    printf("│#             {Cliente cadastrado com sucesso!}            #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
@@ -201,7 +201,8 @@ void exib_clientes(void){
             fclose(arq_clientes);
             return;
         }
-     }
+    }
+    printf("\n*CLIENTE COM CPF %s NÃO ENCONTRADO*\n", cli.cpf_lido);
 }
 
 void exclu_clientes(void){
