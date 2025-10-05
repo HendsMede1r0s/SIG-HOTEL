@@ -3,6 +3,7 @@
 #include <string.h>
 #include "quartos.h"
 #include "utilidades.h"
+#include "tela_voltar_menu.h"
 
 typedef struct quartos Quartos;
 
@@ -13,6 +14,9 @@ void modulo_quartos(void){
     do {
         op = tela_quartos();
         switch (op) {
+            case '0':
+                tela_voltar();
+                break;
             case '1':
                 check_in();
                 break;
@@ -27,6 +31,9 @@ void modulo_quartos(void){
                 break;
             case '5':
                 edit_quartos();
+                break;
+            default:
+                tela_op_invalida();
                 break;
         }
     } while (op != '0'); 

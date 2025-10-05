@@ -9,7 +9,7 @@ void limpa_tela(void){
     
 }
 
-void input(char *variavel, int tamanho, char *mensagem) {
+void input(char *variavel, int tamanho, char *mensagem){
     
     int len;
     printf("%s", mensagem);
@@ -22,8 +22,22 @@ void input(char *variavel, int tamanho, char *mensagem) {
 }
 
 void enter(void){
+    limpa_tela();
     printf("\n");
     printf("{Pressione ENTER para continuar...}");
+    getchar();
+    printf("\n");
+}
+
+void tela_op_invalida(void){
+    limpa_tela();
+    printf("\n");
+    printf("┌──────────────────────────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                                                  |\n");
+    printf("|                                 *OPCAO INVALIDA*                                 |\n");
+    printf("|                                                                                  |\n");
+    printf("└──────────────────────────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
     getchar();
     printf("\n");
 }
