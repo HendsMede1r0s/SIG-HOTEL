@@ -103,7 +103,7 @@ void edit_servicos(void){
     FILE *arq_servicos;
     FILE *arq_servicos_temp;
 
-    Servico servi;
+    Servicos servi;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
