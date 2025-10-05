@@ -8,6 +8,7 @@ void atri_servico(void);
 struct servicos{
 
     char servi[55];
+    char servi_lido[55];
 
 }
 
