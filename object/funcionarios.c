@@ -183,7 +183,7 @@ void exib_funcionarios(void){
         enter();
         return;
     }
-    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[\n]\n", fun.cpf_lido, fun.nome, fun.cell)){
+    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[\n]\n", fun.cpf_lido, fun.nome, fun.cell) == 3){
         if(strcmp(fun.cpf, fun.cpf_lido) == 0){
             printf("\n*FUNCIONARIO ENCONTRADO!*\n");
             printf("CPF: %s\n", fun.cpf);
