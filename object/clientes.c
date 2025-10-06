@@ -57,7 +57,7 @@ char tela_clientes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite uma opçao: ");
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
     printf("\n");
     return(op);

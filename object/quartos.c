@@ -70,6 +70,7 @@ void check_in(void){
     limpa_tela();
 
     FILE *arq_quartos;
+    FILE *arq_quartos_temp;
     Quartos quar;
 
     printf("\n");
@@ -81,19 +82,32 @@ void check_in(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(quar.n_quarto, 7, "Digite o id do quarto: ");
-    input(quar.cpf, 18, "Digite o CPF do hospede: ");
-    input(quar.quan_pessoas, 5, "Digite a quantidade de pessoas no quarto: ");
+    input(quar.n_quarto_lido, 7, "Digite o id do quarto: ");
 
-    arq_quartos = fopen("./data/quartos.csv", "at");
-    if (arq_quartos == NULL) {
+    arq_quartos = fopen("./data/quartos.csv", "rt");
+    arq_quartos_temp = fopen("./data/quartos_temp.csv", "wt");
+    if (arq_quartos == NULL || arq_quartos_temp == NULL) {
         printf("\t Erro ao abrir o arquivo de quartos.\n");
         enter();
         return;
     }
-    quar.status = 'U';
-    fprintf(arq_quartos, "%s;%s;%s;%s\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status);
+    while(fscanf(arq_quartos, "%[^;];%[^;];%[^;];%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas , &quar.status) == 4) {
+        if (strcmp(quar.n_quarto, quar.n_quarto_lido) != 0) {
+            fprintf(arq_quartos_temp, "%s;%s;%s;%s\n", quar.n_quarto_lido, quar.cpf, quar.quan_pessoas, &quar.status);
+
+        }else if (strcmp(quar.n_quarto, quar.n_quarto_lido) == 0) {
+            input(quar.cpf, 18, "Digite o CPF do hospede: ");
+            input(quar.quan_pessoas, 5, "Digite a quantidade de pessoas no quarto: ");
+            quar.status = 'O';
+            fprintf(arq_quartos_temp, "%s;%s;%s;%s\n", quar.n_quarto_lido, quar.cpf, quar.quan_pessoas, &quar.status);
+        }
+        
+    }
+
     fclose(arq_quartos);
+    fclose(arq_quartos_temp);
+    remove("./data/quartos.csv");
+    rename("./data/quartos_temp.csv", "./data/quartos.csv");
 
     limpa_tela();
     printf("\n");
@@ -105,8 +119,8 @@ void check_in(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Hospede com CPF %s alocado no quarto com id %s\n.", quar.cpf, quar.n_quarto);
-    printf("Numero de pessoas hospedadas: %s", quar.quan_pessoas);
+    printf("Hospede com CPF %s alocado no quarto com id %s.\n", quar.cpf, quar.n_quarto);
+    printf("Numero de pessoas hospedadas: %s\n", quar.quan_pessoas);
     enter();
 }
 
@@ -136,7 +150,7 @@ void list_quartos(void){
     }
 
     while (fscanf(arq_quartos, "%[^;];%[^;];%[^;];%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status) == 4) {
-        if (quar.status == 'U') {
+        if (quar.status == 'V') {
             printf("Quarto %s disponível.\n", quar.n_quarto);
             encontrou = 1;
         }
@@ -283,19 +297,9 @@ void edit_quartos(void){
             fprintf(arq_quartos_temp, "%s;%s;%s;%s\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status);
 
         }else if(strcmp(quar.n_quarto, quar.n_quarto_lido) == 0) {
-            printf("Digite as novas informações do quarto com id %s .", quar.n_quarto_lido);
+            printf("Digite as novas informações do quarto com id %s.\n", quar.n_quarto_lido);
             input(quar.cpf, 18, "Digite o CPF do hospede:");
-            input(quar.quan_pessoas, 5, "Digite o status do quarto: ");
-
-            printf("Digite 'U' para quarto que está sendo usado e 'V' para um que está vazio: ");
-            scanf("%c", &quar.op_quartos);
-
-            if (quar.op_quartos == 'U') {
-                quar.status = 'U';
-            }else if (quar.op_quartos == 'V') {
-                quar.status = 'V';
-            }
-
+            input(quar.quan_pessoas, 5, "Digite a quantidade de pessoas no quarto: ");
             fprintf(arq_quartos_temp, "%s;%s;%s;%s\n", quar.n_quarto_lido, quar.cpf, quar.quan_pessoas, &quar.status);
         }
     }
@@ -350,7 +354,9 @@ void cad_quartos(void){
     strcpy(quar.quan_pessoas, "0");
     quar.status = 'V';
 
-    fprintf(arq_quartos, "%s;%s;%s;%s;", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status);
+    fprintf(arq_quartos, "%s;%s;%s;%s\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status);
     fclose(arq_quartos);
-    
+
+    printf("Quarto com ID %s cadastrado no sistema.", quar.n_quarto);
+
 }
