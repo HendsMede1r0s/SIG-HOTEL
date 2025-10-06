@@ -94,9 +94,9 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("\nCPF: %s", fun.cpf);
-    printf("\nNOME: %s", fun.nome);
-    printf("\nTELEFONE: %s", fun.cell);
+    printf("CPF: %s", fun.cpf);
+    printf("NOME: %s", fun.nome);
+    printf("TELEFONE: %s", fun.cell);
     enter();
 }
 
@@ -183,17 +183,18 @@ void exib_funcionarios(void){
         enter();
         return;
     }
-    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[\n]\n", fun.cpf_lido, fun.nome, fun.cell) == 3){
+    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", fun.cpf, fun.nome, fun.cell) == 3){
         if(strcmp(fun.cpf, fun.cpf_lido) == 0){
-            printf("\n*FUNCIONARIO ENCONTRADO!*\n");
+            printf("*FUNCIONARIO ENCONTRADO!*\n");
             printf("CPF: %s\n", fun.cpf);
             printf("NOME: %s\n", fun.nome);
             printf("TELEFONE: %s\n", fun.cell);
             enter();
-            fclose(arq_funcionarios);
             return;
         }
     }
+    fclose(arq_funcionarios);
+    enter();
 }
 
 void exclu_funcionarios(void){

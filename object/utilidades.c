@@ -22,7 +22,6 @@ void input(char *variavel, int tamanho, char *mensagem){
 }
 
 void enter(void){
-    limpa_tela();
     printf("\n");
     printf("{Pressione ENTER para continuar...}");
     getchar();
