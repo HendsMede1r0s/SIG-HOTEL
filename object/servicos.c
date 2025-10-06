@@ -124,7 +124,7 @@ void edit_servicos(void){
         return;
     }
 
-    while(fscanf(arq_servicos, "%[^\n]\n") == 1){
+    while(fscanf(arq_servicos, "%[^\n]\n", servi.servi_lido) == 1){
         if(strcmp(servi.servi, servi.servi_lido) != 0){
             fprintf(arq_servicos_temp, "%s\n", servi.servi);
         }
