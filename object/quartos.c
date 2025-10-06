@@ -115,6 +115,7 @@ void list_quartos(void){
 
     FILE *arq_quartos;
     Quartos quar;
+    int encontrou = 0;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -134,16 +135,14 @@ void list_quartos(void){
         return;
     }
 
-    quar.encontrou = 0;
-
     while (fscanf(arq_quartos, "%[^;];%[^;];%[^;];%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status) == 4) {
         if (quar.status == 'U') {
             printf("Quarto %s disponível.\n", quar.n_quarto);
-            quar.encontrou = 1;
+            encontrou = 1;
         }
     }
 
-    if (quar.encontrou != 1) {
+    if (encontrou != 1) {
         printf("Nenhum quarto disponível no momento.\n");
     }
 
@@ -157,6 +156,7 @@ void check_out(void){
     FILE *arq_quartos;
     FILE *arq_quartos_temp;
     Quartos quar;
+    int encontrou = 0;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -182,7 +182,7 @@ void check_out(void){
             quar.status = 'V';
             strcpy(quar.cpf, "-----");
             strcpy(quar.quan_pessoas, "0");
-            quar.encontrou = 1;
+            encontrou = 1;
         }
         fprintf(arq_quartos_temp, "%s;%s;%s;%c\n", quar.n_quarto, quar.cpf, quar.quan_pessoas, quar.status);
     }
@@ -193,7 +193,7 @@ void check_out(void){
     rename("./data/quartos_temp.csv", "./data/quartos.csv");
 
     limpa_tela();
-    if (quar.encontrou)
+    if (encontrou)
         printf("Check-out do quarto %s realizado com sucesso!\n", quar.n_quarto_lido);
     else
         printf("Quarto %s não encontrado.\n", quar.n_quarto_lido);
@@ -337,7 +337,7 @@ void cad_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(quar.andar, 5, "Digite o andar dos quartos: ");
+    input(quar.n_quarto, 7, "Digite o ID do quarto: ");
 
     arq_quartos = fopen("./data/quartos.csv", "at");
     if (arq_quartos == NULL) {
@@ -345,8 +345,12 @@ void cad_quartos(void){
         enter();
         return;
     }
-//fazer um por um
-// + facil
-    
+
+    strcpy(quar.cpf, "-----");
+    strcpy(quar.quan_pessoas, "0");
+    quar.status = 'V';
+
+    fprintf(arq_quartos, "%s;%s;%s;%s;", quar.n_quarto, quar.cpf, quar.quan_pessoas, &quar.status);
+    fclose(arq_quartos);
     
 }
