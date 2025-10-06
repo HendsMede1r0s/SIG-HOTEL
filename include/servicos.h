@@ -4,3 +4,12 @@ void cad_servico(void);
 void edit_servicos(void);
 void list_servicos(void);
 void atri_servico(void);
+
+struct servicos{
+
+    char servi[55];
+    char servi_lido[55];
+
+};
+
+typedef struct servicos Servicos;
