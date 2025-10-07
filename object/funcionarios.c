@@ -94,9 +94,9 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("CPF: %s", fun.cpf);
-    printf("NOME: %s", fun.nome);
-    printf("TELEFONE: %s", fun.cell);
+    printf("\nCPF: %s", fun.cpf);
+    printf("\nNOME: %s", fun.nome);
+    printf("\nTELEFONE: %s", fun.cell);
     enter();
 }
 
@@ -223,7 +223,8 @@ void exclu_funcionarios(void){
         return;
     }
 
-    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[\n]\n", fun.cpf, fun.nome, fun.cell) == 3){
+    while(fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", fun.cpf, fun.nome, fun.cell) == 3){
+        printf("Comparando '%s' com '%s'\n", fun.cpf, fun.cpf_lido);
         if(strcmp(fun.cpf, fun.cpf_lido) != 0){
             fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun.cpf, fun.nome, fun.cell);
         }
