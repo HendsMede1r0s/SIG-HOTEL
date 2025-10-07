@@ -4,6 +4,9 @@
 #include "funcionarios.h"
 #include "utilidades.h"
 
+#define True 1;
+#define False 0;
+
 typedef struct funcionarios Funcionarios;
 
 void modulo_funcionarios(void){
@@ -61,7 +64,8 @@ void cad_funcionarios(void){
     limpa_tela();
 
     FILE *arq_funcionarios;
-    Funcionarios fun;
+    Funcionarios* fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
 
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -76,14 +80,15 @@ void cad_funcionarios(void){
     input(fun.nome, 55, "Digite o nome do funcionario:");
     input(fun.cell, 18, "Digite o telefone do funcionario:");
 
-    arq_funcionarios = fopen("./data/funcionarios.csv", "at");
+    arq_funcionarios = fopen("./data/funcionarios.dat", "ab");
     if(arq_funcionarios == NULL){
         printf("\t Erro ao tentar abrir o arquivo de funcionarios.\n");
         enter();
         return;
     }
-    fprintf(arq_funcionarios, "%s;%s;%s\n", fun.cpf, fun.nome, fun.cell);
+    fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
     fclose(arq_funcionarios);
+    free(fun);
 
     limpa_tela();
     printf("┌─────────────────────────────────────────────────────────┐\n");
