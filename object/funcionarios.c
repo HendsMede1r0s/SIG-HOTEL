@@ -136,7 +136,6 @@ void edit_funcionarios(void){
             printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", cpf_lido);
             input(fun->nome, 55, "Digite o nome do funcionario: ");
             input(fun->cell, 18, "Digite o telefone do funcionario: ");
-            input(fun->cell, 18, "Digite o telefone do funcionario: ");
             fprintf(arq_funcionarios_temp, "%s;%s;%s\n", cpf_lido, fun->nome, fun->cell);
         }
     }
