@@ -129,13 +129,13 @@ void edit_funcionarios(void){
 
     while(fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", fun.cpf, fun.nome, fun.cell)== 3){
         if(strcmp(fun.cpf, fun.cpf_lido)!= 0){
-            fprintf(arq_funcionarios_temp, "%s,%s,%s\n", fun.cpf, fun.nome, fun.cell);
+            fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun.cpf, fun.nome, fun.cell);
         }
         else{
             printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", fun.cpf_lido);
             input(fun.nome, 55, "Digite o nome do funcionario: ");
             input(fun.cell, 18, "Digite o telefone do funcionario: ");
-            fprintf(arq_funcionarios_temp, "%s;%s;%s", fun.cpf_lido, fun.nome, fun.cell);
+            fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun.cpf_lido, fun.nome, fun.cell);
         }
     }
 
