@@ -8,7 +8,6 @@ void exclu_funcionarios(void);
 struct funcionarios{
 
     char cpf[18];
-    char cpf_lido[18];
     char nome[55];
     char cell[18];
 };
