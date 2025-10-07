@@ -109,7 +109,7 @@ void edit_funcionarios(void){
     FILE *arq_funcionarios;
     FILE *arq_funcionarios_temp;
     Funcionarios* fun;
-    fun = (Funcionarios*)malloc(sizeof(Funcionarios))
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
 
     printf("\n");
@@ -123,7 +123,7 @@ void edit_funcionarios(void){
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF do funcionario que deseja editar:");
 
-    arq_funcionarios = fopen("./data/funcionarios.dat", "rb")
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
     arq_funcionarios_temp = fopen("./data/funcionarios_temp.dat", "wb");
     if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
         printf("Erro ao abrir o arquivo!\n");
@@ -209,7 +209,7 @@ void exclu_funcionarios(void){
     FILE *arq_funcionarios_temp;
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
-    char cpf_lido
+    char cpf_lido[18];
 
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -231,7 +231,7 @@ void exclu_funcionarios(void){
     }
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        if(strcmp(cpf_lido, fun->cpf) !=){
+        if(strcmp(cpf_lido, fun->cpf) != 0){
             fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
         }
     }
