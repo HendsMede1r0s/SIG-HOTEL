@@ -244,8 +244,10 @@ void exclu_clientes(void){
     limpa_tela();
 
     FILE *arq_clientes;
-    FILE *arq_clientes_temp;
-    Clientes cli;
+    Clientes *cli;
+    cli = (Clientes*)malloc(sizeof(Clientes));
+    char cpf_lido [18];
+    int encontrado = False;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -256,37 +258,45 @@ void exclu_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cli.cpf, 18, "Digite o CPF do clientes a ser excluido: ");
+    input(cpf_lido, 18, "Digite o CPF do cliente a ser excluido: ");
 
-    arq_clientes = fopen("./data/clientes.csv", "rt");
-    arq_clientes_temp = fopen("./data/clientes_temp.csv", "wt");
-    if (arq_clientes == NULL || arq_clientes_temp == NULL) {
+    arq_clientes = fopen("./data/clientes.dat", "r+b");
+    if (arq_clientes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
     }
 
-    while(fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto) == 4) {
-        if(strcmp(cli.cpf, cli.cpf) != 0) {
-            fprintf(arq_clientes_temp, "%s;%s;%s;%s\n", cli.cpf, cli.nome, cli.cell, cli.n_quarto);
+    while (fread(cli, sizeof(Clientes), 1, arq_clientes) && (!encontrado)) {
+        if (strcmp(cli->cpf, cpf_lido) == 0) {
+            cli->status = False;
+            encontrado = True;
+            fseek(arq_clientes, (-1)*sizeof(Clientes), SEEK_CUR);
+            fwrite(cli, sizeof(Clientes), 1, arq_clientes);
         }
     }
-    
-    fclose(arq_clientes);
-    fclose(arq_clientes_temp);
-    remove("./data/clientes.csv");
-    rename("./data/clientes_temp.csv", "./data/clientes.csv");
 
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                    {Cliente excluido!}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Clientes com CPF %s foi excluido com sucesso!\n", cli.cpf);
-    enter();
+    fclose(arq_clientes);
+    free(cli);
+
+    if (!encontrado) {
+        printf("Cliente não encontrado no banco de dados.\n");
+        enter();
+        return;
+    }
+
+    if (encontrado) {
+        limpa_tela();
+        printf("\n");
+        printf("┌────────────────────────────────────────────────────────────┐\n");
+        printf("│############################################################│\n");
+        printf("│#                                                          #│\n");
+        printf("│#                    {Cliente excluido!}                   #│\n");
+        printf("│#                                                          #│\n");
+        printf("│############################################################│\n");
+        printf("└────────────────────────────────────────────────────────────┘\n");
+        printf("\n");
+        printf("Clientes com CPF %s foi excluido com sucesso!\n", cpf_lido);
+        enter();
+    }
 }
