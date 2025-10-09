@@ -123,7 +123,7 @@ void edit_funcionarios(void){
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF do funcionario que deseja editar:");
 
-    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+    arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
     arq_funcionarios_temp = fopen("./data/funcionarios_temp.dat", "wb");
     if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
         printf("Erro ao abrir o arquivo!\n");
