@@ -3,6 +3,8 @@
 #include <string.h>
 #include "funcionarios.h"
 #include "utilidades.h"
+#define True 1;
+#define False 0;
 
 typedef struct funcionarios Funcionarios;
 
@@ -76,6 +78,7 @@ void cad_funcionarios(void){
     input(fun->cpf, 18, "Digite o cpf do funcionario:");
     input(fun->nome, 55, "Digite o nome do funcionario:");
     input(fun->cell, 18, "Digite o telefone do funcionario:");
+    fun->status = True;
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "ab");
     if(arq_funcionarios == NULL){
