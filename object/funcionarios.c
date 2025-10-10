@@ -220,7 +220,7 @@ void exclu_funcionarios(void){
     input(cpf_lido, 18, "Digite o CPF do funcionario a ser excluido:");
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
-    if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
+    if(arq_funcionarios == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
         return;
@@ -231,7 +231,7 @@ void exclu_funcionarios(void){
             fprintf(arq_funcionarios, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
         }
         else{
-            fun->status == 0;
+            fun->status == False;
         }
     }
 
