@@ -187,7 +187,7 @@ void exib_funcionarios(void){
         return;
     }
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        if(strcmp(cpf_lido, fun->cpf) == 0) && (fun->status == 1){
+        if(strcmp(cpf_lido, fun->cpf) == 0 && (fun->status == 1)){
             printf("Funcionario encontrado!\n");
             printf("CPF: %s\n", fun->cpf);
             printf("NOME: %s\n", fun->nome);
@@ -204,7 +204,6 @@ void exclu_funcionarios(void){
     limpa_tela();
 
     FILE *arq_funcionarios;
-    FILE *arq_funcionarios_temp;
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
@@ -221,7 +220,6 @@ void exclu_funcionarios(void){
     input(cpf_lido, 18, "Digite o CPF do funcionario a ser excluido:");
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
-    arq_funcionarios_temp = fopen("./data/funcionarios_temp.dat", "rb");
     if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
@@ -230,14 +228,14 @@ void exclu_funcionarios(void){
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) != 0){
-            fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
+            fprintf(arq_funcionarios, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
+        }
+        else{
+            fun->status == 0;
         }
     }
 
     fclose(arq_funcionarios);
-    fclose(arq_funcionarios_temp);
-    remove("./data/funcionarios.dat");
-    rename("./data/funcionarios_temp.dat", "./data/funcionarios.dat");
 
     limpa_tela();
     printf("\n");
