@@ -101,6 +101,7 @@ void cad_funcionarios(void){
     printf("\nCPF: %s", fun->cpf);
     printf("\nNOME: %s", fun->nome);
     printf("\nTELEFONE: %s", fun->cell);
+    printf("\nSTATUS: %i", fun->status);
     enter();
     free(fun);
 }
