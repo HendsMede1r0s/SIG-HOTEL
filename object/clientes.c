@@ -75,9 +75,6 @@ void cad_clientes(void){
     Clientes *cli;
     cli = (Clientes*)malloc(sizeof(Clientes));
 
-    //malloc puxa a memoria do tamanho do struct
-    //atribui o endereço disso para a variavel tipo ponteiro cli
-
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
@@ -126,7 +123,11 @@ void cad_clientes(void){
 void edit_clientes(void){
     limpa_tela();
 
-    Clientes cli;
+    FILE *arq_clientes;
+    Clientes *cli;
+    cli = (Clientes*)malloc(sizeof(Clientes));
+    char cpf_lido [18];
+    int encontrado = False;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -137,23 +138,56 @@ void edit_clientes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    input(cpf_lido, 18, "Digite o CPF do cliente a ser editado: ");
 
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                    {Cliente editado!}                    #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Cliente com CPF %s editado com sucesso!\n", cli.cpf);
-    printf("CPF: %s\n", cli.cpf);
-    printf("NOME: %s\n", cli.nome);
-    printf("TELEFONE: %s\n", cli.cell);
-    printf("ID DO QUARTO: %s\n", cli.n_quarto);
-    enter();
+    arq_clientes = fopen("./data/clientes.dat", "r+b");
+    if (arq_clientes == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        enter();
+        return;
+    }
+
+    while (fread(cli, sizeof(Clientes), 1, arq_clientes)) {
+        if (strcmp(cli->cpf, cpf_lido) == 0) {
+            encontrado = True;
+            input(cli->cpf, 18, "Digite o novo CPF do hospede: ");
+            input(cli->nome, 55, "Digite o nome do hospede: ");
+            input(cli->cell, 18, "Digite o numero de telefone do cliente: ");
+            input(cli->n_quarto, 7, "Digite o ID do quarto do cliente: ");
+
+            fseek(arq_clientes, (-1)*sizeof(Clientes), SEEK_CUR);
+            fwrite(cli, sizeof(Clientes), 1, arq_clientes);
+        }
+
+    }
+
+    fclose(arq_clientes);
+    free(cli);
+    
+    if (!encontrado) {
+        printf("Cliente não encontrado no banco de dados.\n");
+        enter();
+    }
+
+    if (encontrado) {
+        limpa_tela();
+        printf("\n");
+        printf("┌────────────────────────────────────────────────────────────┐\n");
+        printf("│############################################################│\n");
+        printf("│#                                                          #│\n");
+        printf("│#                    {Cliente editado!}                    #│\n");
+        printf("│#                                                          #│\n");
+        printf("│############################################################│\n");
+        printf("└────────────────────────────────────────────────────────────┘\n");
+        printf("\n");
+        printf("Cliente com CPF %s editado com sucesso!\n", cli->cpf);
+        printf("CPF: %s\n", cli->cpf);
+        printf("NOME: %s\n", cli->nome);
+        printf("TELEFONE: %s\n", cli->cell);
+        printf("ID DO QUARTO: %s\n", cli->n_quarto);
+        enter();
+    }
+    
 }
 
 
@@ -282,7 +316,6 @@ void exclu_clientes(void){
     if (!encontrado) {
         printf("Cliente não encontrado no banco de dados.\n");
         enter();
-        return;
     }
 
     if (encontrado) {
