@@ -228,10 +228,11 @@ void list_funcionarios(void){
         enter();
         return;
     }
+    printf("NOME \t\t CPF \t\t\t TELEFONE");
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        printf("NOME: %s\t", fun->nome);
-        printf("CPF: %s\t", fun->cpf);
-        printf("TELEFONE: %s\t", fun->cell);
+        printf("\n%s\t\t",fun->nome);
+        printf("%s\t\t",fun->cpf);
+        printf("%s\t\t",fun->cell);
         printf("\n\n");
     }
 
