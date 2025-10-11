@@ -187,7 +187,7 @@ void exib_funcionarios(void){
         return;
     }
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        if(strcmp(cpf_lido, fun->cpf) == 0 && (fun->status == 1)){
+        if(strcmp((cpf_lido, fun->cpf) == 0) && (fun->status == 1)){
             printf("Funcionario encontrado!\n");
             printf("CPF: %s\n", fun->cpf);
             printf("NOME: %s\n", fun->nome);
