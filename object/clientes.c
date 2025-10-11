@@ -162,7 +162,6 @@ void edit_clientes(void){
     }
 
     fclose(arq_clientes);
-    free(cli);
     
     if (!encontrado) {
         printf("Cliente não encontrado no banco de dados.\n");
@@ -188,6 +187,8 @@ void edit_clientes(void){
         enter();
     }
     
+    free(cli);
+
 }
 
 
@@ -311,7 +312,6 @@ void exclu_clientes(void){
     }
 
     fclose(arq_clientes);
-    free(cli);
 
     if (!encontrado) {
         printf("Cliente não encontrado no banco de dados.\n");
@@ -332,4 +332,5 @@ void exclu_clientes(void){
         printf("Clientes com CPF %s foi excluido com sucesso!\n", cpf_lido);
         enter();
     }
+
 }
