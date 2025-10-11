@@ -3,6 +3,8 @@
 #include <string.h>
 #include "funcionarios.h"
 #include "utilidades.h"
+#define True 1;
+#define False 0;
 
 typedef struct funcionarios Funcionarios;
 
@@ -23,6 +25,9 @@ void modulo_funcionarios(void){
                 exib_funcionarios();
                 break;
             case '4':
+                list_funcionarios();
+                break;
+            case '5':
                 exclu_funcionarios();
                 break;
         }
@@ -44,7 +49,8 @@ char tela_funcionarios(void){
     printf("|        [1] -> Cadastar                                     |\n");
     printf("|        [2] -> Editar informacoes                           |\n");
     printf("|        [3] -> Exibir funcionarios                          |\n");
-    printf("|        [4] -> Excluir funcionarios                         |\n");
+    printf("|        [4] -> Listar funcionarios                          |\n");
+    printf("|        [5] -> Excluir funcionarios                         |\n");
     printf("|        [0] -> Voltar                                       |\n");
     printf("|                                                            |\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
@@ -76,6 +82,7 @@ void cad_funcionarios(void){
     input(fun->cpf, 18, "Digite o cpf do funcionario:");
     input(fun->nome, 55, "Digite o nome do funcionario:");
     input(fun->cell, 18, "Digite o telefone do funcionario:");
+    fun->status = True;
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "ab");
     if(arq_funcionarios == NULL){
@@ -98,6 +105,7 @@ void cad_funcionarios(void){
     printf("\nCPF: %s", fun->cpf);
     printf("\nNOME: %s", fun->nome);
     printf("\nTELEFONE: %s", fun->cell);
+    printf("\nSTATUS: %i", fun->status);
     enter();
     free(fun);
 }
@@ -107,7 +115,6 @@ void edit_funcionarios(void){
     limpa_tela();
 
     FILE *arq_funcionarios;
-    FILE *arq_funcionarios_temp;
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
@@ -123,9 +130,8 @@ void edit_funcionarios(void){
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF do funcionario que deseja editar:");
 
-    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
-    arq_funcionarios_temp = fopen("./data/funcionarios_temp.dat", "wb");
-    if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
+    arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
+    if(arq_funcionarios == NULL){
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
@@ -136,14 +142,11 @@ void edit_funcionarios(void){
             printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", cpf_lido);
             input(fun->nome, 55, "Digite o nome do funcionario: ");
             input(fun->cell, 18, "Digite o telefone do funcionario: ");
-            fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios_temp);
+            fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
         }
     }
 
     fclose(arq_funcionarios);
-    fclose(arq_funcionarios_temp);
-    remove("./data/funcionarios.dat");
-    rename("./data/funcionarios_temp.dat", "./data/funcionarios.dat");
 
     limpa_tela();
     printf("┌────────────────────────────────────────────────────────┐\n");
@@ -201,11 +204,46 @@ void exib_funcionarios(void){
     enter();
 }
 
+
+void list_funcionarios(void){
+    limpa_tela();
+
+    FILE *arq_funcionarios;
+    Funcionarios* fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
+
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#         {Funcionarios -> Listar funcionarios}         #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+    if(arq_funcionarios == NULL){
+        printf("Erro ao abrir o arquivo funcionarios!");
+        enter();
+        return;
+    }
+    while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
+        printf("NOME: %s\t", fun->nome);
+        printf("CPF: %s\t", fun->cpf);
+        printf("TELEFONE: %s\t", fun->cell);
+        printf("\n\n");
+    }
+
+    fclose(arq_funcionarios);
+    free(fun);
+    enter();
+}
+
 void exclu_funcionarios(void){
     limpa_tela();
 
     FILE *arq_funcionarios;
-    FILE *arq_funcionarios_temp;
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
@@ -221,9 +259,8 @@ void exclu_funcionarios(void){
     printf("\n");
     input(cpf_lido, 18, "Digite o CPF do funcionario a ser excluido:");
 
-    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
-    arq_funcionarios_temp = fopen("./data/funcionarios_temp.dat", "rb");
-    if(arq_funcionarios == NULL || arq_funcionarios_temp == NULL){
+    arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
+    if(arq_funcionarios == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
         return;
@@ -231,14 +268,14 @@ void exclu_funcionarios(void){
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) != 0){
-            fprintf(arq_funcionarios_temp, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
+            fprintf(arq_funcionarios, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
+        }
+        else{
+            fun->status = False;
         }
     }
 
     fclose(arq_funcionarios);
-    fclose(arq_funcionarios_temp);
-    remove("./data/funcionarios.dat");
-    rename("./data/funcionarios_temp.dat", "./data/funcionarios.dat");
 
     limpa_tela();
     printf("\n");
