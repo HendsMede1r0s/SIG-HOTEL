@@ -22,10 +22,10 @@ void modulo_funcionarios(void){
                 edit_funcionarios();
                 break;
             case '3':
-                exib_funcionarios();
+                list_funcionarios();
                 break;
             case '4':
-                list_funcionarios();
+                exib_funcionarios();
                 break;
             case '5':
                 exclu_funcionarios();
