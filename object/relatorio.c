@@ -43,9 +43,9 @@ char tela_relatorios(void){
     printf("|                                                |\n");
     printf("└────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("Digite uma opcao: ");
     scanf("%c", &op);
     getchar();
-    printf("\n");
     enter();
     return op;
 }
