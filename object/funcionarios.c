@@ -233,7 +233,7 @@ void list_funcionarios(void){
         printf("\n%s\t\t",fun->nome);
         printf("%s\t\t",fun->cpf);
         printf("%s\t\t",fun->cell);
-        printf("\n\n");
+        printf("\n");
     }
 
     fclose(arq_funcionarios);
