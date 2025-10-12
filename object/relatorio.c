@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relatorio.h"
+#include "utilidades.h"
 
 void modulo_relatorios(void){
 
