@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relatorio.h"
+#include "utilidades.h"
 
 void modulo_relatorios(void){
 
@@ -10,28 +11,41 @@ void modulo_relatorios(void){
         op = tela_relatorios();
         switch (op) {
             case '1':
-                getchar();
+                printf("Relatorio de hospedes");
                 break;
+            case '2':
+                printf("Relatorio de funcionarios");
+                break;
+            case '3':
+                printf("Relatorio de quartos");
+                break;
+            case '4':
+                printf("Relatorio de servicos");
         }
     } while (op != '0'); 
 }
 
 char tela_relatorios(void){
-    system("clear||cls");
+    limpa_tela();
+
     char op;
     printf("\n");
-    printf(" ____________________________________________\n");
-    printf("|                                            |\n");
-    printf("|                 RELATORIOS                 |\n");
-    printf("|                                            |\n");
-    printf("|                                            |\n");
-    printf("|      1 - Relatorio de hospedes             |\n");
-    printf("|      2 - Relatorio de funcionarios         |\n");
-    printf("|      3 - Relatorio de quartos               |\n");
-    printf("|____________________________________________|\n");
+    printf("┌────────────────────────────────────────────────┐\n");
+    printf("|                                                |\n");
+    printf("|                   RELATORIOS                   |\n");
+    printf("|                                                |\n");
+    printf("|                                                |\n");
+    printf("|       [1] -> Relatorio de hospedes             |\n");
+    printf("|       [2] -> Relatorio de funcionarios         |\n");
+    printf("|       [3] -> Relatorio de quartos              |\n");
+    printf("|       [4] -> Relatorio de servicos             |\n");
+    printf("|       [0] -> Voltar                            |\n");
+    printf("|                                                |\n");
+    printf("└────────────────────────────────────────────────┘\n");
     printf("\n");
+    printf("Digite uma opcao: ");
     scanf("%c", &op);
     getchar();
-    printf("\n");
+    enter();
     return op;
 }

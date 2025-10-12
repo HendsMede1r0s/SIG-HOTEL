@@ -22,10 +22,10 @@ void modulo_funcionarios(void){
                 edit_funcionarios();
                 break;
             case '3':
-                exib_funcionarios();
+                list_funcionarios();
                 break;
             case '4':
-                list_funcionarios();
+                exib_funcionarios();
                 break;
             case '5':
                 exclu_funcionarios();
@@ -48,8 +48,8 @@ char tela_funcionarios(void){
     printf("|                                                            |\n");
     printf("|        [1] -> Cadastar                                     |\n");
     printf("|        [2] -> Editar informacoes                           |\n");
-    printf("|        [3] -> Exibir funcionarios                          |\n");
-    printf("|        [4] -> Listar funcionarios                          |\n");
+    printf("|        [3] -> Listar funcionarios                          |\n");
+    printf("|        [4] -> Buscar funcionarios                          |\n");
     printf("|        [5] -> Excluir funcionarios                         |\n");
     printf("|        [0] -> Voltar                                       |\n");
     printf("|                                                            |\n");
@@ -228,11 +228,12 @@ void list_funcionarios(void){
         enter();
         return;
     }
+    printf("NOME \t\t CPF \t\t\t TELEFONE");
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        printf("NOME: %s\t", fun->nome);
-        printf("CPF: %s\t", fun->cpf);
-        printf("TELEFONE: %s\t", fun->cell);
-        printf("\n\n");
+        printf("\n%s\t\t",fun->nome);
+        printf("%s\t\t",fun->cpf);
+        printf("%s\t\t",fun->cell);
+        printf("\n");
     }
 
     fclose(arq_funcionarios);
