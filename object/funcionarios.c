@@ -48,8 +48,8 @@ char tela_funcionarios(void){
     printf("|                                                            |\n");
     printf("|        [1] -> Cadastar                                     |\n");
     printf("|        [2] -> Editar informacoes                           |\n");
-    printf("|        [3] -> Exibir funcionarios                          |\n");
     printf("|        [4] -> Listar funcionarios                          |\n");
+    printf("|        [3] -> Buscar funcionarios                          |\n");
     printf("|        [5] -> Excluir funcionarios                         |\n");
     printf("|        [0] -> Voltar                                       |\n");
     printf("|                                                            |\n");
