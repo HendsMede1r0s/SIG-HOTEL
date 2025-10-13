@@ -56,7 +56,8 @@ void cad_servico(void){
     limpa_tela();
 
     FILE *arq_servicos;
-    Servicos servi;
+    Servicos* servi;
+    servi = (Servicos*)malloc(sizeof(Servicos));
 
     printf("\n");
     printf("┌───────────────────────────────────────────────────────┐\n");
@@ -67,15 +68,15 @@ void cad_servico(void){
     printf("|#######################################################|\n");
     printf("└───────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(servi.servi, 55, "Digite o novo serviço:");
+    input(servi->servi, 55, "Digite o novo serviço:");
 
-    arq_servicos = fopen("./data/servicos.csv", "at");
+    arq_servicos = fopen("./data/servicos.dat", "ab");
     if(arq_servicos == NULL){
         printf("\t Erro ao abrir o arquivo serviços\n");
         enter();
         return;
     }
-    fprintf(arq_servicos, "%s\n", servi.servi);
+    fwrite(servi, sizeof(Servicos), 1, arq_servicos);
     fclose(arq_servicos);
 
     limpa_tela();
@@ -88,7 +89,8 @@ void cad_servico(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Serviço: %s", servi.servi);
+    printf("Serviço: %s", servi->servi);
+    free(servi);
     enter();
 }
 
@@ -173,11 +175,14 @@ void list_servicos(void){
         printf("\t {Digite ENTER para continuar}\n");
         return;
     }
-    while(fread()){
-        
+    printf("SERVICOS CADASTRADOS\n");
+    while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
+        printf("%s", servi->servi);
+        printf("\n");
         
     }
     fclose(arq_servicos);
+    free(servi);
     return;
 }
 
