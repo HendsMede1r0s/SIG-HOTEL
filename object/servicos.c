@@ -17,13 +17,10 @@ void modulo_servicos(void){
                 cad_servico();
                 break;
             case '2':
-                edit_servicos();
-                break;
-            case '3':
                 list_servicos();
                 break;
-            case '4':
-                atri_servico();
+            case '3':
+                exclu_servicos();
                 break;
         }
     } while (op != '0'); 
@@ -42,9 +39,8 @@ char tela_servicos(void){
     printf("|──────────────────────────────────────────────────────|\n");
     printf("|                                                      |\n");
     printf("|       [1] -> Cadastrar Serviços                      |\n");
-    printf("|       [2] -> Editar Serviços                         |\n");
-    printf("|       [3] -> Listar Serviços                         |\n");
-    printf("|       [4] -> Atribuir Serviço ao funcionario         |\n");
+    printf("|       [2] -> Listar serviços                         |\n");
+    printf("|       [3] -> Apagar servico                          |\n");
     printf("|       [0] -> Voltar                                  |\n");
     printf("└──────────────────────────────────────────────────────┘\n");
     printf("\n");
@@ -97,7 +93,7 @@ void cad_servico(void){
 }
 
 
-void edit_servicos(void){
+/*void edit_servicos(void){
     limpa_tela();
 
     FILE *arq_servicos;
@@ -151,7 +147,7 @@ void edit_servicos(void){
     printf("\n");
     printf("Serviço editado: %s", servi.servi);
     enter();
-}
+} */
 
 
 void list_servicos(void){
@@ -232,22 +228,6 @@ void exclu_servicos(void){
     printf("|#                                                          #|\n");
     printf("|############################################################|\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    enter();
-}
-
-
-void atri_servico(void){
-    limpa_tela();
-
-    printf("\n");
-    printf("┌─────────────────────────────────────────────────────────────┐\n");
-    printf("|#############################################################|\n");
-    printf("|#                                                           #|\n");
-    printf("|#       {Serviços -> Atribuir serviço ao funcionario}       #|\n");
-    printf("|#                                                           #|\n");
-    printf("|#############################################################|\n");
-    printf("└─────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     enter();
 }
