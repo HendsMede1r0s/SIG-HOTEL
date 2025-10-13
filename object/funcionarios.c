@@ -79,9 +79,9 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(fun->cpf, 18, "Digite o cpf do funcionario:");
-    input(fun->nome, 55, "Digite o nome do funcionario:");
-    input(fun->cell, 18, "Digite o telefone do funcionario:");
+    input(fun->cpf, 18, "Digite o cpf do funcionario: ");
+    input(fun->nome, 55, "Digite o nome do funcionario: ");
+    input(fun->cell, 18, "Digite o telefone do funcionario: ");
     fun->status = True;
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "ab");
@@ -106,6 +106,7 @@ void cad_funcionarios(void){
     printf("\nNOME: %s", fun->nome);
     printf("\nTELEFONE: %s", fun->cell);
     printf("\nSTATUS: %i", fun->status);
+    printf("\n");
     enter();
     free(fun);
 }
@@ -163,6 +164,7 @@ void edit_funcionarios(void){
     printf("NOME: %s\n", fun->nome);
     printf("TELEFONE: %s\n", fun->cell);
     free(fun);
+    printf("\n");
     enter();
 }
 
