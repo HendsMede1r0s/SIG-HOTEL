@@ -142,6 +142,7 @@ void edit_funcionarios(void){
             printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", cpf_lido);
             input(fun->nome, 55, "Digite o nome do funcionario: ");
             input(fun->cell, 18, "Digite o telefone do funcionario: ");
+            fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
             fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
         }
     }
