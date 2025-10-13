@@ -192,7 +192,9 @@ void exclu_servicos(void){
 
     FILE *arq_servicos;
     FILE *arq_servicos_temp;
-    Servicos servi;
+    Servicos* servi;
+    servi = (Servicos*)malloc(sizeof(Servicos));
+    char servi_lido[55];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -203,26 +205,27 @@ void exclu_servicos(void){
     printf("|############################################################|\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(servi.servi_lido, 55, "Informe o seriço a ser removido: ");
+    input(servi_lido, 55, "Informe o seriço a ser removido: ");
 
-    arq_servicos = fopen("./data/servicos.csv", "rt");
-    arq_servicos_temp = fopen("./data/servicos_temp.csv", "wt");
+    arq_servicos = fopen("./data/servicos.dat", "rb");
+    arq_servicos_temp = fopen("./data/servicos_temp.dat", "wb");
     if(arq_servicos == NULL || arq_servicos_temp == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
         return;
     }
 
-    while(fscanf(arq_servicos, "%[\n]\n", servi.servi) == 1){
-        if(strcmp(servi.servi, servi.servi_lido) != 0){
-            fprintf(arq_servicos_temp, "%s\n", servi.servi);
+    while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
+        if(strcmp(servi_lido, servi->servi) != 0){
+            fprintf(arq_servicos_temp, "%s", servi->servi);
         }
     }
 
     fclose(arq_servicos);
     fclose(arq_servicos_temp);
-    remove("./data/servicos.csv");
-    rename("./data/servicos_temp.csv", "./data/servicos.csv");
+    remove("./data/servicos.dat");
+    rename("./data/servicos_temp.dat", "./data/servicos.dat");
+    free(servi);
 
     limpa_tela();
     printf("\n");
