@@ -154,7 +154,8 @@ void list_servicos(void){
     limpa_tela();
 
     FILE *arq_servicos;
-    Servicos servi;
+    Servicos* servi;
+    servi = (Servicos*)malloc(sizeof(Servicos));
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -166,15 +167,14 @@ void list_servicos(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     
-    arq_servicos = fopen("./data/servicos.csv", "rt");
+    arq_servicos = fopen("./data/servicos.dat", "rb");
     if(arq_servicos == NULL){
         printf("\t Erro ao abrir o arquivo serviços.\n");
         printf("\t {Digite ENTER para continuar}\n");
         return;
     }
-    while(!feof(arq_servicos)){
-        fscanf(arq_servicos, "%[^;]", servi.servi);
-        fgetc(arq_servicos);
+    while(fread()){
+        
         
     }
     fclose(arq_servicos);
