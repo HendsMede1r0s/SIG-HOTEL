@@ -3,6 +3,7 @@
 #include <string.h>
 #include "servicos.h"
 #include "utilidades.h"
+#include "tela_voltar_menu.h"
 
 typedef struct servicos Servicos;
 
@@ -13,6 +14,9 @@ void modulo_servicos(void){
     do {
         op = tela_servicos();
         switch (op) {
+            case '0':
+                tela_voltar();
+                break;
             case '1':
                 cad_servico();
                 break;
@@ -21,6 +25,9 @@ void modulo_servicos(void){
                 break;
             case '3':
                 exclu_servicos();
+                break;
+            default:
+                tela_op_invalida();
                 break;
         }
     } while (op != '0'); 

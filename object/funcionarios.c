@@ -3,6 +3,7 @@
 #include <string.h>
 #include "funcionarios.h"
 #include "utilidades.h"
+#include "tela_voltar_menu.h"
 #define True 1;
 #define False 0;
 
@@ -15,6 +16,9 @@ void modulo_funcionarios(void){
     do {
         op = tela_funcionarios();
         switch (op) {
+            case '0':
+                tela_voltar();
+                break;
             case '1':
                 cad_funcionarios();
                 break;
@@ -29,6 +33,9 @@ void modulo_funcionarios(void){
                 break;
             case '5':
                 exclu_funcionarios();
+                break;
+            default:
+                tela_op_invalida();
                 break;
         }
     } while (op != '0'); 
