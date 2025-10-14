@@ -105,7 +105,7 @@ void list_servicos(void){
     limpa_tela();
 
     FILE *arq_servicos;
-    Servicos* servi;
+    Servicos *servi;
     servi = (Servicos*)malloc(sizeof(Servicos));
 
     printf("\n");
@@ -124,15 +124,15 @@ void list_servicos(void){
         enter();
         return;
     }
+
     printf("SERVICOS CADASTRADOS\n");
-    while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
-        printf("%s", servi->servi);
-        printf("\n");
-        
+    while (fread(servi, sizeof(Servicos), 1, arq_servicos)) {
+        printf("%s\n", servi->servi);
     }
+
     fclose(arq_servicos);
     free(servi);
-    return;
+    enter();
 }
 
 
