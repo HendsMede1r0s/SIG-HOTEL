@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "relatorio.h"
 #include "utilidades.h"
+#include "tela_voltar_menu.h"
 
 void modulo_relatorios(void){
 
@@ -10,6 +11,9 @@ void modulo_relatorios(void){
     do {
         op = tela_relatorios();
         switch (op) {
+            case '0':
+                tela_voltar();
+                break;
             case '1':
                 printf("Relatorio de hospedes");
                 break;
@@ -21,6 +25,9 @@ void modulo_relatorios(void){
                 break;
             case '4':
                 printf("Relatorio de servicos");
+            default:
+                tela_op_invalida();
+                break;
         }
     } while (op != '0'); 
 }
