@@ -103,29 +103,18 @@ void check_in(void){
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
+
+            limpa_tela();
+            printf("*CHECK-IN REALIDO!*");
+            exib_quarto(quar);
         }
     }
 
+    enter();
     fclose(arq_quartos);
 
     if (!encontrado) {
         printf("\nQuarto indisponivel.\n");
-        enter();
-    }
-
-    if (encontrado) {
-        limpa_tela();
-        printf("\n");
-        printf("┌────────────────────────────────────────────────────────────┐\n");
-        printf("│############################################################│\n");
-        printf("│#                                                          #│\n");
-        printf("│#             {Cliente hospedado com sucesso!}             #│\n");
-        printf("│#                                                          #│\n");
-        printf("│############################################################│\n");
-        printf("└────────────────────────────────────────────────────────────┘\n");
-        printf("\n");
-        printf("Hospede com CPF %s alocado no quarto com id %s.\n", quar->cpf, quar->n_quarto);
-        printf("Numero de pessoas hospedadas: %s\n", quar->quan_pessoas);
         enter();
     }
 
@@ -160,7 +149,7 @@ void list_quartos(void){
 
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
         if (quar->status == 0) {
-            printf("Quarto %s disponivel!", quar->n_quarto);
+            printf("Quarto %s disponivel!\n", quar->n_quarto);
             encontrado = True;
         }
     }
@@ -206,6 +195,9 @@ void check_out(void){
 
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
         if (strcmp(n_quarto_lido, quar->n_quarto) == 0) {
+            exib_quarto(quar);
+            enter();
+
             encontrado = True;
             quar->status = False;
 
@@ -214,6 +206,9 @@ void check_out(void){
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
+
+            printf("*CHECK-OUT REALIZADO COM SUCESSO!\n*");
+            exib_quarto(quar);
         }
     }
 
@@ -221,20 +216,6 @@ void check_out(void){
 
     if (!encontrado) {
         printf("\nQuarto não encontrado no banco de dados\n");
-        enter();
-    }
-
-    if (encontrado) {
-        limpa_tela();
-        printf("\n");
-        printf("┌────────────────────────────────────────────────────────────┐\n");
-        printf("│############################################################│\n");
-        printf("│#                                                          #│\n");
-        printf("│#            {Check-out realizado com sucesso!}            #│\n");
-        printf("│#                                                          #│\n");
-        printf("│############################################################│\n");
-        printf("└────────────────────────────────────────────────────────────┘\n");
-        printf("Chech-out do quarto %s realizado com sucesso!", quar->n_quarto);
         enter();
     }
 
@@ -272,12 +253,10 @@ void busc_quartos(void){
         if (strcmp(n_quarto_lido, quar->n_quarto) == 0) {
             encontrado = True;
             printf("\n");
-            printf("QUARTO ENCOTRADO!\n");
-            printf("ID DO QUARTO: %s\n", quar->n_quarto);
-            printf("CPF: %s\n", quar->cpf);
-            printf("QUANTIDADE DE PESSOAS: %s\n", quar->quan_pessoas);
-            printf("STATUS: %d\n", quar->status);
+            printf("*QUARTO ENCOTRADO!*\n");
+            exib_quarto(quar);
             enter();
+            return;
         }
     }
 
@@ -319,6 +298,9 @@ void edit_quartos(void){
     
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
         if (strcmp(n_quarto_lido, quar->n_quarto) == 0) {
+            exib_quarto(quar);
+            enter();
+
             encontrado = True;
 
             input(quar->cpf, 18, "Digite o CPF do hospede: ");
@@ -333,24 +315,6 @@ void edit_quartos(void){
 
     if (!encontrado) {
         printf("*QUARTO NÃO ENCONTRADO!*");
-        enter();
-    }
-
-    if (encontrado) {
-        limpa_tela();
-        printf("\n");
-        printf("┌────────────────────────────────────────────────────────────┐\n");
-        printf("│############################################################│\n");
-        printf("│#                                                          #│\n");
-        printf("│#            {Cadastro atualizado com sucesso!}            #│\n");
-        printf("│#                                                          #│\n");
-        printf("│############################################################│\n");
-        printf("└────────────────────────────────────────────────────────────┘\n");
-        printf("\n");
-        printf("ID DO QUARTO: %s\n", quar->n_quarto);
-        printf("CPF: %s\n", quar->cpf);
-        printf("QUANTIDADE DE HOSPEDES: %s\n", quar->quan_pessoas);
-        printf("STATUS: %c\n", quar->status);
         enter();
     }
     
@@ -388,9 +352,20 @@ void cad_quartos(void){
 
     fwrite(quar, sizeof(Quartos), 1, arq_quartos);
 
-    printf("Quarto com ID %s cadastrado no sistema.", quar->n_quarto);
+    printf("*QUARTO CADASTRADO*");
+    exib_quarto(quar);
+    enter();
 
     fclose(arq_quartos);
     free(quar);
 
+}
+
+
+void exib_quarto(Quartos *quar){
+    printf("\n");
+    printf("ID DO QUARTO: %s\n", quar->n_quarto);
+    printf("CPF: %s\n", quar->cpf);
+    printf("QUANTIDADE DE PESSOAS: %s\n", quar->quan_pessoas);
+    printf("STATUS: %s\n", quar->status ? "OCUPADO" : "VAZIO");
 }
