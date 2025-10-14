@@ -2,14 +2,6 @@
 //modulo clientes//
 ///////////////////
 
-void modulo_clientes(void);
-char tela_clientes(void);
-void cad_clientes(void);
-void edit_clientes(void);
-void list_clientes(void);
-void busc_clientes(void);
-void exclu_clientes(void);
-
 struct clientes
 {
     char cpf [18];
@@ -20,3 +12,13 @@ struct clientes
 };
 
 typedef struct clientes Clientes;
+
+void modulo_clientes(void);
+char tela_clientes(void);
+void cad_clientes(void);
+void edit_clientes(void);
+void list_clientes(void);
+void busc_clientes(void);
+void exclu_clientes(void);
+void exib_cliente(Clientes *cli);
+

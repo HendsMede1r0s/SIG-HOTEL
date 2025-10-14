@@ -108,11 +108,8 @@ void cad_clientes(void){
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("CPF: %s\n", cli->cpf);
-    printf("NOME: %s\n", cli->nome);
-    printf("TELEFONE: %s\n", cli->cell);
-    printf("NUMERO DO QUARTO: %s\n", cli->n_quarto);
+    exib_cliente(cli);
+    
 
     fclose(arq_clientes);
     free(cli);
@@ -157,6 +154,11 @@ void edit_clientes(void){
 
             fseek(arq_clientes, (-1)*sizeof(Clientes), SEEK_CUR);
             fwrite(cli, sizeof(Clientes), 1, arq_clientes);
+
+            limpa_tela();
+            printf("*NOVOS DADOS*");
+            exib_cliente(cli);
+            enter();
         }
 
     }
@@ -165,25 +167,6 @@ void edit_clientes(void){
     
     if (!encontrado) {
         printf("Cliente não encontrado no banco de dados.\n");
-        enter();
-    }
-
-    if (encontrado) {
-        limpa_tela();
-        printf("\n");
-        printf("┌────────────────────────────────────────────────────────────┐\n");
-        printf("│############################################################│\n");
-        printf("│#                                                          #│\n");
-        printf("│#                    {Cliente editado!}                    #│\n");
-        printf("│#                                                          #│\n");
-        printf("│############################################################│\n");
-        printf("└────────────────────────────────────────────────────────────┘\n");
-        printf("\n");
-        printf("Cliente com CPF %s editado com sucesso!\n", cli->cpf);
-        printf("CPF: %s\n", cli->cpf);
-        printf("NOME: %s\n", cli->nome);
-        printf("TELEFONE: %s\n", cli->cell);
-        printf("ID DO QUARTO: %s\n", cli->n_quarto);
         enter();
     }
     
@@ -218,11 +201,9 @@ void list_clientes(void){
 
     while(fread(cli, sizeof(Clientes), 1, arq_clientes)){
         printf("\n");
-        printf("CPF: %s\n", cli->cpf);
-        printf("NOME: %s\n", cli->nome);
-        printf("TELEFONE: %s\n", cli->cell);
-        printf("NUMERO DO QUARTO: %s\n", cli->n_quarto);  
+        exib_cliente(cli);
     }
+
     fclose(arq_clientes);
     free(cli);
     enter();
@@ -258,16 +239,14 @@ void busc_clientes(void){
     while (fread(cli, sizeof(Clientes), 1, arq_clientes)) {
         if ((strcmp(cpf_lido, cli->cpf) == 0) && (cli->status)) {
             printf("\n*CLIENTE ENCONTRADO*\n");
-            printf("CPF: %s\n", cli->cpf);
-            printf("NOME: %s\n", cli->nome);
-            printf("TELEFONE: %s\n", cli->cell);
-            printf("ID DO QUARTO: %s\n", cli->n_quarto);
+            exib_cliente(cli);
             fclose(arq_clientes);
             free(cli);
             enter();
             return;
         }
     }
+
     printf("\n*CLIENTE COM CPF %s NAO ENCONTRADO*\n", cpf_lido);
     fclose(arq_clientes);
     free(cli);
@@ -333,4 +312,14 @@ void exclu_clientes(void){
         enter();
     }
 
+}
+
+
+void exib_cliente(Clientes *cli){
+    printf("\n");
+    printf("CPF: %s\n", cli->cpf);
+    printf("NOME: %s\n", cli->nome);
+    printf("TELEFONE: %s\n", cli->cell);
+    printf("ID DO QUARTO: %s\n", cli->n_quarto);
+    printf("STATUS: %s\n", cli->status ? "Ativo" : "Excluido");
 }
