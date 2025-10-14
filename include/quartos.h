@@ -1,11 +1,3 @@
-void modulo_quartos(void);
-char tela_quartos(void);
-void check_in(void);
-void list_quartos(void);
-void check_out(void);
-void busc_quartos(void);
-void edit_quartos(void);
-void cad_quartos(void);
 
 struct quartos
 {
@@ -16,3 +8,15 @@ struct quartos
 };
 
 typedef struct quartos Quartos;
+
+void modulo_quartos(void);
+char tela_quartos(void);
+void check_in(void);
+void list_quartos(void);
+void check_out(void);
+void busc_quartos(void);
+void edit_quartos(void);
+void cad_quartos(void);
+void exib_quarto(Quartos *quar);
+
+
