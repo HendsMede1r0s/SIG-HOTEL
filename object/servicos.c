@@ -17,13 +17,10 @@ void modulo_servicos(void){
                 cad_servico();
                 break;
             case '2':
-                edit_servicos();
-                break;
-            case '3':
                 list_servicos();
                 break;
-            case '4':
-                atri_servico();
+            case '3':
+                exclu_servicos();
                 break;
         }
     } while (op != '0'); 
@@ -42,9 +39,8 @@ char tela_servicos(void){
     printf("|──────────────────────────────────────────────────────|\n");
     printf("|                                                      |\n");
     printf("|       [1] -> Cadastrar Serviços                      |\n");
-    printf("|       [2] -> Editar Serviços                         |\n");
-    printf("|       [3] -> Listar Serviços                         |\n");
-    printf("|       [4] -> Atribuir Serviço ao funcionario         |\n");
+    printf("|       [2] -> Listar serviços                         |\n");
+    printf("|       [3] -> Apagar servico                          |\n");
     printf("|       [0] -> Voltar                                  |\n");
     printf("└──────────────────────────────────────────────────────┘\n");
     printf("\n");
@@ -60,7 +56,8 @@ void cad_servico(void){
     limpa_tela();
 
     FILE *arq_servicos;
-    Servicos servi;
+    Servicos* servi;
+    servi = (Servicos*)malloc(sizeof(Servicos));
 
     printf("\n");
     printf("┌───────────────────────────────────────────────────────┐\n");
@@ -71,15 +68,15 @@ void cad_servico(void){
     printf("|#######################################################|\n");
     printf("└───────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(servi.servi, 55, "Digite o novo serviço:");
+    input(servi->servi, 55, "Digite o novo serviço:");
 
-    arq_servicos = fopen("./data/servicos.csv", "at");
+    arq_servicos = fopen("./data/servicos.dat", "ab");
     if(arq_servicos == NULL){
         printf("\t Erro ao abrir o arquivo serviços\n");
         enter();
         return;
     }
-    fprintf(arq_servicos, "%s\n", servi.servi);
+    fwrite(servi, sizeof(Servicos), 1, arq_servicos);
     fclose(arq_servicos);
 
     limpa_tela();
@@ -92,73 +89,17 @@ void cad_servico(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Serviço: %s", servi.servi);
+    printf("Serviço: %s", servi->servi);
+    free(servi);
     enter();
 }
-
-
-void edit_servicos(void){
-    limpa_tela();
-
-    FILE *arq_servicos;
-    FILE *arq_servicos_temp;
-
-    Servicos servi;
-
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#               {Serviço -> Editar Serviços}               #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    input(servi.servi_lido, 55, "Digite o servico que deseja editar:");
-
-    arq_servicos = fopen("./data/servicos.csv", "rt");
-    arq_servicos_temp = fopen("./data/servicos_temp.csv", "wt");
-    if(arq_servicos == NULL || arq_servicos_temp == NULL){
-        printf("Erro ao abrir o arquivo!\n");
-        enter();
-        return;
-    }
-
-    while(fscanf(arq_servicos, "%[^\n]\n", servi.servi_lido) == 1){
-        if(strcmp(servi.servi, servi.servi_lido) != 0){
-            fprintf(arq_servicos_temp, "%s\n", servi.servi);
-        }
-        else{
-            input(servi.servi, 55, "Digite o serviço: ");
-            fprintf(arq_servicos_temp, "%s", servi.servi);
-        }
-    }
-
-    fclose(arq_servicos);
-    fclose(arq_servicos_temp);
-    remove("./data/servicos.csv");
-    rename("./data/servicos_temp.csv", "./data/servicos.csv");
-
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#                    {Serviço Editado!}                    #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Serviço editado: %s", servi.servi);
-    enter();
-}
-
 
 void list_servicos(void){
     limpa_tela();
 
     FILE *arq_servicos;
-    Servicos servi;
+    Servicos* servi;
+    servi = (Servicos*)malloc(sizeof(Servicos));
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -170,18 +111,20 @@ void list_servicos(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     
-    arq_servicos = fopen("./data/servicos.csv", "rt");
+    arq_servicos = fopen("./data/servicos.dat", "rb");
     if(arq_servicos == NULL){
         printf("\t Erro ao abrir o arquivo serviços.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        enter();
         return;
     }
-    while(!feof(arq_servicos)){
-        fscanf(arq_servicos, "%[^;]", servi.servi);
-        fgetc(arq_servicos);
+    printf("SERVICOS CADASTRADOS\n");
+    while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
+        printf("%s", servi->servi);
+        printf("\n");
         
     }
     fclose(arq_servicos);
+    free(servi);
     return;
 }
 
@@ -191,7 +134,9 @@ void exclu_servicos(void){
 
     FILE *arq_servicos;
     FILE *arq_servicos_temp;
-    Servicos servi;
+    Servicos* servi;
+    servi = (Servicos*)malloc(sizeof(Servicos));
+    char servi_lido[55];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -202,26 +147,27 @@ void exclu_servicos(void){
     printf("|############################################################|\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(servi.servi_lido, 55, "Informe o seriço a ser removido: ");
+    input(servi_lido, 55, "Informe o seriço a ser removido: ");
 
-    arq_servicos = fopen("./data/servicos.csv", "rt");
-    arq_servicos_temp = fopen("./data/servicos_temp.csv", "wt");
+    arq_servicos = fopen("./data/servicos.dat", "rb");
+    arq_servicos_temp = fopen("./data/servicos_temp.dat", "wb");
     if(arq_servicos == NULL || arq_servicos_temp == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
         return;
     }
 
-    while(fscanf(arq_servicos, "%[\n]\n", servi.servi) == 1){
-        if(strcmp(servi.servi, servi.servi_lido) != 0){
-            fprintf(arq_servicos_temp, "%s\n", servi.servi);
+    while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
+        if(strcmp(servi_lido, servi->servi) != 0){
+            fwrite(servi->servi, sizeof(Servicos), 1, arq_servicos_temp);
         }
     }
 
     fclose(arq_servicos);
     fclose(arq_servicos_temp);
-    remove("./data/servicos.csv");
-    rename("./data/servicos_temp.csv", "./data/servicos.csv");
+    remove("./data/servicos.dat");
+    rename("./data/servicos_temp.dat", "./data/servicos.dat");
+    free(servi);
 
     limpa_tela();
     printf("\n");
@@ -232,22 +178,6 @@ void exclu_servicos(void){
     printf("|#                                                          #|\n");
     printf("|############################################################|\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    enter();
-}
-
-
-void atri_servico(void){
-    limpa_tela();
-
-    printf("\n");
-    printf("┌─────────────────────────────────────────────────────────────┐\n");
-    printf("|#############################################################|\n");
-    printf("|#                                                           #|\n");
-    printf("|#       {Serviços -> Atribuir serviço ao funcionario}       #|\n");
-    printf("|#                                                           #|\n");
-    printf("|#############################################################|\n");
-    printf("└─────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     enter();
 }
