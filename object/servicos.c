@@ -94,64 +94,6 @@ void cad_servico(void){
     enter();
 }
 
-
-/*void edit_servicos(void){
-    limpa_tela();
-
-    FILE *arq_servicos;
-    FILE *arq_servicos_temp;
-
-    Servicos servi;
-
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#               {Serviço -> Editar Serviços}               #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    input(servi.servi_lido, 55, "Digite o servico que deseja editar:");
-
-    arq_servicos = fopen("./data/servicos.csv", "rt");
-    arq_servicos_temp = fopen("./data/servicos_temp.csv", "wt");
-    if(arq_servicos == NULL || arq_servicos_temp == NULL){
-        printf("Erro ao abrir o arquivo!\n");
-        enter();
-        return;
-    }
-
-    while(fscanf(arq_servicos, "%[^\n]\n", servi.servi_lido) == 1){
-        if(strcmp(servi.servi, servi.servi_lido) != 0){
-            fprintf(arq_servicos_temp, "%s\n", servi.servi);
-        }
-        else{
-            input(servi.servi, 55, "Digite o serviço: ");
-            fprintf(arq_servicos_temp, "%s", servi.servi);
-        }
-    }
-
-    fclose(arq_servicos);
-    fclose(arq_servicos_temp);
-    remove("./data/servicos.csv");
-    rename("./data/servicos_temp.csv", "./data/servicos.csv");
-
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#                    {Serviço Editado!}                    #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Serviço editado: %s", servi.servi);
-    enter();
-} */
-
-
 void list_servicos(void){
     limpa_tela();
 
@@ -172,7 +114,7 @@ void list_servicos(void){
     arq_servicos = fopen("./data/servicos.dat", "rb");
     if(arq_servicos == NULL){
         printf("\t Erro ao abrir o arquivo serviços.\n");
-        printf("\t {Digite ENTER para continuar}\n");
+        enter();
         return;
     }
     printf("SERVICOS CADASTRADOS\n");
@@ -217,7 +159,7 @@ void exclu_servicos(void){
 
     while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
         if(strcmp(servi_lido, servi->servi) != 0){
-            fprintf(arq_servicos_temp, "%s", servi->servi);
+            fwrite(servi->servi, sizeof(Servicos), 1, arq_servicos_temp);
         }
     }
 
