@@ -151,7 +151,7 @@ void edit_funcionarios(void){
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) == 0){
             encontrado = True;
-            printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", cpf_lido);
+            printf("*Digite as novas informaçoes do funcionario com CPF: %s*\n", cpf_lido);
             input(fun->nome, 55, "Digite o nome do funcionario: ");
             input(fun->cell, 18, "Digite o telefone do funcionario: ");
 
@@ -159,7 +159,7 @@ void edit_funcionarios(void){
             fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
 
             limpa_tela();
-            printf("*NOVOS DADOS*");
+            printf("*NOVOS DADOS*\n");
             printf("Funcionario editado!");
             enter();
         }
