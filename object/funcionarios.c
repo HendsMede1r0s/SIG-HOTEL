@@ -98,7 +98,7 @@ void cad_funcionarios(void){
         return;
     }
     fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
-    fclose(arq_funcionarios);
+    
     
     limpa_tela();
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -114,6 +114,7 @@ void cad_funcionarios(void){
     printf("\nTELEFONE: %s", fun->cell);
     printf("\nSTATUS: %i", fun->status);
     printf("\n");
+    fclose(arq_funcionarios);
     enter();
     free(fun);
 }
