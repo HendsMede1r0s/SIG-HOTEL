@@ -114,6 +114,7 @@ void cad_funcionarios(void){
     printf("\nTELEFONE: %s", fun->cell);
     printf("\nSTATUS: %i", fun->status);
     printf("\n");
+
     fclose(arq_funcionarios);
     enter();
     free(fun);
@@ -127,6 +128,7 @@ void edit_funcionarios(void){
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
+    int encontrado = False;
 
     printf("\n");
     printf("┌──────────────────────────────────────────────────────────┐\n");
@@ -148,32 +150,30 @@ void edit_funcionarios(void){
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) == 0){
+            encontrado = True;
             printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", cpf_lido);
             input(fun->nome, 55, "Digite o nome do funcionario: ");
             input(fun->cell, 18, "Digite o telefone do funcionario: ");
+
             fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
             fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
+
+            limpa_tela();
+            printf("*NOVOS DADOS*");
+            printf("Funcionario editado!");
+            enter();
         }
     }
 
     fclose(arq_funcionarios);
 
-    limpa_tela();
-    printf("┌────────────────────────────────────────────────────────┐\n");
-    printf("|########################################################|\n");
-    printf("|#                                                      #|\n");
-    printf("|#                {Funcionario editado!}                #|\n");
-    printf("|#                                                      #|\n");
-    printf("|########################################################|\n");
-    printf("└────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Funcionario com CPF %s foi editado com sucesso!\n", cpf_lido);
-    printf("CPF: %s\n", cpf_lido);
-    printf("NOME: %s\n", fun->nome);
-    printf("TELEFONE: %s\n", fun->cell);
+    if(!encontrado){
+        printf("Funcionario não encotrado no banco de dados!");
+        enter();;
+    }
+
     free(fun);
-    printf("\n");
-    enter();
+
 }
 
 void exib_funcionarios(void){
