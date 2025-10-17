@@ -125,7 +125,7 @@ void list_servicos(void){
         return;
     }
 
-    printf("SERVICOS CADASTRADOS\n");
+    printf("SERVICOS CADASTRADOS:\n");
     while (fread(servi, sizeof(Servicos), 1, arq_servicos)) {
         printf("%s\n", servi->servi);
     }
