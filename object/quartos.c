@@ -84,7 +84,7 @@ void check_in(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(n_quarto_lido, 7, "Digite o id do quarto: ");
+    input(n_quarto_lido, 7, "Digite o ID do quarto: ");
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
     if (arq_quartos == NULL) {
@@ -287,7 +287,7 @@ void edit_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(n_quarto_lido, 7, "Digite o id do quarto que deseja editar: ");
+    input(n_quarto_lido, 7, "Digite o ID do quarto que deseja editar: ");
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
     if (arq_quartos == NULL) {
