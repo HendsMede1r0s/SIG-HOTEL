@@ -98,7 +98,7 @@ void cad_funcionarios(void){
         return;
     }
     fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
-    fclose(arq_funcionarios);
+    
     
     limpa_tela();
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -114,6 +114,8 @@ void cad_funcionarios(void){
     printf("\nTELEFONE: %s", fun->cell);
     printf("\nSTATUS: %i", fun->status);
     printf("\n");
+
+    fclose(arq_funcionarios);
     enter();
     free(fun);
 }
@@ -126,6 +128,7 @@ void edit_funcionarios(void){
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
+    int encontrado = False;
 
     printf("\n");
     printf("┌──────────────────────────────────────────────────────────┐\n");
@@ -147,32 +150,30 @@ void edit_funcionarios(void){
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) == 0){
-            printf("*Digite as novas informaçoes do funcionario com CPF: %s\n*", cpf_lido);
+            encontrado = True;
+            printf("*Digite as novas informaçoes do funcionario com CPF: %s*\n", cpf_lido);
             input(fun->nome, 55, "Digite o nome do funcionario: ");
             input(fun->cell, 18, "Digite o telefone do funcionario: ");
+
             fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
             fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
+
+            limpa_tela();
+            printf("*NOVOS DADOS*\n");
+            printf("Funcionario editado!");
+            enter();
         }
     }
 
     fclose(arq_funcionarios);
 
-    limpa_tela();
-    printf("┌────────────────────────────────────────────────────────┐\n");
-    printf("|########################################################|\n");
-    printf("|#                                                      #|\n");
-    printf("|#                {Funcionario editado!}                #|\n");
-    printf("|#                                                      #|\n");
-    printf("|########################################################|\n");
-    printf("└────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Funcionario com CPF %s foi editado com sucesso!\n", cpf_lido);
-    printf("CPF: %s\n", cpf_lido);
-    printf("NOME: %s\n", fun->nome);
-    printf("TELEFONE: %s\n", fun->cell);
+    if(!encontrado){
+        printf("Funcionario não encotrado no banco de dados!");
+        enter();;
+    }
+
     free(fun);
-    printf("\n");
-    enter();
+
 }
 
 void exib_funcionarios(void){
@@ -234,16 +235,19 @@ void list_funcionarios(void){
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
     if(arq_funcionarios == NULL){
-        printf("Erro ao abrir o arquivo funcionarios!");
+        printf("Erro ao abrir o arquivo!");
         enter();
         return;
     }
-    printf("NOME \t\t CPF \t\t\t TELEFONE");
-    while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        printf("\n%s\t\t",fun->nome);
-        printf("%s\t\t",fun->cpf);
-        printf("%s\t\t",fun->cell);
-        printf("\n");
+    else{
+        printf("NOME \t\t CPF \t\t\t TELEFONE");
+        while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
+            printf("\n%s\t\t",fun->nome);
+            printf("%s\t\t",fun->cpf);
+            printf("%s\t\t",fun->cell);
+            printf("\n");
+    }
+    
     }
 
     fclose(arq_funcionarios);
@@ -258,6 +262,7 @@ void exclu_funcionarios(void){
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
+    int encontrado = False;
 
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -278,27 +283,36 @@ void exclu_funcionarios(void){
     }
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        if(strcmp(cpf_lido, fun->cpf) != 0){
-            fprintf(arq_funcionarios, "%s;%s;%s\n", fun->cpf, fun->nome, fun->cell);
-        }
-        else{
+        if(strcmp(cpf_lido, fun->cpf) == 0){
             fun->status = False;
+            encontrado = True;
+            fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
+            fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
         }
     }
 
     fclose(arq_funcionarios);
 
-    limpa_tela();
-    printf("\n");
-    printf("┌─────────────────────────────────────────────────────────┐\n");
-    printf("|#########################################################|\n");
-    printf("|#                                                       #|\n");
-    printf("|#                {Funcionario excluido!}                #|\n");
-    printf("|#                                                       #|\n");
-    printf("|#########################################################|\n");
-    printf("└─────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Funcionario com CPF %s foi excluido com sucesso!\n", cpf_lido);
-    free(fun);
-    enter();
+    if(!encontrado){
+        printf("Cliente não encontrado no banco de dados");
+        enter();
+    }
+
+    if(encontrado){
+        limpa_tela();
+        printf("\n");
+        printf("┌─────────────────────────────────────────────────────────┐\n");
+        printf("|#########################################################|\n");
+        printf("|#                                                       #|\n");
+        printf("|#                {Funcionario excluido!}                #|\n");
+        printf("|#                                                       #|\n");
+        printf("|#########################################################|\n");
+        printf("└─────────────────────────────────────────────────────────┘\n");
+        printf("\n");
+        printf("Funcionario com CPF %s foi excluido com sucesso!\n", cpf_lido);
+        free(fun);
+        enter();
+
+    }
+    
 }
