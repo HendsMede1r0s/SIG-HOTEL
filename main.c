@@ -8,7 +8,7 @@
 #include <locale.h>
 #include <string.h>
 #include "./include/menu_inicial.h"
-#include "./include/clientes.h"
+#include "./include/hospedes.h"
 #include "./include/funcionarios.h"
 #include "./include/quartos.h"
 #include "./include/servicos.h"
@@ -20,7 +20,7 @@
 #include "./include/utilidades.h"
 
 //////////////////////////////////////
-/////////// Main /////////////////////
+//////////////// Main ////////////////
 //////////////////////////////////////
 
 int main(void){
@@ -33,7 +33,7 @@ int main(void){
                 tela_final();
                 break;
             case '1':
-                modulo_clientes();
+                modulo_hospedes();
                 break;
             case '2':
                 modulo_funcionarios();

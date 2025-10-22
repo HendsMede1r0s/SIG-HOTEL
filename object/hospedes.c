@@ -1,36 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "clientes.h"
+#include "hospedes.h"
 #include "utilidades.h"
+#include "leitura.h"
 #include "tela_voltar_menu.h"
 
-typedef struct clientes Clientes;
+typedef struct hospedes Hospedes;
 
-void modulo_clientes(void){
+void modulo_hospedes(void){
 
     char op;
 
     do {
-        op = tela_clientes();
+        op = tela_hospedes();
         switch (op) {
             case '0':
                 tela_voltar();
                 break;
             case '1':
-                cad_clientes();
+                cad_hospedes();
                 break;
             case '2':
-                edit_clientes();
+                edit_hospedes();
                 break;
             case '3':
-                list_clientes();
+                list_hospedes();
                 break;
             case '4':
-                busc_clientes();
+                busc_hospedes();
                 break;
             case '5':
-                exclu_clientes();
+                exclu_hospedes();
                 break;
             default:
                 tela_op_invalida();
@@ -39,7 +40,7 @@ void modulo_clientes(void){
     } while (op != '0'); 
 }
 
-char tela_clientes(void){
+char tela_hospedes(void){
     limpa_tela();
 
     char op;
@@ -47,15 +48,15 @@ char tela_clientes(void){
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│                                                            │\n");
-    printf("│                          -Clientes-                        │\n");
+    printf("│                          -Hospedes-                        │\n");
     printf("│                                                            │\n");
     printf("│────────────────────────────────────────────────────────────│\n");
     printf("│                                                            │\n");
     printf("│        [1] -> Cadastar                                     │\n");
     printf("│        [2] -> Editar informacoes                           │\n");
-    printf("│        [3] -> Listar clientes                              │\n");
-    printf("│        [4] -> Buscar clientes                              │\n");
-    printf("│        [5] -> Excluir clientes                             │\n");
+    printf("│        [3] -> Listar hospedes                              │\n");
+    printf("│        [4] -> Buscar hospedes                              │\n");
+    printf("│        [5] -> Excluir hospedes                             │\n");
     printf("│        [0] -> Voltar                                       │\n");
     printf("│                                                            │\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
@@ -68,61 +69,61 @@ char tela_clientes(void){
 }
 
 
-void cad_clientes(void){
+void cad_hospedes(void){
     limpa_tela();
 
-    FILE *arq_clientes;
-    Clientes *cli;
-    cli = (Clientes*)malloc(sizeof(Clientes));
+    FILE *arq_hospedes;
+    Hospedes *hos;
+    hos = (Hospedes*)malloc(sizeof(Hospedes));
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                  {Clientes -> Cadastrar}                 #│\n");
+    printf("│#                  {Hospedes -> Cadastrar}                 #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cli->cpf, 18, "Digite o CPF do cliente: ");
-    input(cli->nome, 55, "Digite o nome do cliente: ");
-    input(cli->cell, 18, "Digite o numero telefone do cliente: ");
-    input(cli->n_quarto, 7, "Digite o ID do quarto do cliente: ");
+    ler_cpf(hos->cpf, 18);
+    ler_nome(hos->nome, 55);
+    ler_cell(hos->cell, 18);
+    ler_n_quarto(hos->n_quarto,7);
 
-    cli->status = True;
-    arq_clientes = fopen("./data/clientes.dat", "ab");
-    if (arq_clientes == NULL) {
+    hos->status = True;
+    arq_hospedes = fopen("./data/hospedes.dat", "ab");
+    if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
     }
 
-    fwrite(cli, sizeof(Clientes), 1, arq_clientes);
+    fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
+    fclose(arq_hospedes);
 
     limpa_tela();
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#             {Cliente cadastrado com sucesso!}            #│\n");
+    printf("│#             {Hospede cadastrado com sucesso!}            #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
-    exib_cliente(cli);
+    exib_hospede(hos);
     
 
-    fclose(arq_clientes);
-    free(cli);
+    free(hos);
     enter();
 }
 
 
-void edit_clientes(void){
+void edit_hospedes(void){
     limpa_tela();
 
-    FILE *arq_clientes;
-    Clientes *cli;
-    cli = (Clientes*)malloc(sizeof(Clientes));
+    FILE *arq_hospedes;
+    Hospedes *hos;
+    hos = (Hospedes*)malloc(sizeof(Hospedes));
     char cpf_lido [18];
     int encontrado = False;
 
@@ -130,136 +131,125 @@ void edit_clientes(void){
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                   {Clientes -> Editar}                   #│\n");
+    printf("│#                   {Hospedes -> Editar}                   #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF do cliente a ser editado: ");
+    ler_cpf(cpf_lido, 18);
 
-    arq_clientes = fopen("./data/clientes.dat", "r+b");
-    if (arq_clientes == NULL) {
+    arq_hospedes = fopen("./data/hospedes.dat", "r+b");
+    if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
     }
 
-    while (fread(cli, sizeof(Clientes), 1, arq_clientes)) {
-        if (strcmp(cli->cpf, cpf_lido) == 0) {
+    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
+        if (strcmp(hos->cpf, cpf_lido) == 0) {
             encontrado = True;
-            input(cli->cpf, 18, "Digite o novo CPF do hospede: ");
-            input(cli->nome, 55, "Digite o nome do hospede: ");
-            input(cli->cell, 18, "Digite o numero de telefone do cliente: ");
-            input(cli->n_quarto, 7, "Digite o ID do quarto do cliente: ");
 
-            fseek(arq_clientes, (-1)*sizeof(Clientes), SEEK_CUR);
-            fwrite(cli, sizeof(Clientes), 1, arq_clientes);
+            fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
+            fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
 
             limpa_tela();
-            printf("*NOVOS DADOS*");
-            exib_cliente(cli);
+            exib_hospede(hos);
             enter();
         }
 
     }
 
-    fclose(arq_clientes);
+    fclose(arq_hospedes);
     
     if (!encontrado) {
-        printf("Cliente não encontrado no banco de dados.\n");
+        printf("Não encontrado no banco de dados.\n");
         enter();
     }
     
-    free(cli);
+    free(hos);
 
 }
 
 
-void list_clientes(void){
+void list_hospedes(void){
     limpa_tela();
 
-    FILE *arq_clientes;
-    Clientes *cli;
-    cli = (Clientes*)malloc(sizeof(Clientes));
+    FILE *arq_hospedes;
+    Hospedes *hos;
+    hos = (Hospedes*)malloc(sizeof(Hospedes));
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                   {Clientes -> Listar}                   #│\n");
+    printf("│#                   {Hospedes -> Listar}                   #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
 
-    arq_clientes = fopen("./data/clientes.dat", "rb");
-    if (arq_clientes == NULL) {
+    arq_hospedes = fopen("./data/hospedes.dat", "rb");
+    if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
     }
 
-    while(fread(cli, sizeof(Clientes), 1, arq_clientes)){
-        printf("\n");
-        exib_cliente(cli);
+    while(fread(hos, sizeof(Hospedes), 1, arq_hospedes)){
+        exib_hospede(hos);
     }
 
-    fclose(arq_clientes);
-    free(cli);
+    fclose(arq_hospedes);
+    free(hos);
     enter();
 }
 
 
-void busc_clientes(void){
+void busc_hospedes(void){
     limpa_tela();
 
-    FILE *arq_clientes;
-    Clientes *cli;
-    cli = (Clientes*)malloc(sizeof(Clientes));
+    FILE *arq_hospedes;
+    Hospedes *hos;
+    hos = (Hospedes*)malloc(sizeof(Hospedes));
     char cpf_lido [18];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                   {Clientes -> Buscar}                   #│\n");
+    printf("│#                   {Hospedes -> Buscar}                   #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF a ser pesquisado: ");
+    ler_cpf(cpf_lido, 18);
 
-    arq_clientes = fopen("./data/clientes.dat", "rb");
-    if (arq_clientes == NULL) {
+    arq_hospedes = fopen("./data/hospedes.dat", "rb");
+    if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
     }
 
-    while (fread(cli, sizeof(Clientes), 1, arq_clientes)) {
-        if ((strcmp(cpf_lido, cli->cpf) == 0) && (cli->status)) {
-            printf("\n*CLIENTE ENCONTRADO*\n");
-            exib_cliente(cli);
-            fclose(arq_clientes);
-            free(cli);
+    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
+        if ((strcmp(hos->cpf, cpf_lido) == 0) && (hos->status)) {
+            printf("\n*ENCONTRADO*\n");
+            exib_hospede(hos);
             enter();
-            return;
         }
     }
 
-    printf("\n*CLIENTE COM CPF %s NAO ENCONTRADO*\n", cpf_lido);
-    fclose(arq_clientes);
-    free(cli);
-    enter();
+    fclose(arq_hospedes);
+    free(hos);
 }
 
 
-void exclu_clientes(void){
+void exclu_hospedes(void){
     limpa_tela();
 
-    FILE *arq_clientes;
-    Clientes *cli;
-    cli = (Clientes*)malloc(sizeof(Clientes));
+    FILE *arq_hospedes;
+    Hospedes *hos;
+    hos = (Hospedes*)malloc(sizeof(Hospedes));
     char cpf_lido [18];
     int encontrado = False;
 
@@ -267,33 +257,34 @@ void exclu_clientes(void){
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
     printf("│#                                                          #│\n");
-    printf("│#                   {Clientes -> Excluir}                  #│\n");
+    printf("│#                   {Hospedes -> Excluir}                  #│\n");
     printf("│#                                                          #│\n");
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF do cliente a ser excluido: ");
+    ler_cpf(cpf_lido, 18);
 
-    arq_clientes = fopen("./data/clientes.dat", "r+b");
-    if (arq_clientes == NULL) {
+    arq_hospedes = fopen("./data/hospedes.dat", "r+b");
+    if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         enter();
         return;
     }
 
-    while (fread(cli, sizeof(Clientes), 1, arq_clientes) && (!encontrado)) {
-        if (strcmp(cli->cpf, cpf_lido) == 0) {
-            cli->status = False;
+    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes) && (!encontrado)) {
+        if (strcmp(hos->cpf, cpf_lido) == 0) {
+            exib_hospede(hos);
+            hos->status = False;
             encontrado = True;
-            fseek(arq_clientes, (-1)*sizeof(Clientes), SEEK_CUR);
-            fwrite(cli, sizeof(Clientes), 1, arq_clientes);
+            fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
+            fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
         }
     }
 
-    fclose(arq_clientes);
+    fclose(arq_hospedes);
 
     if (!encontrado) {
-        printf("Cliente não encontrado no banco de dados.\n");
+        printf("Hospede não encontrado no banco de dados.\n");
         enter();
     }
 
@@ -303,23 +294,23 @@ void exclu_clientes(void){
         printf("┌────────────────────────────────────────────────────────────┐\n");
         printf("│############################################################│\n");
         printf("│#                                                          #│\n");
-        printf("│#                    {Cliente excluido!}                   #│\n");
+        printf("│#                    {Hospede excluido!}                   #│\n");
         printf("│#                                                          #│\n");
         printf("│############################################################│\n");
         printf("└────────────────────────────────────────────────────────────┘\n");
         printf("\n");
-        printf("Clientes com CPF %s foi excluido com sucesso!\n", cpf_lido);
+        printf("Hospede com CPF %s foi excluido com sucesso!\n", cpf_lido);
         enter();
     }
 
 }
 
 
-void exib_cliente(Clientes *cli){
+void exib_hospede(Hospedes *hos){
     printf("\n");
-    printf("CPF: %s\n", cli->cpf);
-    printf("NOME: %s\n", cli->nome);
-    printf("TELEFONE: %s\n", cli->cell);
-    printf("ID DO QUARTO: %s\n", cli->n_quarto);
-    printf("STATUS: %s\n", cli->status ? "Ativo" : "Excluido");
+    printf("CPF: %s\n", hos->cpf);
+    printf("NOME: %s\n", hos->nome);
+    printf("TELEFONE: %s\n", hos->cell);
+    printf("ID DO QUARTO: %s\n", hos->n_quarto);
+    printf("STATUS: %s\n", hos->status ? "Ativo" : "Excluido");
 }
