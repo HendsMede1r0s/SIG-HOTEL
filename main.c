@@ -17,6 +17,7 @@
 #include "./include/final.h"
 #include "./include/relatorio.h"
 #include "./include/leitura.h"
+#include "./include/utilidades.h"
 
 //////////////////////////////////////
 /////////// Main /////////////////////
