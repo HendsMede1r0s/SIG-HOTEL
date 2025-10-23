@@ -62,7 +62,7 @@ char tela_hospedes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("Digite uma opçao: ");
-    scanf(" %c", &op);
+    scanf("%c", &op);
     getchar();
     printf("\n");
     return(op);
@@ -147,6 +147,9 @@ void edit_hospedes(void){
 
     while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
         if (strcmp(hos->cpf, cpf_lido) == 0) {
+            exib_hospede(hos);
+            enter();
+            switch_edit(hos);
             encontrado = True;
 
             fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
@@ -313,4 +316,62 @@ void exib_hospede(Hospedes *hos){
     printf("TELEFONE: %s\n", hos->cell);
     printf("ID DO QUARTO: %s\n", hos->n_quarto);
     printf("STATUS: %s\n", hos->status ? "Ativo" : "Excluido");
+}
+
+
+char menu_edit(void){
+    limpa_tela();
+
+    char op;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│                                                            │\n");
+    printf("│                          -Hospedes-                        │\n");
+    printf("│                                                            │\n");
+    printf("│────────────────────────────────────────────────────────────│\n");
+    printf("│                                                            │\n");
+    printf("│        [1] -> CPF                                          │\n");
+    printf("│        [2] -> Nome                                         │\n");
+    printf("│        [3] -> Telefone                                     │\n");
+    printf("│        [4] -> ID do quarto                                 │\n");
+    printf("│        [0] -> Voltar                                       │\n");
+    printf("│                                                            │\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o numero do que deseja editar: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
+    return op;
+}
+
+
+void switch_edit(Hospedes *hos){
+
+    char op;
+
+    do {
+        op = menu_edit();
+        switch (op) {
+            case '0':
+                tela_voltar();
+                break;
+            case '1':
+                ler_cpf(hos->cpf, 18);
+                break;
+            case '2':
+                ler_nome(hos->nome, 55);
+                break;
+            case '3':
+                ler_cell(hos->cell, 18);
+                break;
+            case '4':
+                ler_n_quarto(hos->n_quarto, 7);
+                break;
+            default:
+                tela_op_invalida();
+                break;
+        }
+    } while (op != '0');
 }

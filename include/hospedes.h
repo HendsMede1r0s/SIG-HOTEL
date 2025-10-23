@@ -21,4 +21,6 @@ void list_hospedes(void);
 void busc_hospedes(void);
 void exclu_hospedes(void);
 void exib_hospede(Hospedes *hos);
+char menu_edit(void);
+void switch_edit(Hospedes *hos);
 
