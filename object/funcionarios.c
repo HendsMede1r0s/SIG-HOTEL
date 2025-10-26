@@ -4,6 +4,7 @@
 #include "funcionarios.h"
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
+#include "leitura.h"
 #define True 1;
 #define False 0;
 
