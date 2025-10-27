@@ -89,7 +89,7 @@ void cad_funcionarios(void){
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(fun->cpf, 18, "Digite o cpf do funcionario: ");
-    verifica_nome(fun->nome, 55);
+    ler_nome(fun->nome, 55);
     input(fun->cell, 18, "Digite o telefone do funcionario: ");
     fun->status = True;
 
@@ -317,22 +317,4 @@ void exclu_funcionarios(void){
 
     }
     
-}
-
-int verifica_nome(char *nome, int tam){
-
-    input(nome, tam, "Digite o nome: ");
-    int tam = strlen(nome)
-
-    if(tam == 0){
-        return 0;
-    }
-
-    for(int i = 0; i < tam; i++){
-        if(!isalpha(nome[i]) && isspace(nome[i])){
-            return 0;
-        }
-    }
-
-    return 1;
 }
