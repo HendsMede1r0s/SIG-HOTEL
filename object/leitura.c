@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utilidades.h"
+#include "validacoes.h"
 
 void ler_nome(char *variavel, int tam){
 
@@ -11,8 +12,10 @@ void ler_nome(char *variavel, int tam){
 
 
 void ler_cpf(char *variavel, int tam){
-
-    input(variavel, tam, "Digite o cpf: ");
+    do {
+        input(variavel, tam, "Digite o cpf: ");
+    } while (!valida_cpf(variavel));
+    
 
 }
 
