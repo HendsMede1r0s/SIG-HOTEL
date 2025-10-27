@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h> // ver se tem letra e espaco
 #include "funcionarios.h"
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
+#include "leitura.h"
 #define True 1;
 #define False 0;
 
@@ -87,7 +89,7 @@ void cad_funcionarios(void){
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(fun->cpf, 18, "Digite o cpf do funcionario: ");
-    input(fun->nome, 55, "Digite o nome do funcionario: ");
+    ler_nome(fun->nome, 55);
     input(fun->cell, 18, "Digite o telefone do funcionario: ");
     fun->status = True;
 
