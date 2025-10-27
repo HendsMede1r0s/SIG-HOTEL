@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h> // ver se tem letra e espaco
 #include "funcionarios.h"
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
@@ -88,7 +89,7 @@ void cad_funcionarios(void){
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(fun->cpf, 18, "Digite o cpf do funcionario: ");
-    input(fun->nome, 55, "Digite o nome do funcionario: ");
+    verifica_nome(fun->nome, 55);
     input(fun->cell, 18, "Digite o telefone do funcionario: ");
     fun->status = True;
 
@@ -316,4 +317,22 @@ void exclu_funcionarios(void){
 
     }
     
+}
+
+int verifica_nome(char *nome, int tam){
+
+    input(nome, tam, "Digite o nome: ");
+    int tam = strlen(nome)
+
+    if(tam == 0){
+        return 0;
+    }
+
+    for(int i = 0; i < tam; i++){
+        if(!isalpha(nome[i]) && isspace(nome[i])){
+            return 0;
+        }
+    }
+
+    return 1;
 }
