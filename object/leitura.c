@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "utilidades.h"
 
-int validar_nome(char *nome){
+int valida_nome(char *nome){
     int tamanho = strlen(nome);
     int valido = (tamanho > 0);
 
