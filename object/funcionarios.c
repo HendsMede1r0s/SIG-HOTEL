@@ -31,7 +31,7 @@ void modulo_funcionarios(void){
                 list_funcionarios();
                 break;
             case '4':
-                exib_funcionarios();
+                busc_funcionarios();
                 break;
             case '5':
                 exclu_funcionarios();
@@ -141,7 +141,7 @@ void edit_funcionarios(void){
     printf("|##########################################################|\n");
     printf("└──────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(cpf_lido, 18, "Digite o CPF do funcionario que deseja editar:");
+    ler_cpf(cpf_lido, 18);
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
     if(arq_funcionarios == NULL){
@@ -152,17 +152,16 @@ void edit_funcionarios(void){
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) == 0){
+            exib_funcionario(fun);
+            enter();
+            switch_edit_funcionarios(fun);
             encontrado = True;
-            printf("*Digite as novas informaçoes do funcionario com CPF: %s*\n", cpf_lido);
-            input(fun->nome, 55, "Digite o nome do funcionario: ");
-            input(fun->cell, 18, "Digite o telefone do funcionario: ");
 
             fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
             fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
 
             limpa_tela();
-            printf("*NOVOS DADOS*\n");
-            printf("Funcionario editado!");
+            exib_funcionario(fun);
             enter();
         }
     }
@@ -171,14 +170,14 @@ void edit_funcionarios(void){
 
     if(!encontrado){
         printf("Funcionario não encotrado no banco de dados!");
-        enter();;
+        enter();
     }
 
     free(fun);
 
 }
 
-void exib_funcionarios(void){
+void busc_funcionarios(void){
     limpa_tela();
 
     FILE *arq_funcionarios;
@@ -317,4 +316,66 @@ void exclu_funcionarios(void){
 
     }
     
+}
+
+void exib_funcionario(Funcionarios *fun){
+    printf("\n");
+    printf("CPF: %s\n", fun->cpf);
+    printf("NOME: %s\n", fun->nome);
+    printf("TELEFONE: %s\n", fun->cell);
+    printf("STATUS: %s\n", fun->status ? "Ativo" : "Excluido");
+}
+
+
+char menu_edit_funcionarios(void){
+    limpa_tela();
+
+    char op;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|                       -Funcionarios-                       |\n");
+    printf("|                                                            |\n");
+    printf("|────────────────────────────────────────────────────────────|\n");
+    printf("|                                                            |\n");
+    printf("|        [1] -> CPF                                          |\n");
+    printf("|        [2] -> Nome                                         |\n");
+    printf("|        [3] -> Cell                                         |\n");
+    printf("|        [0] -> Voltar                                       |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o numero do que deseja editar: ");
+    scanf("%c", &op);
+    getchar();
+    return op;
+}
+
+
+
+void switch_edit_funcionarios(funcionarios *fun){
+
+    char op;
+
+    do{
+        op = menu_edit_funcionarios();
+        switch (op){
+            case '0':
+                tela_voltar();
+                break;
+            case '1':
+                ler_cpf();
+                break;
+            case '2':
+                ler_nome();
+                break;
+            case '3':
+                ler_cell();
+                break;
+            default:
+                tela_op_invalida();
+                break;
+        }
+    } while(op != '0');
 }
