@@ -20,5 +20,5 @@ void busc_funcionarios(void);
 void list_funcionarios(void);
 void exclu_funcionarios(void);
 void exib_funcionario(Funcionarios *fun);
-void menu_edit_funcionarios(void);
+char menu_edit_funcionarios(void);
 void switch_edit_funcionarios(Funcionarios *fun);
