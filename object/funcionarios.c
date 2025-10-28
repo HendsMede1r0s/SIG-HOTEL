@@ -365,13 +365,13 @@ void switch_edit_funcionarios(funcionarios *fun){
                 tela_voltar();
                 break;
             case '1':
-                ler_cpf();
+                ler_cpf(fun->cpf, 18);
                 break;
             case '2':
-                ler_nome();
+                ler_nome(fun->nome, 55);
                 break;
             case '3':
-                ler_cell();
+                ler_cell(fun->cell, 18);
                 break;
             default:
                 tela_op_invalida();
