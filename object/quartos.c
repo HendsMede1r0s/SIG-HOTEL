@@ -410,13 +410,13 @@ void switch_edit_quartos(Quartos *quar){
                 tela_voltar();
                 break;
             case '1':
-                ler_cpf(quar->n_quarto, 18);
+                ler_n_quarto(quar->n_quarto, 7);
                 break;
             case '2':
-                ler_nome(quar->cpf, 55);
+                ler_cpf(quar->cpf, 18);
                 break;
             case '3':
-                ler_cell(quar->quan_pessoas, 18);
+                ler_quan_pessoas(quar->quan_pessoas, 5);
                 break;
             default:
                 tela_op_invalida();

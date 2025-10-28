@@ -43,3 +43,12 @@ void ler_n_quarto(char *variavel, int tam){
     printf("\nID valido!\n");
 
 }
+
+
+void ler_quan_pessoas(char *variavel, int tam){
+
+    do {
+        input(variavel, tam, "Digite a quantidade de pessoas: ");
+    } while (!is_numeric(variavel));
+
+}
