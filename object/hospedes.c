@@ -40,6 +40,7 @@ void modulo_hospedes(void){
     } while (op != '0'); 
 }
 
+
 char tela_hospedes(void){
     limpa_tela();
 
@@ -149,7 +150,7 @@ void edit_hospedes(void){
         if (strcmp(hos->cpf, cpf_lido) == 0) {
             exib_hospede(hos);
             enter();
-            switch_edit(hos);
+            switch_edit_hospedes(hos);
             encontrado = True;
 
             fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
@@ -319,7 +320,7 @@ void exib_hospede(Hospedes *hos){
 }
 
 
-char menu_edit(void){
+char menu_edit_hospedes(void){
     limpa_tela();
 
     char op;
@@ -347,12 +348,12 @@ char menu_edit(void){
 }
 
 
-void switch_edit(Hospedes *hos){
+void switch_edit_hospedes(Hospedes *hos){
 
     char op;
 
     do {
-        op = menu_edit();
+        op = menu_edit_hospedes();
         switch (op) {
             case '0':
                 tela_voltar();
