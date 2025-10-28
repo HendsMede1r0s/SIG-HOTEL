@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utilidades.h"
 
 int valida_letra(char letra){
@@ -145,4 +146,46 @@ int valida_cpf(char *CPF_original){
         free(CPF);
         return False;
     }
+}
+
+
+int valida_id(char *ID){
+    if (ID == NULL) {
+        return False;
+    }
+
+    size_t tam = strlen(ID);
+    if (tam != 3) {
+        return False;
+    }
+
+    if (!valida_letra(ID[0])) {
+        return False;
+    } else if (!valida_num(ID[1])) {
+        return False;
+    } else if (!valida_num(ID[2])) {
+        return False;
+    }
+
+    return True;
+}
+
+
+int valida_nome(char *nome){
+    int tamanho = strlen(nome);
+    int valido = (tamanho > 0);
+
+    if(!valido){
+        printf("\nNOME VAZIO!\n");
+        return False;
+    }
+
+    for(int i = 0; i < tamanho; i++){
+        if(!isalpha(nome[i]) && !isspace(nome[i])){
+            printf("NOME INVALIDO!\n");
+            return False;
+        }
+    }
+
+    return True;
 }
