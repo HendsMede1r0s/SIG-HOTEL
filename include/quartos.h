@@ -18,5 +18,7 @@ void busc_quartos(void);
 void edit_quartos(void);
 void cad_quartos(void);
 void exib_quarto(Quartos *quar);
+char menu_edit_quartos(void);
+void switch_edit_quartos(Quartos *quar);
 
 

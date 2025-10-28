@@ -4,6 +4,7 @@
 #include "quartos.h"
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
+#include "leitura.h"
 
 typedef struct quartos Quartos;
 
@@ -287,7 +288,7 @@ void edit_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(n_quarto_lido, 7, "Digite o ID do quarto que deseja editar: ");
+    ler_n_quarto(n_quarto_lido,7);
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
     if (arq_quartos == NULL) {
@@ -300,21 +301,22 @@ void edit_quartos(void){
         if (strcmp(n_quarto_lido, quar->n_quarto) == 0) {
             exib_quarto(quar);
             enter();
-
+            switch_edit_quartos(quar);
             encontrado = True;
-
-            input(quar->cpf, 18, "Digite o CPF do hospede: ");
-            input(quar->quan_pessoas, 5, "Digite a quantidade de pessoas no quarto: ");
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
+
+            limpa_tela();
+            exib_quarto(quar);
+            enter();
         }
     }
 
     fclose(arq_quartos);
 
     if (!encontrado) {
-        printf("*QUARTO NÃO ENCONTRADO!*");
+        printf("Não encontrado no banco de dados.\n");
         enter();
     }
     
@@ -337,7 +339,7 @@ void cad_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(quar->n_quarto, 7, "Digite o ID do quarto: ");
+    ler_n_quarto(quar->n_quarto,7);
 
     arq_quartos = fopen("./data/quartos.dat", "ab");
     if (arq_quartos == NULL) {
@@ -368,4 +370,57 @@ void exib_quarto(Quartos *quar){
     printf("CPF: %s\n", quar->cpf);
     printf("QUANTIDADE DE PESSOAS: %s\n", quar->quan_pessoas);
     printf("STATUS: %s\n", quar->status ? "OCUPADO" : "VAZIO");
+}
+
+
+char menu_edit_quartos(void){
+    limpa_tela();
+
+    char op;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│                                                            │\n");
+    printf("│                          -Hospedes-                        │\n");
+    printf("│                                                            │\n");
+    printf("│────────────────────────────────────────────────────────────│\n");
+    printf("│                                                            │\n");
+    printf("│        [1] -> ID do quarto                                 │\n");
+    printf("│        [2] -> CPF                                          │\n");
+    printf("│        [3] -> Quan. de pessoas                             │\n");
+    printf("│        [0] -> Voltar                                       │\n");
+    printf("│                                                            │\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    printf("Digite o numero do que deseja editar: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
+    return op;
+}
+
+
+void switch_edit_quartos(Quartos *quar){
+    char op;
+
+    do {
+        op = menu_edit_quartos();
+        switch (op) {
+            case '0':
+                tela_voltar();
+                break;
+            case '1':
+                ler_cpf(quar->n_quarto, 18);
+                break;
+            case '2':
+                ler_nome(quar->cpf, 55);
+                break;
+            case '3':
+                ler_cell(quar->quan_pessoas, 18);
+                break;
+            default:
+                tela_op_invalida();
+                break;
+        }
+    } while (op != '0');
 }
