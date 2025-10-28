@@ -88,7 +88,7 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(fun->cpf, 18, "Digite o cpf do funcionario: ");
+    ler_cpf(fun->cpf; 18);
     ler_nome(fun->nome, 55);
     ler_cell(fun->cell, 18);
     fun->status = True;
