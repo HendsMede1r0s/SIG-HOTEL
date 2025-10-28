@@ -90,7 +90,7 @@ void cad_funcionarios(void){
     printf("\n");
     input(fun->cpf, 18, "Digite o cpf do funcionario: ");
     ler_nome(fun->nome, 55);
-    input(fun->cell, 18, "Digite o telefone do funcionario: ");
+    ler_cell(fun->cell, 18);
     fun->status = True;
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "ab");
