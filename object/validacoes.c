@@ -25,13 +25,11 @@ int valida_num(char *num){
 
     // SEM O DD
     if(tamanho != 9){
-        printf("NUMERO INVALIDO!\n");
         return 0;
     }
 
     for(int i = 0; i < tamanho; i++){
         if(!isdigit(num[i])){
-            printf("NUMERO INVALIDO!\n");
             return 0;
         }
     }
@@ -192,7 +190,7 @@ int valida_nome(char *nome){
     int valido = (tamanho > 0);
 
     if(!valido){
-        printf("\nNOME VAZIO!\n");
+        printf("NOME VAZIO!\n");
         return False;
     }
 
