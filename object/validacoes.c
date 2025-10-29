@@ -15,6 +15,15 @@ int valida_letra(char letra){
 }
 
 
+int valida_digito(char num){
+    if (num >= '0' && num <= '9') {
+        return True;
+    } else {
+        return False;
+    }
+}
+
+
 int valida_num(char *num){
     if(num == NULL){
         printf("NUMERO VAZIO!\n");
@@ -52,7 +61,7 @@ char* remove_char_especial(char* texto){
 
     int i, j = 0;
     for (i = 0; i < tam; i++) {
-        if (valida_num(texto[i])) {
+        if (valida_digito(texto[i])) {
             limpo[j++] = texto[i];
         }
     }
@@ -66,7 +75,7 @@ int is_numeric(const char *num){
         return False;
     }
     for (int i = 0; num[i] != '\0'; i++) {
-        if (!valida_num(num[i])) {
+        if (!valida_digito(num[i])) {
             return False;
         }
     }
@@ -80,6 +89,7 @@ int valida_cpf(char *CPF_original){
     // 1. Remove caracteres especiais
     CPF = remove_char_especial(CPF_original);
     if (CPF == NULL) {
+        printf("Erro na alocacao!\n");
         return False; // Erro na alocação
     }
 
@@ -87,6 +97,7 @@ int valida_cpf(char *CPF_original){
     //    já faça isso, mantemos a lógica de 'is_numeric' para validar caracteres não removidos)
     if (!is_numeric(CPF)) {
         free(CPF);
+        printf("CPF invalido!\n");
         return False;
     }
 
@@ -95,6 +106,7 @@ int valida_cpf(char *CPF_original){
     // 3. Verifica tamanho e CPFs com dígitos repetidos
     if (tam != 11) {
         free(CPF);
+        printf("CPF invalido!\n");
         return False;
     }
 
@@ -111,6 +123,7 @@ int valida_cpf(char *CPF_original){
         strcmp(CPF, "99999999999") == 0)
     {
         free(CPF);
+        printf("CPF invalido!\n");
         return False;
     }
 
@@ -158,6 +171,7 @@ int valida_cpf(char *CPF_original){
         return True;
     } else {
         free(CPF);
+        printf("CPF invalido\n");
         return False;
     }
 }
@@ -165,19 +179,24 @@ int valida_cpf(char *CPF_original){
 
 int valida_id(char *ID){
     if (ID == NULL) {
+        printf("Erro na alocacao!\n");
         return False;
     }
 
     size_t tam = strlen(ID);
     if (tam != 3) {
+        printf("ID invalido!\n");
         return False;
     }
 
     if (!valida_letra(ID[0])) {
+        printf("ID invalido!\n");
         return False;
-    } else if (!valida_num(ID[1])) {
+    } else if (!valida_digito(ID[1])) {
+        printf("ID invalido!\n");
         return False;
-    } else if (!valida_num(ID[2])) {
+    } else if (!valida_digito(ID[2])) {
+        printf("ID invalido!\n");
         return False;
     }
 

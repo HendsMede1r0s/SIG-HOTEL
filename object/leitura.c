@@ -19,8 +19,6 @@ void ler_cpf(char *variavel, int tam){
     do {
         input(variavel, tam, "Digite o cpf: ");
     } while (!valida_cpf(variavel));
-    
-    printf("\nCPF valido!\n");
 
 }
 
@@ -43,8 +41,6 @@ void ler_n_quarto(char *variavel, int tam){
     do {
         input(variavel, tam, "Digite o ID do quarto: ");
     } while (!valida_id(variavel));
-    
-    printf("\nID valido!\n");
 
 }
 
