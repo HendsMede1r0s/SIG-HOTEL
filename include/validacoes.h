@@ -3,6 +3,7 @@
 ////////////////
 
 int valida_letra(char letra);
+int valida_digito(char num);
 int valida_num(char *num);
 char* remove_char_especial(char* texto);
 int is_numeric(const char *num);
