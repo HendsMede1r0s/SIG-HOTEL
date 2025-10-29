@@ -85,7 +85,7 @@ void check_in(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(n_quarto_lido, 7, "Digite o ID do quarto: ");
+    ler_n_quarto(n_quarto_lido, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
     if (arq_quartos == NULL) {
@@ -99,8 +99,8 @@ void check_in(void){
             quar->status = True;
             encontrado = True;
 
-            input(quar->cpf, 18, "Digite o CPF do hospede: ");
-            input(quar->quan_pessoas, 5, "Digite a quantidade de pessoas no quarto: ");
+            ler_cpf(quar->cpf, 18);
+            ler_quan_pessoas(quar->quan_pessoas, 5);
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
@@ -185,7 +185,7 @@ void check_out(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(n_quarto_lido, 7, "Digite o ID do quarto para check-out: ");
+    ler_n_quarto(n_quarto_lido, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
     if (arq_quartos == NULL) {
@@ -241,7 +241,7 @@ void busc_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(n_quarto_lido, 7, "Digite o ID do quarto que quer procurar: ");
+    ler_n_quarto(n_quarto_lido, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "rb");
     if (arq_quartos == NULL) {
@@ -339,7 +339,7 @@ void cad_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    ler_n_quarto(quar->n_quarto,7);
+    ler_n_quarto(quar->n_quarto, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "ab");
     if (arq_quartos == NULL) {

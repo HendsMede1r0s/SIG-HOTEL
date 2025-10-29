@@ -112,10 +112,8 @@ void cad_hospedes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     exib_hospede(hos);
-    
-
-    free(hos);
     enter();
+    free(hos);
 }
 
 
@@ -164,13 +162,14 @@ void edit_hospedes(void){
     }
 
     fclose(arq_hospedes);
+    free(hos);
     
     if (!encontrado) {
         printf("Não encontrado no banco de dados.\n");
         enter();
     }
     
-    free(hos);
+    
 
 }
 
@@ -280,6 +279,7 @@ void exclu_hospedes(void){
             exib_hospede(hos);
             hos->status = False;
             encontrado = True;
+
             fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
             fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
         }
@@ -292,20 +292,18 @@ void exclu_hospedes(void){
         enter();
     }
 
-    if (encontrado) {
-        limpa_tela();
-        printf("\n");
-        printf("┌────────────────────────────────────────────────────────────┐\n");
-        printf("│############################################################│\n");
-        printf("│#                                                          #│\n");
-        printf("│#                    {Hospede excluido!}                   #│\n");
-        printf("│#                                                          #│\n");
-        printf("│############################################################│\n");
-        printf("└────────────────────────────────────────────────────────────┘\n");
-        printf("\n");
-        printf("Hospede com CPF %s foi excluido com sucesso!\n", cpf_lido);
-        enter();
-    }
+
+    limpa_tela();
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                    {Hospede excluido!}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    enter();
 
 }
 
