@@ -15,12 +15,26 @@ int valida_letra(char letra){
 }
 
 
-int valida_num(char num){
-    if (num >= '0' && num <= '9') {
-        return True;
-    } else {
-        return False;
+int valida_num(char *num){
+    if(num == NULL){
+        printf("NUMERO VAZIO!\n");
+        return 0;
     }
+
+    int tamanho = strlen(num);
+
+    // SEM O DD
+    if(tamanho != 9){
+        return 0;
+    }
+
+    for(int i = 0; i < tamanho; i++){
+        if(!isdigit(num[i])){
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 
@@ -176,7 +190,7 @@ int valida_nome(char *nome){
     int valido = (tamanho > 0);
 
     if(!valido){
-        printf("\nNOME VAZIO!\n");
+        printf("NOME VAZIO!\n");
         return False;
     }
 
