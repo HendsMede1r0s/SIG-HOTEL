@@ -6,8 +6,6 @@
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
 #include "leitura.h"
-#define True 1;
-#define False 0;
 
 typedef struct funcionarios Funcionarios;
 
@@ -88,7 +86,8 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    ler_cpf(fun->cpf; 18);
+    ler_cpf(fun->cpf, 18);
+    //input(fun->cpf, 18, "Digite o cpf: ");
     ler_nome(fun->nome, 55);
     ler_cell(fun->cell, 18);
     fun->status = True;
@@ -141,6 +140,7 @@ void edit_funcionarios(void){
     printf("|##########################################################|\n");
     printf("└──────────────────────────────────────────────────────────┘\n");
     printf("\n");
+    //input(cpf_lido, 18, "Digite o cpf: ");
     ler_cpf(cpf_lido, 18);
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
@@ -204,16 +204,14 @@ void busc_funcionarios(void){
     }
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) == 0){
-            printf("Funcionario encontrado!\n");
-            printf("CPF: %s\n", fun->cpf);
-            printf("NOME: %s\n", fun->nome);
-            printf("Telefone: %s\n", fun->cell);
+            printf("*ENCONTRADO*\n");
+            exib_funcionario(fun);
+            enter();
         }
     }
 
     fclose(arq_funcionarios);
     free(fun);
-    enter();
 }
 
 
@@ -354,7 +352,7 @@ char menu_edit_funcionarios(void){
 
 
 
-void switch_edit_funcionarios(funcionarios *fun){
+void switch_edit_funcionarios(Funcionarios *fun){
 
     char op;
 
