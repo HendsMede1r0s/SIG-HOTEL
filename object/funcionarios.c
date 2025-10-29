@@ -218,6 +218,7 @@ void busc_funcionarios(void){
 void list_funcionarios(void){
     limpa_tela();
 
+    
     FILE *arq_funcionarios;
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
