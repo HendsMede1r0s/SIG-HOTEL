@@ -26,24 +26,23 @@ int valida_digito(char num){
 
 int valida_num(char *num){
     if(num == NULL){
-        printf("NUMERO VAZIO!\n");
-        return 0;
+        return False;
     }
 
     int tamanho = strlen(num);
 
     // SEM O DD
     if(tamanho != 9){
-        return 0;
+        return False;
     }
 
     for(int i = 0; i < tamanho; i++){
         if(!isdigit(num[i])){
-            return 0;
+            return False;
         }
     }
 
-    return 1;
+    return True;
 }
 
 
@@ -55,8 +54,7 @@ char* remove_char_especial(char* texto){
     size_t tam = strlen(texto);
     char* limpo = (char*)malloc(tam + 1);
     if (limpo == NULL) {
-        perror("Falha na alocação de memória");
-        return NULL;
+        return False;
     }
 
     int i, j = 0;
@@ -89,7 +87,6 @@ int valida_cpf(char *CPF_original){
     // 1. Remove caracteres especiais
     CPF = remove_char_especial(CPF_original);
     if (CPF == NULL) {
-        printf("Erro na alocacao!\n");
         return False; // Erro na alocação
     }
 
@@ -97,7 +94,6 @@ int valida_cpf(char *CPF_original){
     //    já faça isso, mantemos a lógica de 'is_numeric' para validar caracteres não removidos)
     if (!is_numeric(CPF)) {
         free(CPF);
-        printf("CPF invalido!\n");
         return False;
     }
 
@@ -106,7 +102,6 @@ int valida_cpf(char *CPF_original){
     // 3. Verifica tamanho e CPFs com dígitos repetidos
     if (tam != 11) {
         free(CPF);
-        printf("CPF invalido!\n");
         return False;
     }
 
@@ -123,7 +118,6 @@ int valida_cpf(char *CPF_original){
         strcmp(CPF, "99999999999") == 0)
     {
         free(CPF);
-        printf("CPF invalido!\n");
         return False;
     }
 
@@ -171,7 +165,6 @@ int valida_cpf(char *CPF_original){
         return True;
     } else {
         free(CPF);
-        printf("CPF invalido\n");
         return False;
     }
 }
@@ -179,24 +172,19 @@ int valida_cpf(char *CPF_original){
 
 int valida_id(char *ID){
     if (ID == NULL) {
-        printf("Erro na alocacao!\n");
         return False;
     }
 
     size_t tam = strlen(ID);
     if (tam != 3) {
-        printf("ID invalido!\n");
         return False;
     }
 
     if (!valida_letra(ID[0])) {
-        printf("ID invalido!\n");
         return False;
     } else if (!valida_digito(ID[1])) {
-        printf("ID invalido!\n");
         return False;
     } else if (!valida_digito(ID[2])) {
-        printf("ID invalido!\n");
         return False;
     }
 
@@ -209,13 +197,11 @@ int valida_nome(char *nome){
     int valido = (tamanho > 0);
 
     if(!valido){
-        printf("NOME VAZIO!\n");
         return False;
     }
 
     for(int i = 0; i < tamanho; i++){
         if(!isalpha(nome[i]) && !isspace(nome[i])){
-            printf("NOME INVALIDO!\n");
             return False;
         }
     }
