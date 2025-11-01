@@ -43,6 +43,7 @@ void modulo_quartos(void){
     } while (op != '0'); 
 }
 
+
 char tela_quartos(void){
     limpa_tela();
     char op;
@@ -66,6 +67,7 @@ char tela_quartos(void){
 
     return op;
 }
+
 
 void check_in(void){
     limpa_tela();
@@ -122,6 +124,7 @@ void check_in(void){
     free(quar);
 }
 
+
 void list_quartos(void){
     limpa_tela();
 
@@ -166,6 +169,7 @@ void list_quartos(void){
     }
 
 }
+
 
 void check_out(void){
     limpa_tela();
@@ -223,6 +227,7 @@ void check_out(void){
     free(quar);
 }
 
+
 void busc_quartos(void){
     limpa_tela();
 
@@ -269,6 +274,7 @@ void busc_quartos(void){
     fclose(arq_quartos);
     free(quar);
 }
+
 
 void edit_quartos(void){
     limpa_tela();
@@ -322,6 +328,7 @@ void edit_quartos(void){
     
     free(quar);
 }
+
 
 void cad_quartos(void){
     limpa_tela();
