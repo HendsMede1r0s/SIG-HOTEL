@@ -12,7 +12,7 @@ typedef struct quartos Quartos;
 void modulo_quartos(void);
 char tela_quartos(void);
 void check_in(void);
-void list_quartos(void);
+void dispo_quartos(void);
 void check_out(void);
 void busc_quartos(void);
 void edit_quartos(void);

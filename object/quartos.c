@@ -22,7 +22,7 @@ void modulo_quartos(void){
                 check_in();
                 break;
             case '2':
-                list_quartos();
+                dispo_quartos();
                 break;
             case '3':
                 check_out();
@@ -60,7 +60,6 @@ char tela_quartos(void){
     printf("| [6] -> Cadastrar quartos                                           |\n");
     printf("| [0] -> Voltar                                                      |\n");
     printf("└────────────────────────────────────────────────────────────────────┘\n");
-
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
@@ -125,7 +124,7 @@ void check_in(void){
 }
 
 
-void list_quartos(void){
+void dispo_quartos(void){
     limpa_tela();
 
     FILE *arq_quartos;
