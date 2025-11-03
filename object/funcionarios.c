@@ -242,10 +242,13 @@ void list_funcionarios(void){
     else{
         printf("NOME \t\t CPF \t\t\t TELEFONE");
         while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-            printf("\n%s\t\t",fun->nome);
-            printf("%s\t\t",fun->cpf);
-            printf("%s\t\t",fun->cell);
-            printf("\n");
+            if(fun->status == 1){
+                printf("\n%s\t\t",fun->nome);
+                printf("%s\t\t",fun->cpf);
+                printf("%s\t\t",fun->cell);
+                printf("\n");
+            }
+            
     }
     
     }
