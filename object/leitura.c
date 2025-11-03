@@ -9,6 +9,10 @@ void ler_nome(char *variavel, int tam) {
     
     do{
         input(variavel, tam, "Digite o nome: ");
+        if(!valida_nome(variavel)){
+            printf("Nome invalido! Tente novamente.");
+            printf("\n");
+        }
     } while(!valida_nome(variavel));
 
 }
@@ -34,7 +38,8 @@ void ler_cell(char *variavel, int tam){
         input(variavel, tam, "Digite o telefone: ");
 
         if(!valida_num(variavel)){
-            printf("NUMERO INVALIDO!\n");
+            printf("Numero invalido! Tente novamente.");
+            printf("\n");
         }
     } while(!valida_num(variavel));
     
