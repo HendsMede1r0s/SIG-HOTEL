@@ -46,27 +46,6 @@ int valida_num(char *num){
 }
 
 
-char* remove_char_especial(char* texto){
-    if (texto == NULL) {
-        return NULL;
-    }
-
-    size_t tam = strlen(texto);
-    char* limpo = (char*)malloc(tam + 1);
-    if (limpo == NULL) {
-        return False;
-    }
-
-    int i, j = 0;
-    for (i = 0; i < tam; i++) {
-        if (valida_digito(texto[i])) {
-            limpo[j++] = texto[i];
-        }
-    }
-    limpo[j] = '\0'; // Finaliza a nova string
-    return limpo;
-}//gerado pelo Google Gemini(2.5 Flash)
-
 // Verifica se todos os caracteres da string são dígitos
 int is_numeric(const char *num){
     if (num == NULL) {
@@ -81,11 +60,8 @@ int is_numeric(const char *num){
 }
 
 
-int valida_cpf(char *CPF_original){
-    char *CPF;
+int valida_cpf(char *CPF){
 
-    // 1. Remove caracteres especiais
-    CPF = remove_char_especial(CPF_original);
     if (CPF == NULL) {
         return False; // Erro na alocação
     }
@@ -93,7 +69,6 @@ int valida_cpf(char *CPF_original){
     // 2. Verifica se a string limpa contém apenas dígitos (embora removeCaractEsp
     //    já faça isso, mantemos a lógica de 'is_numeric' para validar caracteres não removidos)
     if (!is_numeric(CPF)) {
-        free(CPF);
         return False;
     }
 
@@ -101,7 +76,6 @@ int valida_cpf(char *CPF_original){
 
     // 3. Verifica tamanho e CPFs com dígitos repetidos
     if (tam != 11) {
-        free(CPF);
         return False;
     }
 
@@ -117,7 +91,6 @@ int valida_cpf(char *CPF_original){
         strcmp(CPF, "88888888888") == 0 ||
         strcmp(CPF, "99999999999") == 0)
     {
-        free(CPF);
         return False;
     }
 
@@ -161,10 +134,8 @@ int valida_cpf(char *CPF_original){
     int cpf_dig11 = CPF[10] - '0';
 
     if (dig10 == cpf_dig10 && dig11 == cpf_dig11) {
-        free(CPF);
         return True;
     } else {
-        free(CPF);
         return False;
     }
 }

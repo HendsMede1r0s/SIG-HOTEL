@@ -15,10 +15,15 @@ void ler_nome(char *variavel, int tam) {
 
 
 void ler_cpf(char *variavel, int tam){
-
+    int valida;
     do {
         input(variavel, tam, "Digite o cpf: ");
-    } while (!valida_cpf(variavel));
+        valida = (valida_cpf(variavel));
+        if (!valida) {
+            printf("CPF invalido! Tente novamente.");
+            printf("\n");
+        }
+    } while (!valida);
 
 }
 
