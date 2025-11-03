@@ -200,7 +200,7 @@ void list_hospedes(void){
 
     printf("%-15s %-30s %-15s\n", "CPF", "NOME", "TELEFONE");
     printf("--------------- ------------------------------ ---------------\n");
-    while(fread(hos, sizeof(Hospedes), 1, arq_hospedes)){
+    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)){
         if (hos->status) {
             printf("%-15s %-30s %-15s\n", hos->cpf, hos->nome, hos->cell);
         }
