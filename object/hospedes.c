@@ -198,9 +198,15 @@ void list_hospedes(void){
         return;
     }
 
+    printf("%-15s %-30s %-15s\n", "CPF", "NOME", "TELEFONE");
+    printf("--------------- ------------------------------ ---------------\n");
+
     while(fread(hos, sizeof(Hospedes), 1, arq_hospedes)){
-        exib_hospede(hos);
+        if (hos->status) {
+            printf("%-15s %-30s %-15s\n", hos->cpf, hos->nome, hos->cell);
+        }
     }
+    printf("--------------- ------------------------------ ---------------\n");
 
     fclose(arq_hospedes);
     free(hos);

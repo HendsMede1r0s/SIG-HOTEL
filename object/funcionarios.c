@@ -249,7 +249,7 @@ void list_funcionarios(void){
                 printf("\n");
             }
             
-    }
+        }
     
     }
 
