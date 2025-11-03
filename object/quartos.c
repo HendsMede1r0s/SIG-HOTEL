@@ -36,6 +36,9 @@ void modulo_quartos(void){
             case '6':
                 cad_quartos();
                 break;
+            case '7':
+                list_quartos();
+                break;
             default:
                 tela_op_invalida();
                 break;
@@ -58,6 +61,7 @@ char tela_quartos(void){
     printf("| [4] -> Buscar quartos                                              |\n");
     printf("| [5] -> Editar quartos                                              |\n");
     printf("| [6] -> Cadastrar quartos                                           |\n");
+    printf("| [7] -> Listar quartos                                              |\n");
     printf("| [0] -> Voltar                                                      |\n");
     printf("└────────────────────────────────────────────────────────────────────┘\n");
     printf("Digite uma opção: ");
@@ -367,6 +371,45 @@ void cad_quartos(void){
     fclose(arq_quartos);
     free(quar);
 
+}
+
+
+void list_quartos(void){
+    limpa_tela();
+
+    FILE *arq_quartos;
+    Quartos *quar;
+    quar = (Quartos*)malloc(sizeof(Quartos));
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                {Quartos -> Listar quartos}               #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+
+    arq_quartos = fopen("./data/quartos.dat", "rb");
+    if (arq_quartos == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        enter();
+        return;
+    }
+
+    printf("%-5s %-15s %-5s\n", "ID", "CPF", "Q. DE PESSOAS");
+    printf("----- --------------- -----\n");
+    while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
+        if (quar->status) {
+            printf("%-5s %-15s %-5s\n", quar->n_quarto, quar->cpf, quar->quan_pessoas);
+        }
+    }
+    printf("----- --------------- -----\n");
+
+    fclose(arq_quartos);
+    free(quar);
+    enter();
 }
 
 
