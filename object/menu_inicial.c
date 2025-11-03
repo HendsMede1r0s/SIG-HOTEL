@@ -15,7 +15,7 @@ char tela_inicial(void){
     printf("|                                                            |\n");
     printf("|────────────────────────────────────────────────────────────|\n");
     printf("|                                                            |\n");
-    printf("|        [1] -> Clientes                                     |\n");
+    printf("|        [1] -> Hospedes                                     |\n");
     printf("|        [2] -> Funcionarios                                 |\n");
     printf("|        [3] -> Quartos                                      |\n");
     printf("|        [4] -> Servicos                                     |\n");
