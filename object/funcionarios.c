@@ -240,16 +240,14 @@ void list_funcionarios(void){
         return;
     }
     else{
-        printf("NOME \t\t CPF \t\t\t TELEFONE");
+        printf("%-15s %-30s %-15s\n", "CPF", "NOME", "TELEFONE");
+        printf("--------------- ------------------------------ ---------------\n");
         while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
             if(fun->status == 1){
-                printf("\n%s\t\t",fun->nome);
-                printf("%s\t\t",fun->cpf);
-                printf("%s\t\t",fun->cell);
-                printf("\n");
+                printf("%-15s %-30s %-15s\n", fun->cpf, fun->nome, fun->cell);
             }
-            
-        }
+        printf("--------------- ------------------------------ ---------------\n");
+    }
     
     }
 
