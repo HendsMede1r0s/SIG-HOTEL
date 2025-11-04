@@ -141,21 +141,21 @@ int valida_cpf(char *CPF){
 }
 
 
-int valida_id(char *ID){
-    if (ID == NULL) {
+int valida_n_quarto(char *num){
+    if (num == NULL) {
         return False;
     }
 
-    size_t tam = strlen(ID);
+    size_t tam = strlen(num);
     if (tam != 3) {
         return False;
     }
 
-    if (!valida_letra(ID[0])) {
+    if (!valida_letra(num[0])) {
         return False;
-    } else if (!valida_digito(ID[1])) {
+    } else if (!valida_digito(num[1])) {
         return False;
-    } else if (!valida_digito(ID[2])) {
+    } else if (!valida_digito(num[2])) {
         return False;
     }
 
