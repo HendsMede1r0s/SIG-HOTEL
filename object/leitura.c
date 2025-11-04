@@ -49,10 +49,10 @@ void ler_cell(char *variavel, int tam){
 void ler_n_quarto(char *variavel, int tam){
     int valida;
     do {
-        input(variavel, tam, "Digite o ID do quarto: ");
-        valida = (valida_id(variavel));
+        input(variavel, tam, "Digite o N° do quarto: ");
+        valida = (valida_n_quarto(variavel));
         if (!valida) {
-            printf("ID invalido! Tente novamente.");
+            printf("N° do quarto invalido! Tente novamente.");
             printf("\n");
         }
     } while (!valida);
