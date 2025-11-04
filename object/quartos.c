@@ -398,7 +398,7 @@ void list_quartos(void){
         return;
     }
 
-    printf("%-5s %-15s %-5s\n", "ID", "CPF", "Q. DE PESSOAS");
+    printf("%-5s %-15s %-5s\n", "N°", "CPF", "Q. DE PESSOAS");
     printf("----- --------------- -----\n");
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
         if (quar->status) {
@@ -415,7 +415,7 @@ void list_quartos(void){
 
 void exib_quarto(Quartos *quar){
     printf("\n");
-    printf("ID DO QUARTO: %s\n", quar->n_quarto);
+    printf("N° DO QUARTO: %s\n", quar->n_quarto);
     printf("CPF: %s\n", quar->cpf);
     printf("QUANTIDADE DE PESSOAS: %s\n", quar->quan_pessoas);
     printf("STATUS: %s\n", quar->status ? "OCUPADO" : "VAZIO");
@@ -434,7 +434,7 @@ char menu_edit_quartos(void){
     printf("│                                                            │\n");
     printf("│────────────────────────────────────────────────────────────│\n");
     printf("│                                                            │\n");
-    printf("│        [1] -> ID do quarto                                 │\n");
+    printf("│        [1] -> N° do quarto                                 │\n");
     printf("│        [2] -> CPF                                          │\n");
     printf("│        [3] -> Quan. de pessoas                             │\n");
     printf("│        [0] -> Voltar                                       │\n");
