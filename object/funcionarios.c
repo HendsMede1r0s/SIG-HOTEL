@@ -239,7 +239,6 @@ void list_funcionarios(void){
         enter();
         return;
     }
-    else{
         printf("%-15s %-30s %-15s\n", "CPF", "NOME", "TELEFONE");
         printf("--------------- ------------------------------ ---------------\n");
         while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
@@ -249,7 +248,7 @@ void list_funcionarios(void){
         printf("--------------- ------------------------------ ---------------\n");
     }
     
-    }
+    
 
     fclose(arq_funcionarios);
     free(fun);

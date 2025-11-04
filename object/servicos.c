@@ -75,7 +75,8 @@ void cad_servico(void){
     printf("|#######################################################|\n");
     printf("└───────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(servi->servi, 55, "Digite o novo serviço:");
+    input(servi->servi, 55, "Digite o novo serviço: ");
+    input(servi->id, 4, "Digite o id do serviço: ");;
 
     arq_servicos = fopen("./data/servicos.dat", "ab");
     if(arq_servicos == NULL){
@@ -96,7 +97,8 @@ void cad_servico(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("Serviço: %s", servi->servi);
+    printf("Serviço: %s\n", servi->servi);
+    printf("ID: %s\n", servi->id);
     free(servi);
     enter();
 }
@@ -125,9 +127,12 @@ void list_servicos(void){
         return;
     }
 
-    printf("SERVICOS CADASTRADOS:\n");
+    printf("SERVICOS CADASTRADOS:\n\n");
+    printf("%-15s %-15s\n","ID", "SERVICO");
+    printf("--------------- ---------------\n");
     while (fread(servi, sizeof(Servicos), 1, arq_servicos)) {
-        printf("%s\n", servi->servi);
+        printf("%-15s %-15s\n",servi->id, servi->servi);
+        printf("--------------- ---------------\n");
     }
 
     fclose(arq_servicos);
