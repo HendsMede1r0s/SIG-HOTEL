@@ -89,7 +89,6 @@ void cad_hospedes(void){
     ler_cpf(hos->cpf, 18);
     ler_nome(hos->nome, 55);
     ler_cell(hos->cell, 18);
-    ler_n_quarto(hos->n_quarto,7);
 
     hos->status = True;
     arq_hospedes = fopen("./data/hospedes.dat", "ab");
@@ -318,7 +317,6 @@ void exib_hospede(Hospedes *hos){
     printf("CPF: %s\n", hos->cpf);
     printf("NOME: %s\n", hos->nome);
     printf("TELEFONE: %s\n", hos->cell);
-    printf("ID DO QUARTO: %s\n", hos->n_quarto);
     printf("STATUS: %s\n", hos->status ? "Ativo" : "Excluido");
 }
 
@@ -338,7 +336,6 @@ char menu_edit_hospedes(void){
     printf("│        [1] -> CPF                                          │\n");
     printf("│        [2] -> Nome                                         │\n");
     printf("│        [3] -> Telefone                                     │\n");
-    printf("│        [4] -> ID do quarto                                 │\n");
     printf("│        [0] -> Voltar                                       │\n");
     printf("│                                                            │\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
@@ -369,9 +366,6 @@ void switch_edit_hospedes(Hospedes *hos){
                 break;
             case '3':
                 ler_cell(hos->cell, 18);
-                break;
-            case '4':
-                ler_n_quarto(hos->n_quarto, 7);
                 break;
             default:
                 tela_op_invalida();
