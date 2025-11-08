@@ -7,7 +7,6 @@ struct hospedes
     char cpf [18];
     char nome [55];
     char cell [18];
-    char n_quarto [7];
     char status;
 };
 
