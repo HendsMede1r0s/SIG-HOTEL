@@ -22,4 +22,5 @@ void exclu_hospedes(void);
 void exib_hospede(Hospedes *hos);
 char menu_edit_hospedes(void);
 void switch_edit_hospedes(Hospedes *hos);
+int verifica_cpf(const char *cpf_a_verificar);
 

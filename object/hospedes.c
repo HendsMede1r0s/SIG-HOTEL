@@ -87,6 +87,12 @@ void cad_hospedes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     ler_cpf(hos->cpf, 18);
+    if (verifica_cpf(hos->cpf)) {
+        printf("CPF já cadastrado no sistema!");
+        enter();
+        free(hos);
+        return;
+    }
     ler_nome(hos->nome, 55);
     ler_cell(hos->cell, 18);
 
@@ -372,4 +378,29 @@ void switch_edit_hospedes(Hospedes *hos){
                 break;
         }
     } while (op != '0');
+}
+
+
+int verifica_cpf(const char *cpf_a_verificar){
+    FILE *arq_hospedes;
+    Hospedes *hos_lido;
+    hos_lido = (Hospedes*)malloc(sizeof(Hospedes));
+    int encontrado = 0;
+
+    arq_hospedes = fopen("./data/hospedes.dat", "rb");
+    if (arq_hospedes == NULL) {
+        free(hos_lido);
+        return False;
+    }
+
+    while (fread(hos_lido, sizeof(Hospedes), 1, arq_hospedes) == 1) {
+        if (strcmp(hos_lido->cpf, cpf_a_verificar) == 0) {
+        encontrado = 1;
+        break;
+        }
+    }
+    
+    fclose(arq_hospedes);
+    free(hos_lido);
+    return encontrado;
 }
