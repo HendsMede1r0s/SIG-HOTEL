@@ -78,6 +78,12 @@ void cad_servico(void){
     printf("\n");
     input(servi->servi, 55, "Digite o novo serviço: ");
     ler_id(servi->id, 7);
+    if (verifica_id(servi->id)) {
+        printf("ID já cadastrado no sistema!");
+        enter();
+        free(servi);
+        return;
+    }
 
     arq_servicos = fopen("./data/servicos.dat", "ab");
     if(arq_servicos == NULL){
@@ -193,4 +199,29 @@ void exclu_servicos(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     enter();
+}
+
+//Verifica ID existente
+int verifica_id(const char *id_a_verificar) {
+    FILE *arq_servicos;
+    Servicos *id_lido;
+    id_lido = (Servicos*)malloc(sizeof(Servicos));
+    int encontrado = 0;
+
+    arq_servicos = fopen("./data/servicos.dat", "rb");
+    if (arq_servicos == NULL) {
+        free(id_lido);
+        return False;
+    }
+
+    while (fread(id_lido, sizeof(Servicos), 1, arq_servicos) == 1) {
+        if (strcmp(id_lido->id, id_a_verificar) == 0) {
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(arq_servicos);
+    free(id_lido);
+    return encontrado;
 }
