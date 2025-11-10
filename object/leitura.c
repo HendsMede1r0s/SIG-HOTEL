@@ -17,6 +17,18 @@ void ler_nome(char *variavel, int tam) {
 
 }
 
+void ler_id(char *variavel, int tam) {
+    int valida;
+    do {
+        input(variavel, tam, "Digite o id do serviço: ");
+        valida = (valida_id(variavel));
+        if (!valida) {
+            printf("N° do ID inválido! Tente novamente.");
+            printf("\n");
+        }
+    } while (!valida);
+
+}
 
 void ler_cpf(char *variavel, int tam){
     int valida;

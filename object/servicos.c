@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "leitura.h"
 #include "servicos.h"
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
@@ -76,7 +77,7 @@ void cad_servico(void){
     printf("└───────────────────────────────────────────────────────┘\n");
     printf("\n");
     input(servi->servi, 55, "Digite o novo serviço: ");
-    input(servi->id, 4, "Digite o id do serviço: ");;
+    ler_id(servi->id, 7);
 
     arq_servicos = fopen("./data/servicos.dat", "ab");
     if(arq_servicos == NULL){
