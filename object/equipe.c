@@ -32,6 +32,10 @@ void tela_equipe(void){
     printf("|        EMAIL:  eriky.medeiros.706@ufrn.edu.br                       |\n");
     printf("|        GITHUB: https://github.com/Eriky-Rayan                       |\n");
     printf("|                                                                     |\n");
+    printf("|        NOME:   Isaac Vilton Ribeiro                                 |\n");
+    printf("|        EMAIL:  isaac.ribeiro.018@ufrn.edu.br                        |\n");
+    printf("|        GITHUB: https://github.com/Isaac-Ribeiro                     |\n");
+    printf("|                                                                     |\n");
     printf("└─────────────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     printf("{Pressione ENTER para continuar...}");
