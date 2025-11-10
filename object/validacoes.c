@@ -14,7 +14,6 @@ int valida_letra(char letra){
     }
 }
 
-
 int valida_digito(char num){
     if (num >= '0' && num <= '9') {
         return True;
@@ -175,6 +174,23 @@ int valida_nome(char *nome){
         if(!isalpha(nome[i]) && !isspace(nome[i])){
             return False;
         }
+    }
+
+    return True;
+}
+
+int valida_id(char *num){
+    if (num == NULL) {
+        return False;
+    }
+
+    size_t tam = strlen(num);
+    if (tam != 4) {
+        return False;
+    }
+
+    if (!is_numeric(num)) {
+        return False;
     }
 
     return True;

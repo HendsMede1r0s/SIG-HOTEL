@@ -2,7 +2,7 @@
 struct servicos{
 
     char servi[55];
-    char id[4];
+    char id[7];
 
 };
 
