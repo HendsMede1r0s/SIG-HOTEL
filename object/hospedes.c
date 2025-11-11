@@ -382,6 +382,7 @@ void switch_edit_hospedes(Hospedes *hos){
 
 
 int verifica_cpf(const char *cpf_a_verificar){
+    //recebe um cpf e verifica se ele já esta cadastrado
     FILE *arq_hospedes;
     Hospedes *hos_lido;
     hos_lido = (Hospedes*)malloc(sizeof(Hospedes));
