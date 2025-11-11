@@ -21,5 +21,6 @@ void list_quartos(void);
 void exib_quarto(Quartos *quar);
 char menu_edit_quartos(void);
 void switch_edit_quartos(Quartos *quar);
+int verifica_n_quarto(const char *n_quarto_a_verificar);
 
 

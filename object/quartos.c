@@ -351,6 +351,13 @@ void cad_quartos(void){
     printf("\n");
     ler_n_quarto(quar->n_quarto, 7);
 
+    if (verifica_n_quarto(quar->n_quarto)) {
+        printf("O quarto %s ja esta cadastrado no sistema!", quar->n_quarto);
+        enter();
+        free(quar);
+        return;
+    }
+
     arq_quartos = fopen("./data/quartos.dat", "ab");
     if (arq_quartos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -472,4 +479,30 @@ void switch_edit_quartos(Quartos *quar){
                 break;
         }
     } while (op != '0');
+}
+
+
+int verifica_n_quarto(const char *n_quarto_a_verificar){
+    //recebe um numero de quarto e verifica se ele já esta cadastrado
+    FILE *arq_quartos;
+    Quartos *quar_lido;
+    quar_lido = (Quartos*)malloc(sizeof(Quartos));
+    int encontrado = 0;
+
+    arq_quartos = fopen("./data/quartos.dat", "rb");
+    if (arq_quartos == NULL) {
+        free(quar_lido);
+        return False;
+    }
+
+    while (fread(quar_lido, sizeof(Quartos), 1, arq_quartos) == 1) {
+        if (strcmp(quar_lido->n_quarto, n_quarto_a_verificar) == 0) {
+        encontrado = 1;
+        break;
+        }
+    }
+    
+    fclose(arq_quartos);
+    free(quar_lido);
+    return encontrado;
 }
