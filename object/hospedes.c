@@ -87,7 +87,7 @@ void cad_hospedes(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     ler_cpf(hos->cpf, 18);
-    if (verifica_cpf(hos->cpf)) {
+    if (verifica_cpf_hospedes(hos->cpf)) {
         printf("CPF já cadastrado no sistema!");
         enter();
         free(hos);
@@ -381,7 +381,7 @@ void switch_edit_hospedes(Hospedes *hos){
 }
 
 
-int verifica_cpf(const char *cpf_a_verificar){
+int verifica_cpf_hospedes(const char *cpf_a_verificar){
     //recebe um cpf e verifica se ele já esta cadastrado
     FILE *arq_hospedes;
     Hospedes *hos_lido;

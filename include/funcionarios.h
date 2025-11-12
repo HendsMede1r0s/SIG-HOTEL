@@ -22,3 +22,4 @@ void exclu_funcionarios(void);
 void exib_funcionario(Funcionarios *fun);
 char menu_edit_funcionarios(void);
 void switch_edit_funcionarios(Funcionarios *fun);
+int verifica_cpf_funcionarios(const char *cpf_a_verificar);
