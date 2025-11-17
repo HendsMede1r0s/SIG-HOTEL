@@ -154,9 +154,11 @@ void dispo_quartos(void){
         return;
     }
 
+    printf("Quartos disponiveis:\n");
+    printf("\n");
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
         if (quar->status == 0) {
-            printf("Quarto %s disponivel!\n", quar->n_quarto);
+            printf("%s\n", quar->n_quarto);
             encontrado = True;
         }
     }
@@ -487,7 +489,6 @@ int verifica_n_quarto(const char *n_quarto_a_verificar){
     FILE *arq_quartos;
     Quartos *quar_lido;
     quar_lido = (Quartos*)malloc(sizeof(Quartos));
-    int encontrado = 0;
 
     arq_quartos = fopen("./data/quartos.dat", "rb");
     if (arq_quartos == NULL) {
@@ -497,12 +498,12 @@ int verifica_n_quarto(const char *n_quarto_a_verificar){
 
     while (fread(quar_lido, sizeof(Quartos), 1, arq_quartos) == 1) {
         if (strcmp(quar_lido->n_quarto, n_quarto_a_verificar) == 0) {
-        encontrado = 1;
+        return True;
         break;
         }
     }
     
     fclose(arq_quartos);
     free(quar_lido);
-    return encontrado;
+    return False;
 }
