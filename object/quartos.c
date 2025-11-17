@@ -22,21 +22,18 @@ void modulo_quartos(void){
                 check_in();
                 break;
             case '2':
-                dispo_quartos();
-                break;
-            case '3':
                 check_out();
                 break;
-            case '4':
+            case '3':
                 busc_quartos();
                 break;
-            case '5':
+            case '4':
                 edit_quartos();
                 break;
-            case '6':
+            case '5':
                 cad_quartos();
                 break;
-            case '7':
+            case '6':
                 list_quartos();
                 break;
             default:
@@ -55,19 +52,19 @@ char tela_quartos(void){
     printf("┌────────────────────────────────────────────────────────────────────┐\n");
     printf("|                              -Quartos-                             |\n");
     printf("├────────────────────────────────────────────────────────────────────┤\n");
-    printf("| [1] -> Check-in                                                    |\n");
-    printf("| [2] -> Quartos disponíveis                                         |\n");
-    printf("| [3] -> Check-out                                                   |\n");
-    printf("| [4] -> Buscar quartos                                              |\n");
-    printf("| [5] -> Editar quartos                                              |\n");
-    printf("| [6] -> Cadastrar quartos                                           |\n");
-    printf("| [7] -> Listar quartos                                              |\n");
-    printf("| [0] -> Voltar                                                      |\n");
+    printf("|                                                                    |\n");
+    printf("|        [1] -> Check-in                                             |\n");
+    printf("|        [2] -> Check-out                                            |\n");
+    printf("|        [3] -> Buscar quartos                                       |\n");
+    printf("|        [4] -> Editar quartos                                       |\n");
+    printf("|        [5] -> Cadastrar quartos                                    |\n");
+    printf("|        [6] -> Listar quartos                                       |\n");
+    printf("|        [0] -> Voltar                                               |\n");
+    printf("|                                                                    |\n");
     printf("└────────────────────────────────────────────────────────────────────┘\n");
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
-
     return op;
 }
 
@@ -125,54 +122,6 @@ void check_in(void){
     }
 
     free(quar);
-}
-
-
-void dispo_quartos(void){
-    limpa_tela();
-
-    FILE *arq_quartos;
-    Quartos *quar;
-    quar = (Quartos*)malloc(sizeof(Quartos));
-    int encontrado = False;
-
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#             {Quartos -> Quartos disponiveis}             #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    
-    arq_quartos = fopen("./data/quartos.dat", "rb");
-
-    if (arq_quartos == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        enter();
-        return;
-    }
-
-    printf("Quartos disponiveis:\n");
-    printf("\n");
-    while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
-        if (quar->status == 0) {
-            printf("%s\n", quar->n_quarto);
-            encontrado = True;
-        }
-    }
-    
-    enter();
-
-    fclose(arq_quartos);
-    free(quar);
-
-    if (!encontrado) {
-        printf("\nNenhum quarto disponível no momento.\n");
-        enter();
-    }
-
 }
 
 
