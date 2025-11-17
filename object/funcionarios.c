@@ -390,7 +390,6 @@ int verifica_cpf_funcionarios(const char *cpf_a_verificar){
     FILE *arq_funcionarios;
     Funcionarios *fun_lido;
     fun_lido = (Funcionarios*)malloc(sizeof(Funcionarios));
-    int encontrado = 0;
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
     if (arq_funcionarios == NULL) {
@@ -400,12 +399,12 @@ int verifica_cpf_funcionarios(const char *cpf_a_verificar){
 
     while (fread(fun_lido, sizeof(Funcionarios), 1, arq_funcionarios) == 1) {
         if (strcmp(fun_lido->cpf, cpf_a_verificar) == 0) {
-        encontrado = 1;
+        return True;
         break;
         }
     }
     
     fclose(arq_funcionarios);
     free(fun_lido);
-    return encontrado;
+    return False;
 }
