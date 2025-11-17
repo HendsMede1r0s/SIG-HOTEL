@@ -41,6 +41,7 @@ void modulo_funcionarios(void){
     } while (op != '0'); 
 }
 
+
 char tela_funcionarios(void){
     limpa_tela();
 
@@ -87,7 +88,14 @@ void cad_funcionarios(void){
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
     ler_cpf(fun->cpf, 18);
-    //input(fun->cpf, 18, "Digite o cpf: ");
+    
+    if (verifica_cpf_funcionarios(fun->cpf)) {
+        printf("CPF já cadastrado!");
+        enter();
+        free(fun);
+        return;
+    }
+
     ler_nome(fun->nome, 55);
     ler_cell(fun->cell, 18);
     fun->status = True;
@@ -110,15 +118,10 @@ void cad_funcionarios(void){
     printf("|#########################################################|\n");
     printf("└─────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    printf("\nCPF: %s", fun->cpf);
-    printf("\nNOME: %s", fun->nome);
-    printf("\nTELEFONE: %s", fun->cell);
-    printf("\nSTATUS: %i", fun->status);
-    printf("\n");
 
     fclose(arq_funcionarios);
-    enter();
     free(fun);
+    enter();
 }
 
 
@@ -140,7 +143,6 @@ void edit_funcionarios(void){
     printf("|##########################################################|\n");
     printf("└──────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    //input(cpf_lido, 18, "Digite o cpf: ");
     ler_cpf(cpf_lido, 18);
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
@@ -176,6 +178,7 @@ void edit_funcionarios(void){
     free(fun);
 
 }
+
 
 void busc_funcionarios(void){
     limpa_tela();
@@ -255,6 +258,7 @@ void list_funcionarios(void){
     enter();
 }
 
+
 void exclu_funcionarios(void){
     limpa_tela();
 
@@ -317,6 +321,7 @@ void exclu_funcionarios(void){
     
 }
 
+
 void exib_funcionario(Funcionarios *fun){
     printf("\n");
     printf("CPF: %s\n", fun->cpf);
@@ -377,4 +382,29 @@ void switch_edit_funcionarios(Funcionarios *fun){
                 break;
         }
     } while(op != '0');
+}
+
+
+int verifica_cpf_funcionarios(const char *cpf_a_verificar){
+    //recebe um cpf e verifica se ele já esta cadastrado
+    FILE *arq_funcionarios;
+    Funcionarios *fun_lido;
+    fun_lido = (Funcionarios*)malloc(sizeof(Funcionarios));
+
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+    if (arq_funcionarios == NULL) {
+        free(fun_lido);
+        return False;
+    }
+
+    while (fread(fun_lido, sizeof(Funcionarios), 1, arq_funcionarios) == 1) {
+        if (strcmp(fun_lido->cpf, cpf_a_verificar) == 0) {
+        return True;
+        break;
+        }
+    }
+    
+    fclose(arq_funcionarios);
+    free(fun_lido);
+    return False;
 }

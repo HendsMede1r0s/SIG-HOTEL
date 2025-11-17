@@ -139,8 +139,8 @@ void list_servicos(void){
     printf("--------------- ---------------\n");
     while (fread(servi, sizeof(Servicos), 1, arq_servicos)) {
         printf("%-15s %-15s\n",servi->id, servi->servi);
-        printf("--------------- ---------------\n");
     }
+    printf("--------------- ---------------\n");
 
     fclose(arq_servicos);
     free(servi);
@@ -206,7 +206,6 @@ int verifica_id(const char *id_a_verificar) {
     FILE *arq_servicos;
     Servicos *id_lido;
     id_lido = (Servicos*)malloc(sizeof(Servicos));
-    int encontrado = 0;
 
     arq_servicos = fopen("./data/servicos.dat", "rb");
     if (arq_servicos == NULL) {
@@ -216,12 +215,12 @@ int verifica_id(const char *id_a_verificar) {
 
     while (fread(id_lido, sizeof(Servicos), 1, arq_servicos) == 1) {
         if (strcmp(id_lido->id, id_a_verificar) == 0) {
-            encontrado = 1;
+            return True;
             break;
         }
     }
 
     fclose(arq_servicos);
     free(id_lido);
-    return encontrado;
+    return False;
 }

@@ -1,5 +1,5 @@
 void modulo_relatorios(void);
 char tela_relatorios(void);
-void switch_relatorio_hospedes(void);
-void tela_relatorio_hospede(void);
-void filtrar_letra(void);
+char tela_relatorio_quartos(void);
+void dispo_quartos(void);
+void relatorio_quartos(void);

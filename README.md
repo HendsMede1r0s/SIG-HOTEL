@@ -31,6 +31,10 @@ NOME: Eriky Rayan\
 EMAIL: eriky.medeiros.706@ufrn.edu.br\
 GITHUB: https://github.com/Eriky-Rayan
 
+NOME: Isaac Vilton Ribeiro\
+EMAIL: isaac.ribeiro.018@ufrn.edu.br\
+GITHUB: https://github.com/Isaac-Ribeiro
+
 ## COMO EXECUTAR
 
 1. Primeiro clone o repositorio:
