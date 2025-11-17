@@ -13,13 +13,13 @@ void modulo_relatorios(void){
         op = tela_relatorios();
         switch (op) {
             case '0':
-                tela_voltar();
+                printf("Voltando ao menu principal...");
                 break;
             case '1':
-                relatorio_hospede();
+                printf("Relatorio de funcionarios");
                 break;
             case '2':
-                relatorio_funcionario();
+                printf("Relatorio de hospedes");
                 break;
             case '3':
                 printf("Relatorio de quartos");
@@ -56,43 +56,4 @@ char tela_relatorios(void){
     getchar();
     enter();
     return op;
-}
-
-void switch_relatorio_hospedes(void){
-    
-    char op;
-
-    do {
-        op = tela_relatorio_hospedes();
-        switch (op) {
-            case '0':
-                tela_voltar();
-                break;
-            case '1':
-                filtrar_letra();
-                break;
-        }
-    } while (op != '0');
-}
-
-char tela_relatorio_hospedes(void){
-    limpa_tela();
-
-    char op;
-    printf("\n");
-    printf("┌────────────────────────────────────────────────┐\n");
-    printf("|                                                |\n");
-    printf("|       RELATORIOS -> Relatorio de Hospedes      |\n");
-    printf("|                                                |\n");
-    printf("|       [1] -> Filtrar por letras                |\n");
-    printf("|       [0] -> Voltar                            |\n");
-    printf("|                                                |\n");
-    printf("└────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Digite uma opcao: ");
-    scanf("%c", &op);
-    getchar();
-    enter();
-    return op;
-
 }
