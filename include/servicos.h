@@ -1,8 +1,11 @@
+//////////////////////
+// modulo serviços //
+////////////////////
 
 struct servicos{
 
-    char servi[55];
     char id[7];
+    char servi[55];
 
 };
 
