@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "relatorio.h"
 #include "utilidades.h"
 #include "quartos.h"
 #include "tela_voltar_menu.h"
 #include "hospedes.h"
+#include "funcionarios.h"
 
 void modulo_relatorios(void){
 
@@ -14,13 +17,13 @@ void modulo_relatorios(void){
         op = tela_relatorios();
         switch (op) {
             case '0':
-                printf("Voltando ao menu principal...");
+                tela_voltar();
                 break;
             case '1':
-                printf("Relatorio de funcionarios");
+                relatorio_hospedes();
                 break;
             case '2':
-                printf("Relatorio de hospedes");
+                relatorio_funcionarios();
                 break;
             case '3':
                 relatorio_quartos();
@@ -143,7 +146,7 @@ void relatorio_quartos(void){
             tela_voltar();
             break;
         case '1':
-            dispo_quartos();
+            quartos_disponiveis();
             break;
         default:
             tela_op_invalida();
@@ -151,4 +154,190 @@ void relatorio_quartos(void){
         }
 
     }while(op != '0');
+}
+
+char tela_relatorio_hospedes(void) {
+    limpa_tela();
+
+    char op;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────┐\n");
+    printf("|              RELATORIOS -> HOSPEDES            |\n");
+    printf("|                                                |\n");
+    printf("|       [1] -> Lista filtrada por nome           |\n");
+    printf("|       [0] -> Voltar                            |\n");
+    printf("└────────────────────────────────────────────────┘\n");
+    printf("\nDigite uma opção: ");
+
+    scanf("%c", &op);
+    getchar();
+    return op;
+}
+
+void relatorio_hospedes(void) {
+    char op;
+
+    do {
+        op = tela_relatorio_hospedes();
+        switch (op) {
+        case '0':
+            tela_voltar();
+            break;
+        case '1':
+            relatorio_hospedes_filtrado();
+            break;
+        default:
+            tela_op_invalida();
+            break;
+        }
+    } while (op != '0');
+}
+
+void relatorio_hospedes_filtrado(void) {
+    limpa_tela();
+
+    FILE *arq_hospedes;
+    Hospedes *hos;
+    hos = (Hospedes*) malloc(sizeof(Hospedes));
+    int encontrado = False;
+    char filtro[10];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                 {Lista Filtrada por Nome}                #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+
+    arq_hospedes = fopen("./data/hospedes.dat", "rb");
+
+    if (arq_hospedes == NULL) {
+        printf("Erro ao abrir o arquivo de hóspedes.\n");
+        enter();
+        free(hos);
+        return;
+    }
+
+    printf("Digite a primeira letra(s) do nome: ");
+    fgets(filtro, sizeof(filtro), stdin);
+    filtro[strcspn(filtro, "\n")] = '\0';
+
+    printf("\nHóspedes encontrados:\n");
+    printf("---------------------------------------------\n");
+    printf("%-20s %-15s %-10s\n", "Nome", "CPF", "Status");
+    printf("---------------------------------------------\n");
+
+    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
+        if (strncmp(hos->nome, filtro, strlen(filtro)) == 0) {
+            printf("%-20s %-15s %c\n", hos->nome, hos->cpf, hos->status);
+            encontrado = True;
+        }
+    }
+
+    fclose(arq_hospedes);
+
+    if (!encontrado) {
+        printf("\nNenhum hóspede encontrado com esse filtro.\n");
+    }
+
+    free(hos);
+    enter();
+
+}
+
+char tela_relatorio_funcionarios(void) {
+    limpa_tela();
+
+    char op;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────┐\n");
+    printf("|           RELATORIOS -> FUNCIONARIOS           |\n");
+    printf("|                                                |\n");
+    printf("|       [1] -> Lista filtrada por nome           |\n");
+    printf("|       [0] -> Voltar                            |\n");
+    printf("└────────────────────────────────────────────────┘\n");
+    printf("\nDigite uma opção: ");
+
+    scanf("%c", &op);
+    getchar();
+    return op;
+}
+
+void relatorio_funcionarios(void) {
+    char op;
+
+    do {
+        op = tela_relatorio_funcionarios();
+        switch (op) {
+        case '0':
+            tela_voltar();
+            break;
+        case '1':
+            relatorio_funcionarios_filtrado();
+            break;
+        default:
+            tela_op_invalida();
+            break;
+        }
+    } while (op != '0');
+}
+
+void relatorio_funcionarios_filtrado(void) {
+    limpa_tela();
+
+    FILE *arq_funcionarios;
+    Funcionarios *fun;
+    fun = (Funcionarios*) malloc(sizeof(Funcionarios));
+    int encontrado = False;
+    char filtro[10];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                 {Lista Filtrada por Nome}                #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+
+    if (arq_funcionarios == NULL) {
+        printf("Erro ao abrir o arquivo de funcionários.\n");
+        enter();
+        free(fun);
+        return;
+    }
+
+    printf("Digite a primeira letra(s) do nome: ");
+    fgets(filtro, sizeof(filtro), stdin);
+    filtro[strcspn(filtro, "\n")] = '\0';
+
+    printf("\nFuncionários encontrados:\n");
+    printf("---------------------------------------------\n");
+    printf("%-20s %-15s %-10s\n", "Nome", "CPF", "Status");
+    printf("---------------------------------------------\n");
+
+    while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
+        if (strncmp(fun->nome, filtro, strlen(filtro)) == 0) {
+            printf("%-20s %-15s %d\n", fun->nome, fun->cpf, fun->status);
+            encontrado = True;
+        }
+    }
+
+    fclose(arq_funcionarios);
+
+    if (!encontrado) {
+        printf("\nNenhum funcionário encontrado com esse filtro.\n");
+    }
+
+    free(fun);
+    enter();
+
 }
