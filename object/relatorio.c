@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "relatorio.h"
 #include "utilidades.h"
 #include "quartos.h"
@@ -75,6 +74,7 @@ char tela_relatorio_quartos(void){
     printf("|                                                |\n");
     printf("|                                                |\n");
     printf("|       [1] -> Quartos disponiveis               |\n");
+    printf("|       [2] -> Quartos por andar                 |\n");
     printf("|       [0] -> Voltar                            |\n");
     printf("|                                                |\n");
     printf("└────────────────────────────────────────────────┘\n");
@@ -134,6 +134,52 @@ void quartos_disponiveis(void){
 }
 
 
+void quartos_por_andar(void){
+    limpa_tela();
+
+    FILE *arq_quartos;
+    Quartos *quar;
+    quar = (Quartos*)malloc(sizeof(Quartos));
+    char n_andar_lido [5];
+    int encontrado = False;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Quartos por andar}                    #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    input(n_andar_lido, 7, "Digite o n° do andar: ");
+    
+    arq_quartos = fopen("./data/quartos.dat", "rb");
+    if (arq_quartos == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        enter();
+        return;
+    }
+
+    while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
+        if (strncmp(n_andar_lido, quar->n_quarto, 1) == 0) {
+            printf("%s\n", quar->n_quarto);
+            encontrado = True;
+        }
+    }
+    
+    fclose(arq_quartos);
+    
+    if (!encontrado) {
+        printf("Nenhum quarto nesse andar!");
+    }
+
+    free(quar);
+    enter();
+
+}
+
+
 void relatorio_quartos(void){
 
     char op;
@@ -147,6 +193,9 @@ void relatorio_quartos(void){
             break;
         case '1':
             quartos_disponiveis();
+            break;
+        case '2':
+            quartos_por_andar();
             break;
         default:
             tela_op_invalida();

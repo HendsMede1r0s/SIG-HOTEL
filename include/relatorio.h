@@ -4,6 +4,7 @@ char tela_relatorios(void);
 char tela_relatorio_quartos(void);
 void relatorio_quartos(void);
 void quartos_disponiveis(void);
+void quartos_por_andar(void);
 // Relatórios de hospedes
 char tela_relatorio_hospedes(void);
 void relatorio_hospedes(void);
