@@ -4,6 +4,7 @@
 #include "utilidades.h"
 #include "quartos.h"
 #include "tela_voltar_menu.h"
+#include "hospedes.h"
 
 void modulo_relatorios(void){
 
@@ -13,13 +14,13 @@ void modulo_relatorios(void){
         op = tela_relatorios();
         switch (op) {
             case '0':
-                tela_voltar();
+                printf("Voltando ao menu principal...");
                 break;
             case '1':
-                printf("Relatorio de hospedes");
+                printf("Relatorio de funcionarios");
                 break;
             case '2':
-                printf("Relatorio de funcionarios");
+                printf("Relatorio de hospedes");
                 break;
             case '3':
                 relatorio_quartos();
