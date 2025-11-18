@@ -82,7 +82,7 @@ char tela_relatorio_quartos(void){
 }
 
 
-void dispo_quartos(void){
+void quartos_disponiveis(void){
     limpa_tela();
 
     FILE *arq_quartos;
