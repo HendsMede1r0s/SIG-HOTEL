@@ -83,7 +83,6 @@ make run
 | **Relatórios — Hóspedes**         | Geração de relatórios administrativos de hóspedes                  |    🔧   |
 | **Relatórios — Funcionários**     | Geração de relatórios internos de colaboradores                    |    🔧   |
 | **Relatórios — Quartos**          | Relatórios operacionais sobre ocupação e disponibilidade           |    🔧   |
-| **Relatórios — Financeiros**      | Controle financeiro e balanço interno                              |    🔧   |
 | **Relatórios — Operacionais**     | Informações sobre manutenção, serviços e rotinas operacionais      |    🔧   |
 | **Gestão de funcionários**        | Registro, edição e gerenciamento dos colaboradores                 |    ✅   |
 | **Gestão de serviços oferecidos** | Controle de serviços adicionais (spa, lavanderia, transporte etc.) |    ✅   |
