@@ -270,7 +270,7 @@ void exclu_hospedes(void){
     Hospedes *hos;
     hos = (Hospedes*)malloc(sizeof(Hospedes));
     char cpf_lido [18];
-    int escolha = 0;
+    int escolha;
     int encontrado = False;
 
     printf("\n");
