@@ -34,6 +34,7 @@ void modulo_servicos(void){
     } while (op != '0'); 
 }
 
+
 char tela_servicos(void){
     limpa_tela();
 
@@ -109,6 +110,7 @@ void cad_servico(void){
     free(servi);
     enter();
 }
+
 
 void list_servicos(void){
     limpa_tela();

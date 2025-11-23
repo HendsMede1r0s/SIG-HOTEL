@@ -187,6 +187,7 @@ void busc_funcionarios(void){
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
+    int encontrado = False;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────┐\n");
@@ -207,6 +208,7 @@ void busc_funcionarios(void){
     }
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if(strcmp(cpf_lido, fun->cpf) == 0){
+            encontrado = True;
             printf("*ENCONTRADO*\n");
             exib_funcionario(fun);
             enter();
@@ -215,6 +217,12 @@ void busc_funcionarios(void){
 
     fclose(arq_funcionarios);
     free(fun);
+
+    if (!encontrado) {
+        printf("Funcionario não encontrado do banco de dados!");
+        enter();
+    }
+    
 }
 
 
@@ -266,6 +274,7 @@ void exclu_funcionarios(void){
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     char cpf_lido[18];
+    int escolha;
     int encontrado = False;
 
     printf("\n");
@@ -287,36 +296,38 @@ void exclu_funcionarios(void){
     }
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        if(strcmp(cpf_lido, fun->cpf) == 0){
-            fun->status = False;
-            encontrado = True;
-            fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
-            fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
+        if((strcmp(cpf_lido, fun->cpf) == 0) && (fun->status)) {
+            
+            exib_funcionario(fun);
+            escolha = confirma_exclusao();
+            if (escolha) {
+                fun->status = False;
+                encontrado = True;
+                fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
+                fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
+            } else if (!escolha) {
+                encontrado = -1;
+                free(fun);
+            }
         }
     }
 
     fclose(arq_funcionarios);
+    free(fun);
 
-    if(!encontrado){
-        printf("Cliente não encontrado no banco de dados");
-        enter();
-    }
-
-    if(encontrado){
-        limpa_tela();
-        printf("\n");
-        printf("┌─────────────────────────────────────────────────────────┐\n");
-        printf("|#########################################################|\n");
-        printf("|#                                                       #|\n");
-        printf("|#                {Funcionario excluido!}                #|\n");
-        printf("|#                                                       #|\n");
-        printf("|#########################################################|\n");
-        printf("└─────────────────────────────────────────────────────────┘\n");
-        printf("\n");
-        printf("Funcionario com CPF %s foi excluido com sucesso!\n", cpf_lido);
-        free(fun);
-        enter();
-
+    switch (encontrado) {
+        case 0:
+            printf("Funcionario não encontrado na base de dados!");
+            enter();
+            break;
+        case 1:
+            printf("Funcionario excluido com sucesso!");
+            enter();
+            break;
+        case -1:
+            printf("Exclusão cancelada!");
+            enter();
+            break;
     }
     
 }
