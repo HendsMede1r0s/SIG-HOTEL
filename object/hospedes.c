@@ -174,8 +174,6 @@ void edit_hospedes(void){
         enter();
     }
     
-    
-
 }
 
 
@@ -224,6 +222,7 @@ void busc_hospedes(void){
     FILE *arq_hospedes;
     Hospedes *hos;
     hos = (Hospedes*)malloc(sizeof(Hospedes));
+    int encontrado = False;
     char cpf_lido [18];
 
     printf("\n");
@@ -246,6 +245,7 @@ void busc_hospedes(void){
 
     while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
         if ((strcmp(hos->cpf, cpf_lido) == 0) && (hos->status)) {
+            encontrado = True;
             printf("\n*ENCONTRADO*\n");
             exib_hospede(hos);
             enter();
@@ -254,6 +254,12 @@ void busc_hospedes(void){
 
     fclose(arq_hospedes);
     free(hos);
+
+    if (!encontrado) {
+        printf("Hospede não encontrado na base de dados!");
+        enter();
+    }
+
 }
 
 
@@ -264,6 +270,7 @@ void exclu_hospedes(void){
     Hospedes *hos;
     hos = (Hospedes*)malloc(sizeof(Hospedes));
     char cpf_lido [18];
+    int escolha = 0;
     int encontrado = False;
 
     printf("\n");
@@ -285,35 +292,39 @@ void exclu_hospedes(void){
     }
 
     while (fread(hos, sizeof(Hospedes), 1, arq_hospedes) && (!encontrado)) {
-        if (strcmp(hos->cpf, cpf_lido) == 0) {
+        if ((strcmp(hos->cpf, cpf_lido) == 0) && (hos->status)) {
+            
             exib_hospede(hos);
-            hos->status = False;
-            encontrado = True;
-
-            fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
-            fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
+            escolha = confirma_exclusao();
+            if (escolha) {
+                hos->status = False;
+                encontrado = True;
+                fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
+                fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
+            } else if (!escolha){
+                encontrado = -1;
+                free(hos);
+            }
         }
     }
 
     fclose(arq_hospedes);
+    free(hos);
 
-    if (!encontrado) {
-        printf("Hospede não encontrado no banco de dados.\n");
-        enter();
+    switch (encontrado) {
+        case 0:
+            printf("Hospede não encontrado na base de dados!");
+            enter();
+            break;
+        case 1:
+            printf("Hospede excluido com sucesso!");
+            enter();
+            break;
+        case -1:
+            printf("Exclusão cancelada!");
+            enter();
+            break;
     }
-
-
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                    {Hospede excluido!}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    enter();
 
 }
 

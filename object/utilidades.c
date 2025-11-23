@@ -40,3 +40,21 @@ void tela_op_invalida(void){
     getchar();
     printf("\n");
 }
+
+
+int confirma_exclusao(void){
+
+    char escolha;
+
+    printf("\nDeseja prosseguir com a exclusao?\n");
+    printf("Digite 'S' para confirmar a exclusao ou 'N' para cancelar: ");
+    scanf("%c", &escolha);
+    getchar();
+    printf("\n");
+    if (escolha == 's' || escolha == 'S') {
+        return True;
+    } else {
+        return False;
+    }
+
+}
