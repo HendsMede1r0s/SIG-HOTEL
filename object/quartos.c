@@ -156,29 +156,26 @@ void check_out(void){
         if (strcmp(n_quarto_lido, quar->n_quarto) == 0) {
             exib_quarto(quar);
             enter();
-
             encontrado = True;
             quar->status = False;
-
             strcpy(quar->cpf, "-");
             strcpy(quar->quan_pessoas, "0");
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
-
             printf("*CHECK-OUT REALIZADO COM SUCESSO!\n*");
             exib_quarto(quar);
         }
     }
 
     fclose(arq_quartos);
+    free(quar);
 
     if (!encontrado) {
         printf("\nQuarto não encontrado no banco de dados\n");
         enter();
     }
 
-    free(quar);
 }
 
 
@@ -216,17 +213,18 @@ void busc_quartos(void){
             printf("*QUARTO ENCOTRADO!*\n");
             exib_quarto(quar);
             enter();
-            return;
         }
     }
+
+    
+    fclose(arq_quartos);
+    free(quar);
 
     if (!encontrado) {
         printf("*QUARTO NÃO ENCONTRADO!*");
         enter(); 
     }
 
-    fclose(arq_quartos);
-    free(quar);
 }
 
 
