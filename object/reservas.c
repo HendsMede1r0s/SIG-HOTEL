@@ -4,6 +4,8 @@
 #include "reservas.h"
 #include "utilidades.h"
 #include "leitura.h"
+#include "hospedes.h"
+#include "funcionarios.h"
 #include "tela_voltar_menu.h"
 
 typedef struct reservas Reservas;
@@ -129,6 +131,8 @@ void list_reservas(void){
     res = (Reservas*)malloc(sizeof(Reservas));
     char data_reserva_formatado [14];
     char data_atendimento_formatado [14];
+    char nome_hospede [55];
+    char nome_funcionario [55];
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -147,19 +151,26 @@ void list_reservas(void){
         return;
     }
 
-    printf("%-4s   %-18s   %-18s  %-14s  %-14s\n", "Quarto", "CPF Hospede", "CPF Funcionario", "Data Reserva", "Data Atendimento");
-    printf("-----   ------------------   ------------------   --------------  --------------\n");
+    printf("%-4s  %-18s   %-18s   %-14s  %-14s\n", "Quarto", "Hospede", "Funcionario", "Data Reserva", "Data Atendimento");
+    printf("------  ------------------   ------------------   --------------  --------------\n");
     while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
         if (res->status) {
+            // Formata as datas para exibição
             strncpy(data_reserva_formatado, pega_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
             data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
             strncpy(data_atendimento_formatado, pega_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
             data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
+            
+            // Pega os nomes do hospede e funcionario
+            strncpy(nome_hospede, pega_nome_hospede(res->cpf_hospede), sizeof(nome_hospede) - 1);
+            nome_hospede[sizeof(nome_hospede) - 1] = '\0';
+            strncpy(nome_funcionario, pega_nome_funcionario(res->cpf_funcionario), sizeof(nome_funcionario) - 1);
+            nome_funcionario[sizeof(nome_funcionario) - 1] = '\0';
 
-            printf("%-4s    %-18s   %-18s   %-14s  %-14s\n", res->n_quarto, res->cpf_hospede, res->cpf_funcionario, data_reserva_formatado, data_atendimento_formatado);
+            printf("%-4s    %-18s   %-18s   %-14s  %-14s\n", res->n_quarto, nome_hospede, nome_funcionario, data_reserva_formatado, data_atendimento_formatado);
         }
     }
-    printf("-----   ------------------   ------------------   --------------  --------------\n");
+    printf("------  ------------------   ------------------   --------------  --------------\n");
     fclose(arq_reservas);
     free(res);
     enter();
