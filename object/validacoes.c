@@ -195,3 +195,63 @@ int valida_id(char *num){
 
     return True;
 }
+
+
+int valida_data(char *data){
+
+    char pega_dia [4] = "\0";
+    char pega_mes [4] = "\0";
+    char pega_ano [6] = "\0";
+    int dia = 0;
+    int mes = 0;
+    int ano = 0;
+
+    if (data == NULL) {
+        return False;
+    }
+
+    if (strlen(data) != 10) {
+        return False;
+    }
+
+    if (data[2] != '/' || data[5] != '/') {
+        return False;
+    }
+
+
+    strncpy(pega_dia, data, 2); // copia os dois primeiros caracteres para o dia
+    strncpy(pega_mes, data + 3, 2); // +3 para pular a barra e o dia
+    strncpy(pega_ano, data + 6, 4); // +6 para pular a barra e o mes
+
+    sscanf(pega_dia, "%d", &dia); //tranforma o conteudo das strings em inteiros
+    sscanf(pega_mes, "%d", &mes);
+    sscanf(pega_ano, "%d", &ano);
+
+        if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) ///verifica se os numeros sao validos
+        {
+            if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) //ano e bissexto
+            {
+                return True;
+            }
+            if (dia <= 28 && mes == 2) //feveireiro
+            {
+                return True;
+            }
+            if ((dia <= 30) && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) ///verifica os meses de 30 dias
+            {
+                return True
+            }
+            if ((dia <= 31) && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes ==8 || mes == 10 || mes == 12)) ///verifica os meses de 31 dias
+            {
+                return True;
+            }
+            else
+            {
+                return False;
+            }
+      }
+       else
+           {
+                return False;
+           }
+} //adaptado de: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas

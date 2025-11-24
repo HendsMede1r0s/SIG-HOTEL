@@ -10,3 +10,4 @@ int is_numeric(const char *num);
 int valida_cpf(char *CPF_original);
 int valida_n_quarto(char *num);
 int valida_nome(char *nome);
+int valida_data(char *data);
