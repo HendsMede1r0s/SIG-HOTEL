@@ -2,8 +2,7 @@
 // modulo hospedes //
 /////////////////////
 
-struct hospedes
-{
+struct hospedes {
     char cpf [18];
     char nome [55];
     char cell [18];
@@ -23,4 +22,5 @@ void exib_hospede(Hospedes *hos);
 char menu_edit_hospedes(void);
 void switch_edit_hospedes(Hospedes *hos);
 int verifica_cpf_hospedes(const char *cpf_a_verificar);
+char* pega_nome_hospede(const char *cpf_a_buscar);
 

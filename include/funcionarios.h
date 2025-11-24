@@ -2,8 +2,7 @@
 //// Modulo Funcionarios ////
 /////////////////////////////
 
-struct funcionarios{
-
+struct funcionarios {
     char cpf[18];
     char nome[55];
     char cell[18];
@@ -23,3 +22,4 @@ void exib_funcionario(Funcionarios *fun);
 char menu_edit_funcionarios(void);
 void switch_edit_funcionarios(Funcionarios *fun);
 int verifica_cpf_funcionarios(const char *cpf_a_verificar);
+char* pega_nome_funcionario(const char *cpf_a_buscar);

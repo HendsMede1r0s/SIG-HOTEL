@@ -95,8 +95,8 @@ void cad_hospedes(void){
     }
     ler_nome(hos->nome, 55);
     ler_cell(hos->cell, 18);
-
     hos->status = True;
+    
     arq_hospedes = fopen("./data/hospedes.dat", "ab");
     if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
@@ -117,8 +117,8 @@ void cad_hospedes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     exib_hospede(hos);
-    enter();
     free(hos);
+    enter();
 }
 
 
@@ -404,7 +404,7 @@ int verifica_cpf_hospedes(const char *cpf_a_verificar){
         return False;
     }
 
-    while (fread(hos_lido, sizeof(Hospedes), 1, arq_hospedes) == 1) {
+    while (fread(hos_lido, sizeof(Hospedes), 1, arq_hospedes)) {
         if (strcmp(hos_lido->cpf, cpf_a_verificar) == 0) {
         return True;
         break;
@@ -414,4 +414,34 @@ int verifica_cpf_hospedes(const char *cpf_a_verificar){
     fclose(arq_hospedes);
     free(hos_lido);
     return False;
+}
+
+
+char* pega_nome_hospede(const char *cpf_hospede){
+    //recebe um cpf e retorna o nome do hospede
+    FILE *arq_hospedes;
+    Hospedes *hos_lido;
+    hos_lido = (Hospedes*)malloc(sizeof(Hospedes));
+    static char nome_hospede [55];
+
+    arq_hospedes = fopen("./data/hospedes.dat", "rb");
+    if (arq_hospedes == NULL) {
+        strcpy(nome_hospede, "Erro ao abrir o arquivo!");
+        return nome_hospede;
+    }
+
+    while (fread(hos_lido, sizeof(Hospedes), 1, arq_hospedes)) {
+        if (strcmp(hos_lido->cpf, cpf_hospede) == 0) {
+            strncpy(nome_hospede, hos_lido->nome, sizeof(nome_hospede) - 1);
+            nome_hospede[sizeof(nome_hospede) - 1] = '\0';
+            fclose(arq_hospedes);
+            free(hos_lido);
+            return nome_hospede;
+        }
+    }
+    
+    fclose(arq_hospedes);
+    free(hos_lido);
+    strcpy(nome_hospede, "Hospede nao encontrado!");
+    return nome_hospede;
 }

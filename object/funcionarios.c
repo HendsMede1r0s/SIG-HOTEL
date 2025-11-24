@@ -419,3 +419,33 @@ int verifica_cpf_funcionarios(const char *cpf_a_verificar){
     free(fun_lido);
     return False;
 }
+
+
+char* pega_nome_funcionario(const char *cpf_funcionario){
+    //recebe um cpf e retorna o nome do hospede
+    FILE *arq_funcionarios;
+    Funcionarios *fun_lido;
+    fun_lido = (Funcionarios*)malloc(sizeof(Funcionarios));
+    static char nome_funcionario [55];
+
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+    if (arq_funcionarios == NULL) {
+        strcpy(nome_funcionario, "Erro ao abrir o arquivo!");
+        return nome_funcionario;
+    }
+
+    while (fread(fun_lido, sizeof(Funcionarios), 1, arq_funcionarios)) {
+        if (strcmp(fun_lido->cpf, cpf_funcionario) == 0) {
+            strncpy(nome_funcionario, fun_lido->nome, sizeof(nome_funcionario) - 1);
+            nome_funcionario[sizeof(nome_funcionario) - 1] = '\0';
+            fclose(arq_funcionarios);
+            free(fun_lido);
+            return nome_funcionario;
+        }
+    }
+    
+    fclose(arq_funcionarios);
+    free(fun_lido);
+    strcpy(nome_funcionario, "Hospede nao encontrado!");
+    return nome_funcionario;
+}

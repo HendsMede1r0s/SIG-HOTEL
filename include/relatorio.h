@@ -17,3 +17,8 @@ void relatorio_hospedes_filtrado(void);
 char tela_relatorio_funcionarios(void);
 void relatorio_funcionarios(void);
 void relatorio_funcionarios_filtrado(void);
+// Relatórios de reservas
+char tela_relatorio_reservas(void);
+void list_reservas_ampliado(void);
+void relatorio_reservas(void);
+// Relatórios de serviços
