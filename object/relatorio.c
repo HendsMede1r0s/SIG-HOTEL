@@ -378,8 +378,9 @@ void relatorio_funcionarios_filtrado(void) {
         return;
     }
 
-    printf("Digite a primeira letra(s) do nome: ");
-    fgets(filtro, sizeof(filtro), stdin);
+    //printf("Digite a primeira letra(s) do nome: ");
+    //fgets(filtro, sizeof(filtro), stdin);
+    input(filtro, sizeof(filtro), "Digite a primeira letra(s) do nome: ");
     filtro[strcspn(filtro, "\n")] = '\0';
 
     printf("\nFuncionários encontrados:\n");
@@ -573,7 +574,8 @@ void relatorio_servicos_quarto (void) {
         free(servicos);
         free(quartos);
         return;
-
-        
     }
+
+    input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
+
 }
