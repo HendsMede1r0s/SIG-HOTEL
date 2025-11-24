@@ -6,19 +6,22 @@
 #include "validacoes.h"
 
 void ler_nome(char *variavel, int tam) {
-    
+    int valida;
+
     do{
         input(variavel, tam, "Digite o nome: ");
-        if(!valida_nome(variavel)){
+        valida = valida_nome(variavel);
+        if(!valida){
             printf("Nome invalido! Tente novamente.");
             printf("\n");
         }
-    } while(!valida_nome(variavel));
+    } while(!valida);
 
 }
 
 void ler_id(char *variavel, int tam) {
     int valida;
+
     do {
         input(variavel, tam, "Digite o id do serviço: ");
         valida = (valida_id(variavel));
@@ -32,6 +35,7 @@ void ler_id(char *variavel, int tam) {
 
 void ler_cpf(char *variavel, int tam){
     int valida;
+
     do {
         input(variavel, tam, "Digite o cpf: ");
         valida = (valida_cpf(variavel));
@@ -45,21 +49,23 @@ void ler_cpf(char *variavel, int tam){
 
 
 void ler_cell(char *variavel, int tam){
+    int valida;
 
     do{
         input(variavel, tam, "Digite o telefone: ");
-
-        if(!valida_num(variavel)){
-            printf("Numero invalido! Tente novamente.");
+        valida = valida_num(variavel);
+        if(!valida){
+            printf("Telefone invalido! Tente novamente.");
             printf("\n");
         }
-    } while(!valida_num(variavel));
+    } while(!valida);
     
 }
 
 
 void ler_n_quarto(char *variavel, int tam){
     int valida;
+
     do {
         input(variavel, tam, "Digite o N° do quarto: ");
         valida = (valida_n_quarto(variavel));
@@ -73,9 +79,30 @@ void ler_n_quarto(char *variavel, int tam){
 
 
 void ler_quan_pessoas(char *variavel, int tam){
+    int valida;
 
     do {
         input(variavel, tam, "Digite a quantidade de pessoas: ");
-    } while (!is_numeric(variavel));
+        valida = (is_numeric(variavel));
+        if (!valida) {
+            printf("Quantidade invalida! Tente novamente.");
+            printf("\n");
+        }
+    } while (!valida);
 
+}
+
+
+void ler_data(char *variavel, int tam){
+    int valida;
+
+    do{
+        input(variavel, tam, "Digite a data (DD/MM/AAAA): ");
+        valida = valida_data(variavel);
+        if(!valida){
+            printf("Data invalida! Tente novamente.");
+            printf("\n");
+        }
+    } while(!valida);
+    
 }
