@@ -19,7 +19,7 @@ void modulo_reservas(void){
                 tela_voltar();
                 break;
             case '1':
-                //cadastrar reserva
+                cad_reserva();
                 break; 
             case '2':
                 //editar info
@@ -69,3 +69,49 @@ char tela_reservas(void){
     return op;
 }
 
+
+void cad_reserva(void){
+    limpa_tela();
+
+    FILE *arq_reservas;
+    Reservas *res;
+    res = (Reservas*)malloc(sizeof(Reservas));
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                  {Reservas -> Cadastrar}                 #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    ler_n_quarto(res->n_quarto, 7);
+    ler_cpf(res->cpf_hospede, 18);
+    ler_cpf(res->cpf_funcionario, 18);
+    ler_data(res->data_reserva, 14);
+    ler_data(res->data_atendimento, 14);
+    res->status = True;
+    arq_reservas = fopen("./data/reservas.dat", "ab");
+    if (arq_reservas == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        enter();
+        return;
+    }
+
+    fwrite(res, sizeof(Reservas), 1, arq_reservas);
+    fclose(arq_reservas);
+    free(res);
+
+    limpa_tela();
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#              {Reserva efetuada com sucesso!}             #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    enter();
+
+}
