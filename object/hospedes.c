@@ -95,8 +95,8 @@ void cad_hospedes(void){
     }
     ler_nome(hos->nome, 55);
     ler_cell(hos->cell, 18);
-
     hos->status = True;
+    
     arq_hospedes = fopen("./data/hospedes.dat", "ab");
     if (arq_hospedes == NULL) {
         printf("Erro ao abrir o arquivo!\n");
@@ -117,8 +117,8 @@ void cad_hospedes(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     exib_hospede(hos);
-    enter();
     free(hos);
+    enter();
 }
 
 
