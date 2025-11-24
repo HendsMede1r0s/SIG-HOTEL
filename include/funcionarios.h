@@ -2,8 +2,7 @@
 //// Modulo Funcionarios ////
 /////////////////////////////
 
-struct funcionarios{
-
+struct funcionarios {
     char cpf[18];
     char nome[55];
     char cell[18];

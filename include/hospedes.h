@@ -2,8 +2,7 @@
 // modulo hospedes //
 /////////////////////
 
-struct hospedes
-{
+struct hospedes {
     char cpf [18];
     char nome [55];
     char cell [18];
