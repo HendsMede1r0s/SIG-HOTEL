@@ -154,9 +154,9 @@ void list_reservas(void){
     while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
         if (res->status) {
             // Formata as datas para exibição
-            strncpy(data_reserva_formatado, pega_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
+            strncpy(data_reserva_formatado, formata_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
             data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
-            strncpy(data_atendimento_formatado, pega_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
+            strncpy(data_atendimento_formatado, formata_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
             data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
 
             printf("%-4s    %-18s   %-18s   %-14s  %-14s\n", res->n_quarto, res->cpf_hospede, res->cpf_funcionario, data_reserva_formatado, data_atendimento_formatado);

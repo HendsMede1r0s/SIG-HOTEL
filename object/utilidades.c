@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utilidades.h"
 
 void limpa_tela(void){
@@ -60,7 +61,7 @@ int confirma_exclusao(void){
 }
 
 
-char* pega_data(char *data){
+char* formata_data(char *data){
 
     char dia [4];
     char mes [4];
@@ -76,4 +77,11 @@ char* pega_data(char *data){
     sprintf(data_formatada, "%s/%s/%s", dia, mes, ano);
     
     return data_formatada;
+}
+
+
+void upper(char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
 }

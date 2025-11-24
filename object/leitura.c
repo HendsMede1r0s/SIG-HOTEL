@@ -11,6 +11,7 @@ void ler_nome(char *variavel, int tam) {
     do{
         input(variavel, tam, "Digite o nome: ");
         valida = valida_nome(variavel);
+        upper(variavel);
         if(!valida){
             printf("Nome invalido! Tente novamente.");
             printf("\n");
