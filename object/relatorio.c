@@ -7,6 +7,7 @@
 #include "tela_voltar_menu.h"
 #include "hospedes.h"
 #include "reservas.h"
+#include "servicos.h"
 #include "funcionarios.h"
 
 void modulo_relatorios(void){
@@ -29,7 +30,7 @@ void modulo_relatorios(void){
                 relatorio_quartos();
                 break;
             case '4':
-                printf("Relatorio de servicos");
+                relatorio_servicos();
                 break;
             case '5':
                 relatorio_reservas();
@@ -212,6 +213,7 @@ void relatorio_quartos(void){
     }while(op != '0');
 }
 
+
 char tela_relatorio_hospedes(void) {
     limpa_tela();
 
@@ -231,6 +233,7 @@ char tela_relatorio_hospedes(void) {
     return op;
 }
 
+
 void relatorio_hospedes(void) {
     char op;
 
@@ -249,6 +252,7 @@ void relatorio_hospedes(void) {
         }
     } while (op != '0');
 }
+
 
 void relatorio_hospedes_filtrado(void) {
     limpa_tela();
@@ -305,6 +309,7 @@ void relatorio_hospedes_filtrado(void) {
 
 }
 
+
 char tela_relatorio_funcionarios(void) {
     limpa_tela();
 
@@ -324,6 +329,7 @@ char tela_relatorio_funcionarios(void) {
     return op;
 }
 
+
 void relatorio_funcionarios(void) {
     char op;
 
@@ -342,6 +348,7 @@ void relatorio_funcionarios(void) {
         }
     } while (op != '0');
 }
+
 
 void relatorio_funcionarios_filtrado(void) {
     limpa_tela();
@@ -490,4 +497,83 @@ void relatorio_reservas(void){
             break;
         }
     } while (op != '0');
+}
+
+
+char tela_relatorio_servicos(void) {
+    limpa_tela();
+
+    char op;
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────┐\n");
+    printf("|             RELATORIOS -> SERVIÇOS             |\n");
+    printf("|                                                |\n");
+    printf("|       [1] -> Listar Servicos por Quarto        |\n");
+    printf("|       [0] -> Voltar                            |\n");
+    printf("└────────────────────────────────────────────────┘\n");
+    printf("\nDigite uma opção: ");
+
+    scanf("%c", &op);
+    getchar();
+    return op;
+}
+
+void relatorio_servicos (void) {
+    char op;
+
+    do {
+        op = tela_relatorio_servicos();
+        switch (op) {
+        case '0':
+            tela_voltar();
+            break;
+        case '1':
+            relatorio_servicos_quarto();
+            break;
+        default:
+            tela_op_invalida();
+            break;
+        }
+    } while (op != '0');
+}
+
+void relatorio_servicos_quarto (void) {
+    limpa_tela();
+
+    FILE *arq_quartos;
+    Quartos *quartos;
+    quartos = (Quartos*)malloc(sizeof(Quartos));
+    FILE *arq_funcionarios;
+    Funcionarios *fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
+    FILE *arq_servicos;
+    Servicos *servicos;
+    servicos = (Servicos*)malloc(sizeof(Servicos));
+    int encontrado = False;
+    
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#               {Listar Serviços por Quarto}               #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+    arq_quartos = fopen("./data/quartps.dat", "rb");
+    arq_servicos = fopen("./data/servicos.dat", "rb");
+
+     if (arq_funcionarios && arq_quartos && arq_servicos == NULL) {
+        printf("Erro ao abrir o arquivo de funcionários, quartos e/ou serviços.\n");
+        enter();
+        free(fun);
+        free(servicos);
+        free(quartos);
+        return;
+
+        
+    }
 }

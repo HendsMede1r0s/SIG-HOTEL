@@ -22,3 +22,6 @@ char tela_relatorio_reservas(void);
 void list_reservas_ampliado(void);
 void relatorio_reservas(void);
 // Relatórios de serviços
+char tela_relatorio_servicos(void);
+void relatorio_servicos(void);
+void relatorio_servicos_quarto(void);
