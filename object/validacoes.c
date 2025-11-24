@@ -79,19 +79,19 @@ int valida_cpf(char *CPF){
     }
 
     // A verificação de CPFs repetidos é simplificada usando 'strcmp' em C
-    if (strcmp(CPF, "00000000000") == 0 ||
-        strcmp(CPF, "11111111111") == 0 ||
-        strcmp(CPF, "22222222222") == 0 ||
-        strcmp(CPF, "33333333333") == 0 ||
-        strcmp(CPF, "44444444444") == 0 ||
-        strcmp(CPF, "55555555555") == 0 ||
-        strcmp(CPF, "66666666666") == 0 ||
-        strcmp(CPF, "77777777777") == 0 ||
-        strcmp(CPF, "88888888888") == 0 ||
-        strcmp(CPF, "99999999999") == 0)
-    {
-        return False;
-    }
+    //if (strcmp(CPF, "00000000000") == 0 ||
+    //    strcmp(CPF, "11111111111") == 0 ||
+    //    strcmp(CPF, "22222222222") == 0 ||
+    //    strcmp(CPF, "33333333333") == 0 ||
+    //    strcmp(CPF, "44444444444") == 0 ||
+    //    strcmp(CPF, "55555555555") == 0 ||
+    //    strcmp(CPF, "66666666666") == 0 ||
+    //    strcmp(CPF, "77777777777") == 0 ||
+    //    strcmp(CPF, "88888888888") == 0 ||
+    //    strcmp(CPF, "99999999999") == 0)
+    //{
+    //    return False;
+    //}
 
     // Variáveis para cálculo
     int dig10, dig11, sm, i, r, num, peso;

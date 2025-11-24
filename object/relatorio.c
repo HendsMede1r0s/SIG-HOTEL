@@ -212,6 +212,7 @@ void relatorio_quartos(void){
     }while(op != '0');
 }
 
+
 char tela_relatorio_hospedes(void) {
     limpa_tela();
 
@@ -231,6 +232,7 @@ char tela_relatorio_hospedes(void) {
     return op;
 }
 
+
 void relatorio_hospedes(void) {
     char op;
 
@@ -249,6 +251,7 @@ void relatorio_hospedes(void) {
         }
     } while (op != '0');
 }
+
 
 void relatorio_hospedes_filtrado(void) {
     limpa_tela();
@@ -305,6 +308,7 @@ void relatorio_hospedes_filtrado(void) {
 
 }
 
+
 char tela_relatorio_funcionarios(void) {
     limpa_tela();
 
@@ -324,6 +328,7 @@ char tela_relatorio_funcionarios(void) {
     return op;
 }
 
+
 void relatorio_funcionarios(void) {
     char op;
 
@@ -342,6 +347,7 @@ void relatorio_funcionarios(void) {
         }
     } while (op != '0');
 }
+
 
 void relatorio_funcionarios_filtrado(void) {
     limpa_tela();
@@ -452,9 +458,9 @@ void list_reservas_ampliado(void){
     while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
         if (res->status) {
             // Formata as datas para exibição
-            strncpy(data_reserva_formatado, pega_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
+            strncpy(data_reserva_formatado, formata_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
             data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
-            strncpy(data_atendimento_formatado, pega_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
+            strncpy(data_atendimento_formatado, formata_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
             data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
             
             // Pega os nomes do hospede e funcionario
