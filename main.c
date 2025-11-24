@@ -12,6 +12,7 @@
 #include "./include/funcionarios.h"
 #include "./include/quartos.h"
 #include "./include/servicos.h"
+#include "./include/reservas.h"
 #include "./include/sobre.h"
 #include "./include/equipe.h"
 #include "./include/final.h"
@@ -45,12 +46,15 @@ int main(void){
                 modulo_servicos();
                 break;
             case '5':
-                tela_equipe();
+                modulo_reservas();
                 break;
             case '6':
-                tela_sobre();
+                tela_equipe();
                 break;
             case '7':
+                tela_sobre();
+                break;
+            case '8':
                 modulo_relatorios();
                 break;
             default:

@@ -13,7 +13,7 @@ void modulo_reservas(void){
     char op;
 
     do {
-        op = '1';
+        op = tela_reservas();
         switch (op) {
             case '0':
                 tela_voltar();
@@ -25,7 +25,7 @@ void modulo_reservas(void){
                 //editar info
                 break;
             case '3':
-                //Listar
+                list_reservas();
                 break;
             case '4':
                 //Buscar
@@ -87,9 +87,13 @@ void cad_reserva(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
     ler_n_quarto(res->n_quarto, 7);
+    printf("hospede:\n");
     ler_cpf(res->cpf_hospede, 18);
+    printf("funcionario:\n");
     ler_cpf(res->cpf_funcionario, 18);
+    printf("data reserva:\n");
     ler_data(res->data_reserva, 14);
+    printf("data atendimento:\n");
     ler_data(res->data_atendimento, 14);
     res->status = True;
     arq_reservas = fopen("./data/reservas.dat", "ab");
@@ -114,4 +118,49 @@ void cad_reserva(void){
     printf("└────────────────────────────────────────────────────────────┘\n");
     enter();
 
+}
+
+
+void list_reservas(void){
+    limpa_tela();
+
+    FILE *arq_reservas;
+    Reservas *res;
+    res = (Reservas*)malloc(sizeof(Reservas));
+    char data_reserva_formatado [14];
+    char data_atendimento_formatado [14];
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Hospedes -> Listar}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    
+    arq_reservas = fopen("./data/reservas.dat", "rb");
+    if (arq_reservas == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        enter();
+        return;
+    }
+
+    printf("%-4s   %-18s   %-18s  %-14s  %-14s\n", "Quarto", "CPF Hospede", "CPF Funcionario", "Data Reserva", "Data Atendimento");
+    printf("-----   ------------------   ------------------   --------------  --------------\n");
+    while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
+        if (res->status) {
+            strncpy(data_reserva_formatado, pega_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
+            data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
+            strncpy(data_atendimento_formatado, pega_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
+            data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
+
+            printf("%-4s    %-18s   %-18s   %-14s  %-14s\n", res->n_quarto, res->cpf_hospede, res->cpf_funcionario, data_reserva_formatado, data_atendimento_formatado);
+        }
+    }
+    printf("-----   ------------------   ------------------   --------------  --------------\n");
+    fclose(arq_reservas);
+    free(res);
+    enter();
 }

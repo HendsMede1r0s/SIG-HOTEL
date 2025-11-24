@@ -58,3 +58,22 @@ int confirma_exclusao(void){
     }
 
 }
+
+
+char* pega_data(char *data){
+
+    char dia [4];
+    char mes [4];
+    char ano [6];
+    static char data_formatada [14];
+
+    strncpy(dia, data, 2);
+    dia[2] = '\0';
+    strncpy(mes, data + 2, 2);
+    mes[2] = '\0';
+    strncpy(ano, data + 4, 4);
+    ano[4] = '\0';
+    sprintf(data_formatada, "%s/%s/%s", dia, mes, ano);
+    
+    return data_formatada;
+}

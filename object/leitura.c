@@ -97,12 +97,13 @@ void ler_data(char *variavel, int tam){
     int valida;
 
     do{
-        input(variavel, tam, "Digite a data (DD/MM/AAAA): ");
+        input(variavel, tam, "Digite a data (DDMMAAAA): ");
         valida = valida_data(variavel);
         if(!valida){
-            printf("Data invalida! Tente novamente.");
+            printf("Data invalida! Tente novamente usando apenas numeros.");
             printf("\n");
         }
     } while(!valida);
     
 }
+

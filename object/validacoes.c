@@ -199,9 +199,9 @@ int valida_id(char *num){
 
 int valida_data(char *data){
 
-    char pega_dia [4] = "\0";
-    char pega_mes [4] = "\0";
-    char pega_ano [6] = "\0";
+    char pega_dia [4];
+    char pega_mes [4];
+    char pega_ano [6];
     int dia = 0;
     int mes = 0;
     int ano = 0;
@@ -210,18 +210,18 @@ int valida_data(char *data){
         return False;
     }
 
-    if (strlen(data) != 10) {
+    if (strlen(data) != 8) {
         return False;
     }
 
-    if (data[2] != '/' || data[5] != '/') {
+    if (data[2] == '/' || data[5] == '/') {
         return False;
     }
 
 
     strncpy(pega_dia, data, 2); // copia os dois primeiros caracteres para o dia
-    strncpy(pega_mes, data + 3, 2); // +3 para pular a barra e o dia
-    strncpy(pega_ano, data + 6, 4); // +6 para pular a barra e o mes
+    strncpy(pega_mes, data + 2, 2); // +2 para pular dia
+    strncpy(pega_ano, data + 4, 4); // +4 para pular dia e mes
 
     sscanf(pega_dia, "%d", &dia); //tranforma o conteudo das strings em inteiros
     sscanf(pega_mes, "%d", &mes);
@@ -254,4 +254,5 @@ int valida_data(char *data){
            {
                 return False;
            }
+           
 } //adaptado de: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas

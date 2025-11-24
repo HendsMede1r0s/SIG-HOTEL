@@ -16,3 +16,4 @@ typedef struct reservas Reservas;
 void modulo_reservas(void);
 char tela_reservas(void);
 void cad_reserva(void);
+void list_reservas(void);
