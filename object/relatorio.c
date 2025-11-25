@@ -543,6 +543,84 @@ void relatorio_servicos (void) {
 
 
 void relatorio_servicos_quarto (void) {
+    limpa_tela();
 
+    FILE *arq_agendamentos, *arq_funcionarios, *arq_servicos;
+    Quartos *quartos;
+    quartos = (Quartos*)malloc(sizeof(Quartos));
+    Funcionarios *fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
+    Servicos *servicos;
+    servicos = (Servicos*)malloc(sizeof(Servicos));
+    Agendamentos *agendamentos;
+    agendamentos = (Agendamentos*)malloc(sizeof(Agendamentos));
+
+    int encontrado = False;
+    
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#               {Listar Serviços por Quarto}               #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+
+    arq_agendamentos = fopen("./data/agendamentos.dat", "rb");
+
+    if (arq_agendamentos == NULL) {
+        printf("Erro ao abrir agendamentos!\n");
+        free(quartos); free(fun); free(servicos); free(agendamentos);
+        enter();
+        return;
+    }
+
+    input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
+
+    printf("\nServiços realizados no quarto %s:\n", quartos->n_quarto);
+    printf("------------------------------------------------------------\n");
+    printf("%-20s %-30s\n", "Funcionário", "Serviço");
+    printf("------------------------------------------------------------\n");
+    while (fread(agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
+        if (strcmp(agendamentos->n_quarto, quartos->n_quarto) == 0) {
+            
+            // Pega o nome do funcionário
+            arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+            if (arq_funcionarios != NULL) {
+                while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
+                    if (strcmp(fun->cpf, agendamentos->cpf_funcionario) == 0) {
+                        break;
+                    }
+                }
+                fclose(arq_funcionarios);
+            }
+
+            // Pega o nome do serviço
+            arq_servicos = fopen("./data/servicos.dat", "rb");
+            if (arq_servicos != NULL) {
+                while (fread(servicos, sizeof(Servicos), 1, arq_servicos)) {
+                    if (strcmp(servicos->id, agendamentos->id_servico) == 0) {
+                        break;
+                    }
+                }
+                fclose(arq_servicos);
+            }
+
+            printf("%-20s %-30s\n", fun->nome, servicos->servi);
+            encontrado = True;
+        }
+    }
+
+    fclose(arq_agendamentos);
+
+    if (!encontrado) {
+        printf("Nenhum serviço encontrado para esse quarto!\n");
+    }
+
+    free(fun);
+    free(servicos);
+    free(quartos);
+    enter();
 
 }
