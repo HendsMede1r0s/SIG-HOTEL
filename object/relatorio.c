@@ -8,6 +8,7 @@
 #include "hospedes.h"
 #include "reservas.h"
 #include "servicos.h"
+#include "agendamentos.h"
 #include "funcionarios.h"
 
 void modulo_relatorios(void){
@@ -520,6 +521,7 @@ char tela_relatorio_servicos(void) {
     return op;
 }
 
+
 void relatorio_servicos (void) {
     char op;
 
@@ -539,43 +541,8 @@ void relatorio_servicos (void) {
     } while (op != '0');
 }
 
+
 void relatorio_servicos_quarto (void) {
-    limpa_tela();
 
-    FILE *arq_quartos;
-    Quartos *quartos;
-    quartos = (Quartos*)malloc(sizeof(Quartos));
-    FILE *arq_funcionarios;
-    Funcionarios *fun;
-    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
-    FILE *arq_servicos;
-    Servicos *servicos;
-    servicos = (Servicos*)malloc(sizeof(Servicos));
-    int encontrado = False;
-    
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#               {Listar Serviços por Quarto}               #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-
-    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
-    arq_quartos = fopen("./data/quartps.dat", "rb");
-    arq_servicos = fopen("./data/servicos.dat", "rb");
-
-     if (arq_funcionarios && arq_quartos && arq_servicos == NULL) {
-        printf("Erro ao abrir o arquivo de funcionários, quartos e/ou serviços.\n");
-        enter();
-        free(fun);
-        free(servicos);
-        free(quartos);
-        return;
-    }
-
-    input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
 
 }
