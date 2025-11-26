@@ -542,15 +542,15 @@ void relatorio_servicos (void) {
 }
 
 // Struct da lista Dinâmica Invertida
-    typedef struct no_agendamento {
+    typedef struct novo_agendamento {
         char nome_func[50];
         char nome_servico[50];
         char status[20];
-        struct no_agendamento* prox;
-    } NoAg;
+        struct novo_agendamento* prox;
+    } NovoAg;
 
-    NoAg* inserir_lista(NoAg* lista, Funcionarios* fun, Servicos* serv, Agendamentos* ag) {
-        NoAg* novo = (NoAg*) malloc(sizeof(NoAg));
+    NovoAg* inserir_lista(NovoAg* lista, Funcionarios* fun, Servicos* serv, Agendamentos* ag) {
+        NovoAg* novo = (NovoAg*) malloc(sizeof(NovoAg));
 
         strcpy(novo->nome_func, fun->nome);
         strcpy(novo->nome_servico, serv->servi);
@@ -560,8 +560,8 @@ void relatorio_servicos (void) {
         return novo;
     }
 
-    void imprime_lista(NoAg* lista) {
-        NoAg* aux = lista;
+    void imprime_lista(NovoAg* lista) {
+        NovoAg* aux = lista;
         while (aux != NULL) {
             printf("%-20s %-30s %-50s\n",
                    aux->nome_func,
@@ -571,12 +571,12 @@ void relatorio_servicos (void) {
         }
     }
 
-    void libera_lista(NoAg* lista) {
-        NoAg* tmp;
+    void libera_lista(NovoAg* lista) {
+        NovoAg* aux;
         while (lista != NULL) {
-            tmp = lista;
+            aux = lista;
             lista = lista->prox;
-            free(tmp);
+            free(aux);
         }
     }
 
@@ -617,7 +617,7 @@ void relatorio_servicos_quarto (void) {
     input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
 
     // Lista Dinâmica Invertida
-    NoAg* lista_servicos = NULL;
+    NovoAg* lista_servicos = NULL;
 
     // Percorre os agendamentos procurando os serviços do quarto informado
     while (fread(agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
