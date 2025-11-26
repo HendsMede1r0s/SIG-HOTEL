@@ -6,7 +6,7 @@ struct hospedes {
     char cpf [18];
     char nome [55];
     char cell [18];
-    char status;
+    int status;
 };
 
 typedef struct hospedes Hospedes;

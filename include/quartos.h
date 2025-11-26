@@ -6,7 +6,7 @@ struct quartos {
     char n_quarto [7];
     char cpf [18];
     char quan_pessoas [5];
-    char status;
+    int status;
 };
 
 typedef struct quartos Quartos;
