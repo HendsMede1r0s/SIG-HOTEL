@@ -81,7 +81,7 @@ void cad_agendamentos(void){
     input(agendamento->cpf_funcionario, sizeof(agendamento->cpf_funcionario), "Informe o CPF do funcionário: ");
     input(agendamento->n_quarto, sizeof(agendamento->n_quarto), "Informe o número do quarto: ");
     input(agendamento->id_servico, sizeof(agendamento->id_servico), "Informe o ID do serviço: ");
-    agendamento->status = 1; // Ativo
+    input(agendamento->status, sizeof(agendamento->status), "Informe o status: ");
 
     arq_agendamentos = fopen("./data/agendamentos.dat", "ab");
     if (arq_agendamentos == NULL) {
@@ -99,22 +99,60 @@ void cad_agendamentos(void){
 }
 
 void edit_agendamentos(void){
-    //limpa_tela();
+    limpa_tela();
 
-    //FILE *arq_agendamentos;
-    //Agendamentos *agendamento;
-    //agendamento = (Agendamentos*)malloc(sizeof(Agendamentos));
+    FILE *arq_agendamentos;
+    Agendamentos *agendamento;
+    agendamento = (Agendamentos*)malloc(sizeof(Agendamentos));
+    char id_agendamento_lido[7];
+    int encontrado = False;
     
 
-    //printf("\n");
-    //printf("┌────────────────────────────────────────────────────────────┐\n");
-    //printf("|                                                            |\n");
-    //printf("|               {Agendamentos -> Editar}                     |\n");
-    //printf("|                                                            |\n");
-    //printf("└────────────────────────────────────────────────────────────┘\n");
-    //printf("\n");
-    //printf("Funcionalidade em desenvolvimento.\n");
-    //enter();
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|               {Agendamentos -> Editar}                     |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    ler_id(id_agendamento_lido, sizeof(id_agendamento_lido));
+    
+    arq_agendamentos = fopen("./data/agendamentos.dat", "r+b");
+    if (arq_agendamentos == NULL) {
+        printf("\t Erro ao abrir o arquivo agendamentos.\n");
+        free(agendamento);
+        enter();
+        return;
+    }
+
+    while(fread(agendamento, sizeof(Agendamentos), 1, arq_agendamentos)){
+        if(strcmp(agendamento->id_agendamento, id_agendamento_lido) == 0){
+            encontrado = True;
+            printf("Agendamento encontrado! Informe os novos dados:\n");
+            input(agendamento->cpf_funcionario, sizeof(agendamento->cpf_funcionario), "Informe o CPF do funcionário: ");
+            input(agendamento->n_quarto, sizeof(agendamento->n_quarto), "Informe o número do quarto: ");
+            input(agendamento->id_servico, sizeof(agendamento->id_servico), "Informe o ID do serviço: ");
+            input(agendamento->status, sizeof(agendamento->status), "Informe o status: ");
+
+            fseek(arq_agendamentos, (-1)*sizeof(Agendamentos), SEEK_CUR);
+            fwrite(agendamento, sizeof(Agendamentos), 1, arq_agendamentos);
+
+            printf("Agendamento atualizado com sucesso!\n");
+            enter();
+            break;
+        }
+    }
+
+    fclose(arq_agendamentos);
+
+    if (!encontrado) {
+        printf("Agendamento não encontrado.\n");
+        enter();
+    }
+
+    free(agendamento);
+
+
 }
 
 void list_agendamentos(void){
@@ -143,7 +181,7 @@ void list_agendamentos(void){
     printf("%-10s %-20s %-10s %-10s %-10s\n", "ID AGENDAMENTO", "CPF FUNCIONARIO", "N° QUARTO", "ID SERVICO", "STATUS");
     printf("------------------------------------------------------------\n");
     while (fread(agendamento, sizeof(Agendamentos), 1, arq_agendamentos)) {
-        printf("%-10s %-20s %-10s %-10s %-10d\n", agendamento->id_agendamento, agendamento->cpf_funcionario, agendamento->n_quarto, agendamento->id_servico, agendamento->status);
+        printf("%-10s %-20s %-10s %-10s %-10s\n", agendamento->id_agendamento, agendamento->cpf_funcionario, agendamento->n_quarto, agendamento->id_servico, agendamento->status);
     }
     printf("------------------------------------------------------------\n");
 
