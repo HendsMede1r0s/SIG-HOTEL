@@ -70,7 +70,7 @@ char tela_relatorios(void){
     return op;
 }
 
-
+// Relatórios de Quartos
 char tela_relatorio_quartos(void){
     limpa_tela();
 
@@ -214,7 +214,7 @@ void relatorio_quartos(void){
     }while(op != '0');
 }
 
-
+// Relatórios de Hóspedes
 char tela_relatorio_hospedes(void) {
     limpa_tela();
 
@@ -310,7 +310,7 @@ void relatorio_hospedes_filtrado(void) {
 
 }
 
-
+// Relatórios de Funcionários
 char tela_relatorio_funcionarios(void) {
     limpa_tela();
 
@@ -407,7 +407,7 @@ void relatorio_funcionarios_filtrado(void) {
 
 }
 
-
+// Relatórios de Reservas
 char tela_relatorio_reservas(void){
     limpa_tela();
 
@@ -501,7 +501,7 @@ void relatorio_reservas(void){
     } while (op != '0');
 }
 
-
+// Relatórios de Serviços
 char tela_relatorio_servicos(void) {
     limpa_tela();
 
@@ -541,6 +541,44 @@ void relatorio_servicos (void) {
     } while (op != '0');
 }
 
+// Struct da lista Dinâmica Invertida
+    typedef struct no_agendamento {
+        char nome_func[50];
+        char nome_servico[50];
+        char status[20];
+        struct no_agendamento* prox;
+    } NoAg;
+
+    NoAg* inserir_lista(NoAg* lista, Funcionarios* fun, Servicos* serv, Agendamentos* ag) {
+        NoAg* novo = (NoAg*) malloc(sizeof(NoAg));
+
+        strcpy(novo->nome_func, fun->nome);
+        strcpy(novo->nome_servico, serv->servi);
+        strcpy(novo->status, ag->status);
+
+        novo->prox = lista;   // INSERÇÃO INVERTIDA
+        return novo;
+    }
+
+    void imprime_lista(NoAg* lista) {
+        NoAg* aux = lista;
+        while (aux != NULL) {
+            printf("%-20s %-30s %-50s\n",
+                   aux->nome_func,
+                   aux->nome_servico,
+                   aux->status);
+            aux = aux->prox;
+        }
+    }
+
+    void libera_lista(NoAg* lista) {
+        NoAg* tmp;
+        while (lista != NULL) {
+            tmp = lista;
+            lista = lista->prox;
+            free(tmp);
+        }
+    }
 
 void relatorio_servicos_quarto (void) {
     limpa_tela();
@@ -556,7 +594,7 @@ void relatorio_servicos_quarto (void) {
     agendamentos = (Agendamentos*)malloc(sizeof(Agendamentos));
 
     int encontrado = False;
-    
+
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
     printf("│############################################################│\n");
@@ -578,10 +616,10 @@ void relatorio_servicos_quarto (void) {
 
     input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
 
-    printf("\nServiços realizados no quarto %s:\n", quartos->n_quarto);
-    printf("------------------------------------------------------------\n");
-    printf("%-20s %-30s %-50s\n", "Funcionário", "Serviço", "Status do agendamento");
-    printf("------------------------------------------------------------\n");
+    // Lista Dinâmica Invertida
+    NoAg* lista_servicos = NULL;
+
+    // Percorre os agendamentos procurando os serviços do quarto informado
     while (fread(agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
         if (strcmp(agendamentos->n_quarto, quartos->n_quarto) == 0) {
             
@@ -607,7 +645,8 @@ void relatorio_servicos_quarto (void) {
                 fclose(arq_servicos);
             }
 
-            printf("%-20s %-30s %-50s\n", fun->nome, servicos->servi, agendamentos->status);
+            lista_servicos = inserir_lista(lista_servicos, fun, servicos, agendamentos);
+            
             encontrado = True;
         }
     }
@@ -616,11 +655,18 @@ void relatorio_servicos_quarto (void) {
 
     if (!encontrado) {
         printf("Nenhum serviço encontrado para esse quarto!\n");
+    } else {
+        printf("---------------------------------------------------------------\n");
+        printf("%-20s %-30s %-50s\n", "Funcionário", "Serviço", "Status");
+        printf("---------------------------------------------------------------\n");
+        imprime_lista(lista_servicos);
     }
+
+    libera_lista(lista_servicos);
 
     free(fun);
     free(servicos);
     free(quartos);
+    free(agendamentos);
     enter();
-
 }
