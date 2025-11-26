@@ -580,7 +580,7 @@ void relatorio_servicos_quarto (void) {
 
     printf("\nServiços realizados no quarto %s:\n", quartos->n_quarto);
     printf("------------------------------------------------------------\n");
-    printf("%-20s %-30s\n", "Funcionário", "Serviço");
+    printf("%-20s %-30s %-50s\n", "Funcionário", "Serviço", "Status do agendamento");
     printf("------------------------------------------------------------\n");
     while (fread(agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
         if (strcmp(agendamentos->n_quarto, quartos->n_quarto) == 0) {
@@ -607,7 +607,7 @@ void relatorio_servicos_quarto (void) {
                 fclose(arq_servicos);
             }
 
-            printf("%-20s %-30s\n", fun->nome, servicos->servi);
+            printf("%-20s %-30s %-50s\n", fun->nome, servicos->servi, agendamentos->status);
             encontrado = True;
         }
     }
