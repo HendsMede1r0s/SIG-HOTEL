@@ -20,9 +20,10 @@ char tela_inicial(void){
     printf("|        [3] -> Quartos                                      |\n");
     printf("|        [4] -> Servicos                                     |\n");
     printf("|        [5] -> Reservas                                     |\n");
-    printf("|        [6] -> Equipe                                       |\n");
-    printf("|        [7] -> Sobre                                        |\n");
-    printf("|        [8] -> Relatorios                                   |\n");
+    printf("|        [6] -> Agendamentos                                 |\n"); 
+    printf("|        [7] -> Equipe                                       |\n");
+    printf("|        [8] -> Sobre                                        |\n");
+    printf("|        [9] -> Relatorios                                   |\n");
     printf("|        [0] -> Sair                                         |\n");
     printf("|                                                            |\n");
     printf("└────────────────────────────────────────────────────────────┘\n");

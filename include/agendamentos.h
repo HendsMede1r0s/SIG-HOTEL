@@ -7,7 +7,7 @@ struct agendamentos {
     char cpf_funcionario[18];
     char n_quarto[7];
     char id_servico[7];
-    int status;
+    char status[15];
 };
 
 typedef struct agendamentos Agendamentos;

@@ -19,6 +19,7 @@
 #include "./include/relatorio.h"
 #include "./include/leitura.h"
 #include "./include/utilidades.h"
+#include "./include/agendamentos.h"
 
 //////////////////////////////////////
 //////////////// Main ////////////////
@@ -49,12 +50,15 @@ int main(void){
                 modulo_reservas();
                 break;
             case '6':
-                tela_equipe();
+                modulo_agendamentos();
                 break;
             case '7':
-                tela_sobre();
+                tela_equipe();
                 break;
             case '8':
+                tela_sobre();
+                break;
+            case '9':
                 modulo_relatorios();
                 break;
             default:
