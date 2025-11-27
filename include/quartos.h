@@ -1,7 +1,7 @@
 ////////////////////
 // modulo quartos //
 ////////////////////
-
+typedef struct quartos Quartos;
 struct quartos {
     char n_quarto [7];
     char cpf [18];
@@ -9,7 +9,15 @@ struct quartos {
     int status;
 };
 
-typedef struct quartos Quartos;
+
+typedef struct quartos_lista QuarList;
+struct quartos_lista {
+    char n_quarto [7];
+    char cpf [18];
+    char quan_pessoas [5];
+    int status;
+    QuarList* prox;
+};
 
 void modulo_quartos(void);
 char tela_quartos(void);
