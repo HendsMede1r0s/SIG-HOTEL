@@ -80,8 +80,23 @@ char* formata_data(char *data){
 }
 
 
-void upper(char *str) {
+void upper(char *str){
     for (int i = 0; str[i] != '\0'; i++) {
         str[i] = toupper(str[i]);
     }
 }
+
+
+//char* duplica(char *string){
+//    int n = strlen(string) + 1;
+//    char *dup = malloc(n * sizeof(char));
+//    strcpy(dup, string);
+//    return dup;
+//}
+//
+//
+//static char* ler_linha(void){
+//    char linha[255];
+//    scanf("%25[^\n]", linha);
+//    return duplica(linha);
+//}
