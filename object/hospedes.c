@@ -3,8 +3,8 @@
 #include <string.h>
 #include "hospedes.h"
 #include "utilidades.h"
-#include "leitura.h"
 #include "tela_voltar_menu.h"
+#include "leitura.h"
 
 typedef struct hospedes Hospedes;
 
@@ -176,13 +176,24 @@ void edit_hospedes(void){
     
 }
 
+typedef struct novo_hos Novo_hos;
+
+struct novo_hos {
+    char* cpf;
+    char* nome;
+    char* cell;
+    Novo_hos* prox;
+};
 
 void list_hospedes(void){
     limpa_tela();
 
     FILE *arq_hospedes;
-    Hospedes *hos;
-    hos = (Hospedes*)malloc(sizeof(Hospedes));
+    Hospedes hos;
+    Novo_hos* lista = NULL;
+    Novo_hos* novo;
+    Novo_hos* anter;
+    Novo_hos* atual;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -201,18 +212,68 @@ void list_hospedes(void){
         return;
     }
 
-    printf("%-15s %-30s %-15s\n", "CPF", "NOME", "TELEFONE");
-    printf("--------------- ------------------------------ ---------------\n");
-    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)){
-        if (hos->status) {
-            printf("%-15s %-30s %-15s\n", hos->cpf, hos->nome, hos->cell);
+    lista = NULL;
+    while (fread(&hos, sizeof(Hospedes), 1, arq_hospedes)) {
+        if (hos.nome[0] == '\0') {
+            continue; // Pula registros com nome vazio
         }
+
+        novo = (Novo_hos*)malloc(sizeof(Novo_hos));
+
+        novo->nome = malloc(strlen(hos.nome) + 1);
+        novo->cell = malloc(strlen(hos.cell) + 1);
+        novo->cpf = malloc(strlen(hos.cpf) + 1);
+
+        strcpy(novo->nome, hos.nome);
+        strcpy(novo->cell, hos.cell);
+        strcpy(novo->cpf, hos.cpf);
+
+        if (lista == NULL) {
+            lista = novo;
+            novo->prox = NULL;
+        }
+        else if (strcasecmp(novo->nome, lista->nome) < 0) {
+            novo->prox = lista;
+            lista = novo;
+        }
+        else {
+            anter = lista;
+            atual = lista->prox;
+
+            while (atual != NULL && strcasecmp(novo->nome, atual->nome) > 0) {
+                anter = atual;
+                atual = atual->prox;
+            }
+
+            anter->prox = novo;
+            novo->prox = atual;
+        }
+    }
+    fclose(arq_hospedes);
+
+
+    printf("%-15s %-30s %-15s\n", "NOME", "CPF", "TELEFONE");
+    printf("--------------- ------------------------------ ---------------\n");
+
+    atual = lista;
+    while (atual != NULL){
+        printf("%-15s %-30s %-15s\n", atual->nome, atual->cpf, atual->cell);
+        atual = atual->prox;
     }
     printf("--------------- ------------------------------ ---------------\n");
 
-    fclose(arq_hospedes);
-    free(hos);
+    atual = lista;
+    while (lista != NULL) {
+        lista = lista->prox;
+        free(atual->nome);
+        free(atual->cell);
+        free(atual->cpf);
+        free(atual);
+        atual = lista;
+    }
+
     enter();
+
 }
 
 
