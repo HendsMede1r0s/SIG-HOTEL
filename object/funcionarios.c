@@ -265,7 +265,7 @@ void list_funcionarios(void) {
     lista = NULL;
     while (fread(&fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
         //Verificar se o registro é válido
-        if (fun.nome[0] == '\0' || fun.cpf[0] == '\0') {
+        if (fun.nome[0] == '\0') {
             continue; // Pula registros vazios
         }
 
