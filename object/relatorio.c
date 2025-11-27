@@ -86,6 +86,7 @@ char tela_relatorio_quartos(void){
     printf("|                                                |\n");
     printf("|       [1] -> Quartos disponiveis               |\n");
     printf("|       [2] -> Quartos por andar                 |\n");
+    printf("|       [3] -> Listar todos os quartos           |\n");
     printf("|       [0] -> Voltar                            |\n");
     printf("|                                                |\n");
     printf("└────────────────────────────────────────────────┘\n");
@@ -115,7 +116,7 @@ void relatorio_quartos(void){
             quartos_por_andar();
             break;
         case '3':
-            listar_quartos_direto();
+            listar_todos_os_quartos();
             break;
         default:
             tela_op_invalida();
@@ -220,38 +221,9 @@ void quartos_por_andar(void){
 }
 
 
-QuarList* novo_quarto(void){
-    QuarList* l = (QuarList*) malloc(sizeof(QuarList));
-    if (l == NULL) {
-        fprintf(stderr, "Memoria indisponível\n");
-        exit(EXIT_FAILURE);
-    }
-    l->prox = NULL;
-    return l;
-}
-
-
-void append_quartos(QuarList *l, Quartos* data){
-    QuarList *novo = (QuarList*) malloc(sizeof(QuarList));
-    if (novo == NULL) {
-        fprintf(stderr, "Erro ao alocar memoria\n");
-        exit(1);
-    }
-    strcpy(novo->n_quarto, data->n_quarto);
-    strcpy(novo->cpf, data->cpf);
-    strcpy(novo->quan_pessoas, data->quan_pessoas);
-    novo->prox = NULL;
-    QuarList *temp = l;
-    while (temp->prox != NULL) {
-        temp = temp->prox;
-    }
-    temp->prox = novo;
-}
-
-
-void limpa_quarto(QuarList* l){
-    QuarList* temp = l->prox;
-    QuarList* next;
+void limpa_quarto(Quar_lista* l){
+    Quar_lista* temp = l->prox;
+    Quar_lista* next;
     while (temp != NULL) {
         next = temp->prox;
         free(temp);
@@ -261,59 +233,88 @@ void limpa_quarto(QuarList* l){
 }
 
 
-void deleta_quarto(QuarList* l){
+void deleta_quarto(Quar_lista* l){
     limpa_quarto(l);
     free(l);
 }
 
 
-void preenche_lista_quartos(QuarList* lista){
+void listar_todos_os_quartos(void){
+    limpa_tela();
 
-    FILE* arq_quartos;
-    Quartos* quar_lido = (Quartos*) malloc(sizeof(Quartos));
+    FILE *arq_quartos;
+    Quartos *quar;
+    quar = (Quartos*)malloc(sizeof(Quartos));
+    Quar_lista *lista = NULL;
+    Quar_lista *novo_quar;
+    Quar_lista *anter;
     int encontrado = False;
 
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Lista de Todos os Quartos}            #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    
     arq_quartos = fopen("./data/quartos.dat", "rb");
     if (arq_quartos == NULL) {
-        printf("Erro ao abrir o arquivo de quartos.\n");
+        printf("Erro ao abrir o arquivo.\n");
+        enter();
         return;
     }
 
-    while (fread(quar_lido, sizeof(Quartos), 1, arq_quartos)) {
+    while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
+        // Criar novo nó
+        novo_quar = (Quar_lista*)malloc(sizeof(Quar_lista));
+        //stdup serve como malloc + strcpy
+        novo_quar->n_quarto = strdup(quar->n_quarto);
+        novo_quar->cpf = strdup(quar->cpf);
+        novo_quar->quan_pessoas = strdup(quar->quan_pessoas);
+        novo_quar->status = quar->status;
+        novo_quar->prox = NULL;
         encontrado = True;
-        Quartos *novo = (Quartos*) malloc(sizeof(Quartos));
-        novo = quar_lido;
-        append_quartos(lista, novo);
-    }
 
-    if (!encontrado) {
-        printf("Nenhum quarto cadastrado!\n");
+        // Inserir na lista direta
+        if (lista == NULL) {
+            // Inserção no início
+            novo_quar->prox = lista;
+            lista = novo_quar;
+        }
+        else {
+            // Inserção no fim
+            anter = lista;
+            while (anter->prox != NULL) {
+                anter = anter->prox;
+            }
+            anter->prox = novo_quar;
+        }
     }
 
     fclose(arq_quartos);
-    free(quar_lido);
-    return;
-}
-
-
-void listar_quartos_direto(void){
-    limpa_tela();
-
-    QuarList* lista_quartos = novo_quarto();
-    preenche_lista_quartos(lista_quartos);
-
-    QuarList* temp = lista_quartos->prox;
-    printf("Lista de Quartos:\n");
-    printf("-------------------------\n");
-    printf("%-7s %-18s %-5s %-6s\n", "Nº Quarto", "CPF", "Pessoas", "Status");
-    printf("-------------------------\n");
-    while (temp != NULL) {
-        printf("%-7s %-18s %-5s %-6d\n", temp->n_quarto, temp->cpf, temp->quan_pessoas, temp->status);
-        temp = temp->prox;
+    if (!encontrado) {
+        printf("Nenhum quarto cadastrado no sistema.\n");
+        deleta_quarto(lista);
+        free(quar);
+        enter();
+        return;
     }
-    printf("-------------------------\n");
-
-    deleta_quarto(lista_quartos);
+    
+    // Exibir lista
+    printf("%-7s %-18s %-15s %-10s\n", "QUARTO", "CPF", "QUANTIDADE", "STATUS");
+    printf("------- ------------------ --------------- ----------\n");
+    Quar_lista* atual = lista;
+    while (atual != NULL) {
+        printf("%-7s %-18s %-15s %-10d\n", atual->n_quarto, atual->cpf, atual->quan_pessoas, atual->status);
+        atual = atual->prox;
+    }
+    printf("------- ------------------ --------------- ----------\n");
+    // Liberar memória
+    deleta_quarto(lista);
+    free(quar);
     enter();
 }
 
