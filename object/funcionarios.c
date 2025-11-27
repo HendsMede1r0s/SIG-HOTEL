@@ -265,9 +265,9 @@ void list_funcionarios(void) {
     lista = NULL;
     while (fread(&fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
         //Verificar se o registro é válido
-        if (fun.nome[0] == '\0') {
-            continue; // Pula registros vazios
-        }
+        //if (fun.nome[0] == '\0') {
+        //    continue; // Pula registros vazios
+        //}
 
 
         novo = (Novo_fun*)malloc(sizeof(Novo_fun));

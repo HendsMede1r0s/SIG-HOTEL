@@ -304,14 +304,17 @@ void listar_todos_os_quartos(void){
     }
     
     // Exibir lista
-    printf("%-7s %-18s %-15s %-10s\n", "QUARTO", "CPF", "QUANTIDADE", "STATUS");
-    printf("------- ------------------ --------------- ----------\n");
+    printf("%-7s %-18s %-5s %-5s\n", "QUARTO", "CPF", "QUANTIDADE", "STATUS");
+    printf("------- ------------------ ---------- ----------\n");
     Quar_lista* atual = lista;
     while (atual != NULL) {
-        printf("%-7s %-18s %-15s %-10d\n", atual->n_quarto, atual->cpf, atual->quan_pessoas, atual->status);
+        printf("%-7s %-18s %-5s      %-8s\n", atual->n_quarto, atual->cpf, atual->quan_pessoas, atual->status ? "OCUPADO" : "VAZIO");
         atual = atual->prox;
     }
-    printf("------- ------------------ --------------- ----------\n");
+    printf("------- ------------------ ---------- ----------\n");
+    // " ? " é um operador ternário que funciona como um if simplificado
+    // Se atual->status for verdadeiro (diferente de 0), imprime "OCUPADO", caso contrário, imprime "VAZIO".
+
     // Liberar memória
     deleta_quarto(lista);
     free(quar);

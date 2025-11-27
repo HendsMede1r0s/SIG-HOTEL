@@ -5,6 +5,7 @@
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
 #include "leitura.h"
+#include "relatorio.h" //função deleta_quarto
 
 typedef struct quartos Quartos;
 
@@ -158,7 +159,7 @@ void check_out(void){
             enter();
             encontrado = True;
             quar->status = False;
-            strcpy(quar->cpf, "-");
+            strcpy(quar->cpf, "");
             strcpy(quar->quan_pessoas, "0");
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
@@ -314,7 +315,8 @@ void cad_quartos(void){
         return;
     }
 
-    strcpy(quar->cpf, "-");
+    //criando campos padrão para o novo quarto
+    strcpy(quar->cpf, "");
     strcpy(quar->quan_pessoas, "0");
     quar->status = False;
 
@@ -336,6 +338,10 @@ void list_quartos(void){
     FILE *arq_quartos;
     Quartos *quar;
     quar = (Quartos*)malloc(sizeof(Quartos));
+    Quar_lista *lista = NULL;
+    Quar_lista *novo;
+    Quar_lista *anter;
+    Quar_lista *atual;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -346,7 +352,7 @@ void list_quartos(void){
     printf("│############################################################│\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-
+    
     arq_quartos = fopen("./data/quartos.dat", "rb");
     if (arq_quartos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -354,16 +360,56 @@ void list_quartos(void){
         return;
     }
 
-    printf("%-5s %-15s %-5s\n", "N°", "CPF", "Q. DE PESSOAS");
-    printf("----- --------------- -----\n");
+    lista = NULL;
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
-        if (quar->status) {
-            printf("%-5s %-15s %-5s\n", quar->n_quarto, quar->cpf, quar->quan_pessoas);
+        //if (hos.nome[0] == '\0') {
+        //    continue; // Pula registros com nome vazio
+        //}
+
+        novo = (Quar_lista*)malloc(sizeof(Quar_lista));
+
+        novo->n_quarto = malloc(strlen(quar->n_quarto) + 1);
+        novo->cpf = malloc(strlen(quar->cpf) + 1);
+        novo->quan_pessoas = malloc(strlen(quar->quan_pessoas) + 1);
+
+        strcpy(novo->n_quarto, quar->n_quarto);
+        strcpy(novo->cpf, quar->cpf);
+        strcpy(novo->quan_pessoas, quar->quan_pessoas);
+        novo->status = quar->status;
+
+        if (lista == NULL) {
+            lista = novo;
+            novo->prox = NULL;
+        } else if (strcasecmp(novo->n_quarto, lista->n_quarto) < 0) {
+            novo->prox = lista;
+            lista = novo;
+        } else {
+            anter = lista;
+            atual = lista->prox;
+
+            while (atual != NULL && strcasecmp(novo->n_quarto, atual->n_quarto) > 0) {
+                anter = atual;
+                atual = atual->prox;
+            }
+
+            anter->prox = novo;
+            novo->prox = atual;
         }
     }
-    printf("----- --------------- -----\n");
-
     fclose(arq_quartos);
+
+
+    printf("%-5s %-15s  %-5s  %-8s\n", "QUARTO", "CPF HOSPEDE", "QUAN. PES.", "STATUS");
+    printf("-----  ---------------  ---------  --------\n");
+
+    atual = lista;
+    while (atual != NULL){
+        printf("%-5s  %-15s  %-5s      %-8s\n", atual->n_quarto, atual->cpf, atual->quan_pessoas, atual->status ? "OCUPADO" : "VAZIO");
+        atual = atual->prox;
+    }
+    printf("-----  ---------------  ---------  --------\n");
+
+    deleta_quarto(lista);
     free(quar);
     enter();
 }
@@ -375,6 +421,8 @@ void exib_quarto(Quartos *quar){
     printf("CPF: %s\n", quar->cpf);
     printf("QUANTIDADE DE PESSOAS: %s\n", quar->quan_pessoas);
     printf("STATUS: %s\n", quar->status ? "OCUPADO" : "VAZIO");
+    // " ? " é um operador ternário que funciona como um if simplificado
+    // Se quar->status for verdadeiro (diferente de 0), imprime "OCUPADO", caso contrário, imprime "VAZIO".
 }
 
 
