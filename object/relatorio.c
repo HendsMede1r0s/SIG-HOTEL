@@ -3,6 +3,7 @@
 #include <string.h>
 #include "relatorio.h"
 #include "utilidades.h"
+#include "leitura.h"
 #include "quartos.h"
 #include "tela_voltar_menu.h"
 #include "hospedes.h"
@@ -71,6 +72,7 @@ char tela_relatorios(void){
 }
 
 // Relatórios de Quartos
+
 char tela_relatorio_quartos(void){
     limpa_tela();
 
@@ -92,6 +94,35 @@ char tela_relatorio_quartos(void){
     scanf("%c", &op);
     getchar();
     return op;
+}
+
+
+void relatorio_quartos(void){
+
+    char op;
+
+    do{
+        op = tela_relatorio_quartos();
+        switch (op)
+        {
+        case '0':
+            tela_voltar();
+            break;
+        case '1':
+            quartos_disponiveis();
+            break;
+        case '2':
+            quartos_por_andar();
+            break;
+        case '3':
+            listar_quartos_direto();
+            break;
+        default:
+            tela_op_invalida();
+            break;
+        }
+
+    }while(op != '0');
 }
 
 
@@ -189,30 +220,103 @@ void quartos_por_andar(void){
 }
 
 
-void relatorio_quartos(void){
-
-    char op;
-
-    do{
-        op = tela_relatorio_quartos();
-        switch (op)
-        {
-        case '0':
-            tela_voltar();
-            break;
-        case '1':
-            quartos_disponiveis();
-            break;
-        case '2':
-            quartos_por_andar();
-            break;
-        default:
-            tela_op_invalida();
-            break;
-        }
-
-    }while(op != '0');
+QuarList* novo_quarto(void){
+    QuarList* l = (QuarList*) malloc(sizeof(QuarList));
+    if (l == NULL) {
+        fprintf(stderr, "Memoria indisponível\n");
+        exit(EXIT_FAILURE);
+    }
+    l->prox = NULL;
+    return l;
 }
+
+
+void append_quartos(QuarList *l, Quartos* data){
+    QuarList *novo = (QuarList*) malloc(sizeof(QuarList));
+    if (novo == NULL) {
+        fprintf(stderr, "Erro ao alocar memoria\n");
+        exit(1);
+    }
+    strcpy(novo->n_quarto, data->n_quarto);
+    strcpy(novo->cpf, data->cpf);
+    strcpy(novo->quan_pessoas, data->quan_pessoas);
+    novo->prox = NULL;
+    QuarList *temp = l;
+    while (temp->prox != NULL) {
+        temp = temp->prox;
+    }
+    temp->prox = novo;
+}
+
+
+void limpa_quarto(QuarList* l){
+    QuarList* temp = l->prox;
+    QuarList* next;
+    while (temp != NULL) {
+        next = temp->prox;
+        free(temp);
+        temp = next;
+    }
+    l->prox = NULL;
+}
+
+
+void deleta_quarto(QuarList* l){
+    limpa_quarto(l);
+    free(l);
+}
+
+
+void preenche_lista_quartos(QuarList* lista){
+
+    FILE* arq_quartos;
+    Quartos* quar_lido = (Quartos*) malloc(sizeof(Quartos));
+    int encontrado = False;
+
+    arq_quartos = fopen("./data/quartos.dat", "rb");
+    if (arq_quartos == NULL) {
+        printf("Erro ao abrir o arquivo de quartos.\n");
+        return;
+    }
+
+    while (fread(quar_lido, sizeof(Quartos), 1, arq_quartos)) {
+        encontrado = True;
+        Quartos *novo = (Quartos*) malloc(sizeof(Quartos));
+        novo = quar_lido;
+        append_quartos(lista, novo);
+    }
+
+    if (!encontrado) {
+        printf("Nenhum quarto cadastrado!\n");
+    }
+
+    fclose(arq_quartos);
+    free(quar_lido);
+    return;
+}
+
+
+void listar_quartos_direto(void){
+    limpa_tela();
+
+    QuarList* lista_quartos = novo_quarto();
+    preenche_lista_quartos(lista_quartos);
+
+    QuarList* temp = lista_quartos->prox;
+    printf("Lista de Quartos:\n");
+    printf("-------------------------\n");
+    printf("%-7s %-18s %-5s %-6s\n", "Nº Quarto", "CPF", "Pessoas", "Status");
+    printf("-------------------------\n");
+    while (temp != NULL) {
+        printf("%-7s %-18s %-5s %-6d\n", temp->n_quarto, temp->cpf, temp->quan_pessoas, temp->status);
+        temp = temp->prox;
+    }
+    printf("-------------------------\n");
+
+    deleta_quarto(lista_quartos);
+    enter();
+}
+
 
 // Relatórios de Hóspedes
 char tela_relatorio_hospedes(void) {
@@ -541,6 +645,7 @@ void relatorio_servicos (void) {
     } while (op != '0');
 }
 
+
 // Struct da lista Dinâmica Invertida
     typedef struct no_agendamento {
         char nome_func[50];
@@ -560,6 +665,7 @@ void relatorio_servicos (void) {
         return novo;
     }
 
+
     void imprime_lista(NoAg* lista) {
         NoAg* aux = lista;
         while (aux != NULL) {
@@ -571,6 +677,7 @@ void relatorio_servicos (void) {
         }
     }
 
+
     void libera_lista(NoAg* lista) {
         NoAg* tmp;
         while (lista != NULL) {
@@ -579,6 +686,7 @@ void relatorio_servicos (void) {
             free(tmp);
         }
     }
+
 
 void relatorio_servicos_quarto (void) {
     limpa_tela();
