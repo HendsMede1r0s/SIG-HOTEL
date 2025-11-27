@@ -70,7 +70,7 @@ char tela_hospedes(void){
 }
 
 
-void cad_hospedes(void){
+void cad_hospedes(void){//
     limpa_tela();
 
     FILE *arq_hospedes;
@@ -214,9 +214,9 @@ void list_hospedes(void){
 
     lista = NULL;
     while (fread(&hos, sizeof(Hospedes), 1, arq_hospedes)) {
-        if (hos.nome[0] == '\0') {
-            continue; // Pula registros com nome vazio
-        }
+        //if (hos.nome[0] == '\0') {
+        //    continue; // Pula registros com nome vazio
+        //}
 
         novo = (Novo_hos*)malloc(sizeof(Novo_hos));
 
