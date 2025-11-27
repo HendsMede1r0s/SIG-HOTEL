@@ -10,13 +10,13 @@ struct quartos {
 };
 
 
-typedef struct quartos_lista QuarList;
+typedef struct quartos_lista Quar_lista;
 struct quartos_lista {
-    char n_quarto [7];
-    char cpf [18];
-    char quan_pessoas [5];
+    char *n_quarto;
+    char *cpf;
+    char *quan_pessoas;
     int status;
-    QuarList* prox;
+    Quar_lista* prox;
 };
 
 void modulo_quartos(void);

@@ -2,7 +2,7 @@
 // modulo relatorios //
 //////////////////////
 
-typedef struct quartos_lista QuarList;
+typedef struct quartos_lista Quar_lista;
 typedef struct quartos Quartos;
 
 void modulo_relatorios(void);
@@ -12,12 +12,9 @@ char tela_relatorio_quartos(void);
 void relatorio_quartos(void);
 void quartos_disponiveis(void);
 void quartos_por_andar(void);
-QuarList* novo_quarto(void);
-void append_quartos(QuarList *l, Quartos* data);
-void limpa_quarto(QuarList* l);
-void deleta_quarto(QuarList* l);
-void preenche_lista_quartos(QuarList* lista);
-void listar_quartos_direto(void);
+void limpa_quarto(Quar_lista* l);
+void deleta_quarto(Quar_lista* l);
+void listar_todos_os_quartos(void);
 // Relatórios de hospedes
 char tela_relatorio_hospedes(void);
 void relatorio_hospedes(void);
