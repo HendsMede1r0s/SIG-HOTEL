@@ -225,14 +225,28 @@ void busc_funcionarios(void){
     
 }
 
+typedef struct novo_fun Novo_fun;
+
+struct novo_fun {
+    char* cpf;
+    char* nome;
+    char* cell;
+    Novo_fun* prox;
+};
+
 
 void list_funcionarios(void){
     limpa_tela();
 
-    
     FILE *arq_funcionarios;
     Funcionarios* fun;
+
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
+
+    Novo_fun* lista = NULL;
+    Novo_fun* novo;
+    Novo_fun* anter;
+    Novo_fun* atual;
 
     printf("\n");
     printf("┌─────────────────────────────────────────────────────────┐\n");
@@ -250,18 +264,62 @@ void list_funcionarios(void){
         enter();
         return;
     }
-        printf("%-15s %-30s %-15s\n", "CPF", "NOME", "TELEFONE");
-        printf("--------------- ------------------------------ ---------------\n");
-        while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-            if(fun->status == 1){
-                printf("%-15s %-30s %-15s\n", fun->cpf, fun->nome, fun->cell);
+
+    lista = NULL;
+    while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
+        novo = (Novo_fun*)malloc(sizeof(Novo_fun));
+
+        novo->nome = malloc(strlen(fun->nome) + 1);
+        novo->cell = malloc(strlen(fun->cell) + 1);
+        novo->cpf = malloc(strlen(fun->cpf) + 1);
+
+        strcpy(novo->nome, fun->nome);
+        strcpy(novo->cpf, fun->cpf);
+        strcpy(novo->cell, fun->cell);
+
+        if (lista == NULL) {
+            lista = novo;
+            novo->prox = NULL;
+        }
+        else if (strcasecmp(novo->nome, lista->nome) < 0) {
+            novo->prox = lista;
+            lista = novo;
+        }
+        else {
+            anter = lista;
+            atual = lista->prox;
+
+            while (atual != NULL && strcasecmp(novo->nome, atual->nome) > 0) {
+                anter = atual;
+                atual = atual->prox;
             }
-        printf("--------------- ------------------------------ ---------------\n");
+
+            anter->prox = novo;
+            novo->prox = atual;
+        }
     }
-    
-    
 
     fclose(arq_funcionarios);
+
+    printf("%-15s %-30s %-15s\n", "NOME", "CPF", "TELEFONE");
+    printf("--------------- ------------------------------ ---------------\n");
+    atual = lista;
+    while(atual != NULL){
+        printf("%-15s %-30s %-15s\n", atual->nome, atual->cpf, atual->cell);
+        atual = atual->prox;
+    }
+    printf("--------------- ------------------------------ ---------------\n");
+
+    atual = lista;
+    while (lista != NULL) {
+        Novo_fun* temp = atual;
+        atual = atual->prox;
+        free(temp->cpf);
+        free(temp->nome);
+        free(temp->cell);
+        free(temp);
+    }
+    
     free(fun);
     enter();
 }
@@ -366,7 +424,6 @@ char menu_edit_funcionarios(void){
     getchar();
     return op;
 }
-
 
 
 void switch_edit_funcionarios(Funcionarios *fun){
