@@ -323,6 +323,7 @@ void listar_todos_os_quartos(void){
 
 
 // Relatórios de Hóspedes
+
 char tela_relatorio_hospedes(void) {
     limpa_tela();
 
@@ -651,22 +652,24 @@ void relatorio_servicos (void) {
 
 
 // Struct da lista Dinâmica Invertida
-typedef struct no_agendamento {
-        char* nome_func;      // ✅ String dinâmica
-        char* nome_servico;   // ✅ String dinâmica  
-        char* status;         // ✅ String dinâmica
-        struct no_agendamento* prox;
-    } NoAg;
-
+typedef struct novo_agendamento Novo_agendamento;
 
 void relatorio_servicos_quarto (void) {
     limpa_tela();
 
     FILE *arq_agendamentos, *arq_funcionarios, *arq_servicos;
-    Quartos quartos;
-    Funcionarios fun;
-    Servicos servicos;
-    Agendamentos agendamentos;
+    Quartos *quartos;
+    quartos = (Quartos*)malloc(sizeof(Quartos));
+    Funcionarios *fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
+    Servicos *servicos;
+    servicos = (Servicos*)malloc(sizeof(Servicos));
+    Agendamentos *agendamentos;
+    agendamentos = (Agendamentos*)malloc(sizeof(Agendamentos));
+    Novo_agendamento *lista = NULL;
+    Novo_agendamento *novo;
+    Novo_agendamento *temp;
+    Novo_agendamento *atual;
 
 
     printf("\n");
@@ -686,22 +689,22 @@ void relatorio_servicos_quarto (void) {
         return;
     }
 
-    input(quartos.n_quarto, sizeof(quartos.n_quarto), "Digite o número do quarto: ");
+    input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
 
 
     // Lista Dinâmica Invertida
-    NoAg* lista_servicos = NULL;
+    lista = NULL;
     int encontrado = False;
 
     // Percorre os agendamentos procurando os serviços do quarto informado
-    while (fread(&agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
-        if (strcmp(agendamentos.n_quarto, quartos.n_quarto) == 0) {
+    while (fread(agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
+        if (strcmp(agendamentos->n_quarto, quartos->n_quarto) == 0) {
             
             // Pega o nome do funcionário
             arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
             if (arq_funcionarios != NULL) {
-                while (fread(&fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
-                    if (strcmp(fun.cpf, agendamentos.cpf_funcionario) == 0) {
+                while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
+                    if (strcmp(fun->cpf, agendamentos->cpf_funcionario) == 0) {
                         break;
                     }
                 }
@@ -711,8 +714,8 @@ void relatorio_servicos_quarto (void) {
             // Pega o nome do serviço
             arq_servicos = fopen("./data/servicos.dat", "rb");
             if (arq_servicos != NULL) {
-                while (fread(&servicos, sizeof(Servicos), 1, arq_servicos)) {
-                    if (strcmp(servicos.id, agendamentos.id_servico) == 0) {
+                while (fread(servicos, sizeof(Servicos), 1, arq_servicos)) {
+                    if (strcmp(servicos->id, agendamentos->id_servico) == 0) {
                         break;
                     }
                 }
@@ -720,18 +723,18 @@ void relatorio_servicos_quarto (void) {
             }
 
             
-            NoAg* novo = (NoAg*)malloc(sizeof(NoAg));
+            novo = (Novo_agendamento*)malloc(sizeof(Novo_agendamento));
 
-            novo->nome_func = malloc(strlen(fun.nome) + 1);
-            novo->nome_servico = malloc(strlen(servicos.servi) + 1);
-            novo->status = malloc(strlen(agendamentos.status) + 1);
+            novo->nome_func = malloc(strlen(fun->nome) + 1);
+            novo->nome_servico = malloc(strlen(servicos->servi) + 1);
+            novo->status = malloc(strlen(agendamentos->status) + 1);
 
-            strcpy(novo->nome_func, fun.nome);
-            strcpy(novo->nome_servico, servicos.servi);
-            strcpy(novo->status, agendamentos.status);
+            strcpy(novo->nome_func, fun->nome);
+            strcpy(novo->nome_servico, servicos->servi);
+            strcpy(novo->status, agendamentos->status);
 
-            novo->prox = lista_servicos;
-            lista_servicos = novo;
+            novo->prox = lista;
+            lista = novo;
 
             encontrado = True;
         }
@@ -746,7 +749,7 @@ void relatorio_servicos_quarto (void) {
         printf("%-20s %-30s %-50s\n", "Funcionário", "Serviço", "Status");
         printf("---------------------------------------------------------------\n");
         
-        NoAg* atual = lista_servicos;
+        atual = lista;
         while (atual != NULL) {
             printf("%-20s %-30s %-50s\n", atual->nome_func, atual->nome_servico, atual->status);
             atual = atual->prox;
@@ -754,9 +757,9 @@ void relatorio_servicos_quarto (void) {
         printf("---------------------------------------------------------------\n");
     }
 
-    NoAg* atual = lista_servicos;
+    atual = lista;
     while (atual != NULL) {
-        NoAg* temp = atual;
+        temp = atual;
         atual = atual->prox;
         free(temp->nome_func);
         free(temp->nome_servico);

@@ -5,8 +5,10 @@
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
 #include "leitura.h"
+#include "relatorio.h"
 
 typedef struct hospedes Hospedes;
+typedef struct novo_hos Novo_hos;
 
 void modulo_hospedes(void){
 
@@ -176,24 +178,17 @@ void edit_hospedes(void){
     
 }
 
-typedef struct novo_hos Novo_hos;
-
-struct novo_hos {
-    char* cpf;
-    char* nome;
-    char* cell;
-    Novo_hos* prox;
-};
 
 void list_hospedes(void){
     limpa_tela();
 
     FILE *arq_hospedes;
-    Hospedes hos;
-    Novo_hos* lista = NULL;
-    Novo_hos* novo;
-    Novo_hos* anter;
-    Novo_hos* atual;
+    Hospedes *hos;
+    hos = (Hospedes*)malloc(sizeof(Hospedes));
+    Novo_hos *lista = NULL;
+    Novo_hos *novo;
+    Novo_hos *anter;
+    Novo_hos *atual;
 
     printf("\n");
     printf("┌────────────────────────────────────────────────────────────┐\n");
@@ -213,30 +208,29 @@ void list_hospedes(void){
     }
 
     lista = NULL;
-    while (fread(&hos, sizeof(Hospedes), 1, arq_hospedes)) {
+    while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
         //if (hos.nome[0] == '\0') {
         //    continue; // Pula registros com nome vazio
         //}
 
         novo = (Novo_hos*)malloc(sizeof(Novo_hos));
 
-        novo->nome = malloc(strlen(hos.nome) + 1);
-        novo->cell = malloc(strlen(hos.cell) + 1);
-        novo->cpf = malloc(strlen(hos.cpf) + 1);
+        novo->nome = malloc(strlen(hos->nome) + 1);
+        novo->cell = malloc(strlen(hos->cell) + 1);
+        novo->cpf = malloc(strlen(hos->cpf) + 1);
 
-        strcpy(novo->nome, hos.nome);
-        strcpy(novo->cell, hos.cell);
-        strcpy(novo->cpf, hos.cpf);
+        strcpy(novo->nome, hos->nome);
+        strcpy(novo->cell, hos->cell);
+        strcpy(novo->cpf, hos->cpf);
+        novo->status = hos->status;
 
         if (lista == NULL) {
             lista = novo;
             novo->prox = NULL;
-        }
-        else if (strcasecmp(novo->nome, lista->nome) < 0) {
+        } else if (strcasecmp(novo->nome, lista->nome) < 0) {
             novo->prox = lista;
             lista = novo;
-        }
-        else {
+        } else {
             anter = lista;
             atual = lista->prox;
 
@@ -271,7 +265,6 @@ void list_hospedes(void){
         free(atual);
         atual = lista;
     }
-
     enter();
 
 }

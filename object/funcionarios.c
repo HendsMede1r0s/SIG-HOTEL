@@ -8,6 +8,7 @@
 #include "leitura.h"
 
 typedef struct funcionarios Funcionarios;
+typedef struct novo_fun Novo_fun;
 
 void modulo_funcionarios(void){
 
@@ -225,21 +226,13 @@ void busc_funcionarios(void){
     
 }
 
-typedef struct novo_fun Novo_fun;
-
-struct novo_fun {
-    char* cpf;
-    char* nome;
-    char* cell;
-    Novo_fun* prox;
-};
-
 
 void list_funcionarios(void) {
     limpa_tela();
 
     FILE *arq_funcionarios;
-    Funcionarios fun;
+    Funcionarios *fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
     Novo_fun* lista = NULL;
     Novo_fun* novo;
     Novo_fun* anter;
@@ -263,7 +256,7 @@ void list_funcionarios(void) {
     }
 
     lista = NULL;
-    while (fread(&fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
+    while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
         //Verificar se o registro é válido
         //if (fun.nome[0] == '\0') {
         //    continue; // Pula registros vazios
@@ -273,28 +266,27 @@ void list_funcionarios(void) {
         novo = (Novo_fun*)malloc(sizeof(Novo_fun));
         
         // Alocar e copiar strings
-        novo->nome = malloc(strlen(fun.nome) + 1);
-        novo->cell = malloc(strlen(fun.cell) + 1);
-        novo->cpf = malloc(strlen(fun.cpf) + 1);
+        novo->nome = malloc(strlen(fun->nome) + 1);
+        novo->cell = malloc(strlen(fun->cell) + 1);
+        novo->cpf = malloc(strlen(fun->cpf) + 1);
         
-        strcpy(novo->nome, fun.nome);
-        strcpy(novo->cell, fun.cell);
-        strcpy(novo->cpf, fun.cpf);
+        strcpy(novo->nome, fun->nome);
+        strcpy(novo->cell, fun->cell);
+        strcpy(novo->cpf, fun->cpf);
+        novo->status = fun->status;
 
         // LÓGICA DE INSERÇÃO ORDENADA
         if (lista == NULL) {
             lista = novo;
             novo->prox = NULL;
-        } 
-        else if (strcasecmp(novo->nome, lista->nome) < 0) {
+        } else if (strcasecmp(novo->nome, lista->nome) < 0) {
             novo->prox = lista;
             lista = novo;
-        } 
-        else {
+        } else {
             anter = lista;
             atual = lista->prox;
             
-            while ((atual != NULL) && strcasecmp(atual->nome, novo->nome) < 0) {
+            while ((atual != NULL) && strcasecmp(novo->nome, atual->nome) > 0) {
                 anter = atual;
                 atual = atual->prox;
             }
