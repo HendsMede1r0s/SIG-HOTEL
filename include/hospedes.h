@@ -2,6 +2,7 @@
 // modulo hospedes //
 /////////////////////
 
+typedef struct hospedes Hospedes;
 struct hospedes {
     char cpf [18];
     char nome [55];
@@ -9,7 +10,14 @@ struct hospedes {
     int status;
 };
 
-typedef struct hospedes Hospedes;
+typedef struct novo_hos Novo_hos;
+struct novo_hos {
+    char* cpf;
+    char* nome;
+    char* cell;
+    int status;
+    Novo_hos* prox;
+};
 
 void modulo_hospedes(void);
 char tela_hospedes(void);

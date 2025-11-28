@@ -2,6 +2,7 @@
 // modulo agendamentos //
 /////////////////////////
 
+typedef struct agendamentos Agendamentos;
 struct agendamentos {
     char id_agendamento[7];
     char cpf_funcionario[18];
@@ -10,7 +11,12 @@ struct agendamentos {
     char status[15];
 };
 
-typedef struct agendamentos Agendamentos;
+typedef struct novo_agendamento {
+    char *nome_func;
+    char *nome_servico;
+    char *status;
+    struct novo_agendamento *prox;
+} Novo_agendamento;
 
 void modulo_agendamentos(void);
 char tela_agendamentos(void);

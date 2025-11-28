@@ -2,6 +2,7 @@
 //// Modulo Funcionarios ////
 /////////////////////////////
 
+typedef struct funcionarios Funcionarios;
 struct funcionarios {
     char cpf[18];
     char nome[55];
@@ -9,7 +10,14 @@ struct funcionarios {
     int status;
 };
 
-typedef struct funcionarios Funcionarios;
+typedef struct novo_fun Novo_fun;
+struct novo_fun {
+    char* cpf;
+    char* nome;
+    char* cell;
+    int status;
+    Novo_fun* prox;
+};
 
 void modulo_funcionarios(void);
 char tela_funcionarios(void);
