@@ -60,7 +60,7 @@ para executar:
 make
 
 ```
-para limpar os arquivos caso use no Linux:
+para limpar os arquivos:
 ```
 make clean
 
@@ -75,15 +75,15 @@ make run
 | Módulo / Item                     | Descrição                                                          |  Status |
 | --------------------------------- | ------------------------------------------------------------------ |  :----: |
 | **Cadastro de hóspedes**          | Registro, edição e consulta de informações dos hóspedes            |    ✅   |
-| **Gerenciamento de hóspedes**     | Administração dos dados dos hóspedes ativos e históricos           |    🔍   |
-| **Controle de reservas**          | Agendamento e controle de disponibilidade dos quartos              |    🔧   |
+| **Gerenciamento de hóspedes**     | Administração dos dados dos hóspedes ativos e históricos           |    ✅   |
+| **Controle de reservas**          | Agendamento e controle de disponibilidade dos quartos              |    ✅   |
 | **Disponibilidade de quartos**    | Painel para visualização de quartos disponíveis/ocupados           |    ✅   |
 | **Check-in**                      | Registro de entrada do hóspede                                     |    ⚠️   |
 | **Check-out**                     | Registro de saída do hóspede                                       |    ⚠️   |
-| **Relatórios — Hóspedes**         | Geração de relatórios administrativos de hóspedes                  |    🔧   |
-| **Relatórios — Funcionários**     | Geração de relatórios internos de colaboradores                    |    🔧   |
-| **Relatórios — Quartos**          | Relatórios operacionais sobre ocupação e disponibilidade           |    🔧   |
-| **Relatórios — Operacionais**     | Informações sobre manutenção, serviços e rotinas operacionais      |    🔧   |
+| **Relatórios — Hóspedes**         | Geração de relatórios administrativos de hóspedes                  |    ✅   |
+| **Relatórios — Funcionários**     | Geração de relatórios internos de colaboradores                    |    ✅   |
+| **Relatórios — Quartos**          | Relatórios operacionais sobre ocupação e disponibilidade           |    ✅   |
+| **Relatórios — Operacionais**     | Informações sobre manutenção, serviços e rotinas operacionais      |    ✅   |
 | **Gestão de funcionários**        | Registro, edição e gerenciamento dos colaboradores                 |    ✅   |
 | **Gestão de serviços oferecidos** | Controle de serviços adicionais (spa, lavanderia, transporte etc.) |    ✅   |
 
