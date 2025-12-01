@@ -42,26 +42,10 @@ void modulo_reservas(void){
 
 
 char tela_reservas(void){
-    limpa_tela();
 
     char op;
     
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|                         -Reservas-                         |\n");
-    printf("|                                                            |\n");
-    printf("|────────────────────────────────────────────────────────────|\n");
-    printf("|                                                            |\n");
-    printf("|        [1] -> Cadastrar reserva                            |\n");
-    printf("|        [2] -> Editar informacoes                           |\n");
-    printf("|        [3] -> Listar reservas                              |\n");
-    printf("|        [4] -> Buscar reserva                               |\n");
-    printf("|        [5] -> Cancelar reservas                            |\n");
-    printf("|        [0] -> Voltar                                       |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_reservas();
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
@@ -71,21 +55,12 @@ char tela_reservas(void){
 
 
 void cad_reserva(void){
-    limpa_tela();
 
     FILE *arq_reservas;
     Reservas *res;
     res = (Reservas*)malloc(sizeof(Reservas));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                  {Reservas -> Cadastrar}                 #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_cad_reservas();
     ler_n_quarto(res->n_quarto, sizeof(res->n_quarto));
     printf("hospede:\n");
     ler_cpf(res->cpf_hospede, sizeof(res->cpf_hospede));
@@ -117,7 +92,6 @@ void cad_reserva(void){
 
 
 void edit_reserva(void){
-    limpa_tela();
 
     FILE *arq_reservas;
     Reservas *res;
@@ -125,15 +99,7 @@ void edit_reserva(void){
     int encontrado = False;
     res = (Reservas*)malloc(sizeof(Reservas));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Reservas -> Editar}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_edit_reservas();
     ler_n_quarto(n_quarto_lido, sizeof(n_quarto_lido));
 
     arq_reservas = fopen("./data/reservas.dat", "r+b");
@@ -173,7 +139,6 @@ void edit_reserva(void){
 
 
 void list_reservas(void){
-    limpa_tela();
 
     FILE *arq_reservas;
     Reservas *res;
@@ -181,15 +146,7 @@ void list_reservas(void){
     char data_reserva_formatado [14];
     char data_atendimento_formatado [14];
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Hospedes -> Listar}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_list_reservas();
     
     arq_reservas = fopen("./data/reservas.dat", "rb");
     if (arq_reservas == NULL) {
@@ -219,7 +176,6 @@ void list_reservas(void){
 
 
 void busc_reservas(void){
-    limpa_tela();
 
     FILE *arq_reservas;
     Reservas *res;
@@ -227,15 +183,7 @@ void busc_reservas(void){
     int encontrado = False;
     res = (Reservas*)malloc(sizeof(Reservas));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Reservas -> Buscar}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_busc_reservas();
     ler_n_quarto(n_quarto_lido, sizeof(n_quarto_lido));
 
     arq_reservas = fopen("./data/reservas.dat", "rb");
@@ -267,7 +215,6 @@ void busc_reservas(void){
 
 
 void cancel_reservas(void){
-    limpa_tela();
 
     FILE *arq_reservas;
     Reservas *res;
@@ -276,15 +223,7 @@ void cancel_reservas(void){
     int encontrado = False;
     res = (Reservas*)malloc(sizeof(Reservas));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                  {Reservas -> Cancelar}                  #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_cancel_reservas();
     ler_n_quarto(n_quarto_lido, sizeof(n_quarto_lido));
 
     arq_reservas = fopen("./data/reservas.dat", "r+b");
@@ -356,26 +295,10 @@ void exib_reserva(Reservas *res){
 
 
 char menu_edit_reserva(void){
-    limpa_tela();
 
     char op;
     
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|                       -Editar Reserva-                     |\n");
-    printf("|                                                            |\n");
-    printf("|────────────────────────────────────────────────────────────|\n");
-    printf("|                                                            |\n");
-    printf("|        [1] -> Número do Quarto                             |\n");
-    printf("|        [2] -> CPF do Hóspede                               |\n");
-    printf("|        [3] -> CPF do Funcionário                           |\n");
-    printf("|        [4] -> Data da Reserva                              |\n");
-    printf("|        [5] -> Data do Atendimento                          |\n");
-    printf("|        [0] -> Voltar                                       |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_edit_reserva();
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();

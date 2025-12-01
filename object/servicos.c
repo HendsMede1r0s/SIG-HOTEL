@@ -19,7 +19,7 @@ void modulo_servicos(void){
                 tela_voltar();
                 break;
             case '1':
-                cad_servico();
+                cad_servicos();
                 break;
             case '2':
                 list_servicos();
@@ -36,23 +36,10 @@ void modulo_servicos(void){
 
 
 char tela_servicos(void){
-    limpa_tela();
 
     char op;
 
-    printf("\n");
-    printf("┌──────────────────────────────────────────────────────┐\n");
-    printf("|                                                      |\n");
-    printf("|                      -Serviços-                      |\n");
-    printf("|                                                      |\n");
-    printf("|──────────────────────────────────────────────────────|\n");
-    printf("|                                                      |\n");
-    printf("|       [1] -> Cadastrar Serviços                      |\n");
-    printf("|       [2] -> Listar serviços                         |\n");
-    printf("|       [3] -> Apagar servico                          |\n");
-    printf("|       [0] -> Voltar                                  |\n");
-    printf("└──────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_servicos();
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
@@ -61,22 +48,13 @@ char tela_servicos(void){
 }
 
 
-void cad_servico(void){
-    limpa_tela();
+void cad_servicos(void){
 
     FILE *arq_servicos;
     Servicos* servi;
     servi = (Servicos*)malloc(sizeof(Servicos));
 
-    printf("\n");
-    printf("┌───────────────────────────────────────────────────────┐\n");
-    printf("|#######################################################|\n");
-    printf("|#                                                     #|\n");
-    printf("|#           {Serviços -> Cadastrar Serviço}           #|\n");
-    printf("|#                                                     #|\n");
-    printf("|#######################################################|\n");
-    printf("└───────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_cad_servicos();
     input(servi->servi, 55, "Digite o novo serviço: ");
     ler_id(servi->id, 7);
     if (verifica_id(servi->id)) {
@@ -94,40 +72,20 @@ void cad_servico(void){
     }
     fwrite(servi, sizeof(Servicos), 1, arq_servicos);
     fclose(arq_servicos);
-
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Serviço Cadastrado}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    printf("Serviço: %s\n", servi->servi);
-    printf("ID: %s\n", servi->id);
     free(servi);
+
+    printf("Servico cadastrado com sucesso!\n");
     enter();
 }
 
 
 void list_servicos(void){
-    limpa_tela();
 
     FILE *arq_servicos;
     Servicos *servi;
     servi = (Servicos*)malloc(sizeof(Servicos));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#               {Serviço -> Listar Serviços}               #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_list_servicos();
     
     arq_servicos = fopen("./data/servicos.dat", "rb");
     if(arq_servicos == NULL){
@@ -151,7 +109,6 @@ void list_servicos(void){
 
 
 void exclu_servicos(void){
-    limpa_tela();
 
     FILE *arq_servicos;
     FILE *arq_servicos_temp;
@@ -159,15 +116,7 @@ void exclu_servicos(void){
     servi = (Servicos*)malloc(sizeof(Servicos));
     char servi_lido[55];
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#                   {Serviço -> Excluir}                   #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_exclu_servicos();
     input(servi_lido, 55, "Informe o seriço a ser removido: ");
 
     arq_servicos = fopen("./data/servicos.dat", "rb");

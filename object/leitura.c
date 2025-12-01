@@ -20,6 +20,22 @@ void ler_nome(char *variavel, int tam) {
 
 }
 
+
+void ler_letras(char *variavel, int tam, char *mensagem) {
+    int valida;
+
+    do{
+        input(variavel, tam, "Digite o texto: ");
+        valida = valida_nome(variavel);
+        if(!valida){
+            printf("Texto invalido! Tente novamente.");
+            printf("\n");
+        }
+    } while(!valida);
+    
+}
+
+
 void ler_id(char *variavel, int tam) {
     int valida;
 
@@ -33,6 +49,7 @@ void ler_id(char *variavel, int tam) {
     } while (!valida);
 
 }
+
 
 void ler_cpf(char *variavel, int tam){
     int valida;
@@ -108,3 +125,17 @@ void ler_data(char *variavel, int tam){
     
 }
 
+
+void ler_status(int *variavel, int tam){
+    int valida;
+
+    do {
+        input((char *)variavel, tam, "Digite o status (1-Pendente / 0-Concluído): ");
+        valida = (*variavel == 0 || *variavel == 1);
+        if (!valida) {
+            printf("Status invalido! Tente novamente.");
+            printf("\n");
+        }
+    } while (!valida);
+
+}

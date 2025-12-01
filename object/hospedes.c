@@ -314,7 +314,7 @@ void exclu_hospedes(void){
 
     switch (encontrado) {
         case 0:
-            printf("Hospede não encontrado na base de dados!");
+            printf("Hospede nao encontrado na base de dados!");
             enter();
             break;
         case 1:
@@ -322,7 +322,7 @@ void exclu_hospedes(void){
             enter();
             break;
         case -1:
-            printf("Exclusão cancelada!");
+            printf("Exclusao cancelada!");
             enter();
             break;
     }

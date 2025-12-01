@@ -445,4 +445,286 @@ void tela_menu_edit_quartos(void){
 }
 
 
+// telas servicos
+
+void tela_menu_servicos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌──────────────────────────────────────────────────────┐\n");
+    printf("|                                                      |\n");
+    printf("|                      -Serviços-                      |\n");
+    printf("|                                                      |\n");
+    printf("|──────────────────────────────────────────────────────|\n");
+    printf("|                                                      |\n");
+    printf("|       [1] -> Cadastrar Serviços                      |\n");
+    printf("|       [2] -> Listar serviços                         |\n");
+    printf("|       [3] -> Apagar servico                          |\n");
+    printf("|       [0] -> Voltar                                  |\n");
+    printf("└──────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_cad_servicos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌───────────────────────────────────────────────────────┐\n");
+    printf("|#######################################################|\n");
+    printf("|#                                                     #|\n");
+    printf("|#           {Serviços -> Cadastrar Serviço}           #|\n");
+    printf("|#                                                     #|\n");
+    printf("|#######################################################|\n");
+    printf("└───────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_list_servicos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################|\n");
+    printf("|#                                                          #|\n");
+    printf("|#               {Serviço -> Listar Serviços}               #|\n");
+    printf("|#                                                          #|\n");
+    printf("|############################################################|\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_exclu_servicos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################|\n");
+    printf("|#                                                          #|\n");
+    printf("|#                   {Serviço -> Excluir}                   #|\n");
+    printf("|#                                                          #|\n");
+    printf("|############################################################|\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
 // telas reservas
+
+
+void tela_menu_reservas(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|                         -Reservas-                         |\n");
+    printf("|                                                            |\n");
+    printf("|────────────────────────────────────────────────────────────|\n");
+    printf("|                                                            |\n");
+    printf("|        [1] -> Cadastrar reserva                            |\n");
+    printf("|        [2] -> Editar informacoes                           |\n");
+    printf("|        [3] -> Listar reservas                              |\n");
+    printf("|        [4] -> Buscar reserva                               |\n");
+    printf("|        [5] -> Cancelar reservas                            |\n");
+    printf("|        [0] -> Voltar                                       |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_cad_reservas(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                  {Reservas -> Cadastrar}                 #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_edit_reservas(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Reservas -> Editar}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_list_reservas(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Hospedes -> Listar}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_busc_reservas(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Reservas -> Buscar}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_cancel_reservas(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                  {Reservas -> Cancelar}                  #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_menu_edit_reserva(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|                       -Editar Reserva-                     |\n");
+    printf("|                                                            |\n");
+    printf("|────────────────────────────────────────────────────────────|\n");
+    printf("|                                                            |\n");
+    printf("|        [1] -> Número do Quarto                             |\n");
+    printf("|        [2] -> CPF do Hóspede                               |\n");
+    printf("|        [3] -> CPF do Funcionário                           |\n");
+    printf("|        [4] -> Data da Reserva                              |\n");
+    printf("|        [5] -> Data do Atendimento                          |\n");
+    printf("|        [0] -> Voltar                                       |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+// telas agendamentos
+
+
+void tela_menu_agendamentos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|                   -Agendamentos-                           |\n");
+    printf("|                                                            |\n");
+    printf("|────────────────────────────────────────────────────────────|\n");
+    printf("|                                                            |\n");
+    printf("|       [1] -> Cadastrar Agendamentos                        |\n");
+    printf("|       [2] -> Editar Agendamentos                           |\n");
+    printf("|       [3] -> Listar Agendamentos                           |\n");
+    printf("|       [4] -> Apagar Agendamento                            |\n");
+    printf("|       [0] -> Voltar                                        |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_cad_agendamentos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|               {Agendamentos -> Cadastrar}                  |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_edit_agendamentos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|               {Agendamentos -> Editar}                     |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_list_agendamentos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|               {Agendamentos -> Listar}                     |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_exclu_agendamentos(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|               {Agendamentos -> Excluir}                    |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_menu_edit_agendamentos(void){
+    limpa_tela();
+    
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│                                                            │\n");
+    printf("│                          -Hospedes-                        │\n");
+    printf("│                                                            │\n");
+    printf("│────────────────────────────────────────────────────────────│\n");
+    printf("│                                                            │\n");
+    printf("│        [1] -> ID agendamento                               │\n");
+    printf("│        [2] -> CPF funcionario                              │\n");
+    printf("│        [3] -> N° quarto                                    │\n");
+    printf("│        [4] -> ID serviço                                   │\n");
+    printf("│        [5] -> Status                                       │\n");
+    printf("│        [0] -> Voltar                                       │\n");
+    printf("│                                                            │\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "utilidades.h"
+#include "quartos.h"
 
 void limpa_tela(void){
 
@@ -73,6 +74,22 @@ void upper(char *str){
     }
 }
 
+void limpa_quarto(Quar_lista* l){
+    Quar_lista* temp = l->prox; // Começa do primeiro nó após cabeça
+    Quar_lista* next; // Ponteiro auxiliar
+    while (temp != NULL) { // Enquanto houver nós
+        next = temp->prox; // Guarda referência do próximo nó
+        free(temp); // Libera nó atual
+        temp = next; // Avança para próximo nó
+    }
+    l->prox = NULL; // Lista vazia novamente
+}
+
+
+void deleta_quarto(Quar_lista* l){
+    limpa_quarto(l); // Limpa todos os nós
+    free(l); // Libera a cabeça da lista
+}
 
 //char* duplica(char *string){
 //    int n = strlen(string) + 1;

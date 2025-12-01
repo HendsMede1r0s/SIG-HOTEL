@@ -42,20 +42,7 @@ char tela_agendamentos(void){
 
     char op;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|                   -Agendamentos-                           |\n");
-    printf("|                                                            |\n");
-    printf("|────────────────────────────────────────────────────────────|\n");
-    printf("|                                                            |\n");
-    printf("|       [1] -> Cadastrar Agendamentos                        |\n");
-    printf("|       [2] -> Editar Agendamentos                           |\n");
-    printf("|       [3] -> Listar Agendamentos                           |\n");
-    printf("|       [4] -> Apagar Agendamento                            |\n");
-    printf("|       [0] -> Voltar                                        |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_agendamentos();
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
@@ -64,19 +51,12 @@ char tela_agendamentos(void){
 }
 
 void cad_agendamentos(void){
-    limpa_tela();
 
     FILE *arq_agendamentos;
     Agendamentos* agendamento;
     agendamento = (Agendamentos*)malloc(sizeof(Agendamentos));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|               {Agendamentos -> Cadastrar}                  |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_cad_agendamentos();
 
     printf("\nID do agendamento\n");
     ler_id(agendamento->id_agendamento, sizeof(agendamento->id_agendamento));
@@ -84,7 +64,7 @@ void cad_agendamentos(void){
     ler_n_quarto(agendamento->n_quarto, sizeof(agendamento->n_quarto));
     printf("\nID do serviço\n");
     ler_id(agendamento->id_servico, sizeof(agendamento->id_servico));
-    input(agendamento->status, sizeof(agendamento->status), "Informe o status: ");
+    agendamento->status = True; // Pendente
 
     arq_agendamentos = fopen("./data/agendamentos.dat", "ab");
     if (arq_agendamentos == NULL) {
@@ -102,7 +82,6 @@ void cad_agendamentos(void){
 }
 
 void edit_agendamentos(void){
-    limpa_tela();
 
     FILE *arq_agendamentos;
     Agendamentos *agendamento;
@@ -111,13 +90,7 @@ void edit_agendamentos(void){
     int encontrado = False;
     
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|               {Agendamentos -> Editar}                     |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_edit_agendamentos();
     ler_id(id_agendamento_lido, sizeof(id_agendamento_lido));
     
     arq_agendamentos = fopen("./data/agendamentos.dat", "r+b");
@@ -132,10 +105,8 @@ void edit_agendamentos(void){
         if(strcmp(agendamento->id_agendamento, id_agendamento_lido) == 0){
             encontrado = True;
             printf("Agendamento encontrado! Informe os novos dados:\n");
-            input(agendamento->cpf_funcionario, sizeof(agendamento->cpf_funcionario), "Informe o CPF do funcionário: ");
-            input(agendamento->n_quarto, sizeof(agendamento->n_quarto), "Informe o número do quarto: ");
-            input(agendamento->id_servico, sizeof(agendamento->id_servico), "Informe o ID do serviço: ");
-            input(agendamento->status, sizeof(agendamento->status), "Informe o status: ");
+
+            switch_edit_agendamentos(agendamento);
 
             fseek(arq_agendamentos, (-1)*sizeof(Agendamentos), SEEK_CUR);
             fwrite(agendamento, sizeof(Agendamentos), 1, arq_agendamentos);
@@ -159,19 +130,12 @@ void edit_agendamentos(void){
 }
 
 void list_agendamentos(void){
-    limpa_tela();
 
     FILE *arq_agendamentos;
     Agendamentos *agendamento;
     agendamento = (Agendamentos*)malloc(sizeof(Agendamentos));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|               {Agendamentos -> Listar}                     |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_list_agendamentos();
     
     arq_agendamentos = fopen("./data/agendamentos.dat", "rb");
     if (arq_agendamentos == NULL) {
@@ -181,10 +145,10 @@ void list_agendamentos(void){
     }
 
     printf("AGENDAMENTOS CADASTRADOS:\n\n");
-    printf("%-10s %-20s %-10s %-10s %-10s\n", "ID AGENDAMENTO", "CPF FUNCIONARIO", "N° QUARTO", "ID SERVICO", "STATUS");
+    printf("%-10s %-20s %-10s %-10s %-10sc\n", "ID AGENDAMENTO", "CPF FUNCIONARIO", "N° QUARTO", "ID SERVICO", "STATUS");
     printf("------------------------------------------------------------\n");
     while (fread(agendamento, sizeof(Agendamentos), 1, arq_agendamentos)) {
-        printf("%-10s %-20s %-10s %-10s %-10s\n", agendamento->id_agendamento, agendamento->cpf_funcionario, agendamento->n_quarto, agendamento->id_servico, agendamento->status);
+        printf("%-10s %-20s %-10s %-10s %-10sc\n", agendamento->id_agendamento, agendamento->cpf_funcionario, agendamento->n_quarto, agendamento->id_servico, agendamento->status ? "Pendente" : "Concluido");
     }
     printf("------------------------------------------------------------\n");
 
@@ -194,53 +158,108 @@ void list_agendamentos(void){
 }
 
 void exclu_agendamentos(void){
-    limpa_tela();
 
     FILE *arq_agendamentos;
-    FILE *arq_agendamentos_temp;
     Agendamentos* agendamento;
     agendamento = (Agendamentos*)malloc(sizeof(Agendamentos));
     char id_agendamento_lido[7];
+    int encontrado = False;
+    int escolha;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|               {Agendamentos -> Excluir}                    |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    input(id_agendamento_lido, sizeof(id_agendamento_lido), "Informe o ID do agendamento a ser excluído: ");
+    tela_exclu_agendamentos();
+    ler_id(id_agendamento_lido, sizeof(id_agendamento_lido));
 
     arq_agendamentos = fopen("./data/agendamentos.dat", "rb");
-    arq_agendamentos_temp = fopen("./data/agendamentos_temp.dat", "wb");
-    if(arq_agendamentos == NULL || arq_agendamentos_temp == NULL){
+    if(arq_agendamentos == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
         return;
     }
 
     while(fread(agendamento, sizeof(Agendamentos), 1, arq_agendamentos)){
-        if(strcmp(agendamento->id_agendamento, id_agendamento_lido) != 0){
-            fwrite(agendamento, sizeof(Agendamentos), 1, arq_agendamentos_temp);
+        if(strcmp(agendamento->id_agendamento, id_agendamento_lido) == 0){
+            printf("Agendamento encontrado:\n");
+            escolha = confirma_exclusao();
+            if (escolha) {
+                encontrado = True;
+                agendamento->status = -1; // Marcado como excluído
+                fseek(arq_agendamentos, (-1)*sizeof(Agendamentos), SEEK_CUR);
+                fwrite(agendamento, sizeof(Agendamentos), 1, arq_agendamentos);
+            } else if (!escolha) {
+                encontrado = -1;
+            }
             break; //adicionado para previnir bug no windows
         }
     }
-
+    
     fclose(arq_agendamentos);
-    fclose(arq_agendamentos_temp);
-    remove("./data/agendamentos.dat");
-    rename("./data/agendamentos_temp.dat", "./data/agendamentos.dat");
     free(agendamento);
 
+    switch (encontrado) {
+        case 0:
+            printf("Agendamento nao encontrado na base de dados!\n");
+            enter();
+            break;
+        case 1:
+            printf("Agendamento excluido com sucesso!\n");
+            enter();
+            break;
+        case -1:
+            printf("Exclusao cancelada pelo usuario.\n");
+            enter();
+            break;
+    }
+
+}
+
+char menu_edit_agendamentos(void){
     limpa_tela();
+
+    char op;
+
+    tela_menu_edit_agendamentos();
+    printf("Digite uma opção: ");
+    scanf("%c", &op);
+    getchar();
     printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|               {Agendamento Excluido}                       |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    enter();
+    return op;
+}
+
+void switch_edit_agendamentos(Agendamentos*agendamento){
+    
+    char op;
+
+    do{
+        op = menu_edit_agendamentos();
+        switch (op){
+            case '0':
+                tela_voltar();
+                break;
+            case '1':
+                ler_id(agendamento->id_agendamento, 7);
+                enter();
+                break;
+            case '2':
+                ler_cpf(agendamento->cpf_funcionario, 18);
+                enter();
+                break;
+            case '3':
+                ler_n_quarto(agendamento->n_quarto, 7);
+                enter();
+                break;
+            case '4':
+                ler_id(agendamento->id_servico, 7);
+                enter();
+                break;
+            case '5':
+                ler_status(&agendamento->status, sizeof(agendamento->status));
+                enter();
+                break;
+            default:
+                tela_op_invalida();
+                break;
+        }
+    } while(op != '0');
 }
 
 
