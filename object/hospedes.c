@@ -3,7 +3,7 @@
 #include <string.h>
 #include "hospedes.h"
 #include "utilidades.h"
-#include "tela_voltar_menu.h"
+#include "telas.h"
 #include "leitura.h"
 #include "relatorio.h"
 
@@ -44,26 +44,10 @@ void modulo_hospedes(void){
 
 
 char tela_hospedes(void){
-    limpa_tela();
 
     char op;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│                                                            │\n");
-    printf("│                          -Hospedes-                        │\n");
-    printf("│                                                            │\n");
-    printf("│────────────────────────────────────────────────────────────│\n");
-    printf("│                                                            │\n");
-    printf("│        [1] -> Cadastar                                     │\n");
-    printf("│        [2] -> Editar informacoes                           │\n");
-    printf("│        [3] -> Listar hospedes                              │\n");
-    printf("│        [4] -> Buscar hospedes                              │\n");
-    printf("│        [5] -> Excluir hospedes                             │\n");
-    printf("│        [0] -> Voltar                                       │\n");
-    printf("│                                                            │\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_hospedes();
     printf("Digite uma opçao: ");
     scanf("%c", &op);
     getchar();
@@ -72,22 +56,13 @@ char tela_hospedes(void){
 }
 
 
-void cad_hospedes(void){//
-    limpa_tela();
+void cad_hospedes(void){
 
     FILE *arq_hospedes;
     Hospedes *hos;
     hos = (Hospedes*)malloc(sizeof(Hospedes));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                  {Hospedes -> Cadastrar}                 #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_busc_hospedes();
     ler_cpf(hos->cpf, 18);
     if (verifica_cpf_hospedes(hos->cpf)) {
         printf("CPF já cadastrado no sistema!");
@@ -111,13 +86,7 @@ void cad_hospedes(void){//
 
     limpa_tela();
     printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#             {Hospede cadastrado com sucesso!}            #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("*Hóspede cadastrado com sucesso!*\n");
     exib_hospede(hos);
     free(hos);
     enter();
@@ -125,7 +94,6 @@ void cad_hospedes(void){//
 
 
 void edit_hospedes(void){
-    limpa_tela();
 
     FILE *arq_hospedes;
     Hospedes *hos;
@@ -133,15 +101,7 @@ void edit_hospedes(void){
     char cpf_lido [18];
     int encontrado = False;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Hospedes -> Editar}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_edit_hospedes();
     ler_cpf(cpf_lido, 18);
 
     arq_hospedes = fopen("./data/hospedes.dat", "r+b");
@@ -181,7 +141,6 @@ void edit_hospedes(void){
 
 
 void list_hospedes(void){
-    limpa_tela();
 
     FILE *arq_hospedes;
     Hospedes *hos;
@@ -191,15 +150,7 @@ void list_hospedes(void){
     Novo_hos *anter;
     Novo_hos *atual;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Hospedes -> Listar}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_list_hospedes();
 
     arq_hospedes = fopen("./data/hospedes.dat", "rb");
     if (arq_hospedes == NULL) {
@@ -282,7 +233,6 @@ void list_hospedes(void){
 
 
 void busc_hospedes(void){
-    limpa_tela();
 
     FILE *arq_hospedes;
     Hospedes *hos;
@@ -290,15 +240,7 @@ void busc_hospedes(void){
     int encontrado = False;
     char cpf_lido [18];
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Hospedes -> Buscar}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_busc_hospedes();
     ler_cpf(cpf_lido, 18);
 
     arq_hospedes = fopen("./data/hospedes.dat", "rb");
@@ -330,7 +272,6 @@ void busc_hospedes(void){
 
 
 void exclu_hospedes(void){
-    limpa_tela();
 
     FILE *arq_hospedes;
     Hospedes *hos;
@@ -339,15 +280,7 @@ void exclu_hospedes(void){
     int escolha;
     int encontrado = False;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Hospedes -> Excluir}                  #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_exclu_hospedes();
     ler_cpf(cpf_lido, 18);
 
     arq_hospedes = fopen("./data/hospedes.dat", "r+b");
@@ -370,7 +303,6 @@ void exclu_hospedes(void){
                 break; //adicionado para previnir bug no windows
             } else if (!escolha){
                 encontrado = -1;
-                free(hos);
             }
         }
     }
@@ -408,24 +340,10 @@ void exib_hospede(Hospedes *hos){
 
 
 char menu_edit_hospedes(void){
-    limpa_tela();
 
     char op;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│                                                            │\n");
-    printf("│                          -Hospedes-                        │\n");
-    printf("│                                                            │\n");
-    printf("│────────────────────────────────────────────────────────────│\n");
-    printf("│                                                            │\n");
-    printf("│        [1] -> CPF                                          │\n");
-    printf("│        [2] -> Nome                                         │\n");
-    printf("│        [3] -> Telefone                                     │\n");
-    printf("│        [0] -> Voltar                                       │\n");
-    printf("│                                                            │\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_edit_hospedes();
     printf("Digite o numero do que deseja editar: ");
     scanf("%c", &op);
     getchar();

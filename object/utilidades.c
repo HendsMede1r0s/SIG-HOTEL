@@ -29,19 +29,6 @@ void enter(void){
     printf("\n");
 }
 
-void tela_op_invalida(void){
-    limpa_tela();
-    printf("\n");
-    printf("┌──────────────────────────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                                                  |\n");
-    printf("|                                 *OPCAO INVALIDA*                                 |\n");
-    printf("|                                                                                  |\n");
-    printf("└──────────────────────────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    getchar();
-    printf("\n");
-}
-
 
 int confirma_exclusao(void){
 

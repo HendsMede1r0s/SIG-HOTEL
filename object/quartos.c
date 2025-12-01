@@ -3,7 +3,7 @@
 #include <string.h>
 #include "quartos.h"
 #include "utilidades.h"
-#include "tela_voltar_menu.h"
+#include "telas.h"
 #include "leitura.h"
 #include "relatorio.h" //função deleta_quarto
 

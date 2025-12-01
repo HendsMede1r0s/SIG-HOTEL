@@ -14,6 +14,7 @@ int valida_letra(char letra){
     }
 }
 
+
 int valida_digito(char num){
     if (num >= '0' && num <= '9') {
         return True;
@@ -178,6 +179,7 @@ int valida_nome(char *nome){
 
     return True;
 }
+
 
 int valida_id(char *num){
     if (num == NULL) {

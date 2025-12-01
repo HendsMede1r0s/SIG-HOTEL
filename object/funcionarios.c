@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "funcionarios.h"
 #include "utilidades.h"
-#include "tela_voltar_menu.h"
+#include "telas.h"
 #include "leitura.h"
 
 typedef struct funcionarios Funcionarios;

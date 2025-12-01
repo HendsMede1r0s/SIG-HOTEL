@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
-#include "./include/menu_inicial.h"
+#include "./include/telas.h"
 #include "./include/hospedes.h"
 #include "./include/funcionarios.h"
 #include "./include/quartos.h"
@@ -15,7 +15,6 @@
 #include "./include/reservas.h"
 #include "./include/sobre.h"
 #include "./include/equipe.h"
-#include "./include/final.h"
 #include "./include/relatorio.h"
 #include "./include/leitura.h"
 #include "./include/utilidades.h"
@@ -24,6 +23,8 @@
 //////////////////////////////////////
 //////////////// Main ////////////////
 //////////////////////////////////////
+
+char tela_inicial(void);
 
 int main(void){
 
@@ -68,4 +69,20 @@ int main(void){
     } while (op != '0');
 
 return 0;
+}
+
+//////////////////////////////////////
+/////////// Funções //////////////////
+//////////////////////////////////////
+
+char tela_inicial(void){
+
+    char op;
+
+    tela_menu_inicial();
+    printf("Digite sua opcao: ");
+    scanf("%c",&op);
+    getchar();
+    printf("\n");
+    return op;
 }
