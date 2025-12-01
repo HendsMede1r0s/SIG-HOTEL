@@ -14,3 +14,14 @@ void tela_list_hospedes(void);
 void tela_busc_hospedes(void);
 void tela_exclu_hospedes(void);
 void tela_menu_edit_hospedes(void);
+
+// telas funcionarios
+void tela_menu_funcionarios(void);
+void tela_cad_funcionarios(void);
+void tela_edit_funcionarios(void);
+void tela_list_funcionarios(void);
+void tela_busc_funcionarios(void);
+void tela_exclu_funcionarios(void);
+void tela_menu_edit_funcionarios(void);
+
+// telas quartos

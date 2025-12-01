@@ -191,3 +191,124 @@ void tela_menu_edit_hospedes(void){
 }
 
 
+// telas funcionarios
+
+
+void tela_menu_funcionarios(void){
+    limpa_tela();
+    
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|                       -Funcionarios-                       |\n");
+    printf("|                                                            |\n");
+    printf("|────────────────────────────────────────────────────────────|\n");
+    printf("|                                                            |\n");
+    printf("|        [1] -> Cadastar                                     |\n");
+    printf("|        [2] -> Editar informacoes                           |\n");
+    printf("|        [3] -> Listar funcionarios                          |\n");
+    printf("|        [4] -> Buscar funcionarios                          |\n");
+    printf("|        [5] -> Excluir funcionarios                         |\n");
+    printf("|        [0] -> Voltar                                       |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_cad_funcionarios(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#              {Funcionarios -> Cadastrar}              #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_edit_funcionarios(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌──────────────────────────────────────────────────────────┐\n");
+    printf("|##########################################################|\n");
+    printf("|#                                                        #|\n");
+    printf("|#                {Funcionarios -> Editar}                #|\n");
+    printf("|#                                                        #|\n");
+    printf("|##########################################################|\n");
+    printf("└──────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_list_funcionarios(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################│\n");
+    printf("|#                                                          #│\n");
+    printf("|#                 {Funcionarios -> Listar}                 #│\n");
+    printf("|#                                                          #│\n");
+    printf("|############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_busc_funcionarios(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|############################################################│\n");
+    printf("|#                                                          #│\n");
+    printf("|#               {Funcionarios -> Buscar}                   #│\n");
+    printf("|#                                                          #│\n");
+    printf("|############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_exclu_funcionarios(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌─────────────────────────────────────────────────────────┐\n");
+    printf("|#########################################################|\n");
+    printf("|#                                                       #|\n");
+    printf("|#              {Funcionarios -> Excluir}               #|\n");
+    printf("|#                                                       #|\n");
+    printf("|#########################################################|\n");
+    printf("└─────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+void tela_menu_edit_funcionarios(void){
+    limpa_tela();
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("|                                                            |\n");
+    printf("|                       -Funcionarios-                       |\n");
+    printf("|                                                            |\n");
+    printf("|────────────────────────────────────────────────────────────|\n");
+    printf("|                                                            |\n");
+    printf("|        [1] -> CPF                                          |\n");
+    printf("|        [2] -> Nome                                         |\n");
+    printf("|        [3] -> Cell                                         |\n");
+    printf("|        [0] -> Voltar                                       |\n");
+    printf("|                                                            |\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+}
+
+
+// telas quartos
