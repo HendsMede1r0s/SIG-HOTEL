@@ -169,6 +169,8 @@ void check_out(void){
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
+
+            limpa_tela();
             printf("*CHECK-OUT REALIZADO COM SUCESSO!\n*");
             exib_quarto(quar);
             enter();

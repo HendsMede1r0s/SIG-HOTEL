@@ -296,14 +296,16 @@ void exclu_hospedes(void){
             exib_hospede(hos);
             escolha = confirma_exclusao();
             if (escolha) {
+
                 hos->status = False;
                 encontrado = True;
                 fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
                 fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
-                break; //adicionado para previnir bug no windows
-            } else if (!escolha){
+
+            } else if (!escolha) {
                 encontrado = -1;
             }
+            break; //adicionado para previnir bug no windows
         }
     }
 
