@@ -111,10 +111,11 @@ void check_in(void){
             limpa_tela();
             printf("*CHECK-IN REALIDO!*");
             exib_quarto(quar);
+            enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
-    enter();
     fclose(arq_quartos);
 
     if (!encontrado) {
@@ -159,13 +160,19 @@ void check_out(void){
             enter();
             encontrado = True;
             quar->status = False;
-            strcpy(quar->cpf, "");
-            strcpy(quar->quan_pessoas, "0");
+            
+            strncpy(quar->cpf, "-", sizeof(quar->cpf));
+            quar->cpf[sizeof(quar->cpf) - 1] = '\0'; // Garantir terminação nula
+
+            strncpy(quar->quan_pessoas, "0", sizeof(quar->quan_pessoas));
+            quar->quan_pessoas[sizeof(quar->quan_pessoas) - 1] = '\0';
 
             fseek(arq_quartos, (-1)*sizeof(Quartos), SEEK_CUR);
             fwrite(quar, sizeof(Quartos), 1, arq_quartos);
             printf("*CHECK-OUT REALIZADO COM SUCESSO!\n*");
             exib_quarto(quar);
+            enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -214,6 +221,7 @@ void busc_quartos(void){
             printf("*QUARTO ENCOTRADO!*\n");
             exib_quarto(quar);
             enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -269,6 +277,7 @@ void edit_quartos(void){
             limpa_tela();
             exib_quarto(quar);
             enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -316,8 +325,11 @@ void cad_quartos(void){
     }
 
     //criando campos padrão para o novo quarto
-    strcpy(quar->cpf, "");
-    strcpy(quar->quan_pessoas, "0");
+    strncpy(quar->cpf, "-", sizeof(quar->cpf));
+    quar->cpf[sizeof(quar->cpf) - 1] = '\0'; // Garantir terminação nula
+
+    strncpy(quar->quan_pessoas, "0", sizeof(quar->quan_pessoas));
+    quar->quan_pessoas[sizeof(quar->quan_pessoas) - 1] = '\0';
     quar->status = False;
 
     fwrite(quar, sizeof(Quartos), 1, arq_quartos);
@@ -464,12 +476,18 @@ void switch_edit_quartos(Quartos *quar){
                 break;
             case '1':
                 ler_n_quarto(quar->n_quarto, 7);
+                exib_quarto(quar);
+                enter();
                 break;
             case '2':
                 ler_cpf(quar->cpf, 18);
+                exib_quarto(quar);
+                enter();
                 break;
             case '3':
                 ler_quan_pessoas(quar->quan_pessoas, 5);
+                exib_quarto(quar);
+                enter();
                 break;
             default:
                 tela_op_invalida();
