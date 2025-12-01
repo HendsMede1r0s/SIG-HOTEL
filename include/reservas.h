@@ -19,6 +19,7 @@ void cad_reserva(void);
 void edit_reserva(void);
 void list_reservas(void);
 void busc_reservas(void);
+void cancel_reservas(void);
 void exib_reserva(Reservas *res);
 char menu_edit_reserva(void);
 void switch_edit_reserva(Reservas *res);

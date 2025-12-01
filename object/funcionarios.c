@@ -297,10 +297,10 @@ void exclu_funcionarios(void){
                 encontrado = True;
                 fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
                 fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
-                break; //adicionado para previnir bug no windows
             } else if (!escolha) {
                 encontrado = -1;
             }
+            break; //adicionado para previnir bug no windows
         }
     }
 

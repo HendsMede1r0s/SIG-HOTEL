@@ -31,7 +31,7 @@ void modulo_reservas(void){
                 busc_reservas();
                 break;
             case '5':
-                //Cancelar
+                cancel_reservas();
                 break;
             default:
                 tela_op_invalida();
@@ -261,6 +261,73 @@ void busc_reservas(void){
     if (!encontrado) {
         printf("Reserva não encontrada na base de dados!");
         enter();
+    }
+
+}
+
+
+void cancel_reservas(void){
+    limpa_tela();
+
+    FILE *arq_reservas;
+    Reservas *res;
+    char n_quarto_lido[7];
+    int escolha;
+    int encontrado = False;
+    res = (Reservas*)malloc(sizeof(Reservas));
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                  {Reservas -> Cancelar}                  #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    ler_n_quarto(n_quarto_lido, sizeof(n_quarto_lido));
+
+    arq_reservas = fopen("./data/reservas.dat", "r+b");
+    if (arq_reservas == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        enter();
+        return;
+    }
+
+    while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
+        if (strcmp(res->n_quarto, n_quarto_lido) == 0) {
+            exib_reserva(res);
+            escolha = confirma_exclusao();
+            if (escolha) {
+
+                res->status = False; // Marca a reserva como cancelada
+                encontrado = True;
+                fseek(arq_reservas, (-1)*sizeof(Reservas), SEEK_CUR);
+                fwrite(res, sizeof(Reservas), 1, arq_reservas);
+
+            } else if (!escolha) {
+                encontrado = -1;
+            }
+            break; //adicionado para previnir bug no windows
+        }
+    }
+
+    fclose(arq_reservas);
+    free(res);
+
+    switch (encontrado) {
+        case 0:
+            printf("Hospede não encontrado na base de dados!");
+            enter();
+            break;
+        case 1:
+            printf("Hospede excluido com sucesso!");
+            enter();
+            break;
+        case -1:
+            printf("Exclusão cancelada!");
+            enter();
+            break;
     }
 
 }
