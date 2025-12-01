@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h> // ver se tem letra e espaco
+#include <ctype.h>
 #include "funcionarios.h"
 #include "utilidades.h"
 #include "tela_voltar_menu.h"
@@ -233,7 +233,7 @@ void list_funcionarios(void) {
     FILE *arq_funcionarios;
     Funcionarios *fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
-    Novo_fun* lista = NULL;
+    Novo_fun* lista = NULL; // Cabeça da lista encadeada (inicialmente vazia)
     Novo_fun* novo;
     Novo_fun* anter;
     Novo_fun* atual;
@@ -256,67 +256,71 @@ void list_funcionarios(void) {
     }
 
     lista = NULL;
-    while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
-        //Verificar se o registro é válido
-        //if (fun.nome[0] == '\0') {
-        //    continue; // Pula registros vazios
-        //}
 
+    // Aloca e copia strings do arquivo para a lista
+    while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
 
         novo = (Novo_fun*)malloc(sizeof(Novo_fun));
         
-        // Alocar e copiar strings
-        novo->nome = malloc(strlen(fun->nome) + 1);
-        novo->cell = malloc(strlen(fun->cell) + 1);
-        novo->cpf = malloc(strlen(fun->cpf) + 1);
+        // Aloca e copia strings do arquivo para a lista
+        novo->nome = malloc(strlen(fun->nome) + 1); // Aloca memória para nome (+1 para \0)
+        novo->cell = malloc(strlen(fun->cell) + 1); // Aloca memória para telefone
+        novo->cpf = malloc(strlen(fun->cpf) + 1); // Aloca memória para CPF
         
-        strcpy(novo->nome, fun->nome);
-        strcpy(novo->cell, fun->cell);
-        strcpy(novo->cpf, fun->cpf);
-        novo->status = fun->status;
+        strcpy(novo->nome, fun->nome); // Copia nome do arquivo para o nó
+        strcpy(novo->cell, fun->cell); // Copia telefone do arquivo para o nó
+        strcpy(novo->cpf, fun->cpf); // Copia CPF do arquivo para o nó
+        novo->status = fun->status; // Copia status do funcionário
 
-        // LÓGICA DE INSERÇÃO ORDENADA
+        // Caso 1: Lista está vazia (primeira inserção)
         if (lista == NULL) {
-            lista = novo;
-            novo->prox = NULL;
-        } else if (strcasecmp(novo->nome, lista->nome) < 0) {
-            novo->prox = lista;
-            lista = novo;
-        } else {
-            anter = lista;
-            atual = lista->prox;
-            
+            lista = novo; // Novo nó se torna a cabeça da lista
+            novo->prox = NULL; // Define próximo como NULL (fim da lista)
+        }
+
+        // Caso 2: Inserção no início (novo nome é menor que o primeiro)
+        else if (strcasecmp(novo->nome, lista->nome) < 0) {
+            novo->prox = lista; // Novo aponta para a antiga cabeça
+            lista = novo; // Novo se torna a nova cabeça
+        }
+
+        // Caso 3: Inserção no meio ou final da lista
+        else {
+            anter = lista; // Começa pelo primeiro elemento
+            atual = lista->prox; // Próximo elemento para comparação
+
+            // Percorre lista até encontrar posição correta ou chegar ao final
             while ((atual != NULL) && strcasecmp(novo->nome, atual->nome) > 0) {
-                anter = atual;
-                atual = atual->prox;
+                anter = atual; // Avança ponteiro anterior
+                atual = atual->prox; // Avança ponteiro atual
             }
             
-            anter->prox = novo;
-            novo->prox = atual;
+            // Insere novo nó entre 'anter' e 'atual'
+            anter->prox = novo; // Nó anterior aponta para o novo
+            novo->prox = atual; // Novo nó aponta para o atual (pode ser NULL)
         }
     }
     fclose(arq_funcionarios);
 
-    // Exibir lista
     printf("%-15s %-30s %-15s\n", "NOME", "CPF", "TELEFONE");
     printf("--------------- ------------------------------ ---------------\n");
     
-    atual = lista;
+    atual = lista; // Começa pela cabeça da lista
     while (atual != NULL) {
         printf("%-15s %-30s %-15s\n", atual->nome, atual->cpf, atual->cell);
-        atual = atual->prox;
+        atual = atual->prox; // Avança para próximo nó
     }
     printf("--------------- ------------------------------ ---------------\n");
 
     // Liberar memória
-    atual = lista;
+    atual = lista; // Começa pela cabeça para liberar memória
     while (lista != NULL) {
-        lista = lista->prox;
+        lista = lista->prox; // Avança cabeça para próximo elemento
         free(atual->nome);
         free(atual->cell);
         free(atual->cpf);
-        free(atual);
-        atual = lista;
+        free(atual); 
+        atual = lista; // Atualiza ponteiro para próximo nó a ser liberado
     }
     
     enter();
