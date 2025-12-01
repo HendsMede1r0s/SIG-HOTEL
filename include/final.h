@@ -1,5 +1,0 @@
-////////////////
-// tela final //
-////////////////
-
-void tela_final(void);

@@ -6,7 +6,7 @@
 #include "leitura.h"
 #include "hospedes.h"
 #include "funcionarios.h"
-#include "tela_voltar_menu.h"
+#include "telas.h"
 
 typedef struct reservas Reservas;
 
