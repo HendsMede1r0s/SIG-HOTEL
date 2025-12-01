@@ -44,26 +44,10 @@ void modulo_funcionarios(void){
 
 
 char tela_funcionarios(void){
-    limpa_tela();
 
     char op;
     
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|                       -Funcionarios-                       |\n");
-    printf("|                                                            |\n");
-    printf("|────────────────────────────────────────────────────────────|\n");
-    printf("|                                                            |\n");
-    printf("|        [1] -> Cadastar                                     |\n");
-    printf("|        [2] -> Editar informacoes                           |\n");
-    printf("|        [3] -> Listar funcionarios                          |\n");
-    printf("|        [4] -> Buscar funcionarios                          |\n");
-    printf("|        [5] -> Excluir funcionarios                         |\n");
-    printf("|        [0] -> Voltar                                       |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_funcionarios();
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
@@ -73,21 +57,12 @@ char tela_funcionarios(void){
 
 
 void cad_funcionarios(void){
-    limpa_tela();
 
     FILE *arq_funcionarios;
     Funcionarios* fun;
     fun = (Funcionarios*)malloc(sizeof(Funcionarios));
 
-    printf("\n");
-    printf("┌─────────────────────────────────────────────────────────┐\n");
-    printf("|#########################################################|\n");
-    printf("|#                                                       #|\n");
-    printf("|#              {Funcionarios -> Cadastrar}              #|\n");
-    printf("|#                                                       #|\n");
-    printf("|#########################################################|\n");
-    printf("└─────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_cad_funcionarios();
     ler_cpf(fun->cpf, 18);
     
     if (verifica_cpf_funcionarios(fun->cpf)) {
@@ -111,15 +86,7 @@ void cad_funcionarios(void){
     
     
     limpa_tela();
-    printf("┌─────────────────────────────────────────────────────────┐\n");
-    printf("|#########################################################|\n");
-    printf("|#                                                       #|\n");
-    printf("|#         {funcionario cadastrado com sucesso!}         #|\n");
-    printf("|#                                                       #|\n");
-    printf("|#########################################################|\n");
-    printf("└─────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-
+    printf("*Funcionario cadastrado com sucesso!*\n");
     fclose(arq_funcionarios);
     free(fun);
     enter();
@@ -127,7 +94,6 @@ void cad_funcionarios(void){
 
 
 void edit_funcionarios(void){
-    limpa_tela();
 
     FILE *arq_funcionarios;
     Funcionarios* fun;
@@ -135,15 +101,7 @@ void edit_funcionarios(void){
     char cpf_lido[18];
     int encontrado = False;
 
-    printf("\n");
-    printf("┌──────────────────────────────────────────────────────────┐\n");
-    printf("|##########################################################|\n");
-    printf("|#                                                        #|\n");
-    printf("|#                {Funcionarios -> Editar}                #|\n");
-    printf("|#                                                        #|\n");
-    printf("|##########################################################|\n");
-    printf("└──────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_edit_funcionarios();
     ler_cpf(cpf_lido, 18);
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
@@ -182,55 +140,7 @@ void edit_funcionarios(void){
 }
 
 
-void busc_funcionarios(void){
-    limpa_tela();
-
-    FILE *arq_funcionarios;
-    Funcionarios* fun;
-    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
-    char cpf_lido[18];
-    int encontrado = False;
-
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────┐\n");
-    printf("|########################################################|\n");
-    printf("|#                                                      #|\n");
-    printf("|#               {Funcionarios -> Exibir}               #|\n");
-    printf("|#                                                      #|\n");
-    printf("|########################################################|\n");
-    printf("└────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    input(cpf_lido, 18, "Digite o CPF do funcionario:");
-
-    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
-    if(arq_funcionarios == NULL){
-        printf("\t Erro ao abrir o arquivo de funcionarios. \n");
-        enter();
-        return;
-    }
-    while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
-        if(strcmp(cpf_lido, fun->cpf) == 0){
-            encontrado = True;
-            printf("*ENCONTRADO*\n");
-            exib_funcionario(fun);
-            enter();
-            break; //adicionado para previnir bug no windows
-        }
-    }
-
-    fclose(arq_funcionarios);
-    free(fun);
-
-    if (!encontrado) {
-        printf("Funcionario não encontrado do banco de dados!");
-        enter();
-    }
-    
-}
-
-
 void list_funcionarios(void) {
-    limpa_tela();
 
     FILE *arq_funcionarios;
     Funcionarios *fun;
@@ -240,15 +150,7 @@ void list_funcionarios(void) {
     Novo_fun* anter;
     Novo_fun* atual;
 
-    printf("\n");
-    printf("┌─────────────────────────────────────────────────────────┐\n");
-    printf("|#########################################################|\n");
-    printf("|#                                                       #|\n");
-    printf("|#         {Funcionarios -> Listar funcionarios}         #|\n");
-    printf("|#                                                       #|\n");
-    printf("|#########################################################|\n");
-    printf("└─────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_list_hospedes();
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
     if (arq_funcionarios == NULL) {
@@ -329,8 +231,45 @@ void list_funcionarios(void) {
 }
 
 
+void busc_funcionarios(void){
+
+    FILE *arq_funcionarios;
+    Funcionarios* fun;
+    fun = (Funcionarios*)malloc(sizeof(Funcionarios));
+    char cpf_lido[18];
+    int encontrado = False;
+
+    tela_busc_funcionarios();
+    input(cpf_lido, 18, "Digite o CPF do funcionario:");
+
+    arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
+    if(arq_funcionarios == NULL){
+        printf("\t Erro ao abrir o arquivo de funcionarios. \n");
+        enter();
+        return;
+    }
+    while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
+        if(strcmp(cpf_lido, fun->cpf) == 0){
+            encontrado = True;
+            printf("*ENCONTRADO*\n");
+            exib_funcionario(fun);
+            enter();
+            break; //adicionado para previnir bug no windows
+        }
+    }
+
+    fclose(arq_funcionarios);
+    free(fun);
+
+    if (!encontrado) {
+        printf("Funcionario não encontrado do banco de dados!");
+        enter();
+    }
+    
+}
+
+
 void exclu_funcionarios(void){
-    limpa_tela();
 
     FILE *arq_funcionarios;
     Funcionarios* fun;
@@ -339,15 +278,7 @@ void exclu_funcionarios(void){
     int escolha;
     int encontrado = False;
 
-    printf("\n");
-    printf("┌─────────────────────────────────────────────────────────┐\n");
-    printf("|#########################################################|\n");
-    printf("|#                                                       #|\n");
-    printf("|#               {Funcionarios -> Excluir}               #|\n");
-    printf("|#                                                       #|\n");
-    printf("|#########################################################|\n");
-    printf("└─────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_exclu_funcionarios();
     input(cpf_lido, 18, "Digite o CPF do funcionario a ser excluido:");
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "r+b");
@@ -369,7 +300,6 @@ void exclu_funcionarios(void){
                 break; //adicionado para previnir bug no windows
             } else if (!escolha) {
                 encontrado = -1;
-                free(fun);
             }
         }
     }
@@ -401,28 +331,16 @@ void exib_funcionario(Funcionarios *fun){
     printf("NOME: %s\n", fun->nome);
     printf("TELEFONE: %s\n", fun->cell);
     printf("STATUS: %s\n", fun->status ? "Ativo" : "Excluido");
+    // " ? " funciona como if simplificado
+    // se for true printa "ativo" se for false printa "excluido"
 }
 
 
 char menu_edit_funcionarios(void){
-    limpa_tela();
 
     char op;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|                                                            |\n");
-    printf("|                       -Funcionarios-                       |\n");
-    printf("|                                                            |\n");
-    printf("|────────────────────────────────────────────────────────────|\n");
-    printf("|                                                            |\n");
-    printf("|        [1] -> CPF                                          |\n");
-    printf("|        [2] -> Nome                                         |\n");
-    printf("|        [3] -> Cell                                         |\n");
-    printf("|        [0] -> Voltar                                       |\n");
-    printf("|                                                            |\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_edit_funcionarios();
     printf("Digite o numero do que deseja editar: ");
     scanf("%c", &op);
     getchar();
