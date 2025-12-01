@@ -28,7 +28,7 @@ void modulo_reservas(void){
                 list_reservas();
                 break;
             case '4':
-                //Buscar
+                busc_reservas();
                 break;
             case '5':
                 //Cancelar
@@ -218,6 +218,76 @@ void list_reservas(void){
 }
 
 
+void busc_reservas(void){
+    limpa_tela();
+
+    FILE *arq_reservas;
+    Reservas *res;
+    char n_quarto_lido[7];
+    int encontrado = False;
+    res = (Reservas*)malloc(sizeof(Reservas));
+
+    printf("\n");
+    printf("┌────────────────────────────────────────────────────────────┐\n");
+    printf("│############################################################│\n");
+    printf("│#                                                          #│\n");
+    printf("│#                   {Reservas -> Buscar}                   #│\n");
+    printf("│#                                                          #│\n");
+    printf("│############################################################│\n");
+    printf("└────────────────────────────────────────────────────────────┘\n");
+    printf("\n");
+    ler_n_quarto(n_quarto_lido, sizeof(n_quarto_lido));
+
+    arq_reservas = fopen("./data/reservas.dat", "rb");
+    if (arq_reservas == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        enter();
+        return;
+    }
+
+    while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
+        if (strcmp(res->n_quarto, n_quarto_lido) == 0) {
+            encontrado = True;
+            printf("\n*ENCONTRADO*\n");
+            exib_reserva(res);
+            enter();
+            break; //adicionado para previnir bug no windows
+        }
+    }
+
+    fclose(arq_reservas);
+    free(res);
+
+    if (!encontrado) {
+        printf("Reserva não encontrada na base de dados!");
+        enter();
+    }
+
+}
+
+
+void exib_reserva(Reservas *res){
+    char data_reserva_formatado [14];
+    char data_atendimento_formatado [14];
+
+    // Formata as datas para exibição
+    strncpy(data_reserva_formatado, formata_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
+    data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
+    strncpy(data_atendimento_formatado, formata_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
+    data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
+
+    printf("\n");
+    printf("Número do Quarto: %s\n", res->n_quarto);
+    printf("CPF do Hóspede: %s\n", res->cpf_hospede);
+    printf("CPF do Funcionário: %s\n", res->cpf_funcionario);
+    printf("Data da Reserva: %s\n", data_reserva_formatado);
+    printf("Data do Atendimento: %s\n", data_atendimento_formatado);
+    printf("Status: %s\n", res->status ? "Ativa" : "Cancelada");
+    // " ? " é um operador condicional que funciona como um if simplificado
+    // Exibe "Ativa" se res->status for True (1) e "Cancelada" se for False (0)
+}
+
+
 char menu_edit_reserva(void){
     limpa_tela();
 
@@ -290,23 +360,3 @@ void switch_edit_reserva(Reservas *res){
 }
 
 
-void exib_reserva(Reservas *res){
-    char data_reserva_formatado [14];
-    char data_atendimento_formatado [14];
-
-    // Formata as datas para exibição
-    strncpy(data_reserva_formatado, formata_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
-    data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
-    strncpy(data_atendimento_formatado, formata_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
-    data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
-
-    printf("\n");
-    printf("Número do Quarto: %s\n", res->n_quarto);
-    printf("CPF do Hóspede: %s\n", res->cpf_hospede);
-    printf("CPF do Funcionário: %s\n", res->cpf_funcionario);
-    printf("Data da Reserva: %s\n", data_reserva_formatado);
-    printf("Data do Atendimento: %s\n", data_atendimento_formatado);
-    printf("Status: %s\n", res->status ? "Ativa" : "Cancelada");
-    // " ? " é um operador condicional que funciona como um if simplificado
-    // Exibe "Ativa" se res->status for True (1) e "Cancelada" se for False (0)
-}
