@@ -25,3 +25,11 @@ void tela_exclu_funcionarios(void);
 void tela_menu_edit_funcionarios(void);
 
 // telas quartos
+void tela_checkin_quartos(void);
+void tela_checkout_quartos(void);
+void tela_menu_quartos(void);
+void tela_cad_quartos(void);
+void tela_edit_quartos(void);
+void tela_busc_quartos(void);
+void tela_list_quartos(void);
+void tela_menu_edit_quartos(void);
