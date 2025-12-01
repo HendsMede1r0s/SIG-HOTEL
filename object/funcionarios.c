@@ -166,6 +166,7 @@ void edit_funcionarios(void){
             limpa_tela();
             exib_funcionario(fun);
             enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -213,6 +214,7 @@ void busc_funcionarios(void){
             printf("*ENCONTRADO*\n");
             exib_funcionario(fun);
             enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -357,7 +359,6 @@ void exclu_funcionarios(void){
 
     while(fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)){
         if((strcmp(cpf_lido, fun->cpf) == 0) && (fun->status)) {
-            
             exib_funcionario(fun);
             escolha = confirma_exclusao();
             if (escolha) {
@@ -365,6 +366,7 @@ void exclu_funcionarios(void){
                 encontrado = True;
                 fseek(arq_funcionarios, (-1)*sizeof(Funcionarios), SEEK_CUR);
                 fwrite(fun, sizeof(Funcionarios), 1, arq_funcionarios);
+                break; //adicionado para previnir bug no windows
             } else if (!escolha) {
                 encontrado = -1;
                 free(fun);
@@ -440,12 +442,18 @@ void switch_edit_funcionarios(Funcionarios *fun){
                 break;
             case '1':
                 ler_cpf(fun->cpf, 18);
+                exib_funcionario(fun);
+                enter();
                 break;
             case '2':
                 ler_nome(fun->nome, 55);
+                exib_funcionario(fun);
+                enter();
                 break;
             case '3':
                 ler_cell(fun->cell, 18);
+                exib_funcionario(fun);
+                enter();
                 break;
             default:
                 tela_op_invalida();
