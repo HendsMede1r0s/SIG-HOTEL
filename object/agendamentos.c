@@ -77,10 +77,13 @@ void cad_agendamentos(void){
     printf("|                                                            |\n");
     printf("└────────────────────────────────────────────────────────────┘\n");
     printf("\n");
-    input(agendamento->id_agendamento, sizeof(agendamento->id_agendamento), "Informe o ID do agendamento: ");
-    input(agendamento->cpf_funcionario, sizeof(agendamento->cpf_funcionario), "Informe o CPF do funcionário: ");
-    input(agendamento->n_quarto, sizeof(agendamento->n_quarto), "Informe o número do quarto: ");
-    input(agendamento->id_servico, sizeof(agendamento->id_servico), "Informe o ID do serviço: ");
+
+    printf("\nID do agendamento\n");
+    ler_id(agendamento->id_agendamento, sizeof(agendamento->id_agendamento));
+    ler_cpf(agendamento->cpf_funcionario, sizeof(agendamento->cpf_funcionario));
+    ler_n_quarto(agendamento->n_quarto, sizeof(agendamento->n_quarto));
+    printf("\nID do serviço\n");
+    ler_id(agendamento->id_servico, sizeof(agendamento->id_servico));
     input(agendamento->status, sizeof(agendamento->status), "Informe o status: ");
 
     arq_agendamentos = fopen("./data/agendamentos.dat", "ab");
@@ -139,7 +142,7 @@ void edit_agendamentos(void){
 
             printf("Agendamento atualizado com sucesso!\n");
             enter();
-            break;
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -219,6 +222,7 @@ void exclu_agendamentos(void){
     while(fread(agendamento, sizeof(Agendamentos), 1, arq_agendamentos)){
         if(strcmp(agendamento->id_agendamento, id_agendamento_lido) != 0){
             fwrite(agendamento, sizeof(Agendamentos), 1, arq_agendamentos_temp);
+            break; //adicionado para previnir bug no windows
         }
     }
 
