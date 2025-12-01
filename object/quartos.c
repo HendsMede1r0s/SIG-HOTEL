@@ -46,23 +46,10 @@ void modulo_quartos(void){
 
 
 char tela_quartos(void){
-    limpa_tela();
+
     char op;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────────────┐\n");
-    printf("|                              -Quartos-                             |\n");
-    printf("├────────────────────────────────────────────────────────────────────┤\n");
-    printf("|                                                                    |\n");
-    printf("|        [1] -> Check-in                                             |\n");
-    printf("|        [2] -> Check-out                                            |\n");
-    printf("|        [3] -> Buscar quartos                                       |\n");
-    printf("|        [4] -> Editar quartos                                       |\n");
-    printf("|        [5] -> Cadastrar quartos                                    |\n");
-    printf("|        [6] -> Listar quartos                                       |\n");
-    printf("|        [0] -> Voltar                                               |\n");
-    printf("|                                                                    |\n");
-    printf("└────────────────────────────────────────────────────────────────────┘\n");
+    tela_menu_quartos();
     printf("Digite uma opção: ");
     scanf("%c", &op);
     getchar();
@@ -71,7 +58,6 @@ char tela_quartos(void){
 
 
 void check_in(void){
-    limpa_tela();
 
     FILE *arq_quartos;
     Quartos *quar;
@@ -79,15 +65,7 @@ void check_in(void){
     char n_quarto_lido [7];
     int encontrado = False;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                   {Quartos -> Checkin}                   #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_checkin_quartos();
     ler_n_quarto(n_quarto_lido, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
@@ -128,7 +106,6 @@ void check_in(void){
 
 
 void check_out(void){
-    limpa_tela();
 
     FILE *arq_quartos;
     Quartos *quar;
@@ -136,15 +113,7 @@ void check_out(void){
     char n_quarto_lido [7];
     int encontrado = False;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                  {Quartos -> Check-out}                  #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_checkout_quartos();
     ler_n_quarto(n_quarto_lido, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
@@ -190,7 +159,6 @@ void check_out(void){
 
 
 void busc_quartos(void){
-    limpa_tela();
 
     FILE *arq_quartos;
     Quartos *quar;
@@ -198,15 +166,7 @@ void busc_quartos(void){
     char n_quarto_lido [7];
     int encontrado = False;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                {Quartos -> Buscar quartos}               #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_busc_quartos();
     ler_n_quarto(n_quarto_lido, 7);
 
     arq_quartos = fopen("./data/quartos.dat", "rb");
@@ -240,7 +200,6 @@ void busc_quartos(void){
 
 
 void edit_quartos(void){
-    limpa_tela();
 
     FILE *arq_quartos;
     Quartos *quar;
@@ -248,15 +207,7 @@ void edit_quartos(void){
     char n_quarto_lido [7];
     int encontrado = False;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                {Quartos -> Editar quartos}               #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_edit_quartos();
     ler_n_quarto(n_quarto_lido,7);
 
     arq_quartos = fopen("./data/quartos.dat", "r+b");
@@ -295,21 +246,12 @@ void edit_quartos(void){
 
 
 void cad_quartos(void){
-    limpa_tela();
 
     FILE *arq_quartos;
     Quartos *quar;
     quar = (Quartos*)malloc(sizeof(Quartos));
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#              {Quartos -> Cadastrar quartos}              #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_cad_quartos();
     ler_n_quarto(quar->n_quarto, 7);
 
     if (verifica_n_quarto(quar->n_quarto)) {
@@ -347,7 +289,6 @@ void cad_quartos(void){
 
 
 void list_quartos(void){
-    limpa_tela();
 
     FILE *arq_quartos;
     Quartos *quar;
@@ -357,15 +298,7 @@ void list_quartos(void){
     Quar_lista *anter;
     Quar_lista *atual;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│############################################################│\n");
-    printf("│#                                                          #│\n");
-    printf("│#                {Quartos -> Listar quartos}               #│\n");
-    printf("│#                                                          #│\n");
-    printf("│############################################################│\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_list_quartos();
     
     arq_quartos = fopen("./data/quartos.dat", "rb");
     if (arq_quartos == NULL) {
@@ -441,24 +374,10 @@ void exib_quarto(Quartos *quar){
 
 
 char menu_edit_quartos(void){
-    limpa_tela();
 
     char op;
 
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("│                                                            │\n");
-    printf("│                          -Hospedes-                        │\n");
-    printf("│                                                            │\n");
-    printf("│────────────────────────────────────────────────────────────│\n");
-    printf("│                                                            │\n");
-    printf("│        [1] -> N° do quarto                                 │\n");
-    printf("│        [2] -> CPF                                          │\n");
-    printf("│        [3] -> Quan. de pessoas                             │\n");
-    printf("│        [0] -> Voltar                                       │\n");
-    printf("│                                                            │\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
+    tela_menu_edit_quartos();
     printf("Digite o numero do que deseja editar: ");
     scanf("%c", &op);
     getchar();
