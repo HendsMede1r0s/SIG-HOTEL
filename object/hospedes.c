@@ -164,6 +164,7 @@ void edit_hospedes(void){
             limpa_tela();
             exib_hospede(hos);
             enter();
+            break; //adicionado para previnir bug no windows
         }
 
     }
@@ -313,6 +314,7 @@ void busc_hospedes(void){
             printf("\n*ENCONTRADO*\n");
             exib_hospede(hos);
             enter();
+            break; //adicionado para previnir bug no windows
         }
     }
 
@@ -365,6 +367,7 @@ void exclu_hospedes(void){
                 encontrado = True;
                 fseek(arq_hospedes, (-1)*sizeof(Hospedes), SEEK_CUR);
                 fwrite(hos, sizeof(Hospedes), 1, arq_hospedes);
+                break; //adicionado para previnir bug no windows
             } else if (!escolha){
                 encontrado = -1;
                 free(hos);
@@ -399,6 +402,8 @@ void exib_hospede(Hospedes *hos){
     printf("NOME: %s\n", hos->nome);
     printf("TELEFONE: %s\n", hos->cell);
     printf("STATUS: %s\n", hos->status ? "Ativo" : "Excluido");
+    // " ? " é um operador condicional que funciona como um if simplificado
+    // Exibe "Ativo" se hos->status for True (1) e "Excluido" se for False (0)
 }
 
 
@@ -441,12 +446,18 @@ void switch_edit_hospedes(Hospedes *hos){
                 break;
             case '1':
                 ler_cpf(hos->cpf, 18);
+                exib_hospede(hos);
+                enter();
                 break;
             case '2':
                 ler_nome(hos->nome, 55);
+                exib_hospede(hos);
+                enter();
                 break;
             case '3':
                 ler_cell(hos->cell, 18);
+                exib_hospede(hos);
+                enter();
                 break;
             default:
                 tela_op_invalida();
