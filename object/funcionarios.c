@@ -309,7 +309,7 @@ void exclu_funcionarios(void){
 
     switch (encontrado) {
         case 0:
-            printf("Funcionario não encontrado na base de dados!");
+            printf("Funcionario nao encontrado na base de dados!");
             enter();
             break;
         case 1:
@@ -317,7 +317,7 @@ void exclu_funcionarios(void){
             enter();
             break;
         case -1:
-            printf("Exclusão cancelada!");
+            printf("Exclusao cancelada!");
             enter();
             break;
     }

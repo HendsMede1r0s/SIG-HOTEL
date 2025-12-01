@@ -221,24 +221,6 @@ void quartos_por_andar(void){
 }
 
 
-void limpa_quarto(Quar_lista* l){
-    Quar_lista* temp = l->prox; // Começa do primeiro nó após cabeça
-    Quar_lista* next; // Ponteiro auxiliar
-    while (temp != NULL) { // Enquanto houver nós
-        next = temp->prox; // Guarda referência do próximo nó
-        free(temp); // Libera nó atual
-        temp = next; // Avança para próximo nó
-    }
-    l->prox = NULL; // Lista vazia novamente
-}
-
-
-void deleta_quarto(Quar_lista* l){
-    limpa_quarto(l); // Limpa todos os nós
-    free(l); // Libera a cabeça da lista
-}
-
-
 void listar_todos_os_quartos(void){
     limpa_tela();
 
@@ -392,8 +374,7 @@ void relatorio_hospedes_filtrado(void) {
         return;
     }
 
-    printf("Digite a primeira letra(s) do nome: ");
-    fgets(filtro, sizeof(filtro), stdin);
+    ler_letras(filtro, sizeof(filtro), "Digite a(s) primeira letra(s) do nome: ");
     filtro[strcspn(filtro, "\n")] = '\0';
 
     printf("\nHóspedes encontrados:\n");
@@ -488,9 +469,7 @@ void relatorio_funcionarios_filtrado(void) {
         return;
     }
 
-    //printf("Digite a primeira letra(s) do nome: ");
-    //fgets(filtro, sizeof(filtro), stdin);
-    input(filtro, sizeof(filtro), "Digite a primeira letra(s) do nome: ");
+    ler_letras(filtro, sizeof(filtro), "Digite a(s) primeira letra(s) do nome: ");
     filtro[strcspn(filtro, "\n")] = '\0';
 
     printf("\nFuncionários encontrados:\n");
@@ -690,7 +669,7 @@ void relatorio_servicos_quarto (void) {
         return;
     }
 
-    input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
+    ler_n_quarto(quartos->n_quarto, sizeof(quartos->n_quarto));
 
     // Lista Dinâmica Invertida
     lista = NULL;
@@ -729,11 +708,10 @@ void relatorio_servicos_quarto (void) {
             // Aloca e copia os dados
             novo->nome_func = malloc(strlen(fun->nome) + 1);
             novo->nome_servico = malloc(strlen(servicos->servi) + 1);
-            novo->status = malloc(strlen(agendamentos->status) + 1);
+            novo->status = agendamentos->status;
 
             strcpy(novo->nome_func, fun->nome);
             strcpy(novo->nome_servico, servicos->servi);
-            strcpy(novo->status, agendamentos->status);
 
             novo->prox = lista; // Novo nó aponta para a lista atual
             lista = novo; // Novo nó se torna a nova cabeça da lista
@@ -748,13 +726,13 @@ void relatorio_servicos_quarto (void) {
         printf("Nenhum serviço encontrado para esse quarto!\n");
     } else {
         printf("---------------------------------------------------------------\n");
-        printf("%-20s %-30s %-50s\n", "Funcionário", "Serviço", "Status");
+        printf("%-20s %-30s %-7s\n", "Funcionário", "Serviço", "Status");
         printf("---------------------------------------------------------------\n");
         
         // Percorre a lista para exibir (já está na ordem inversa)
         atual = lista;
         while (atual != NULL) {
-            printf("%-20s %-30s %-50s\n", atual->nome_func, atual->nome_servico, atual->status);
+            printf("%-20s %-30s %-5d\n", atual->nome_func, atual->nome_servico, atual->status);
             atual = atual->prox;
         }
         printf("---------------------------------------------------------------\n");
@@ -767,7 +745,6 @@ void relatorio_servicos_quarto (void) {
         atual = atual->prox; // Move para o próximo nó
         free(temp->nome_func);
         free(temp->nome_servico);
-        free(temp->status);
         free(temp);
     }
 

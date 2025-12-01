@@ -8,13 +8,13 @@ struct agendamentos {
     char cpf_funcionario[18];
     char n_quarto[7];
     char id_servico[7];
-    char status[15];
+    int status;
 };
 
 typedef struct novo_agendamento {
     char *nome_func;
     char *nome_servico;
-    char *status;
+    int status;
     struct novo_agendamento *prox;
 } Novo_agendamento;
 
@@ -24,3 +24,5 @@ void cad_agendamentos(void);
 void edit_agendamentos(void);
 void list_agendamentos(void);
 void exclu_agendamentos(void);
+char menu_edit_agendamentos(void);
+void switch_edit_agendamentos(Agendamentos *agendamento);

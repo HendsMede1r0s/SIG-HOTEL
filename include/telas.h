@@ -33,3 +33,29 @@ void tela_edit_quartos(void);
 void tela_busc_quartos(void);
 void tela_list_quartos(void);
 void tela_menu_edit_quartos(void);
+
+// telas servicos
+
+void tela_menu_servicos(void);
+void tela_cad_servicos(void);
+void tela_list_servicos(void);
+void tela_exclu_servicos(void);
+
+// telas reservas
+
+void tela_menu_reservas(void);
+void tela_cad_reservas(void);
+void tela_edit_reservas(void);
+void tela_list_reservas(void);
+void tela_busc_reservas(void);
+void tela_cancel_reservas(void);
+void tela_menu_edit_reserva(void);
+
+// telas agendamentos
+
+void tela_menu_agendamentos(void);
+void tela_cad_agendamentos(void);
+void tela_edit_agendamentos(void);
+void tela_list_agendamentos(void);
+void tela_exclu_agendamentos(void);
+void tela_menu_edit_agendamentos(void);
