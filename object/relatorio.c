@@ -222,20 +222,20 @@ void quartos_por_andar(void){
 
 
 void limpa_quarto(Quar_lista* l){
-    Quar_lista* temp = l->prox;
-    Quar_lista* next;
-    while (temp != NULL) {
-        next = temp->prox;
-        free(temp);
-        temp = next;
+    Quar_lista* temp = l->prox; // Começa do primeiro nó após cabeça
+    Quar_lista* next; // Ponteiro auxiliar
+    while (temp != NULL) { // Enquanto houver nós
+        next = temp->prox; // Guarda referência do próximo nó
+        free(temp); // Libera nó atual
+        temp = next; // Avança para próximo nó
     }
-    l->prox = NULL;
+    l->prox = NULL; // Lista vazia novamente
 }
 
 
 void deleta_quarto(Quar_lista* l){
-    limpa_quarto(l);
-    free(l);
+    limpa_quarto(l); // Limpa todos os nós
+    free(l); // Libera a cabeça da lista
 }
 
 
@@ -245,9 +245,9 @@ void listar_todos_os_quartos(void){
     FILE *arq_quartos;
     Quartos *quar;
     quar = (Quartos*)malloc(sizeof(Quartos));
-    Quar_lista *lista = NULL;
-    Quar_lista *novo_quar;
-    Quar_lista *anter;
+    Quar_lista *lista = NULL; // Cabeça de lista
+    Quar_lista *novo_quar; // Novo nó
+    Quar_lista *anter; // Nó anterior para inserção no fim
     int encontrado = False;
 
     printf("\n");
@@ -275,30 +275,30 @@ void listar_todos_os_quartos(void){
         novo_quar->cpf = strdup(quar->cpf);
         novo_quar->quan_pessoas = strdup(quar->quan_pessoas);
         novo_quar->status = quar->status;
-        novo_quar->prox = NULL;
+        novo_quar->prox = NULL; //Novo nó aponta para NULL
         encontrado = True;
 
         // Inserir na lista direta
         if (lista == NULL) {
             // Inserção no início
-            novo_quar->prox = lista;
-            lista = novo_quar;
+            novo_quar->prox = lista; // Novo nó aponta para a lista atual (NULL)
+            lista = novo_quar; // Novo nó se torna a cabeça
         }
         else {
             // Inserção no fim
-            anter = lista;
-            while (anter->prox != NULL) {
-                anter = anter->prox;
+            anter = lista; // Começa da cabeça
+            while (anter->prox != NULL) { // Percorre até o último nó
+                anter = anter->prox; // Avança para o próximo nó
             }
-            anter->prox = novo_quar;
+            anter->prox = novo_quar; // Último nó aponta para o novo nó
         }
     }
 
     fclose(arq_quartos);
     if (!encontrado) {
         printf("Nenhum quarto cadastrado no sistema.\n");
-        deleta_quarto(lista);
-        free(quar);
+        deleta_quarto(lista); // Libera memória da lista
+        free(quar); // Libera memória do quarto
         enter();
         return;
     }
@@ -651,13 +651,13 @@ void relatorio_servicos (void) {
 }
 
 
-// Struct da lista Dinâmica Invertida
 typedef struct novo_agendamento Novo_agendamento;
 
 void relatorio_servicos_quarto (void) {
     limpa_tela();
 
     FILE *arq_agendamentos, *arq_funcionarios, *arq_servicos;
+
     Quartos *quartos;
     quartos = (Quartos*)malloc(sizeof(Quartos));
     Funcionarios *fun;
@@ -666,6 +666,7 @@ void relatorio_servicos_quarto (void) {
     servicos = (Servicos*)malloc(sizeof(Servicos));
     Agendamentos *agendamentos;
     agendamentos = (Agendamentos*)malloc(sizeof(Agendamentos));
+
     Novo_agendamento *lista = NULL;
     Novo_agendamento *novo;
     Novo_agendamento *temp;
@@ -691,13 +692,13 @@ void relatorio_servicos_quarto (void) {
 
     input(quartos->n_quarto, sizeof(quartos->n_quarto), "Digite o número do quarto: ");
 
-
     // Lista Dinâmica Invertida
     lista = NULL;
     int encontrado = False;
 
     // Percorre os agendamentos procurando os serviços do quarto informado
     while (fread(agendamentos, sizeof(Agendamentos), 1, arq_agendamentos)) {
+        // Verifica se o agendamento é para o quarto informado
         if (strcmp(agendamentos->n_quarto, quartos->n_quarto) == 0) {
             
             // Pega o nome do funcionário
@@ -722,9 +723,10 @@ void relatorio_servicos_quarto (void) {
                 fclose(arq_servicos);
             }
 
-            
+            // Cria um novo nó na lista
             novo = (Novo_agendamento*)malloc(sizeof(Novo_agendamento));
 
+            // Aloca e copia os dados
             novo->nome_func = malloc(strlen(fun->nome) + 1);
             novo->nome_servico = malloc(strlen(servicos->servi) + 1);
             novo->status = malloc(strlen(agendamentos->status) + 1);
@@ -733,8 +735,8 @@ void relatorio_servicos_quarto (void) {
             strcpy(novo->nome_servico, servicos->servi);
             strcpy(novo->status, agendamentos->status);
 
-            novo->prox = lista;
-            lista = novo;
+            novo->prox = lista; // Novo nó aponta para a lista atual
+            lista = novo; // Novo nó se torna a nova cabeça da lista
 
             encontrado = True;
         }
@@ -749,6 +751,7 @@ void relatorio_servicos_quarto (void) {
         printf("%-20s %-30s %-50s\n", "Funcionário", "Serviço", "Status");
         printf("---------------------------------------------------------------\n");
         
+        // Percorre a lista para exibir (já está na ordem inversa)
         atual = lista;
         while (atual != NULL) {
             printf("%-20s %-30s %-50s\n", atual->nome_func, atual->nome_servico, atual->status);
@@ -757,10 +760,11 @@ void relatorio_servicos_quarto (void) {
         printf("---------------------------------------------------------------\n");
     }
 
+    // Libera a memória alocada para a lista
     atual = lista;
     while (atual != NULL) {
-        temp = atual;
-        atual = atual->prox;
+        temp = atual; // Armazena o nó atual
+        atual = atual->prox; // Move para o próximo nó
         free(temp->nome_func);
         free(temp->nome_servico);
         free(temp->status);

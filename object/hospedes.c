@@ -185,7 +185,7 @@ void list_hospedes(void){
     FILE *arq_hospedes;
     Hospedes *hos;
     hos = (Hospedes*)malloc(sizeof(Hospedes));
-    Novo_hos *lista = NULL;
+    Novo_hos *lista = NULL;  // Cabeça da lista encadeada (inicialmente vazia)
     Novo_hos *novo;
     Novo_hos *anter;
     Novo_hos *atual;
@@ -208,39 +208,48 @@ void list_hospedes(void){
     }
 
     lista = NULL;
+
+    // Aloca e copia strings do arquivo para a lista
     while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
-        //if (hos.nome[0] == '\0') {
-        //    continue; // Pula registros com nome vazio
-        //}
 
         novo = (Novo_hos*)malloc(sizeof(Novo_hos));
 
-        novo->nome = malloc(strlen(hos->nome) + 1);
-        novo->cell = malloc(strlen(hos->cell) + 1);
-        novo->cpf = malloc(strlen(hos->cpf) + 1);
+        // Aloca e copia strings do arquivo para a lista
+        novo->nome = malloc(strlen(hos->nome) + 1); // Aloca memória para nome (+1 para \0)
+        novo->cell = malloc(strlen(hos->cell) + 1); // Aloca memória para telefone
+        novo->cpf = malloc(strlen(hos->cpf) + 1); // Aloca memória para CPF
 
-        strcpy(novo->nome, hos->nome);
-        strcpy(novo->cell, hos->cell);
-        strcpy(novo->cpf, hos->cpf);
-        novo->status = hos->status;
+        strcpy(novo->nome, hos->nome); // Copia nome do arquivo para o nó
+        strcpy(novo->cell, hos->cell); // Copia telefone do arquivo para o nó
+        strcpy(novo->cpf, hos->cpf); // Copia CPF do arquivo para o nó
+        novo->status = hos->status; // Copia status do hóspede
 
+        // Caso 1: Lista está vazia (primeira inserção)
         if (lista == NULL) {
-            lista = novo;
-            novo->prox = NULL;
-        } else if (strcasecmp(novo->nome, lista->nome) < 0) {
-            novo->prox = lista;
-            lista = novo;
-        } else {
-            anter = lista;
-            atual = lista->prox;
+            lista = novo; // Novo nó se torna a cabeça da lista
+            novo->prox = NULL; // Próximo nó é NULL (fim da lista)
+        }
+        
+        // Caso 2: Inserção no início (antes da cabeça)
+        else if (strcasecmp(novo->nome, lista->nome) < 0) {
+            novo->prox = lista; // Novo nó aponta para o antigo primeiro nó
+            lista = novo; // Novo nó se torna a nova cabeça da lista
+        }
+        
+        // Caso 3: Inserção no meio ou fim da lista
+        else {
+            anter = lista; // Começa pela cabeça da lista
+            atual = lista->prox; // Próximo nó para comparação
 
+            // Percorre a lista para encontrar a posição correta ou o fim
             while (atual != NULL && strcasecmp(novo->nome, atual->nome) > 0) {
-                anter = atual;
-                atual = atual->prox;
+                anter = atual; // Avança o anterior
+                atual = atual->prox; // Avança o atual
             }
-
-            anter->prox = novo;
-            novo->prox = atual;
+            
+            // Insere o novo nó entre anter e atual
+            anter->prox = novo; // Nó anterior aponta para o novo
+            novo->prox = atual; // Novo nó aponta para o atual (pode ser NULL)
         }
     }
     fclose(arq_hospedes);
@@ -249,21 +258,22 @@ void list_hospedes(void){
     printf("%-15s %-30s %-15s\n", "NOME", "CPF", "TELEFONE");
     printf("--------------- ------------------------------ ---------------\n");
 
-    atual = lista;
+    atual = lista; // Começa pela cabeça da lista
     while (atual != NULL){
         printf("%-15s %-30s %-15s\n", atual->nome, atual->cpf, atual->cell);
-        atual = atual->prox;
+        atual = atual->prox; // Avança para próximo nó
     }
     printf("--------------- ------------------------------ ---------------\n");
 
-    atual = lista;
+    // Liberar memória
+    atual = lista; // Começa pela cabeça para liberar memória
     while (lista != NULL) {
-        lista = lista->prox;
+        lista = lista->prox; // Avança cabeça para próximo elemento
         free(atual->nome);
         free(atual->cell);
         free(atual->cpf);
         free(atual);
-        atual = lista;
+        atual = lista; // Atualiza ponteiro para próximo nó a ser liberado
     }
     enter();
 
