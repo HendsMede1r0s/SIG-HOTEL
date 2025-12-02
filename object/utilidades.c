@@ -35,8 +35,8 @@ int confirma_exclusao(void){
 
     char escolha;
 
-    printf("\nDeseja prosseguir com a exclusao?\n");
-    printf("Digite 'S' para confirmar a exclusao ou 'N' para cancelar: ");
+    printf("\nDeseja prosseguir?\n");
+    printf("Digite 'S' para confirmar ou 'N' para cancelar: ");
     scanf("%c", &escolha);
     getchar();
     printf("\n");

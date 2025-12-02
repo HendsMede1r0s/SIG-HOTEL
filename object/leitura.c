@@ -40,7 +40,7 @@ void ler_id(char *variavel, int tam) {
     int valida;
 
     do {
-        input(variavel, tam, "Digite o id do serviço: ");
+        input(variavel, tam, "Digite o id: ");
         valida = (valida_id(variavel));
         if (!valida) {
             printf("N° do ID inválido! Tente novamente.");
@@ -126,16 +126,21 @@ void ler_data(char *variavel, int tam){
 }
 
 
-void ler_status(int *variavel, int tam){
+void ler_status(int *variavel){
     int valida;
 
     do {
-        input((char *)variavel, tam, "Digite o status (1-Pendente / 0-Concluído): ");
-        valida = (*variavel == 0 || *variavel == 1);
+        char buffer[10];
+        input(buffer, sizeof(buffer), "Digite o status (1-Pendente / 0-Concluído): ");
+        if (is_numeric(buffer)) {
+            *variavel = atoi(buffer);
+            valida = (*variavel == 0 || *variavel == 1);
+        } else {
+            valida = 0;
+        }
         if (!valida) {
             printf("Status invalido! Tente novamente.");
             printf("\n");
         }
     } while (!valida);
-
 }

@@ -37,6 +37,7 @@ void modulo_agendamentos(void){
     } while (op != '0'); 
 }   
 
+
 char tela_agendamentos(void){
     limpa_tela();
 
@@ -49,6 +50,7 @@ char tela_agendamentos(void){
     printf("\n");
     return op;
 }
+
 
 void cad_agendamentos(void){
 
@@ -80,6 +82,7 @@ void cad_agendamentos(void){
     enter();
 
 }
+
 
 void edit_agendamentos(void){
 
@@ -129,6 +132,7 @@ void edit_agendamentos(void){
 
 }
 
+
 void list_agendamentos(void){
 
     FILE *arq_agendamentos;
@@ -145,17 +149,20 @@ void list_agendamentos(void){
     }
 
     printf("AGENDAMENTOS CADASTRADOS:\n\n");
-    printf("%-10s %-20s %-10s %-10s %-10sc\n", "ID AGENDAMENTO", "CPF FUNCIONARIO", "N° QUARTO", "ID SERVICO", "STATUS");
-    printf("------------------------------------------------------------\n");
+    printf("%-10s    %-20s %-10s  %-10s  %-10s\n", "ID AGENDAMENTO", "CPF FUNCIONARIO", "N° QUARTO", "ID SERVICO", "STATUS");
+    printf("-----------------------------------------------------------------------\n");
     while (fread(agendamento, sizeof(Agendamentos), 1, arq_agendamentos)) {
-        printf("%-10s %-20s %-10s %-10s %-10sc\n", agendamento->id_agendamento, agendamento->cpf_funcionario, agendamento->n_quarto, agendamento->id_servico, agendamento->status ? "Pendente" : "Concluido");
+        if (agendamento->status != -1) {
+            printf("%-10s        %-20s %-10s %-10s  %-10s\n", agendamento->id_agendamento, agendamento->cpf_funcionario, agendamento->n_quarto, agendamento->id_servico, agendamento->status ? "Pendente" : "Concluido");
+        }
     }
-    printf("------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------\n");
 
     fclose(arq_agendamentos);
     free(agendamento);
     enter();
 }
+
 
 void exclu_agendamentos(void){
 
@@ -169,7 +176,7 @@ void exclu_agendamentos(void){
     tela_exclu_agendamentos();
     ler_id(id_agendamento_lido, sizeof(id_agendamento_lido));
 
-    arq_agendamentos = fopen("./data/agendamentos.dat", "rb");
+    arq_agendamentos = fopen("./data/agendamentos.dat", "r+b");
     if(arq_agendamentos == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
@@ -212,6 +219,7 @@ void exclu_agendamentos(void){
 
 }
 
+
 char menu_edit_agendamentos(void){
     limpa_tela();
 
@@ -224,6 +232,7 @@ char menu_edit_agendamentos(void){
     printf("\n");
     return op;
 }
+
 
 void switch_edit_agendamentos(Agendamentos*agendamento){
     
