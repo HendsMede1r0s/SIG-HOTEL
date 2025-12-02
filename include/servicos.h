@@ -6,6 +6,7 @@ struct servicos {
 
     char id[7];
     char servi[55];
+    int status;
 
 };
 

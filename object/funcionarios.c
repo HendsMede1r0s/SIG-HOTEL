@@ -150,7 +150,7 @@ void list_funcionarios(void) {
     Novo_fun* anter;
     Novo_fun* atual;
 
-    tela_list_hospedes();
+    tela_list_funcionarios();
 
     arq_funcionarios = fopen("./data/funcionarios.dat", "rb");
     if (arq_funcionarios == NULL) {
@@ -163,45 +163,46 @@ void list_funcionarios(void) {
 
     // Aloca e copia strings do arquivo para a lista
     while (fread(fun, sizeof(Funcionarios), 1, arq_funcionarios)) {
-
-        novo = (Novo_fun*)malloc(sizeof(Novo_fun));
-        
-        // Aloca e copia strings do arquivo para a lista
-        novo->nome = malloc(strlen(fun->nome) + 1); // Aloca memória para nome (+1 para \0)
-        novo->cell = malloc(strlen(fun->cell) + 1); // Aloca memória para telefone
-        novo->cpf = malloc(strlen(fun->cpf) + 1); // Aloca memória para CPF
-        
-        strcpy(novo->nome, fun->nome); // Copia nome do arquivo para o nó
-        strcpy(novo->cell, fun->cell); // Copia telefone do arquivo para o nó
-        strcpy(novo->cpf, fun->cpf); // Copia CPF do arquivo para o nó
-        novo->status = fun->status; // Copia status do funcionário
-
-        // Caso 1: Lista está vazia (primeira inserção)
-        if (lista == NULL) {
-            lista = novo; // Novo nó se torna a cabeça da lista
-            novo->prox = NULL; // Define próximo como NULL (fim da lista)
-        }
-
-        // Caso 2: Inserção no início (novo nome é menor que o primeiro)
-        else if (strcasecmp(novo->nome, lista->nome) < 0) {
-            novo->prox = lista; // Novo aponta para a antiga cabeça
-            lista = novo; // Novo se torna a nova cabeça
-        }
-
-        // Caso 3: Inserção no meio ou final da lista
-        else {
-            anter = lista; // Começa pelo primeiro elemento
-            atual = lista->prox; // Próximo elemento para comparação
-
-            // Percorre lista até encontrar posição correta ou chegar ao final
-            while ((atual != NULL) && strcasecmp(novo->nome, atual->nome) > 0) {
-                anter = atual; // Avança ponteiro anterior
-                atual = atual->prox; // Avança ponteiro atual
-            }
+        if (fun->status) {
+            novo = (Novo_fun*)malloc(sizeof(Novo_fun));
             
-            // Insere novo nó entre 'anter' e 'atual'
-            anter->prox = novo; // Nó anterior aponta para o novo
-            novo->prox = atual; // Novo nó aponta para o atual (pode ser NULL)
+            // Aloca e copia strings do arquivo para a lista
+            novo->nome = malloc(strlen(fun->nome) + 1); // Aloca memória para nome (+1 para \0)
+            novo->cell = malloc(strlen(fun->cell) + 1); // Aloca memória para telefone
+            novo->cpf = malloc(strlen(fun->cpf) + 1); // Aloca memória para CPF
+            
+            strcpy(novo->nome, fun->nome); // Copia nome do arquivo para o nó
+            strcpy(novo->cell, fun->cell); // Copia telefone do arquivo para o nó
+            strcpy(novo->cpf, fun->cpf); // Copia CPF do arquivo para o nó
+            novo->status = fun->status; // Copia status do funcionário
+
+            // Caso 1: Lista está vazia (primeira inserção)
+            if (lista == NULL) {
+                lista = novo; // Novo nó se torna a cabeça da lista
+                novo->prox = NULL; // Define próximo como NULL (fim da lista)
+            }
+
+            // Caso 2: Inserção no início (novo nome é menor que o primeiro)
+            else if (strcasecmp(novo->nome, lista->nome) < 0) {
+                novo->prox = lista; // Novo aponta para a antiga cabeça
+                lista = novo; // Novo se torna a nova cabeça
+            }
+
+            // Caso 3: Inserção no meio ou final da lista
+            else {
+                anter = lista; // Começa pelo primeiro elemento
+                atual = lista->prox; // Próximo elemento para comparação
+
+                // Percorre lista até encontrar posição correta ou chegar ao final
+                while ((atual != NULL) && strcasecmp(novo->nome, atual->nome) > 0) {
+                    anter = atual; // Avança ponteiro anterior
+                    atual = atual->prox; // Avança ponteiro atual
+                }
+
+                // Insere novo nó entre 'anter' e 'atual'
+                anter->prox = novo; // Nó anterior aponta para o novo
+                novo->prox = atual; // Novo nó aponta para o atual (pode ser NULL)
+            }
         }
     }
     fclose(arq_funcionarios);

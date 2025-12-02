@@ -55,8 +55,11 @@ void cad_servicos(void){
     servi = (Servicos*)malloc(sizeof(Servicos));
 
     tela_cad_servicos();
-    input(servi->servi, 55, "Digite o novo serviço: ");
     ler_id(servi->id, 7);
+    printf("Nome do serviço\n");
+    ler_nome(servi->servi, sizeof(servi->servi));
+    servi->status = True;
+
     if (verifica_id(servi->id)) {
         printf("ID já cadastrado no sistema!");
         enter();
@@ -70,6 +73,7 @@ void cad_servicos(void){
         enter();
         return;
     }
+
     fwrite(servi, sizeof(Servicos), 1, arq_servicos);
     fclose(arq_servicos);
     free(servi);
@@ -98,7 +102,9 @@ void list_servicos(void){
     printf("%-15s %-15s\n","ID", "SERVICO");
     printf("--------------- ---------------\n");
     while (fread(servi, sizeof(Servicos), 1, arq_servicos)) {
-        printf("%-15s %-15s\n",servi->id, servi->servi);
+        if (servi->status) {
+            printf("%-15s %-15s\n",servi->id, servi->servi);
+        }
     }
     printf("--------------- ---------------\n");
 
@@ -111,45 +117,57 @@ void list_servicos(void){
 void exclu_servicos(void){
 
     FILE *arq_servicos;
-    FILE *arq_servicos_temp;
     Servicos* servi;
     servi = (Servicos*)malloc(sizeof(Servicos));
-    char servi_lido[55];
+    char id_lido[7];
+    int escolha;
+    int encontrado = False;
 
     tela_exclu_servicos();
-    input(servi_lido, 55, "Informe o seriço a ser removido: ");
+    ler_id(id_lido, sizeof(id_lido));
 
-    arq_servicos = fopen("./data/servicos.dat", "rb");
-    arq_servicos_temp = fopen("./data/servicos_temp.dat", "wb");
-    if(arq_servicos == NULL || arq_servicos_temp == NULL){
+    arq_servicos = fopen("./data/servicos.dat", "r+b");
+    if(arq_servicos == NULL){
         printf("Erro ao abrir o arquivo!");
         enter();
         return;
     }
 
     while(fread(servi, sizeof(Servicos), 1, arq_servicos)){
-        if(strcmp(servi_lido, servi->servi) != 0){
-            fwrite(servi->servi, sizeof(Servicos), 1, arq_servicos_temp);
+        if(strcmp(id_lido, servi->id) == 0){
+            printf("ID: %s\n", servi->id);
+            printf("NOME: %s\n", servi->servi);
+            escolha = confirma_exclusao();
+            if (escolha) {
+                encontrado = True;
+                servi->status = False;
+                fseek(arq_servicos, (-1)*sizeof(Servicos), SEEK_CUR);
+                fwrite(servi, sizeof(Servicos), 1, arq_servicos);
+            } else if (!escolha) {
+                encontrado = -1;
+            }
+            break;
         }
     }
 
     fclose(arq_servicos);
-    fclose(arq_servicos_temp);
-    remove("./data/servicos.dat");
-    rename("./data/servicos_temp.dat", "./data/servicos.dat");
     free(servi);
 
-    limpa_tela();
-    printf("\n");
-    printf("┌────────────────────────────────────────────────────────────┐\n");
-    printf("|############################################################|\n");
-    printf("|#                                                          #|\n");
-    printf("|#                    {Serviço Excluido}                    #|\n");
-    printf("|#                                                          #|\n");
-    printf("|############################################################|\n");
-    printf("└────────────────────────────────────────────────────────────┘\n");
-    printf("\n");
-    enter();
+    switch (encontrado) {
+        case 0:
+            printf("Nao encontrado na base de dados!");
+            enter();
+            break;
+        case 1:
+            printf("Servico excluido com sucesso!");
+            enter();
+            break;
+        case -1:
+            printf("Exclusao cancelada!");
+            enter();
+            break;
+    }
+
 }
 
 //Verifica ID existente

@@ -309,9 +309,6 @@ void list_quartos(void){
 
     lista = NULL;
     while (fread(quar, sizeof(Quartos), 1, arq_quartos)) {
-        //if (hos.nome[0] == '\0') {
-        //    continue; // Pula registros com nome vazio
-        //}
 
         novo = (Quar_lista*)malloc(sizeof(Quar_lista));
 

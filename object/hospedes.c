@@ -163,49 +163,49 @@ void list_hospedes(void){
 
     // Aloca e copia strings do arquivo para a lista
     while (fread(hos, sizeof(Hospedes), 1, arq_hospedes)) {
+        if (hos->status) {
+            novo = (Novo_hos*)malloc(sizeof(Novo_hos));
 
-        novo = (Novo_hos*)malloc(sizeof(Novo_hos));
+            // Aloca e copia strings do arquivo para a lista
+            novo->nome = malloc(strlen(hos->nome) + 1); // Aloca memória para nome (+1 para \0)
+            novo->cell = malloc(strlen(hos->cell) + 1); // Aloca memória para telefone
+            novo->cpf = malloc(strlen(hos->cpf) + 1); // Aloca memória para CPF
 
-        // Aloca e copia strings do arquivo para a lista
-        novo->nome = malloc(strlen(hos->nome) + 1); // Aloca memória para nome (+1 para \0)
-        novo->cell = malloc(strlen(hos->cell) + 1); // Aloca memória para telefone
-        novo->cpf = malloc(strlen(hos->cpf) + 1); // Aloca memória para CPF
+            strcpy(novo->nome, hos->nome); // Copia nome do arquivo para o nó
+            strcpy(novo->cell, hos->cell); // Copia telefone do arquivo para o nó
+            strcpy(novo->cpf, hos->cpf); // Copia CPF do arquivo para o nó
+            novo->status = hos->status; // Copia status do hóspede
 
-        strcpy(novo->nome, hos->nome); // Copia nome do arquivo para o nó
-        strcpy(novo->cell, hos->cell); // Copia telefone do arquivo para o nó
-        strcpy(novo->cpf, hos->cpf); // Copia CPF do arquivo para o nó
-        novo->status = hos->status; // Copia status do hóspede
-
-        // Caso 1: Lista está vazia (primeira inserção)
-        if (lista == NULL) {
-            lista = novo; // Novo nó se torna a cabeça da lista
-            novo->prox = NULL; // Próximo nó é NULL (fim da lista)
-        }
-        
-        // Caso 2: Inserção no início (antes da cabeça)
-        else if (strcasecmp(novo->nome, lista->nome) < 0) {
-            novo->prox = lista; // Novo nó aponta para o antigo primeiro nó
-            lista = novo; // Novo nó se torna a nova cabeça da lista
-        }
-        
-        // Caso 3: Inserção no meio ou fim da lista
-        else {
-            anter = lista; // Começa pela cabeça da lista
-            atual = lista->prox; // Próximo nó para comparação
-
-            // Percorre a lista para encontrar a posição correta ou o fim
-            while (atual != NULL && strcasecmp(novo->nome, atual->nome) > 0) {
-                anter = atual; // Avança o anterior
-                atual = atual->prox; // Avança o atual
+            // Caso 1: Lista está vazia (primeira inserção)
+            if (lista == NULL) {
+                lista = novo; // Novo nó se torna a cabeça da lista
+                novo->prox = NULL; // Próximo nó é NULL (fim da lista)
             }
-            
-            // Insere o novo nó entre anter e atual
-            anter->prox = novo; // Nó anterior aponta para o novo
-            novo->prox = atual; // Novo nó aponta para o atual (pode ser NULL)
+
+            // Caso 2: Inserção no início (antes da cabeça)
+            else if (strcasecmp(novo->nome, lista->nome) < 0) {
+                novo->prox = lista; // Novo nó aponta para o antigo primeiro nó
+                lista = novo; // Novo nó se torna a nova cabeça da lista
+            }
+
+            // Caso 3: Inserção no meio ou fim da lista
+            else {
+                anter = lista; // Começa pela cabeça da lista
+                atual = lista->prox; // Próximo nó para comparação
+
+                // Percorre a lista para encontrar a posição correta ou o fim
+                while (atual != NULL && strcasecmp(novo->nome, atual->nome) > 0) {
+                    anter = atual; // Avança o anterior
+                    atual = atual->prox; // Avança o atual
+                }
+
+                // Insere o novo nó entre anter e atual
+                anter->prox = novo; // Nó anterior aponta para o novo
+                novo->prox = atual; // Novo nó aponta para o atual (pode ser NULL)
+            }
         }
     }
     fclose(arq_hospedes);
-
 
     printf("%-15s %-30s %-15s\n", "NOME", "CPF", "TELEFONE");
     printf("--------------- ------------------------------ ---------------\n");
