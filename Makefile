@@ -1,6 +1,6 @@
 all:
 	gcc -c -Wall include/*.h
-	gcc -c -Wall *.c -I include object/*.c
+	gcc -c -Wall *.c -I include src/*.c
 	gcc -o SIG-HOTEL *.o
 #compila o código
 clean:
