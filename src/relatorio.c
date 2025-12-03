@@ -551,16 +551,14 @@ void list_reservas_ampliado(void){
     while (fread(res, sizeof(Reservas), 1, arq_reservas)) {
         if (res->status) {
             // Formata as datas para exibição
-            strncpy(data_reserva_formatado, formata_data(res->data_reserva), sizeof(data_reserva_formatado) - 1);
-            data_reserva_formatado[sizeof(data_reserva_formatado) - 1] = '\0';
-            strncpy(data_atendimento_formatado, formata_data(res->data_atendimento), sizeof(data_atendimento_formatado) - 1);
-            data_atendimento_formatado[sizeof(data_atendimento_formatado) - 1] = '\0';
+            strncpy(data_reserva_formatado, formata_data(res->data_reserva), 11);
+            data_reserva_formatado[11] = '\0';
+            strncpy(data_atendimento_formatado, formata_data(res->data_atendimento), 11);
+            data_atendimento_formatado[11] = '\0';
             
             // Pega os nomes do hospede e funcionario
-            strncpy(nome_hospede, pega_nome_hospede(res->cpf_hospede), sizeof(nome_hospede) - 1);
-            nome_hospede[sizeof(nome_hospede) - 1] = '\0';
-            strncpy(nome_funcionario, pega_nome_funcionario(res->cpf_funcionario), sizeof(nome_funcionario) - 1);
-            nome_funcionario[sizeof(nome_funcionario) - 1] = '\0';
+            strncpy(nome_hospede, pega_nome_hospede(res->cpf_hospede), sizeof(nome_hospede));
+            strncpy(nome_funcionario, pega_nome_funcionario(res->cpf_funcionario), sizeof(nome_funcionario));
 
             printf("%-4s    %-18s   %-18s   %-14s  %-14s\n", res->n_quarto, nome_hospede, nome_funcionario, data_reserva_formatado, data_atendimento_formatado);
         }

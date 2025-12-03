@@ -269,12 +269,12 @@ void cad_quartos(void){
     }
 
     //criando campos padrão para o novo quarto
-    strncpy(quar->cpf, "-", sizeof(quar->cpf));
-    quar->cpf[sizeof(quar->cpf) - 1] = '\0'; // Garantir terminação nula
-
-    strncpy(quar->quan_pessoas, "0", sizeof(quar->quan_pessoas));
-    quar->quan_pessoas[sizeof(quar->quan_pessoas) - 1] = '\0';
     quar->status = False;
+    strncpy(quar->cpf, "-", sizeof(quar->cpf));
+    quar->cpf[strlen(quar->cpf) - 1] = '\0'; // Garantir terminação nula
+    
+    strncpy(quar->quan_pessoas, "0", sizeof(quar->quan_pessoas));
+    quar->quan_pessoas[strlen(quar->quan_pessoas) - 1] = '\0';
 
     fwrite(quar, sizeof(Quartos), 1, arq_quartos);
 

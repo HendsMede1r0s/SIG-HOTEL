@@ -58,9 +58,9 @@ char* formata_data(char *data){
 
     strncpy(dia, data, 2);
     dia[2] = '\0';
-    strncpy(mes, data + 2, 2);
+    strncpy(mes, data + 2, 2); //+2 pra pular dia
     mes[2] = '\0';
-    strncpy(ano, data + 4, 4);
+    strncpy(ano, data + 4, 4); //+4 pra pular dia e mes
     ano[4] = '\0';
     sprintf(data_formatada, "%s/%s/%s", dia, mes, ano);
     
@@ -73,6 +73,7 @@ void upper(char *str){
         str[i] = toupper(str[i]);
     }
 }
+
 
 void limpa_quarto(Quar_lista* l){
     Quar_lista* temp = l->prox; // Começa do primeiro nó após cabeça
